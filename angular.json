@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "csh-front"
+    }
+  },
+  "defaultProject": "csh-front",
+  "cli": {
+    "analytics": "e55de4ff-4faf-4639-bf62-3f64bfbf493b"
+  }
 }
