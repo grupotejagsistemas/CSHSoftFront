@@ -1,61 +1,62 @@
-<div  class="card bg-info text-white">
-    <div class="card-header">{{titulo}} </div>
+<div class="card text-white" style="background-color:#00396b">
+    <div class="card-header" id="titulo">{{titulo}} </div>
         <div class="card-body"> 
             <form (ngSubmit) = "create()">
                 <div class="form-group row">
                     <label for="nombreCompleto" class="col-form-label col-sm-2">Nombre Completo</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" [{ngModel}]="voluntario.nombreCompleto" name="nombreCompleto">
+                            <input type="text" class="form-control" name="nombreCompleto" [(ngModel)]="voluntario.nombreCompleto" >
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="telefono" class="col-form-label col-sm-2">Télefono</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" [{ngModel}]="voluntario.telefono" name="telefono">
+                            <input type="text" class="form-control" name="telefono" [(ngModel)]="voluntario.telefono" >
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="direccion" class="col-form-label col-sm-2">Dirección</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" [{ngModel}]="voluntario.direccion" name="direccion">
+                            <input type="text" class="form-control"  name="direccion" [(ngModel)]="voluntario.direccion" >
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="idVeterinariaCercana" class="col-form-label col-sm-2">Veterinaria Cercana</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" [{ngModel}]="voluntario.idVeterinariaCercana" name="idVeterinariaCercana">
+                            <input type="text" class="form-control" name="idVeterinariaCercana" [(ngModel)]="voluntario.idVeterinariaCercana" >
                         </div>
                 </div>               
                  <div class="form-group row">
                     <label for="zona" class="col-form-label col-sm-2">Zona</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" [{ngModel}]="voluntario.zona" name="zona">
+                            <input type="text" class="form-control" name="zona"  [(ngModel)]="voluntario.zona">
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="transito" class="col-form-label col-sm-2">Tránsito</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" [{ngModel}]="voluntario.transito" name="transito">
+                            <input type="text" class="form-control" name="transito"  [(ngModel)]="voluntario.transito">
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="traslado" class="col-form-label col-sm-2">Traslado</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" [{ngModel}]="voluntario.traslado" name="traslado">
+                            <input type="text" class="form-control"  name="traslado" [(ngModel)]="voluntario.traslado" >
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="presencial" class="col-form-label col-sm-2">Presencial</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" [{ngModel}]="voluntario.presencial" name="presencial">
+                            <input type="text" class="form-control"  name="presencial" [(ngModel)]="voluntario.presencial">
                         </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <button class="btn btn-primary" role="button">Crear</button>
+                        <button class="btn btn-primary" role="button">Agregar</button>
                     </div>
                 </div>
             </form>
     </div>
 </div>
+

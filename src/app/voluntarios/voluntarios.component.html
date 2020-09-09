@@ -1,9 +1,9 @@
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Voluntarios</h5>
+<div class="card" style="background-color:#00396b" >
+    <div class="card-body"style="background-color:#fdfdfd"  >
+        <h5 class="card-title" >Voluntarios</h5>
         
         <div class="my-2 text-left" >
-            <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/voluntarios/crear']">Crear Voluntarios</button>
+            <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
         </div>
         <table class="table table-bordered table-striped">
             <thead>
@@ -19,15 +19,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let voluntarios of voluntarios">
-                    <td>{{voluntarios.nombreCompleto}}</td>
-                    <td>{{voluntarios.telefono}}</td>
-                    <td>{{voluntarios.direccion}}</td>
-                    <td>{{voluntarios.idVeterinariaCercana}}</td>
-                    <td>{{voluntarios.zona}}</td>
-                    <td>{{voluntarios.transito}}</td>
-                    <td>{{voluntarios.traslado}}</td>
-                    <td>{{voluntarios.presencial}}</td>
+                <tr *ngFor="let voluntario of voluntarios">
+                    <td>{{voluntario.nombreCompleto}}</td>
+                    <td>{{voluntario.telefono}}</td>
+                    <td>{{voluntario.direccion}}</td>
+                    <td>{{voluntario.idVeterinariaCercana}}</td>
+                    <td>{{voluntario.zona}}</td>
+                    <td>{{voluntario.transito}}</td>
+                    <td>{{voluntario.traslado}}</td>
+                    <td>{{voluntario.presencial}}</td>
                 </tr>
             </tbody>
         </table>  
