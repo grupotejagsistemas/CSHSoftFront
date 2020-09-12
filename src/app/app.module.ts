@@ -15,7 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'voluntarios', component: VoluntariosComponent},
-  {path: 'voluntarios/crear', component: FormCrearComponent}
+  {path: 'voluntarios/crear', component: FormCrearComponent},
+  {path: 'voluntarios/editar/:id', component: FormCrearComponent}
 ]
 @NgModule({
   declarations: [

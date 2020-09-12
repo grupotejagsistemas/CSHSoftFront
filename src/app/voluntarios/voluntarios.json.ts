@@ -1,6 +1,7 @@
 import {Voluntario} from './voluntario'
 
 export const VOLUNTARIOS: Voluntario[] = [{
+    id: 1,
     nombreCompleto: 'Jose Mujica',
     telefono: '1585959966', 
     direccion: 'Av Libertador 156', 
@@ -10,6 +11,7 @@ export const VOLUNTARIOS: Voluntario[] = [{
     traslado: 'S',
     presencial: 'S'
   },{
+    id: 2,
     nombreCompleto: 'Armando Paredes',
     telefono: '1585889677', 
     direccion: 'Av Piedrabuena 156', 

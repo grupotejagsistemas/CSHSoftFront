@@ -25,4 +25,16 @@ export class VoluntarioService {
   create(voluntario: Voluntario) : Observable<Voluntario>{
     return this.http.post<Voluntario>(this.url, voluntario, {headers: this.httpHeaders})
   } 
+
+  getVoluntario(id): Observable<Voluntario>{
+    return this.http.get<Voluntario>(`${this.url}/${id}`);
+  }
+
+  update(voluntario: Voluntario): Observable<Voluntario>{
+    return this.http.put<Voluntario>(`${this.url}/${voluntario.id}`, voluntario, {headers:this.httpHeaders})
+  }
+
+  delete(id: number): Observable<Voluntario>{
+    return this.http.delete<Voluntario>(`${this.url}/${id}`, {headers: this.httpHeaders})
+  }
 }

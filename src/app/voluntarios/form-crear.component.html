@@ -1,7 +1,13 @@
 <div class="card text-white" style="background-color:#00396b">
     <div class="card-header" id="titulo">{{titulo}} </div>
         <div class="card-body"> 
-            <form (ngSubmit) = "create()">
+            <form>
+                <div class="form-group row">
+                    <label for="id" class="col-form-label col-sm-2">ID</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="id" [(ngModel)]="voluntario.id" >
+                        </div>
+                </div>
                 <div class="form-group row">
                     <label for="nombreCompleto" class="col-form-label col-sm-2">Nombre Completo</label>
                         <div class="col-sm-6">
@@ -53,7 +59,11 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <button class="btn btn-primary" role="button">Agregar</button>
+                        <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!voluntario.id else elseBlock">Agregar</button>
+                        <ng-template #elseBlock>
+                            <button class="btn btn-primary" role="button" (click)='update()'>Modificar</button>
+
+                        </ng-template>
                     </div>
                 </div>
             </form>

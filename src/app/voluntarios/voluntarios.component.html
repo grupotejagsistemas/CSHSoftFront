@@ -8,6 +8,7 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Télefono</th>
                     <th>Dirección</th>
@@ -16,10 +17,12 @@
                     <th>Tránsito</th>
                     <th>Traslado</th>
                     <th>Presencial</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let voluntario of voluntarios">
+                    <td>{{voluntario.id}}</td>
                     <td>{{voluntario.nombreCompleto}}</td>
                     <td>{{voluntario.telefono}}</td>
                     <td>{{voluntario.direccion}}</td>
@@ -28,6 +31,9 @@
                     <td>{{voluntario.transito}}</td>
                     <td>{{voluntario.traslado}}</td>
                     <td>{{voluntario.presencial}}</td>
+                    <td>
+                        <button type="button" name="button" [routerLink]="['/voluntarios/editar', voluntario.id]" class="btn btn-primary">Editar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>  
