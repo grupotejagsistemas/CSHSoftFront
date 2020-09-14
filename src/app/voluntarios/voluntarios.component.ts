@@ -26,18 +26,25 @@ export class VoluntariosComponent implements OnInit {
   delete(voluntario: Voluntario): void {
     swal.fire({
       title: '',
-      text: `¿Desea eliminar al voluntario ${voluntario.nombreCompleto}`,
+      text: `¿Desea eliminar al voluntario ${voluntario.nombreCompleto}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: 'Cancelar',
       confirmButtonText: 'Confirmar'
     }).then((result) => {
-      if (result.isConfirmed) {
-        swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
+      if (result.value) {
+
+        console.log('se elimino: ', voluntario)
+        this.voluntarioService.delete(voluntario.id).subscribe(
+          response => {
+            this.voluntarios = this.voluntarios.filter(vol => vol !== voluntario)
+            swal.fire(
+              'Eliminado!',
+              '',
+              'success',
+              )
+            }
         )
       }
     })

@@ -1,11 +1,12 @@
-<div class="card" style="background-color:#00396b" >
-    <div class="card-body"style="background-color:#fdfdfd"  >
         <h5 class="card-title" >Voluntarios</h5>
         
         <div class="my-2 text-left" >
             <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
         </div>
-        <table class="table table-bordered table-striped">
+        <div *ngIf="voluntarios?.length==0" class="alert alert-info">
+            No se encontraron datos registrados
+        </div>
+        <table class="table table-striped" *ngIf="voluntarios?.length>0">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -17,7 +18,8 @@
                     <th>Tránsito</th>
                     <th>Traslado</th>
                     <th>Presencial</th>
-                    <th>Acciones</th>
+                    <th>Modificar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,8 +36,9 @@
                     <td>
                         <button type="button" name="button" [routerLink]="['/voluntarios/editar', voluntario.id]" class="btn btn-primary">Editar</button>
                     </td>
+                    <td>
+                        <button type="button" name="eliminar" (click)='delete(voluntario)' class="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>  
-        </div>
-  </div>

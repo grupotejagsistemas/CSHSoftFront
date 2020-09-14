@@ -1,0 +1,46 @@
+    <h5 class="card-title" >Fichas Médicas</h5>
+        
+        <div class="my-2 text-left" >
+            <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/fichas-medicas/crear']">Nuevo Ficha Médica</button>
+        </div>
+        <div *ngIf="fichasMedicas?.length==0" class="alert alert-info">
+            No se encontraron datos registrados
+        </div>
+        <table class="table table-striped" *ngIf="fichasMedicas?.length>0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Nombre del Producto</th>
+                    <th>Vacuna</th>
+                    <th>Nombre de la Vacuna</th>
+                    <th>Diagnóstico</th>
+                    <th>Nombre de Mascota</th>
+                    <th>Nombre del Veterinario</th>
+                    <th>Tratamiento</th>
+                    <th>Descripción Tratamiento</th>
+                    <th>Modificar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fichaMedica of fichasMedicas">
+                    <td>{{fichaMedica.id}}</td>
+                    <td>{{fichaMedica.fecha}}</td>
+                    <td>{{fichaMedica.nombreProducto}}</td>
+                    <td>{{fichaMedica.vacuna}}</td>
+                    <td>{{fichaMedica.nombreVacuna}}</td>
+                    <td>{{fichaMedica.diagnostico}}</td>
+                    <td>{{fichaMedica.nombreMascota}}</td>
+                    <td>{{fichaMedica.nombreVeterinario}}</td>
+                    <td>{{fichaMedica.tratamiento}}</td>
+                    <td>{{fichaMedica.descripcionTratamiento}}</td>
+                    <td>
+                        <button type="button" name="button" [routerLink]="['/fichas-medicas/editar', fichaMedica.id]" class="btn btn-primary">Editar</button>
+                    </td>
+                    <td>
+                        <button type="button" name="eliminar" (click)='delete(fichaMedica)' class="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>  

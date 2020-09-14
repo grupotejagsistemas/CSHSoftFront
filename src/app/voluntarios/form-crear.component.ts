@@ -43,8 +43,7 @@ export class FormCrearComponent implements OnInit {
     .subscribe(voluntario => {
       this.router.navigate(['/voluntarios'])
       swal.fire('', 'Creación exitosa', 'success')
-    }
-      )
+    })
       console.log('se guarda los datos: ')
       console.log(this.voluntario)
   }
@@ -52,9 +51,9 @@ export class FormCrearComponent implements OnInit {
   update(): void {
     this.voluntarioService.update(this.voluntario)
     .subscribe(
-      voluntario => {
+      json => {
         this.router.navigate(['/voluntarios'])
-        swal.fire('', `El voluntario ${voluntario.nombreCompleto} ha sido modificado`, 'success')
+        swal.fire('', `El voluntario ${json.voluntario.nombreCompleto} ha sido modificado`, 'success')
       }
     )
 
