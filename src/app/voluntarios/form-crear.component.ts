@@ -43,8 +43,7 @@ export class FormCrearComponent implements OnInit {
     .subscribe(voluntario => {
       this.router.navigate(['/voluntarios'])
       swal.fire('', 'Creación exitosa', 'success')
-    }
-      )
+    })
       console.log('se guarda los datos: ')
       console.log(this.voluntario)
   }

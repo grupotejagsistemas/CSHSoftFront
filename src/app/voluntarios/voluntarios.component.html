@@ -1,5 +1,3 @@
-<div class="card" style="background-color:#00396b" >
-    <div class="card-body"style="background-color:#fdfdfd"  >
         <h5 class="card-title" >Voluntarios</h5>
         
         <div class="my-2 text-left" >
@@ -8,7 +6,7 @@
         <div *ngIf="voluntarios?.length==0" class="alert alert-info">
             No se encontraron datos registrados
         </div>
-        <table class="table table-bordered table-striped" *ngIf="voluntarios?.length>0">
+        <table class="table table-striped" *ngIf="voluntarios?.length>0">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -20,7 +18,8 @@
                     <th>Tránsito</th>
                     <th>Traslado</th>
                     <th>Presencial</th>
-                    <th>Acciones</th>
+                    <th>Modificar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,5 +42,3 @@
                 </tr>
             </tbody>
         </table>  
-        </div>
-  </div>

@@ -1,6 +1,6 @@
 import {Voluntario} from './voluntario'
 
-export const VOLUNTARIOS: Voluntario[] = [/*{
+export const VOLUNTARIOS: Voluntario[] = [{
   id: 1,
     nombreCompleto: 'Jose Mujica',
     telefono: '1585959966', 
@@ -21,4 +21,4 @@ export const VOLUNTARIOS: Voluntario[] = [/*{
     traslado: 'S',
     presencial: 'S'
 
-  }*/]
+  }]
