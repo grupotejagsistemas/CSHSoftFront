@@ -52,9 +52,9 @@ export class FormCrearComponent implements OnInit {
   update(): void {
     this.voluntarioService.update(this.voluntario)
     .subscribe(
-      voluntario => {
+      json => {
         this.router.navigate(['/voluntarios'])
-        swal.fire('', `El voluntario ${voluntario.nombreCompleto} ha sido modificado`, 'success')
+        swal.fire('', `El voluntario ${json.voluntario.nombreCompleto} ha sido modificado`, 'success')
       }
     )
 
