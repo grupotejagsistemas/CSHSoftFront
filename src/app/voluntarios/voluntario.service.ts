@@ -18,7 +18,6 @@ export class VoluntarioService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getVoluntarios(): Observable<Voluntario[]> {
-
     return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntarios`);
   }
 
