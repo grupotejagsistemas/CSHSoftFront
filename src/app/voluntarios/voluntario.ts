@@ -1,5 +1,5 @@
 export class Voluntario {
-    id: number;
+    idVoluntario: number;
     nombreCompleto: string;
     telefono: string;
     direccion: string ;

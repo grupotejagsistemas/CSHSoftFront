@@ -18,36 +18,41 @@ export class VoluntariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.voluntarioService.getVoluntarios().subscribe(
-      voluntarios => this.voluntarios = voluntarios
-    );
+
+    this.voluntarioService.getVoluntarios().subscribe((data: any) => {
+
+      this.voluntarios = data;
+      console.log('array de voluntarios: ' + this.voluntarios);
+
+    });
+
   }
 
-  delete(voluntario: Voluntario): void {
-    swal.fire({
-      title: '',
-      text: `¿Desea eliminar al voluntario ${voluntario.nombreCompleto}?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: 'Cancelar',
-      confirmButtonText: 'Confirmar'
-    }).then((result) => {
-      if (result.value) {
+  // delete(voluntario: Voluntario): void {
+  //   swal.fire({
+  //     title: '',
+  //     text: `¿Desea eliminar al voluntario ${voluntario.nombreCompleto}?`,
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: 'Cancelar',
+  //     confirmButtonText: 'Confirmar'
+  //   }).then((result) => {
+  //     if (result.value) {
 
-        console.log('se elimino: ', voluntario)
-        this.voluntarioService.delete(voluntario.id).subscribe(
-          response => {
-            this.voluntarios = this.voluntarios.filter(vol => vol !== voluntario)
-            swal.fire(
-              'Eliminado!',
-              '',
-              'success',
-              )
-            }
-        )
-      }
-    })
-  }
+  //       console.log('se elimino: ', voluntario)
+  //       this.voluntarioService.delete(voluntario.id).subscribe(
+  //         response => {
+  //           this.voluntarios = this.voluntarios.filter(vol => vol !== voluntario)
+  //           swal.fire(
+  //             'Eliminado!',
+  //             '',
+  //             'success',
+  //             )
+  //           }
+  //       )
+  //     }
+  //   })
+  // }
 
 }
