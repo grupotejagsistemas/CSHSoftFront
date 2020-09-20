@@ -19,9 +19,9 @@ export class VoluntarioService {
 
   getVoluntarios(): Observable<Voluntario[]> {
     return of(VOLUNTARIOS);
-    //  return this.http.get(this.url).pipe(
-     //   map(response => response as Voluntario[])
-     // );
+      return this.http.get(this.url).pipe(
+        map(response => response as Voluntario[])
+      );
   }
 
   create(voluntario: Voluntario) : Observable<Voluntario>{
