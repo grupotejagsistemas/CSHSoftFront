@@ -13,7 +13,6 @@
                     <th>Nombre</th>
                     <th>Télefono</th>
                     <th>Dirección</th>
-                    <th>Veterinaria Cercana</th>
                     <th>Zona</th>
                     <th>Tránsito</th>
                     <th>Traslado</th>
@@ -24,11 +23,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let voluntario of voluntarios">
-                    <td>{{voluntario.id}}</td>
+                    <td>{{voluntario.idVoluntario}}</td>
                     <td>{{voluntario.nombreCompleto}}</td>
                     <td>{{voluntario.telefono}}</td>
                     <td>{{voluntario.direccion}}</td>
-                    <td>{{voluntario.idVeterinariaCercana}}</td>
                     <td>{{voluntario.zona}}</td>
                     <td>{{voluntario.transito}}</td>
                     <td>{{voluntario.traslado}}</td>

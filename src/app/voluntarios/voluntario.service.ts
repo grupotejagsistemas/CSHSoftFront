@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Voluntario } from './voluntario';
+import { Veterinaria } from './veterinaria';
 import {of,  Observable, throwError } from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, catchError} from 'rxjs/operators';
@@ -16,6 +17,11 @@ export class VoluntarioService {
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient, private router: Router) { }
+
+  getVeterinarias(): Observable<Veterinaria[]> {
+    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinarias`) 
+
+  }
 
   getVoluntarios(): Observable<Voluntario[]> {
     return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntarios`);

@@ -28,9 +28,12 @@
             </div>
             <div></div>
             <div class="form-group row">
-                <label for="idVeterinariaCercana" class="col-form-label col-sm-2">Veterinaria Cercana</label>
+                <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria Cercana</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="idVeterinariaCercana" [(ngModel)]="voluntario.idVeterinariaCercana" required>
+                    <select class="form-control" name="idVeterinariaCercana" [(ngModel)]="voluntario.idVeterinariaCercana" style="width:500px;" required>
+                    <option *ngFor="let veterinaria of veterinarias" [ngValue]="veterinaria">{{veterinaria.razonSocial}}</option>
+                    
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
