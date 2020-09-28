@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import {FichaMedica } from './ficha-medica';
+import {Mascota} from './mascota';
+import {Veterinaria} from './veterinaria';
 import {FichaMedicaService} from './ficha-medica.service';
 import {Router, ActivatedRoute, RouterModule} from '@angular/router';
 import swal from 'sweetalert2';
 import {strictEqual} from 'assert';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  selector: 'app-form-ficha-medica',
+  templateUrl: './form-ficha-medica.component.html',
+  styleUrls: ['./form-ficha-medica.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormFichaMedicaComponent implements OnInit {
 
   fichaMedica: FichaMedica = new FichaMedica()
+  mascotas: Mascota[];
+  veterinarias: Veterinaria[];
   titulo: string = 'Nueva Ficha Médica'
 
   constructor(
@@ -25,6 +29,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarFichaMedica();
+    this.fichaMedicaService.getMascotas().subscribe(mascotas => this.mascotas = mascotas)
+    this.fichaMedicaService.getVeterinaria().subscribe(veterinarias => this.veterinarias = veterinarias)
   }
 
   cargarFichaMedica(): void {
