@@ -5,32 +5,32 @@
             <div class="form-group row">
                 <label for="id" class="col-form-label col-sm-2">ID</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="id" [(ngModel)]="voluntario.idVoluntario" required>
+                    <input type="text" class="form-control"  placeholder ="ID" name="id" [(ngModel)]="voluntario.idVoluntario" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nombreCompleto" class="col-form-label col-sm-2">Nombre Completo</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="nombreCompleto" [(ngModel)]="voluntario.nombreCompleto" required>
+                    <input type="text" class="form-control" placeholder="Nombre Completo" name="nombreCompleto" [(ngModel)]="voluntario.nombreCompleto" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telefono" class="col-form-label col-sm-2">Télefono</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="telefono" [(ngModel)]="voluntario.telefono" required>
+                    <input type="text" class="form-control" placeholder="Télefono" name="telefono" [(ngModel)]="voluntario.telefono" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="direccion" class="col-form-label col-sm-2">Dirección</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="direccion" [(ngModel)]="voluntario.direccion" required>
+                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="voluntario.direccion" required>
                 </div>
             </div>
             <div></div>
             <div class="form-group row">
                 <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria Cercana</label>
                 <div class="col-sm-6">
-                    <select class="form-control" name="idVeterinariaCercana" [(ngModel)]="voluntario.idVeterinariaCercana" style="width:500px;" required>
+                    <select class="form-control"  name="idVeterinariaCercana" [(ngModel)]="voluntario.idVeterinariaCercana" style="width:500px;" required>
                     <option *ngFor="let veterinaria of veterinarias" [ngValue]="veterinaria">{{veterinaria.razonSocial}}</option>
                     
                     </select>
@@ -39,7 +39,7 @@
             <div class="form-group row">
                 <label for="zona" class="col-form-label col-sm-2">Zona</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="zona" [(ngModel)]="voluntario.zona" required>
+                    <input type="text" class="form-control" placeholder="zona" name="zona" [(ngModel)]="voluntario.zona" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -57,7 +57,7 @@
             <div class="form-group row">
                 <label for="presencial" class="col-form-label col-sm-2">Presencial</label>
                 <div class="col-sm-6">
-                    <input type="checkbox" name="presencial" [(ngModel)]="voluntario.presencial">
+                    <input type="checkbox" name="presencial"  [(ngModel)]="voluntario.presencial">
                 </div>
             </div>
 

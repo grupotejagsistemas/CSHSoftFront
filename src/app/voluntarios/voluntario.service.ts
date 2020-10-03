@@ -15,6 +15,11 @@ export class VoluntarioService {
 
   private urlAPI: string = environment.urlCSH;
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+  busquedaNombre: '';
+  busquedaPresencial: '';
+  busquedaTransito: '';
+  busquedaTraslado: '';
+
 
   constructor(private http: HttpClient, private router: Router) { }
 

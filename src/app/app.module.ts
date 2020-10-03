@@ -17,6 +17,10 @@ import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotaComponent } from './mascotas/form-mascota.component';
+import { BusquedaNombrePipe } from './voluntarios/pipes/busqueda-nombre.pipe';
+import { BusquedaTransitoPipe } from './voluntarios/pipes/busqueda-transito.pipe';
+import { BusquedaPresencialPipe } from './voluntarios/pipes/busqueda-presencial.pipe';
+import { BusquedaTrasladoPipe } from './voluntarios/pipes/busqueda-traslado.pipe';
 
 
 const routes: Routes = [
@@ -48,6 +52,10 @@ const routes: Routes = [
     FormVeterinariaComponent,
     MascotasComponent,
     FormMascotaComponent,
+    BusquedaNombrePipe,
+    BusquedaTransitoPipe,
+    BusquedaPresencialPipe,
+    BusquedaTrasladoPipe,
   ],
   imports: [
     BrowserModule,
