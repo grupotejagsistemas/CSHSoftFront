@@ -15,8 +15,11 @@ import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotaComponent } from './mascotas/form-mascota.component';
-import { FichasMedicasComponent } from './fichas-medicas/fichas-medicas.component';
 import { FormFichaMedicaComponent } from './fichas-medicas/form-ficha-medica.component';
+import { BusquedaNombrePipe } from './voluntarios/pipes/busqueda-nombre.pipe';
+import { BusquedaTransitoPipe } from './voluntarios/pipes/busqueda-transito.pipe';
+import { BusquedaPresencialPipe } from './voluntarios/pipes/busqueda-presencial.pipe';
+import { BusquedaTrasladoPipe } from './voluntarios/pipes/busqueda-traslado.pipe';
 
 
 const routes: Routes = [
@@ -24,7 +27,7 @@ const routes: Routes = [
   {path: 'voluntarios', component: VoluntariosComponent},
   {path: 'voluntarios/crear', component: FormCrearComponent},
   {path: 'voluntarios/editar/:id', component: FormCrearComponent},
-  {path: 'fichas-medicas', component: FichasMedicasComponent},
+  {path: 'fichas-medicas', component: FormFichaMedicaComponent},
   {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent},
   {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent},
   {path: 'veterinarias', component: VeterinariasComponent},
@@ -46,8 +49,15 @@ const routes: Routes = [
     FormVeterinariaComponent,
     MascotasComponent,
     FormMascotaComponent,
+<<<<<<< .merge_file_a31352
     FichasMedicasComponent,
     FormFichaMedicaComponent,
+=======
+    BusquedaNombrePipe,
+    BusquedaTransitoPipe,
+    BusquedaPresencialPipe,
+    BusquedaTrasladoPipe,
+>>>>>>> .merge_file_a05068
   ],
   imports: [
     BrowserModule,

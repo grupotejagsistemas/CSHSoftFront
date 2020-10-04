@@ -13,7 +13,7 @@ export class VoluntariosComponent implements OnInit {
 
   voluntarios: Voluntario[];
 
-  constructor(private voluntarioService: VoluntarioService) {
+  constructor(public voluntarioService: VoluntarioService) {
 
   }
 
