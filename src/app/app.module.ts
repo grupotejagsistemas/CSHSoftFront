@@ -49,15 +49,11 @@ const routes: Routes = [
     FormVeterinariaComponent,
     MascotasComponent,
     FormMascotaComponent,
-<<<<<<< .merge_file_a31352
-    FichasMedicasComponent,
     FormFichaMedicaComponent,
-=======
     BusquedaNombrePipe,
     BusquedaTransitoPipe,
     BusquedaPresencialPipe,
     BusquedaTrasladoPipe,
->>>>>>> .merge_file_a05068
   ],
   imports: [
     BrowserModule,
