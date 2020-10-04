@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Voluntario } from './voluntario';
+import { Veterinaria} from './veterinaria';
 import { VoluntarioService } from './voluntario.service';
 import {Router} from '@angular/router';
 import swal from 'sweetalert2'
@@ -13,6 +14,7 @@ import swal from 'sweetalert2'
 export class FormCrearComponent implements OnInit {
 
   voluntario: Voluntario = new Voluntario()
+  veterinarias: Veterinaria[]
   titulo: string = 'Nuevo Voluntario'
 
   constructor(
@@ -21,6 +23,7 @@ export class FormCrearComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.voluntarioService.getVeterinarias().subscribe(veterinarias => this.veterinarias = veterinarias)
   }
 
   public create(): void {
