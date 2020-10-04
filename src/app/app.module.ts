@@ -11,12 +11,11 @@ import {RouterModule, Routes} from '@angular/router';
 import  {FormsModule} from '@angular/forms';
 import { FormCrearComponent } from './voluntarios/form-crear.component';
 import {HttpClientModule} from '@angular/common/http';
-import { FichaMedicaComponent } from './ficha-medica/ficha-medica.component';
-import { FormComponent } from './ficha-medica/form.component';
 import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotaComponent } from './mascotas/form-mascota.component';
+import { FormFichaMedicaComponent } from './fichas-medicas/form-ficha-medica.component';
 import { BusquedaNombrePipe } from './voluntarios/pipes/busqueda-nombre.pipe';
 import { BusquedaTransitoPipe } from './voluntarios/pipes/busqueda-transito.pipe';
 import { BusquedaPresencialPipe } from './voluntarios/pipes/busqueda-presencial.pipe';
@@ -28,9 +27,9 @@ const routes: Routes = [
   {path: 'voluntarios', component: VoluntariosComponent},
   {path: 'voluntarios/crear', component: FormCrearComponent},
   {path: 'voluntarios/editar/:id', component: FormCrearComponent},
-  {path: 'fichas-medicas', component: FichaMedicaComponent},
-  {path: 'fichas-medicas/crear', component: FormComponent},
-  {path: 'fichas-medicas/editar/:id', component: FormComponent},
+  {path: 'fichas-medicas', component: FormFichaMedicaComponent},
+  {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent},
+  {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent},
   {path: 'veterinarias', component: VeterinariasComponent},
   {path: 'veterinarias/crear',component: FormVeterinariaComponent },
   {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent },
@@ -46,12 +45,11 @@ const routes: Routes = [
     FooterComponent,
     VoluntariosComponent,
     FormCrearComponent,
-    FichaMedicaComponent,
-    FormComponent,
     VeterinariasComponent,
     FormVeterinariaComponent,
     MascotasComponent,
     FormMascotaComponent,
+    FormFichaMedicaComponent,
     BusquedaNombrePipe,
     BusquedaTransitoPipe,
     BusquedaPresencialPipe,

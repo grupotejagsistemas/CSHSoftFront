@@ -11,19 +11,26 @@
                 <div class="form-group row">
                     <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="fecha" [(ngModel)]="fichaMedica.fecha" required>
+                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fichaMedica.fecha" required>
                         </div>
                 </div>
                 <div class="form-group row">
-                    <label for="nombreProducto" class="col-form-label col-sm-2">Nombre del Producto</label>
+                    <label for="desparasitacion" class="col-form-label col-sm-2">Desparasitación</label>
+                    <div class="col-sm-6">
+                        <input type="checkbox" name="desparasitacion" [(ngModel)]="fichaMedica.desparasitacion">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="productoDesparasitacion" class="col-form-label col-sm-2">Nombre del Producto</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="nombreProducto" [(ngModel)]="fichaMedica.nombreProducto" required >
+                            <input type="text" class="form-control" name="productoDesparasitacion" [(ngModel)]="fichaMedica.productoDesparasitacion" required >
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="vacuna" class="col-form-label col-sm-2">Vacuna</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control"  name="vacuna" [(ngModel)]="fichaMedica.vacuna" required >
+                            <input type="checkbox"  name="vacuna" [(ngModel)]="fichaMedica.vacuna" required >
                         </div>
                 </div>
                 <div class="form-group row">
@@ -39,21 +46,26 @@
                         </div>
                 </div>
                 <div class="form-group row">
-                    <label for="nombreMascota" class="col-form-label col-sm-2">Nombre de Mascota </label>
+                    <label for="mascota" class="col-form-label col-sm-2">Mascota </label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="nombreMascota"  [(ngModel)]="fichaMedica.nombreMascota" required >
+                            <select class="form-control" name="mascota"  [(ngModel)]="fichaMedica.mascota" required>
+                                <option *ngFor="let mascota of mascotas" [ngValue]="mascota">{{mascota.nombre}}</option>
+
+                            </select>
                         </div>
                 </div>
                 <div class="form-group row">
-                    <label for="nombreVeterinario" class="col-form-label col-sm-2">Nombre de Veterinario</label>
+                    <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                         <div class="col-sm-6">
-                            <input ngbDropdownToggle type="text" class="form-control"  name="nombreVeterinario" [(ngModel)]="fichaMedica.nombreVeterinario" required >
+                            <select  class="form-control"  name="veterinaria" [(ngModel)]="fichaMedica.veterinaria" required >
+                                <option *ngFor="let veterinaria of veterinarias" [ngValue]="veterinaria">{{veterinaria.nombre}}</option>
+                            </select>
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="tratamiento" class="col-form-label col-sm-2">Tratamiento</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control"  name="tratamiento" [(ngModel)]="fichaMedica.tratamiento" required>
+                            <input type="checkbox"  name="tratamiento" [(ngModel)]="fichaMedica.tratamiento" required>
                         </div>
                 </div>
                 <div class="form-group row">

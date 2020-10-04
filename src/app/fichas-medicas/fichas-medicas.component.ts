@@ -4,12 +4,11 @@ import {FichaMedicaService} from './ficha-medica.service';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-ficha-medica',
-  templateUrl: './ficha-medica.component.html',
-  styleUrls: ['./ficha-medica.component.css']
+  selector: 'app-fichas-medicas',
+  templateUrl: './fichas-medicas.component.html',
+  styleUrls: ['./fichas-medicas.component.css']
 })
-export class FichaMedicaComponent implements OnInit {
-
+export class FichasMedicasComponent implements OnInit {
   fichasMedicas: FichaMedica[];
 
   constructor(private fichaMedicaService: FichaMedicaService) { }
