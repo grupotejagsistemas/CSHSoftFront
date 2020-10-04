@@ -13,6 +13,15 @@ import { FormCrearComponent } from './voluntarios/form-crear.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FichaMedicaComponent } from './ficha-medica/ficha-medica.component';
 import { FormComponent } from './ficha-medica/form.component';
+import { VeterinariasComponent } from './veterinarias/veterinarias.component';
+import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
+import { MascotasComponent } from './mascotas/mascotas.component';
+import { FormMascotaComponent } from './mascotas/form-mascota.component';
+import { BusquedaNombrePipe } from './voluntarios/pipes/busqueda-nombre.pipe';
+import { BusquedaTransitoPipe } from './voluntarios/pipes/busqueda-transito.pipe';
+import { BusquedaPresencialPipe } from './voluntarios/pipes/busqueda-presencial.pipe';
+import { BusquedaTrasladoPipe } from './voluntarios/pipes/busqueda-traslado.pipe';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -21,7 +30,14 @@ const routes: Routes = [
   {path: 'voluntarios/editar/:id', component: FormCrearComponent},
   {path: 'fichas-medicas', component: FichaMedicaComponent},
   {path: 'fichas-medicas/crear', component: FormComponent},
-  {path: 'fichas-medicas/editar/:id', component: FormComponent}
+  {path: 'fichas-medicas/editar/:id', component: FormComponent},
+  {path: 'veterinarias', component: VeterinariasComponent},
+  {path: 'veterinarias/crear',component: FormVeterinariaComponent },
+  {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent },
+  {path: 'mascotas', component: MascotasComponent},
+  {path: 'mascotas/crear',component: FormMascotaComponent },
+  {path: 'mascotas/editar/:id', component: FormMascotaComponent }
+
 ]
 @NgModule({
   declarations: [
@@ -32,6 +48,14 @@ const routes: Routes = [
     FormCrearComponent,
     FichaMedicaComponent,
     FormComponent,
+    VeterinariasComponent,
+    FormVeterinariaComponent,
+    MascotasComponent,
+    FormMascotaComponent,
+    BusquedaNombrePipe,
+    BusquedaTransitoPipe,
+    BusquedaPresencialPipe,
+    BusquedaTrasladoPipe,
   ],
   imports: [
     BrowserModule,

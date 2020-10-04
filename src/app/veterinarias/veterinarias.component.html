@@ -1,0 +1,37 @@
+        <h5 class="card-title" >Veterinarias</h5>
+            
+        <div class="my-2 text-left" >
+            <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/veterinarias/crear']">Nueva veterinaria</button>
+        </div>
+        <div *ngIf="veterinarias?.length==0" class="alert alert-info">
+            No se encontraron datos registrados
+        </div>
+        <table class="table table-striped" *ngIf="veterinarias?.length>0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Razón social</th>
+                    <th>Horario de atención</th>
+                    <th>Dirección</th>
+                    <th>Internación Cercana</th>
+                    <th>Observación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let veterinaria of veterinarias">
+                    <td>{{veterinaria.id}}</td>
+                    <td>{{veterinaria.razonSocial}}</td>
+                    <td>{{veterinaria.horarioAtencion}}</td>
+                    <td>{{veterinaria.direccion}}</td>
+                    <td>{{veterinaria.internacion}}</td>
+                    <td>{{veterinaria.observacion}}</td>
+                    <td>
+                        <button type="button" name="button" [routerLink]="['/veterinarias/editar', veterinaria.id]" class="btn btn-primary">Editar</button>
+                    </td>
+                    <td>
+                        <button type="button" name="eliminar" (click)='delete(veterinaria)' class="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>  
+

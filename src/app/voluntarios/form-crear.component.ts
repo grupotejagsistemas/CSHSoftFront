@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Voluntario } from './voluntario';
+import { Veterinaria} from './veterinaria';
 import { VoluntarioService } from './voluntario.service';
-import {Router, ActivatedRoute} from '@angular/router';
-import swal from 'sweetalert2';
-import { strictEqual } from 'assert';
+import {Router} from '@angular/router';
+import swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-form-crear',
@@ -13,51 +14,27 @@ import { strictEqual } from 'assert';
 export class FormCrearComponent implements OnInit {
 
   voluntario: Voluntario = new Voluntario()
+  veterinarias: Veterinaria[]
   titulo: string = 'Nuevo Voluntario'
 
   constructor(
-    public voluntarioService: VoluntarioService, 
-    public router: Router,
-    public activatedRoute: ActivatedRoute
+    private voluntarioService: VoluntarioService, 
+    private router: Router
     ) { }
 
   ngOnInit(): void {
-    this.cargarVoluntario();
-  }
-
-  cargarVoluntario(): void {
-    this.activatedRoute.params.subscribe(params => {
-      let id = params['id']
-      if(id){
-        this.voluntarioService.getVoluntario(id).subscribe(
-          (voluntario) => this.voluntario = voluntario
-        )
-      }
-    })
-
-    console.log('datos a modificar: ' , this.voluntario)
+    this.voluntarioService.getVeterinarias().subscribe(veterinarias => this.veterinarias = veterinarias)
   }
 
   public create(): void {
-    this.voluntarioService.create(this.voluntario)
-    .subscribe(voluntario => {
-      this.router.navigate(['/voluntarios'])
-      swal.fire('', 'Creación exitosa', 'success')
-    })
+    this.voluntarioService.create(this.voluntario).subscribe(
+      response => {
+        this.router.navigate(['/voluntarios'])
+   
+      }
+      )
       console.log('se guarda los datos: ')
       console.log(this.voluntario)
   }
 
-  update(): void {
-    this.voluntarioService.update(this.voluntario)
-    .subscribe(
-      json => {
-        this.router.navigate(['/voluntarios'])
-        swal.fire('', `El voluntario ${json.voluntario.nombreCompleto} ha sido modificado`, 'success')
-      }
-    )
-
-    console.log('Se modifican los datos:' )
-    console.log(this.voluntario)
-  }
 }

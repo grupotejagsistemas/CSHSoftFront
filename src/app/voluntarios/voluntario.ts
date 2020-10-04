@@ -1,9 +1,11 @@
+import { Veterinaria } from './veterinaria';
+
 export class Voluntario {
-    id: number;
+    idVoluntario: number;
     nombreCompleto: string;
     telefono: string;
     direccion: string ;
-    idVeterinariaCercana: number ;
+    idVeterinariaCercana: Veterinaria;
     zona: string;
     transito: string;
     traslado: string;
