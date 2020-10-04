@@ -1,0 +1,105 @@
+<div class="card text-white" style="background-color:#00396b">
+    <div class="card-header" id="titulo">{{titulo}} </div>
+    <div class="card-body">
+        <form>
+
+            <div class="form-group row">
+                <label for="numeroFormulario" class="col-form-label col-sm-2">Número Formulario</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="numeroFormulario" [(ngModel)]="adoptante.numeroFormulario" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
+                <div class="col-sm-6">
+                    <select type="select" class="form-control" name="mascota" [(ngModel)]="adoptante.mascota" required>
+                        <option *ngFor="let mascota of mascotas" [ngValue]="mascota">
+                            {{mascota.nombre}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nombreCompleto" class="col-form-label col-sm-2">Nombre Completo</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="nombreCompleto" [(ngModel)]="adoptante.nombreCompleto" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="edad" class="col-form-label col-sm-2">Edad</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="edad" [(ngModel)]="adoptante.edad" required>
+                </div>
+            </div>
+            <div></div>
+            <div class="form-group row">
+                <label for="domicilio" class="col-form-label col-sm-2">Domicilio</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="domicilio" [(ngModel)]="adoptante.domicilio" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="barrio" class="col-form-label col-sm-2">Barrio</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="barrio" [(ngModel)]="adoptante.barrio" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="celular" class="col-form-label col-sm-2">Celular</label>
+                <div class="col-sm-6">
+                    <input type="text"class="form-control"  name="celular" [(ngModel)]="adoptante.celular">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-form-label col-sm-2">Email</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"   name="email" [(ngModel)]="adoptante.email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="facebook" class="col-form-label col-sm-2">Facebook</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"  name="facebook" [(ngModel)]="adoptante.facebook">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="instagram" class="col-form-label col-sm-2">Instagram</label>
+                <div class="col-sm-6">
+                    <input type="text"class="form-control"   name="instagram" [(ngModel)]="adoptante.instagram">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="situacionLaboral" class="col-form-label col-sm-2">Situación Laboral</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="situacionLaboral" [(ngModel)]="adoptante.situacionLaboral">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="observaciones" class="col-form-label col-sm-2">Observacionesl</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" class="form-control"  name="observaciones" [(ngModel)]="adoptante.observaciones">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="estado" class="col-form-label col-sm-2">Estado</label>
+                <div class="col-sm-6">
+                    <select type="select" class="form-control" name="estado" [(ngModel)]="adoptante.estado" required>
+                        <option *ngFor="let estado of estados" [ngValue]="estado">
+                            {{estado.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!adoptante.idAdoptante else elseBlock">Agregar</button>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)='update()'>Modificar</button>
+
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

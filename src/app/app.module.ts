@@ -15,6 +15,8 @@ import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotaComponent } from './mascotas/form-mascota.component';
+import { AdoptantesComponent } from './adoptantes/adoptantes.component';
+import { FormAdoptanteComponent } from './adoptantes/form-adoptante.component';
 import { FormFichaMedicaComponent } from './fichas-medicas/form-ficha-medica.component';
 import { BusquedaNombrePipe } from './voluntarios/pipes/busqueda-nombre.pipe';
 import { BusquedaTransitoPipe } from './voluntarios/pipes/busqueda-transito.pipe';
@@ -35,7 +37,10 @@ const routes: Routes = [
   {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent },
   {path: 'mascotas', component: MascotasComponent},
   {path: 'mascotas/crear',component: FormMascotaComponent },
-  {path: 'mascotas/editar/:id', component: FormMascotaComponent }
+  {path: 'mascotas/editar/:id', component: FormMascotaComponent },
+  {path: 'adoptantes', component: AdoptantesComponent},
+  {path: 'adoptantes/crear', component: FormAdoptanteComponent},
+  {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent}
 
 ]
 @NgModule({
@@ -49,6 +54,8 @@ const routes: Routes = [
     FormVeterinariaComponent,
     MascotasComponent,
     FormMascotaComponent,
+    AdoptantesComponent,
+    FormAdoptanteComponent,
     FormFichaMedicaComponent,
     BusquedaNombrePipe,
     BusquedaTransitoPipe,

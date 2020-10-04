@@ -1,0 +1,52 @@
+<h5 class="card-title" >Adoptantes</h5>
+            
+<div class="my-2 text-left" >
+    <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/adoptantes/crear']">Nuevo Adoptante</button>
+</div>
+<div *ngIf="adoptantes?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+<table class="table table-striped" *ngIf="adoptantes?.length>0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Mascota</th>
+            <th>Numero formulario</th>
+            <th>Nombre Completo</th>
+            <th>Edad</th>
+            <th>Domicilio</th>
+            <th>Barrio</th>
+            <th>Celular</th>
+            <th>Email</th>
+            <th>Facebook</th>
+            <th>Instagram</th>
+            <th>Situación laboral</th>
+            <th>Estado adoptante</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let adoptante of adoptantes">
+            <td>{{adoptante.IdAdoptante}}</td>
+            <td>{{adoptante.IdMascota}}</td>
+            <td>{{adoptante.numeroFormulario}}</td>
+            <td>{{adoptante.nombreCompleto}}</td>
+            <td>{{adoptante.edad}}</td>
+            <td>{{adoptante.domicilio}}</td>
+            <td>{{adoptante.barrio}}</td>
+            <td>{{adoptante.celular}}</td>
+            <td>{{adoptante.email}}</td>
+            <td>{{adoptante.facebook}}</td>
+            <td>{{adoptante.instagram}}</td>
+            <td>{{adoptante.situacionLaboral}}</td>
+            <td>{{adoptante.observaciones}}</td>
+            <td>{{adoptante.idEstadoAdoptante}}</td>
+
+            <td>
+                <button type="button" name="button" [routerLink]="['/adoptantes/editar', adoptante.idAdoptante]" class="btn btn-primary">Editar</button>
+            </td>
+            <td>
+                <button type="button" name="eliminar" (click)='delete(adoptante)' class="btn btn-danger btn-sm">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>  
