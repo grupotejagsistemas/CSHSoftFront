@@ -15,15 +15,12 @@ import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotaComponent } from './mascotas/form-mascota.component';
+import { ContratosComponent } from './contratos/contratos.component';
+import { FormContratoComponent } from './contratos/form-contrato.component';
 import { AdoptantesComponent } from './adoptantes/adoptantes.component';
 import { FormAdoptanteComponent } from './adoptantes/form-adoptante.component';
-import {FichasMedicasComponent} from './fichas-medicas/fichas-medicas.component'
+import {FichasMedicasComponent} from './fichas-medicas/fichas-medicas.component';
 import { FormFichaMedicaComponent } from './fichas-medicas/form-ficha-medica.component';
-import { BusquedaNombrePipe } from './voluntarios/pipes/busqueda-nombre.pipe';
-import { BusquedaTransitoPipe } from './voluntarios/pipes/busqueda-transito.pipe';
-import { BusquedaPresencialPipe } from './voluntarios/pipes/busqueda-presencial.pipe';
-import { BusquedaTrasladoPipe } from './voluntarios/pipes/busqueda-traslado.pipe';
-
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -39,10 +36,12 @@ const routes: Routes = [
   {path: 'mascotas', component: MascotasComponent},
   {path: 'mascotas/crear',component: FormMascotaComponent },
   {path: 'mascotas/editar/:id', component: FormMascotaComponent },
+  {path: 'contratos', component: ContratosComponent},
+  {path: 'contratos/crear', component: FormContratoComponent},
+  {path: 'contratos/editar/id', component: FormContratoComponent},
   {path: 'adoptantes', component: AdoptantesComponent},
   {path: 'adoptantes/crear', component: FormAdoptanteComponent},
   {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent}
-
 ]
 @NgModule({
   declarations: [
@@ -55,13 +54,11 @@ const routes: Routes = [
     FormVeterinariaComponent,
     MascotasComponent,
     FormMascotaComponent,
+    ContratosComponent,
+    FormContratoComponent,
     AdoptantesComponent,
     FormAdoptanteComponent,
     FormFichaMedicaComponent
-    //BusquedaNombrePipe,
-    //BusquedaTransitoPipe,
-    //BusquedaPresencialPipe,
-    //BusquedaTrasladoPipe,
   ],
   imports: [
     BrowserModule,
