@@ -11,31 +11,25 @@ import {RouterModule, Routes} from '@angular/router';
 import  {FormsModule} from '@angular/forms';
 import { FormCrearComponent } from './voluntarios/form-crear.component';
 import {HttpClientModule} from '@angular/common/http';
-import { FichaMedicaComponent } from './ficha-medica/ficha-medica.component';
-import { FormComponent } from './ficha-medica/form.component';
 import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotaComponent } from './mascotas/form-mascota.component';
-<<<<<<< HEAD
 import { ContratosComponent } from './contratos/contratos.component';
 import { FormContratoComponent } from './contratos/form-contrato.component';
-=======
-import { BusquedaNombrePipe } from './voluntarios/pipes/busqueda-nombre.pipe';
-import { BusquedaTransitoPipe } from './voluntarios/pipes/busqueda-transito.pipe';
-import { BusquedaPresencialPipe } from './voluntarios/pipes/busqueda-presencial.pipe';
-import { BusquedaTrasladoPipe } from './voluntarios/pipes/busqueda-traslado.pipe';
->>>>>>> origin
-
+import { AdoptantesComponent } from './adoptantes/adoptantes.component';
+import { FormAdoptanteComponent } from './adoptantes/form-adoptante.component';
+import {FichasMedicasComponent} from './fichas-medicas/fichas-medicas.component';
+import { FormFichaMedicaComponent } from './fichas-medicas/form-ficha-medica.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'voluntarios', component: VoluntariosComponent},
   {path: 'voluntarios/crear', component: FormCrearComponent},
   {path: 'voluntarios/editar/:id', component: FormCrearComponent},
-  {path: 'fichas-medicas', component: FichaMedicaComponent},
-  {path: 'fichas-medicas/crear', component: FormComponent},
-  {path: 'fichas-medicas/editar/:id', component: FormComponent},
+  {path: 'fichas-medicas', component: FichasMedicasComponent},
+  {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent},
+  {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent},
   {path: 'veterinarias', component: VeterinariasComponent},
   {path: 'veterinarias/crear',component: FormVeterinariaComponent },
   {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent },
@@ -44,8 +38,10 @@ const routes: Routes = [
   {path: 'mascotas/editar/:id', component: FormMascotaComponent },
   {path: 'contratos', component: ContratosComponent},
   {path: 'contratos/crear', component: FormContratoComponent},
-  {path: 'contratos/editar/id', component: FormContratoComponent}
-
+  {path: 'contratos/editar/id', component: FormContratoComponent},
+  {path: 'adoptantes', component: AdoptantesComponent},
+  {path: 'adoptantes/crear', component: FormAdoptanteComponent},
+  {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent}
 ]
 @NgModule({
   declarations: [
@@ -54,21 +50,15 @@ const routes: Routes = [
     FooterComponent,
     VoluntariosComponent,
     FormCrearComponent,
-    FichaMedicaComponent,
-    FormComponent,
     VeterinariasComponent,
     FormVeterinariaComponent,
     MascotasComponent,
     FormMascotaComponent,
-<<<<<<< HEAD
     ContratosComponent,
     FormContratoComponent,
-=======
-    BusquedaNombrePipe,
-    BusquedaTransitoPipe,
-    BusquedaPresencialPipe,
-    BusquedaTrasladoPipe,
->>>>>>> origin
+    AdoptantesComponent,
+    FormAdoptanteComponent,
+    FormFichaMedicaComponent
   ],
   imports: [
     BrowserModule,

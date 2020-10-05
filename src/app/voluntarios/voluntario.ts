@@ -1,12 +1,12 @@
 import { Veterinaria } from './veterinaria';
 
 export class Voluntario {
-    idVoluntario: number;
-    nombreCompleto: string;
+    id: number;
+    nombrecompleto: string;
     telefono: string;
     direccion: string ;
     idVeterinariaCercana: Veterinaria;
-    zona: string;
+    localidad: string;
     transito: string;
     traslado: string;
     presencial: string;

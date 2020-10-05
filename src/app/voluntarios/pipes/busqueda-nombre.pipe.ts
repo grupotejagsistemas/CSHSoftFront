@@ -13,7 +13,7 @@ export class BusquedaNombrePipe implements PipeTransform {
       return value;
     }
 
-    return value.filter(singleItem => singleItem[campo].toLowerCase().includes(args));
+   // return value.filter(singleItem => singleItem[campo].toLowerCase().includes(args));
   }
 
 }
