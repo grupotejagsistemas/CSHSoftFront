@@ -17,8 +17,15 @@ import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotaComponent } from './mascotas/form-mascota.component';
+<<<<<<< HEAD
 import { ContratosComponent } from './contratos/contratos.component';
 import { FormContratoComponent } from './contratos/form-contrato.component';
+=======
+import { BusquedaNombrePipe } from './voluntarios/pipes/busqueda-nombre.pipe';
+import { BusquedaTransitoPipe } from './voluntarios/pipes/busqueda-transito.pipe';
+import { BusquedaPresencialPipe } from './voluntarios/pipes/busqueda-presencial.pipe';
+import { BusquedaTrasladoPipe } from './voluntarios/pipes/busqueda-traslado.pipe';
+>>>>>>> origin
 
 
 const routes: Routes = [
@@ -53,8 +60,15 @@ const routes: Routes = [
     FormVeterinariaComponent,
     MascotasComponent,
     FormMascotaComponent,
+<<<<<<< HEAD
     ContratosComponent,
     FormContratoComponent,
+=======
+    BusquedaNombrePipe,
+    BusquedaTransitoPipe,
+    BusquedaPresencialPipe,
+    BusquedaTrasladoPipe,
+>>>>>>> origin
   ],
   imports: [
     BrowserModule,

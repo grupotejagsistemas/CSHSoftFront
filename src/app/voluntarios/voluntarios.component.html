@@ -1,5 +1,20 @@
         <h5 class="card-title" >Voluntarios</h5>
-        
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-text bg-white">
+                    <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="voluntarioService.busquedaNombre">
+                </div>
+                <div class="input-group-text bg-white">
+                    <input type="text" name="busquedaTransito" class="form-control" placeholder="Buscar por tránsito" [(ngModel)]="voluntarioService.busquedaTransito">
+                </div>
+                <div class="input-group-text bg-white">
+                    <input type="text" name="busquedaTraslado" class="form-control" placeholder="Buscar por traslado" [(ngModel)]="voluntarioService.busquedaTraslado">
+                </div>
+                <div class="input-group-text bg-white">
+                    <input type="text" name="busquedaPresencial" class="form-control" placeholder="Buscar por presencial" [(ngModel)]="voluntarioService.busquedaPresencial">
+                </div>
+            </div>
+        </div>
         <div class="my-2 text-left" >
             <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
         </div>
@@ -13,7 +28,6 @@
                     <th>Nombre</th>
                     <th>Télefono</th>
                     <th>Dirección</th>
-                    <th>Veterinaria Cercana</th>
                     <th>Zona</th>
                     <th>Tránsito</th>
                     <th>Traslado</th>
@@ -23,12 +37,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let voluntario of voluntarios">
-                    <td>{{voluntario.id}}</td>
+                <tr *ngFor="let voluntario of voluntarios|busquedaNombre:'nombreCompleto:voluntarioService.busquedaNombre'">
+                    <td>{{voluntario.idVoluntario}}</td>
                     <td>{{voluntario.nombreCompleto}}</td>
                     <td>{{voluntario.telefono}}</td>
                     <td>{{voluntario.direccion}}</td>
-                    <td>{{voluntario.idVeterinariaCercana}}</td>
                     <td>{{voluntario.zona}}</td>
                     <td>{{voluntario.transito}}</td>
                     <td>{{voluntario.traslado}}</td>
