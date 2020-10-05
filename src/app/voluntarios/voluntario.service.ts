@@ -15,10 +15,7 @@ export class VoluntarioService {
 
   private urlAPI: string = environment.urlCSH;
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-  busquedaNombre: '';
-  busquedaPresencial: '';
-  busquedaTransito: '';
-  busquedaTraslado: '';
+
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -29,8 +26,14 @@ export class VoluntarioService {
   }
 
   getVoluntarios(): Observable<Voluntario[]> {
-    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntarios`);
+    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario`);
   }
+
+  getVoluntariosNombre(nombre: any): Observable<Voluntario[]> {
+    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario/filtrar?nombre=${nombre}`)
+  }
+
+
 
   create(voluntario: Voluntario) : Observable<Voluntario>{
     return this.http.post(this.urlAPI, voluntario, {headers: this.httpHeaders}).pipe(
@@ -64,8 +67,8 @@ export class VoluntarioService {
     )
   }
 
-  delete(id: number): Observable<Voluntario>{
-    return this.http.delete<Voluntario>(`${this.urlAPI}/${id}`, {headers: this.httpHeaders}).pipe(
+  delete(id: number): void{
+      this.http.delete<Voluntario>(`${this.urlAPI}/voluntario/${id}`, {headers: this.httpHeaders}).pipe(
       catchError(e => {
         console.log(e.error.mensaje);
         swal.fire('Error al eliminar al voluntario', e.error.mensaje, 'error')

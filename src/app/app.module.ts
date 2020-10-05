@@ -17,6 +17,7 @@ import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotaComponent } from './mascotas/form-mascota.component';
 import { AdoptantesComponent } from './adoptantes/adoptantes.component';
 import { FormAdoptanteComponent } from './adoptantes/form-adoptante.component';
+import {FichasMedicasComponent} from './fichas-medicas/fichas-medicas.component'
 import { FormFichaMedicaComponent } from './fichas-medicas/form-ficha-medica.component';
 import { BusquedaNombrePipe } from './voluntarios/pipes/busqueda-nombre.pipe';
 import { BusquedaTransitoPipe } from './voluntarios/pipes/busqueda-transito.pipe';
@@ -29,7 +30,7 @@ const routes: Routes = [
   {path: 'voluntarios', component: VoluntariosComponent},
   {path: 'voluntarios/crear', component: FormCrearComponent},
   {path: 'voluntarios/editar/:id', component: FormCrearComponent},
-  {path: 'fichas-medicas', component: FormFichaMedicaComponent},
+  {path: 'fichas-medicas', component: FichasMedicasComponent},
   {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent},
   {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent},
   {path: 'veterinarias', component: VeterinariasComponent},
@@ -56,11 +57,11 @@ const routes: Routes = [
     FormMascotaComponent,
     AdoptantesComponent,
     FormAdoptanteComponent,
-    FormFichaMedicaComponent,
-    BusquedaNombrePipe,
-    BusquedaTransitoPipe,
-    BusquedaPresencialPipe,
-    BusquedaTrasladoPipe,
+    FormFichaMedicaComponent
+    //BusquedaNombrePipe,
+    //BusquedaTransitoPipe,
+    //BusquedaPresencialPipe,
+    //BusquedaTrasladoPipe,
   ],
   imports: [
     BrowserModule,

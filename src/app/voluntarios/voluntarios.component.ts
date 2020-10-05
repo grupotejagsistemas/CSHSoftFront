@@ -10,7 +10,7 @@ import swal from 'sweetalert2';
 })
 export class VoluntariosComponent implements OnInit {
 
-
+  busquedaNombre: string;
   voluntarios: Voluntario[];
 
   constructor(public voluntarioService: VoluntarioService) {
@@ -28,31 +28,39 @@ export class VoluntariosComponent implements OnInit {
 
   }
 
-  // delete(voluntario: Voluntario): void {
-  //   swal.fire({
-  //     title: '',
-  //     text: `¿Desea eliminar al voluntario ${voluntario.nombreCompleto}?`,
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: 'Cancelar',
-  //     confirmButtonText: 'Confirmar'
-  //   }).then((result) => {
-  //     if (result.value) {
+  filtroNombre(nombre: string): void{
+    console.log('nombre:', nombre)
+    
+    this.voluntarioService.getVoluntariosNombre(nombre).subscribe((data: any) => {
+      this.voluntarios = data;
+      
+    })
+  }
 
-  //       console.log('se elimino: ', voluntario)
-  //       this.voluntarioService.delete(voluntario.id).subscribe(
-  //         response => {
-  //           this.voluntarios = this.voluntarios.filter(vol => vol !== voluntario)
-  //           swal.fire(
-  //             'Eliminado!',
-  //             '',
-  //             'success',
-  //             )
-  //           }
-  //       )
-  //     }
-  //   })
-  // }
+ delete(id: any): void {
+   swal.fire({
+     title: '',
+  //   text: `¿Desea eliminar al voluntario ${voluntario.nombrecompleto}?`,
+     icon: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: 'Cancelar',
+     confirmButtonText: 'Confirmar'
+   }).then((result) => {
+     if (result.value) {
+
+       console.log('se elimino: ', id)
+       this.voluntarioService.delete(id)
+       //  response => {
+       //    this.voluntarios = this.voluntarios.filter(vol => vol !== voluntario)
+       //    swal.fire(
+       //      'Eliminado!',
+       //      '',
+       //      'success',
+       //      )
+       //    }
+     }
+   })
+ }
 
 }
