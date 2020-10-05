@@ -17,6 +17,8 @@ import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotaComponent } from './mascotas/form-mascota.component';
+import { ContratosComponent } from './contratos/contratos.component';
+import { FormContratoComponent } from './contratos/form-contrato.component';
 
 
 const routes: Routes = [
@@ -32,7 +34,10 @@ const routes: Routes = [
   {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent },
   {path: 'mascotas', component: MascotasComponent},
   {path: 'mascotas/crear',component: FormMascotaComponent },
-  {path: 'mascotas/editar/:id', component: FormMascotaComponent }
+  {path: 'mascotas/editar/:id', component: FormMascotaComponent },
+  {path: 'contratos', component: ContratosComponent},
+  {path: 'contratos/crear', component: FormContratoComponent},
+  {path: 'contratos/editar/id', component: FormContratoComponent}
 
 ]
 @NgModule({
@@ -48,6 +53,8 @@ const routes: Routes = [
     FormVeterinariaComponent,
     MascotasComponent,
     FormMascotaComponent,
+    ContratosComponent,
+    FormContratoComponent,
   ],
   imports: [
     BrowserModule,

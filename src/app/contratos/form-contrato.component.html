@@ -1,0 +1,34 @@
+<div class="card text-white" style="background-color:#00396b">
+    <div class="card-header" id="titulo">{{titulo}} </div>
+        <div class="card-body"> 
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="ID" name="id" [(ngModel)]= "contrato.id" required >
+                    </div>
+                </div>
+                <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="Nombrre de adoptante" name="nombreAdoptante" [(ngModel)]= "contrato.nombreAdoptante" required >
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="Nombre de la mascota" name="nombreMascota" [(ngModel)]= "contrato.nombreMascota" required >
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" placeholder="Nuevo nombre de la mascota" name="nuevoNombreMascota" [(ngModel)]= "contrato.nuevoNombreMascota"required  >
+                        </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary" role="button" (click)='create()' *ngIf=" contrato.id else elseBlock">Agregar</button>
+                        <ng-template #elseBlock>
+                            <button class="btn btn-primary" role="button" (click)='update()'>Modificar</button>
+                        </ng-template>
+                    </div>
+                </div>
+            </form>
+    </div>

@@ -1,29 +1,25 @@
-<div class="card text-white" style="background-color:#00396b">
+<div class="card text-white"  style="background-color:#00396b">
     <div class="card-header" id="titulo">{{titulo}} </div>
         <div class="card-body"> 
             <form>
                 <div class="form-group row">
-                    <label for="id" class="col-form-label col-sm-2">ID</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="id" [(ngModel)]="veterinaria.id" required >
+                            <input type="text"  class="form-control" placeholder="ID" name="id" [(ngModel)]="veterinaria.id" required >
                         </div>
                 </div>
                 <div class="form-group row">
-                    <label for="razonSocial" class="col-form-label col-sm-2">Razón social</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="razonSocial" [(ngModel)]="veterinaria.razonSocial"required  >
+                            <input type="text" class="form-control" placeholder="Razón social"name="razonSocial" [(ngModel)]="veterinaria.razonSocial"required  >
                         </div>
                 </div>
                 <div class="form-group row">
-                    <label for="horarioAtencion" class="col-form-label col-sm-2">Horario de atención</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="horarioAtencion" [(ngModel)]="veterinaria.horarioAtencion" required  >
+                            <input type="text" class="form-control" placeholder="Horario de atención" name="horarioAtencion" [(ngModel)]="veterinaria.horarioAtencion" required  >
                         </div>
                 </div>
                 <div class="form-group row">
-                    <label for="direccion" class="col-form-label col-sm-2">Dirección</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control"  name="direccion" [(ngModel)]="veterinaria.direccion" required >
+                            <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="veterinaria.direccion" required >
                         </div>
                 </div>
                 <div class="form-group row">
@@ -33,9 +29,8 @@
                         </div>
                 </div>               
                  <div class="form-group row">
-                    <label for="observacion" class="col-form-label col-sm-2">Observación</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="observacion"  [(ngModel)]="veterinaria.observacion" required >
+                            <input type="text" class="form-control" placeholder="Observación" name="observacion"  [(ngModel)]="veterinaria.observacion" required >
                         </div>
                     </div>
                 <div class="form-group row">
