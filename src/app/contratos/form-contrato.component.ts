@@ -22,7 +22,7 @@ export class FormContratoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public create(): void {
+ /* public create(): void {
     this.contratoService.create(this.contrato).subscribe(
       response => {
         this.router.navigate(['/contratos'])
@@ -30,5 +30,5 @@ export class FormContratoComponent implements OnInit {
     )
     console.log('se guarda los datos: ')
     console.log(this.contrato)
-  }
+  }*/
 }

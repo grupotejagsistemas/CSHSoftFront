@@ -29,7 +29,7 @@ export class FichaMedicaService {
   getFichasMedicas(): Observable<FichaMedica[]> {
     return this.http.get<FichaMedica[]>(`${this.urlAPI}/fichas-medicas`)
   }
-
+/*
   create(fichaMedica: FichaMedica) : Observable<FichaMedica>{
     return this.http.post(this.urlAPI, fichaMedica, {headers: this.httpHeaders}).pipe(
       map( (response: any) => response.fichaMedica as FichaMedica),
@@ -39,7 +39,7 @@ export class FichaMedicaService {
         return throwError(e);
       })
     )
-  } 
+  }*/ 
 
   getFichaMedica(id): Observable<FichaMedica>{
     return this.http.get<FichaMedica>(`${this.urlAPI}/fichas-medicas/${id}`).pipe(
@@ -51,7 +51,7 @@ export class FichaMedicaService {
       })
     );
   }
-
+/*
   update(fichaMedica: FichaMedica): Observable<any>{
     return this.http.put<any>(`${this.urlAPI}/fichas-medicas/${fichaMedica.id}`, fichaMedica, {headers:this.httpHeaders}).pipe(
       catchError(e => {
@@ -70,5 +70,5 @@ export class FichaMedicaService {
         return throwError(e);
       })
     )
-  }
+  }*/
 }

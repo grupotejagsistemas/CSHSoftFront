@@ -2,65 +2,66 @@
     <div class="card-header" id="titulo">{{titulo}} </div>
     <div class="card-body">
         <form>
+         <!--
+             <div class="form-group row">
+                  <div class="col-sm-6">
+                      <input type="text" class="form-control"  placeholder ="ID" name="id" [(ngModel)]="voluntario.id" >
+                  </div>
+              </div>
+         --> 
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control"  placeholder ="ID" name="id" [(ngModel)]="voluntario.idVoluntario" required>
+                    <input type="text" class="form-control" placeholder="Nombre Completo" name="nombreCompleto" [(ngModel)]="voluntario.nombreCompleto" >
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Nombre Completo" name="nombreCompleto" [(ngModel)]="voluntario.nombreCompleto" required>
+                    <input type="text" class="form-control" placeholder="Télefono" name="telefono" [(ngModel)]="voluntario.telefono" >
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Télefono" name="telefono" [(ngModel)]="voluntario.telefono" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="voluntario.direccion" required>
+                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="voluntario.direccion" >
                 </div>
             </div>
             <div></div>
             <div class="form-group row">
                 <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria Cercana</label>
                 <div class="col-sm-6">
-                    <select class="form-control"  name="idVeterinariaCercana" [(ngModel)]="voluntario.idVeterinariaCercana" style="width:500px;" required>
-                    <option *ngFor="let veterinaria of veterinarias" [ngValue]="veterinaria">{{veterinaria.razonSocial}}</option>
-                    
+                    <select type="number" class="form-control"  name="idveterinarias" [(ngModel)]="voluntario.idveterinarias" style="width:500px;" >
+                        <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.id">{{veterinaria.razonSocial}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="zona" name="zona" [(ngModel)]="voluntario.zona" required>
+                    <input type="text" class="form-control" placeholder="localidad" name="localidad" [(ngModel)]="voluntario.localidad" >
                 </div>
             </div>
             <div class="form-group row">
                 <label for="transito" class="col-form-label col-sm-2">Tránsito</label>
                 <div class="col-sm-6">
-                    <input type="checkbox" name="transito" [(ngModel)]="voluntario.transito">
+                    <input type="text" name="transito" [(ngModel)]="voluntario.transito">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="traslado" class="col-form-label col-sm-2">Traslado</label>
                 <div class="col-sm-6">
-                    <input type="checkbox" name="traslado" [(ngModel)]="voluntario.traslado">
+                    <input type="text" name="traslado" [(ngModel)]="voluntario.traslado">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="presencial" class="col-form-label col-sm-2">Presencial</label>
                 <div class="col-sm-6">
-                    <input type="checkbox" name="presencial"  [(ngModel)]="voluntario.presencial">
+                    <input type="text" name="presencial"  [(ngModel)]="voluntario.presencial">
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!voluntario.idVoluntario else elseBlock">Agregar</button>
+                    <button class="btn btn-primary" role="button" (click)='agregar(voluntario)' *ngIf="!voluntario.id else elseBlock">Agregar</button>
                     <ng-template #elseBlock>
-                        <button class="btn btn-primary" role="button" (click)='update()'>Modificar</button>
+                        <button class="btn btn-primary" role="button" (click)='modificar(voluntario)'>Modificar</button>
 
                     </ng-template>
                 </div>

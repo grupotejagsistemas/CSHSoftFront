@@ -46,7 +46,7 @@ export class FormFichaMedicaComponent implements OnInit {
     console.log('datos a modificar: ', this.fichaMedica)
   }
 
-  public create(): void {
+  /*public create(): void {
     this.fichaMedicaService.create(this.fichaMedica)
     .subscribe(fichaMedica => {
       this.router.navigate(['/fichas-medicas'])
@@ -66,5 +66,5 @@ export class FormFichaMedicaComponent implements OnInit {
 
     console.log('Se modifican los datos: ', this.fichaMedica)
   }
-
+*/
 }

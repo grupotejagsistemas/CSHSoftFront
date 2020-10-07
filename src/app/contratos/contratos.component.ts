@@ -22,7 +22,7 @@ export class ContratosComponent implements OnInit {
       contratos => this.contratos = contratos
     );
   }
-
+/*
   delete(contrato: Contrato): void {
     swal.fire({
       title: '',
@@ -48,6 +48,6 @@ export class ContratosComponent implements OnInit {
         )
       }
     })
-  }
+  }*/
 
 }

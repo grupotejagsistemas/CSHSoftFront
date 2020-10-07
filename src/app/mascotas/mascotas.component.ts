@@ -23,7 +23,7 @@ export class MascotasComponent implements OnInit {
     );
   }
 
-  delete(mascota: Mascota): void {
+ /* delete(mascota: Mascota): void {
     swal.fire({
       title: '',
       text: `¿Desea eliminar la mascota ${mascota.nombre}?`,
@@ -48,6 +48,6 @@ export class MascotasComponent implements OnInit {
         )
       }
     })
-  }
+  }*/
 
 }

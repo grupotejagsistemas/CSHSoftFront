@@ -22,7 +22,7 @@ export class FormMascotaComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+/*
   public create(): void {
     this.mascotaService.create(this.mascota).subscribe(
       response => {
@@ -33,5 +33,5 @@ export class FormMascotaComponent implements OnInit {
       console.log('se guarda los datos: ')
       console.log(this.mascota)
   }
-
+*/
 }

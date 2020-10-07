@@ -29,7 +29,7 @@ export class AdoptanteService {
   getAdoptantes(): Observable<Adoptante[]> {
     return this.http.get<Adoptante[]>(`${this.urlAPI}/adoptantes`)
   }
-  create(adoptante: Adoptante) : Observable<Adoptante>{
+  /*create(adoptante: Adoptante) : Observable<Adoptante>{
     return this.http.post(this.urlAPI, adoptante, {headers: this.httpHeaders}).pipe(
       map( (response: any) => response.adoptante as Adoptante),
       catchError(e => {
@@ -71,5 +71,5 @@ export class AdoptanteService {
     )
   }
 
-
+*/
 }

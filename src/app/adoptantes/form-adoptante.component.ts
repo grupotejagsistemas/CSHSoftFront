@@ -28,12 +28,12 @@ export class FormAdoptanteComponent implements OnInit {
     this.adoptanteService.getEstadosAdoptante().subscribe(estados => this.estados = estados);
   }
 
-  public create(): void {
+/*  public create(): void {
     this.adoptanteService.create(this.adoptante).subscribe(
       response=> {
         this.router.navigate(['/adoptantes'])
       }
     )
     console.log('se guarda los datos: ' + this.adoptante)
-  }
+  }*/
 }

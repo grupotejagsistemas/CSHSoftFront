@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Voluntario } from './voluntario';
 import { Veterinaria} from './veterinaria';
 import { VoluntarioService } from './voluntario.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import swal from 'sweetalert2'
 
 
@@ -13,28 +13,49 @@ import swal from 'sweetalert2'
 })
 export class FormCrearComponent implements OnInit {
 
-  voluntario: Voluntario = new Voluntario()
-  veterinarias: Veterinaria[]
+  voluntario:  Voluntario;
+  veterinarias: Veterinaria[];
   titulo: string = 'Nuevo Voluntario'
 
   constructor(
     private voluntarioService: VoluntarioService, 
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
-  ngOnInit(): void {
-    this.voluntarioService.getVeterinarias().subscribe(veterinarias => this.veterinarias = veterinarias)
+  ngOnInit(): void {   
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    this.voluntario = Voluntario.build();
+    this.voluntarioService.getVoluntario(id).subscribe((resp: any) => {
+      this.voluntario = resp;
+      console.log('id' , this.voluntario.id);
+    })
+    /*  this.voluntarioService.getVeterinarias().subscribe((resp: any) => {
+        this.veterinarias = resp;
+        console.log('veterinariascercanas', this.veterinarias)
+      })*/
   }
 
-  public create(): void {
-    this.voluntarioService.create(this.voluntario).subscribe(
+
+  public agregar(voluntario): void {
+    console.log('voluntario', voluntario);
+    this.voluntarioService.crearVoluntario(voluntario)
+    .subscribe(
       response => {
         this.router.navigate(['/voluntarios'])
-   
-      }
-      )
-      console.log('se guarda los datos: ')
-      console.log(this.voluntario)
+        return response;
+      })
   }
 
+  public modificar(voluntario): void {
+    console.log('vol', voluntario)
+    this.voluntarioService.modificarVoluntario(voluntario)
+    .subscribe(
+      response =>{
+        this.router.navigate(['/voluntarios'])
+        return response;
+      }
+    )
+  }
 }

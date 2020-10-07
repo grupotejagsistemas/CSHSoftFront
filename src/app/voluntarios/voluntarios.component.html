@@ -4,15 +4,17 @@
                 <div class="input-group-text bg-white">
                     <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
                 </div>
+            <!--
                 <div class="input-group-text bg-white">
-                    <input type="text" name="busquedaTransito" class="form-control" placeholder="Buscar por tránsito" [(ngModel)]="voluntarioService.busquedaTransito">
+                    <input type="checkbox" name="busquedaTransito" class="form-control" placeholder="Buscar por tránsito">
                 </div>
                 <div class="input-group-text bg-white">
-                    <input type="text" name="busquedaTraslado" class="form-control" placeholder="Buscar por traslado" [(ngModel)]="voluntarioService.busquedaTraslado">
+                    <input type="checkbox" name="busquedaTraslado" class="form-control" placeholder="Buscar por traslado">               
                 </div>
                 <div class="input-group-text bg-white">
-                    <input type="text" name="busquedaPresencial" class="form-control" placeholder="Buscar por presencial" [(ngModel)]="voluntarioService.busquedaPresencial">
+                    <input type="checkbox" name="busquedaPresencial" class="form-control" placeholder="Buscar por presencial">
                 </div>
+            -->
             </div>
         </div>
         <div class="my-2 text-left" >
@@ -24,7 +26,6 @@
         <table class="table table-striped" *ngIf="voluntarios?.length>0">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Télefono</th>
                     <th>Dirección</th>
@@ -38,8 +39,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let voluntario of voluntarios">
-                    <td>{{voluntario.id}}</td>
-                    <td>{{voluntario.nombrecompleto}}</td>
+                    <td>{{voluntario.nombreCompleto}}</td>
                     <td>{{voluntario.telefono}}</td>
                     <td>{{voluntario.direccion}}</td>
                     <td>{{voluntario.localidad}}</td>
@@ -47,10 +47,10 @@
                     <td>{{voluntario.traslado}}</td>
                     <td>{{voluntario.presencial}}</td>
                     <td>
-                        <button type="button" name="button" [routerLink]="['/voluntarios/editar', voluntario.id]" class="btn btn-primary">Editar</button>
+                        <button type="button" name="button" [routerLink]="['/voluntarios/editar/', voluntario.id]" class="btn btn-primary">Editar</button>
                     </td>
                     <td>
-                        <button type="button" name="eliminar" (click)='delete(voluntario.id)' class="btn btn-danger btn-sm" >Eliminar</button>
+                        <button type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id)' class="btn btn-danger btn-sm" >Eliminar</button>
                     </td>
                 </tr>
             </tbody>

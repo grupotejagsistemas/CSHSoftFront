@@ -24,7 +24,7 @@ export class VeterinariaService {
     // );
   }
 
-  create(veterinaria: Veterinaria) : Observable<Veterinaria>{
+ /* create(veterinaria: Veterinaria) : Observable<Veterinaria>{
     return this.http.post(this.url, veterinaria, {headers: this.httpHeaders}).pipe(
       map( (response: any) => response.veterinaria as Veterinaria),
       catchError(e => {
@@ -64,5 +64,5 @@ export class VeterinariaService {
         return throwError(e);
       })
     )
-  }
+  }*/
 }

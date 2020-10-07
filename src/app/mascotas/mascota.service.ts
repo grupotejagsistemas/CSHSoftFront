@@ -24,7 +24,7 @@ export class MascotaService {
      );
   }
 
-  create(mascota: Mascota) : Observable<Mascota>{
+  /*create(mascota: Mascota) : Observable<Mascota>{
     return this.http.post(this.url, mascota, {headers: this.httpHeaders}).pipe(
       map( (response: any) => response.mascota as Mascota),
       catchError(e => {
@@ -64,5 +64,5 @@ export class MascotaService {
         return throwError(e);
       })
     )
-  }
+  }*/
 }

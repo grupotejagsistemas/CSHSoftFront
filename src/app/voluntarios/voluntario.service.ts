@@ -22,7 +22,6 @@ export class VoluntarioService {
 
   getVeterinarias(): Observable<Veterinaria[]> {
     return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinarias`) 
-
   }
 
   getVoluntarios(): Observable<Voluntario[]> {
@@ -33,47 +32,46 @@ export class VoluntarioService {
     return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario/filtrar?nombre=${nombre}`)
   }
 
+  crearVoluntario(voluntario: Voluntario) {
+    console.log('vol ', voluntario);
+    return this.http.post(`${this.urlAPI}/voluntario`, voluntario)
 
-
-  create(voluntario: Voluntario) : Observable<Voluntario>{
-    return this.http.post(this.urlAPI, voluntario, {headers: this.httpHeaders}).pipe(
+    /*.pipe(
       map( (response: any) => response.voluntario as Voluntario),
       catchError(e => {
         console.log(e.error.mensaje);
         swal.fire('Error al crear al voluntario', e.error.mensaje, 'error')
         return throwError(e);
       })
-    )
+    )*/
   } 
 
-  getVoluntario(id): Observable<Voluntario>{
-    return this.http.get<Voluntario>(`${this.urlAPI}/${id}`).pipe(
+  getVoluntario(id: number): Observable<Voluntario>{
+    return this.http.get<Voluntario>(`${this.urlAPI}/voluntario/${id}`)
+    /*.pipe(
       catchError(e => {
         this.router.navigate(['/voluntarios']);
         console.error(e.error.mensaje);
         swal.fire('Error al editar', e.error.mensaje, 'error');
         return throwError(e);
       })
-    );
+    );*/
   }
 
-  update(voluntario: Voluntario): Observable<any>{
-    return this.http.put<any>(`${this.urlAPI}/${voluntario.idVoluntario}`, voluntario, {headers:this.httpHeaders}).pipe(
+  modificarVoluntario(voluntario: Voluntario) {
+    console.log('modifica', voluntario)
+    return this.http.put(`${this.urlAPI}/voluntario/${voluntario.id}`, voluntario)
+    
+    /*.pipe(
       catchError(e => {
         console.log(e.error.mensaje);
         swal.fire('Error al modificar al voluntario', e.error.mensaje, 'error')
         return throwError(e);
       })
-    )
-  }
+    )*/
+   }
 
-  delete(id: number): void{
-      this.http.delete<Voluntario>(`${this.urlAPI}/voluntario/${id}`, {headers: this.httpHeaders}).pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al eliminar al voluntario', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
+  borrarVoluntario(id: number) {
+     return this.http.delete(`${this.urlAPI}/voluntario/${id}`);
   }
 }

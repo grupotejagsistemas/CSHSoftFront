@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Voluntario } from './voluntario';
 import { VoluntarioService }from './voluntario.service';
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -37,30 +37,19 @@ export class VoluntariosComponent implements OnInit {
     })
   }
 
- delete(id: any): void {
-   swal.fire({
-     title: '',
-  //   text: `¿Desea eliminar al voluntario ${voluntario.nombrecompleto}?`,
-     icon: 'warning',
-     showCancelButton: true,
-     confirmButtonColor: '#3085d6',
-     cancelButtonColor: 'Cancelar',
-     confirmButtonText: 'Confirmar'
-   }).then((result) => {
-     if (result.value) {
-
-       console.log('se elimino: ', id)
-       this.voluntarioService.delete(id)
-       //  response => {
-       //    this.voluntarios = this.voluntarios.filter(vol => vol !== voluntario)
-       //    swal.fire(
-       //      'Eliminado!',
-       //      '',
-       //      'success',
-       //      )
-       //    }
-     }
-   })
- }
-
+  borrarVoluntario(id: number): void {
+      Swal.fire({
+        title: '',
+        // text: `¿Desea eliminar al voluntario ${voluntarios.nombrecompleto}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: 'Cancelar',
+        confirmButtonText: 'Confirmar'
+      }).then((result) => {
+        if (result.value) {
+            this.voluntarioService.borrarVoluntario(id).subscribe()
+        }
+      })
+  }
 }

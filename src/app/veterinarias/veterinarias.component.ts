@@ -23,7 +23,7 @@ export class VeterinariasComponent implements OnInit {
     );
   }
 
-  delete(veterinaria: Veterinaria): void {
+/*  delete(veterinaria: Veterinaria): void {
     swal.fire({
       title: '',
       text: `¿Desea eliminar la veterinaria ${veterinaria.razonSocial}?`,
@@ -48,6 +48,6 @@ export class VeterinariasComponent implements OnInit {
         )
       }
     })
-  }
+  }*/
 
 }

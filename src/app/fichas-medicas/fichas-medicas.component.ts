@@ -19,7 +19,7 @@ export class FichasMedicasComponent implements OnInit {
     );
   }
 
-  delete(fichaMedica: FichaMedica): void {
+/*  delete(fichaMedica: FichaMedica): void {
     swal.fire({
     title: '',
     text: `¿Desea eliminar la ficha médica?`,
@@ -44,6 +44,6 @@ export class FichasMedicasComponent implements OnInit {
       )
     }
   })
-}
+}*/
 
 }
