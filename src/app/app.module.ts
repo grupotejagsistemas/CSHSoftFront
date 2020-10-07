@@ -13,14 +13,14 @@ import { FormCrearComponent } from './voluntarios/form-crear.component';
 import {HttpClientModule} from '@angular/common/http';
 import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
-import { MascotasComponent } from './mascotas/mascotas.component';
-import { FormMascotaComponent } from './mascotas/form-mascota.component';
 import { ContratosComponent } from './contratos/contratos.component';
 import { FormContratoComponent } from './contratos/form-contrato.component';
 import { AdoptantesComponent } from './adoptantes/adoptantes.component';
 import { FormAdoptanteComponent } from './adoptantes/form-adoptante.component';
 import {FichasMedicasComponent} from './fichas-medicas/fichas-medicas.component';
 import { FormFichaMedicaComponent } from './fichas-medicas/form-ficha-medica.component';
+import { MascotasComponent } from './mascotas/mascotas.component';
+import { FormMascotasComponent } from './mascotas/form-mascotas.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -30,12 +30,12 @@ const routes: Routes = [
   {path: 'fichas-medicas', component: FichasMedicasComponent},
   {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent},
   {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent},
+  {path: 'mascotas', component: MascotasComponent},
+  {path: 'mascotas/crear', component: FormMascotasComponent},
+  {path: 'mascotas/editar/:id', component: FormMascotasComponent},
   {path: 'veterinarias', component: VeterinariasComponent},
   {path: 'veterinarias/crear',component: FormVeterinariaComponent },
   {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent },
-  {path: 'mascotas', component: MascotasComponent},
-  {path: 'mascotas/crear',component: FormMascotaComponent },
-  {path: 'mascotas/editar/:id', component: FormMascotaComponent },
   {path: 'contratos', component: ContratosComponent},
   {path: 'contratos/crear', component: FormContratoComponent},
   {path: 'contratos/editar/id', component: FormContratoComponent},
@@ -52,13 +52,13 @@ const routes: Routes = [
     FormCrearComponent,
     VeterinariasComponent,
     FormVeterinariaComponent,
-    MascotasComponent,
-    FormMascotaComponent,
     ContratosComponent,
     FormContratoComponent,
     AdoptantesComponent,
     FormAdoptanteComponent,
-    FormFichaMedicaComponent
+    FormFichaMedicaComponent,
+    MascotasComponent,
+    FormMascotasComponent
   ],
   imports: [
     BrowserModule,

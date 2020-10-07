@@ -1,5 +1,11 @@
 <h5 class="card-title" >Mascotas</h5>
-            
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-text bg-white">
+                <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)] ="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
+            </div>
+        </div>
+    </div>
 <div class="my-2 text-left" >
     <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/mascotas/crear']">Nueva mascota</button>
 </div>
@@ -9,36 +15,33 @@
 <table class="table table-striped" *ngIf="mascotas?.length>0">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Nombre</th>
-            <th>Edad</th>
-            <th>Particulares físicas</th>
+            <th>Fecha de Nacimiento </th>
+            <th>Particularidades físicas</th>
             <th>Sexo</th>
             <th>Fecha del rescate</th>
             <th>Lugar del rescate</th>
             <th>Descripción del rescate</th>
-            <th>Imagen</th>
             <th>Especie</th>
-            <th>Estado</th>
+            <th>Editar</th>
+            <th>Borrar</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let mascota of mascotas">
-            <td>{{mascota.id}}</td>
             <td>{{mascota.nombre}}</td>
-            <td>{{mascota.particularesFisicas}}</td>
+            <td>{{mascota.fechaNacimiento}}</td>
+            <td>{{mascota.particularidadesFisica}}</td>
             <td>{{mascota.sexo}}</td>
             <td>{{mascota.fechaRescate}}</td>
             <td>{{mascota.lugarRescate}}</td>
             <td>{{mascota.descripcionRescate}}</td>
-            <td>{{mascota.imagen}}</td>
             <td>{{mascota.especie}}</td>
-            <td>{{mascota.estado}}</td>
             <td>
-                <button type="button" name="button" [routerLink]="['/mascotas/editar', mascota.id]" class="btn btn-primary">Editar</button>
+                <button type="button" name="button" [routerLink]="['/mascotas/editar/', mascota.id]" class="btn btn-primary">Editar</button>
             </td>
             <td>
-                <button type="button" name="eliminar" (click)='delete(mascota)' class="btn btn-danger btn-sm">Eliminar</button>
+                <button type="button" name="eliminar" (click)='borrarMascota(mascota.id)' class="btn btn-danger btn-sm">Eliminar</button>
             </td>
         </tr>
     </tbody>
