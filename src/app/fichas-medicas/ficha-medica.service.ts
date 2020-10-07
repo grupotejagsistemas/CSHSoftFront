@@ -6,7 +6,7 @@ import {of,  Observable, throwError } from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, catchError} from 'rxjs/operators';
 import swal from 'sweetalert2';
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,61 +14,41 @@ import { environment } from 'src/environments/environment';
 })
 export class FichaMedicaService {
 
-  private urlAPI: string = environment.urlCSH;
+  private urlAPI: string = environment.urlCSH; 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-  
-  constructor(private http: HttpClient, private router: Router) { }
 
-  getMascotas(): Observable<Mascota[]>{
-    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas`);
-  }
+  constructor(
+        private http: HttpClient, 
+        private router: Router,
+        private route: ActivatedRoute) {}
 
-  getVeterinaria(): Observable<Veterinaria[]>{
-    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinarias`);
-  }
-  getFichasMedicas(): Observable<FichaMedica[]> {
-    return this.http.get<FichaMedica[]>(`${this.urlAPI}/fichas-medicas`)
-  }
-/*
-  create(fichaMedica: FichaMedica) : Observable<FichaMedica>{
-    return this.http.post(this.urlAPI, fichaMedica, {headers: this.httpHeaders}).pipe(
-      map( (response: any) => response.fichaMedica as FichaMedica),
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al crear al ficha médica', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
-  }*/ 
+    getFichasMedicas(): Observable<FichaMedica[]>{
+        return this.http.get<FichaMedica[]>(`${this.urlAPI}/fichasMedicas`)
+    }
 
-  getFichaMedica(id): Observable<FichaMedica>{
-    return this.http.get<FichaMedica>(`${this.urlAPI}/fichas-medicas/${id}`).pipe(
-      catchError(e => {
-        this.router.navigate(['/fichas-medicas']);
-        console.error(e.error.mensaje);
-        swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError(e);
-      })
-    );
-  }
-/*
-  update(fichaMedica: FichaMedica): Observable<any>{
-    return this.http.put<any>(`${this.urlAPI}/fichas-medicas/${fichaMedica.id}`, fichaMedica, {headers:this.httpHeaders}).pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al modificar al ficha médica', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
-  }
+    getMascotas(): Observable<Mascota[]>{
+      return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas`)
+    }
 
-  delete(id: number): Observable<FichaMedica>{
-    return this.http.delete<FichaMedica>(`${this.urlAPI}/fichas-medicas/${id}`, {headers: this.httpHeaders}).pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al eliminar al ficha médica', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
-  }*/
+    getVeterinarias(): Observable<Veterinaria[]>{
+      return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`)
+    }
+
+    getFichaMedica(id: number): Observable<FichaMedica>{
+      return this.http.get<FichaMedica>(`${this.urlAPI}/fichasMedicas/${id}`);
+      
+    }
+    crearFichaMedica(fichaMedica: FichaMedica) {
+      console.log('ficha', fichaMedica);
+      return this.http.post(`${this.urlAPI}/fichasMedicas`, fichaMedica)
+    }
+
+    modificarFichaMedica(fichaMedica: FichaMedica){
+      console.log('modifica ', fichaMedica);
+      return this.http.put(`${this.urlAPI}/fichasMedicas/${fichaMedica.id}`, fichaMedica);
+    }
+
+    borrarFichasMedicas(id: number) {
+      return this.http.delete(`${this.urlAPI}/fichasMedicas/${id}`);
+    }
 }

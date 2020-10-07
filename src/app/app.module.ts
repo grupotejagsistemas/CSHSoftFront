@@ -57,6 +57,7 @@ const routes: Routes = [
     AdoptantesComponent,
     FormAdoptanteComponent,
     FormFichaMedicaComponent,
+    FichasMedicasComponent,
     MascotasComponent,
     FormMascotasComponent
   ],
