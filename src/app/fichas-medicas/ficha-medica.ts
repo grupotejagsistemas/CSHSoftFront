@@ -9,8 +9,26 @@ export class FichaMedica {
     vacuna: string; 
     nombreVacuna: string; 
     diagnostico: string; 
-    mascota: Mascota;
-    veterinaria: Veterinaria; 
+    mascota: number[];
+    veterinaria: number[]; 
     tratamiento: string; 
     descripcionTratamiento: string;
+
+    constructor() {} 
+
+    public static build(){
+        const fichaMedica = new FichaMedica();
+        fichaMedica.id = null;
+        fichaMedica.desparasitacion = "";
+        fichaMedica.productoDesparasitacion= "";
+        fichaMedica.vacuna = "";
+        fichaMedica.nombreVacuna= ""; 
+        fichaMedica.diagnostico= ""; 
+        fichaMedica.mascota= null;
+        fichaMedica.veterinaria= null; 
+        fichaMedica.tratamiento= ""; 
+        fichaMedica.descripcionTratamiento= "";
+
+        return fichaMedica;
+    }
 }

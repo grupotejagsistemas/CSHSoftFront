@@ -19,15 +19,16 @@ export class FichaMedicaService {
   
   constructor(private http: HttpClient, private router: Router) { }
 
+  getFichasMedicas(): Observable<FichaMedica[]> {
+    return this.http.get<FichaMedica[]>(`${this.urlAPI}/fichasMedicas`)
+  }
+
   getMascotas(): Observable<Mascota[]>{
     return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas`);
   }
 
   getVeterinaria(): Observable<Veterinaria[]>{
     return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinarias`);
-  }
-  getFichasMedicas(): Observable<FichaMedica[]> {
-    return this.http.get<FichaMedica[]>(`${this.urlAPI}/fichas-medicas`)
   }
 /*
   create(fichaMedica: FichaMedica) : Observable<FichaMedica>{

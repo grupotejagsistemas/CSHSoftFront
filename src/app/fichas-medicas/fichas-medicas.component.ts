@@ -9,16 +9,17 @@ import swal from 'sweetalert2';
   styleUrls: ['./fichas-medicas.component.css']
 })
 export class FichasMedicasComponent implements OnInit {
+
   fichasMedicas: FichaMedica[];
 
   constructor(private fichaMedicaService: FichaMedicaService) { }
 
   ngOnInit(): void {
-    this.fichaMedicaService.getFichasMedicas().subscribe(
-      fichasMedicas => this.fichasMedicas = fichasMedicas
-    );
+    this.fichaMedicaService.getFichasMedicas().subscribe((data: any) => {
+      this.fichasMedicas = data; 
+      console.log('array de fichas medicas ' + this.fichasMedicas)
+    });
   }
-
 /*  delete(fichaMedica: FichaMedica): void {
     swal.fire({
     title: '',
