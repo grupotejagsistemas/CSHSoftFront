@@ -10,7 +10,7 @@ import { FichaMedicaService } from './ficha-medica.service';
 })
 export class FichasMedicasComponent implements OnInit {
 
-  fichasMedicas: FichaMedica[];
+  fichasMedicas: FichaMedica[] = [];
   constructor(public fichaMedicaService: FichaMedicaService) { }
 
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class FichasMedicasComponent implements OnInit {
     })
   }
 
-  borrarFichasMedicas(id: number): void {
+  borrarFichasMedicas(id: number, i: number): void {
     Swal.fire({
       title: '',
       // text: `¿Desea eliminar al voluntario ${voluntarios.nombrecompleto}?`,
@@ -30,6 +30,7 @@ export class FichasMedicasComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
+          this.fichasMedicas.splice(i, 1);
           this.fichaMedicaService.borrarFichasMedicas(id).subscribe()
       }
     })

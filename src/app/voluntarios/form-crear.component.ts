@@ -54,6 +54,13 @@ export class FormCrearComponent implements OnInit {
     .subscribe(
       response =>{
         this.router.navigate(['/voluntarios'])
+        swal.fire({
+          icon: 'success',
+          title: 'Creación exitosa',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        
         return response;
       }
     )
