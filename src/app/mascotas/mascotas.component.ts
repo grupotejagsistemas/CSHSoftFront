@@ -1,32 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { Mascota } from './mascota';
-import { MascotaService }from './mascota.service';
-import swal from 'sweetalert2';
-
+import Swal from 'sweetalert2';
+import { Mascota } from '../adoptantes/mascota';
+import { MascotaService } from './mascota.service';
 
 @Component({
   selector: 'app-mascotas',
   templateUrl: './mascotas.component.html',
+  styleUrls: ['./mascotas.component.css']
 })
 export class MascotasComponent implements OnInit {
 
+  busquedaNombre: string;
+  mascotas: Mascota[]
 
-  mascotas : Mascota[];
-
-  constructor(private mascotaService: MascotaService) {
-
-  }
+  constructor(public mascotaService: MascotaService) { }
 
   ngOnInit(): void {
-    this.mascotaService.getMascotas().subscribe(
-      mascotas => this.mascotas = mascotas
-    );
+    this.mascotaService.getMascotas().subscribe((data: any) => {
+      this.mascotas = data;
+    })
   }
 
- /* delete(mascota: Mascota): void {
-    swal.fire({
+  filtroNombre(nombre: string): void {
+    console.log('nombre', nombre)
+
+    this.mascotaService.getMascotasNombre(nombre).subscribe((data: any ) => {
+      this.mascotas = data;
+     })
+  }
+
+  borrarMascota(id: number): void {
+    Swal.fire({
       title: '',
-      text: `¿Desea eliminar la mascota ${mascota.nombre}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -34,20 +39,9 @@ export class MascotasComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
-
-        console.log('se elimino: ', mascota)
-        this.mascotaService.delete(mascota.id).subscribe(
-          response => {
-            this.mascotas = this.mascotas.filter(vet => vet !== mascota)
-            swal.fire(
-              'Eliminado!',
-              '',
-              'success',
-              )
-            }
-        )
+          this.mascotaService.borrarMascota(id).subscribe()
       }
     })
-  }*/
+  }
 
 }

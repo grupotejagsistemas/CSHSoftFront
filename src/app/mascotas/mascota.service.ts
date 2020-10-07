@@ -1,68 +1,52 @@
 import { Injectable } from '@angular/core';
-//import {MASCOTAS} from './mascotas.json';
 import { Mascota } from './mascota';
+import { Estado } from './estado';
 import {of,  Observable, throwError } from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, catchError} from 'rxjs/operators';
 import swal from 'sweetalert2';
 import { Router } from "@angular/router";
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MascotaService {
-
-  private url: string = 'http://localhost:8080/api/mascotas';
+  private urlAPI: string = environment.urlCSH;
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   
   constructor(private http: HttpClient, private router: Router) { }
 
   getMascotas(): Observable<Mascota[]> {
-    //return of(MASCOTAS);
-      return this.http.get(this.url).pipe(
-       map(response => response as Mascota[])
-     );
+    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas`);
   }
 
-  /*create(mascota: Mascota) : Observable<Mascota>{
-    return this.http.post(this.url, mascota, {headers: this.httpHeaders}).pipe(
-      map( (response: any) => response.mascota as Mascota),
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al ingresar una mascota', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
-  } 
+  getEstados(): Observable<Estado[]> {
+    return this.http.get<Estado[]>(`${this.urlAPI}/estados`)
+  }
+ 
 
-  getMascota(id): Observable<Mascota>{
-    return this.http.get<Mascota>(`${this.url}/${id}`).pipe(
-      catchError(e => {
-        this.router.navigate(['/mascotas']);
-        console.error(e.error.mensaje);
-        swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError(e);
-      })
-    );
+  getMascotasNombre(nombre: any): Observable<Mascota[]> {
+    console.log('name', nombre)
+    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas/filtrar?nombre=${nombre}`);
   }
 
-  update(mascota: Mascota): Observable<any>{
-    return this.http.put<any>(`${this.url}/${mascota.id}`, mascota, {headers:this.httpHeaders}).pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al modificar la mascota', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
+  crearMascota(mascota: Mascota) {
+    console.log('masc', mascota);
+    return this.http.post(`${this.urlAPI}/mascotas`, mascota);
   }
 
-  delete(id: number): Observable<Mascota>{
-    return this.http.delete<Mascota>(`${this.url}/${id}`, {headers: this.httpHeaders}).pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al eliminar la mascota', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
-  }*/
+  getMascota(id: number): Observable<Mascota> {
+    return this.http.get<Mascota>(`${this.urlAPI}/mascotas/${id}`)
+  }
+
+  modificarMascota(mascota: Mascota){
+    console.log('modifica', mascota)
+    return this.http.put(`${this.urlAPI}/mascotas/${mascota.id}`, mascota);
+  }
+
+  borrarMascota(id: number){ 
+    return this.http.delete(`${this.urlAPI}/mascotas/${id}`);
+  }
 }
