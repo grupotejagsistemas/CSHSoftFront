@@ -58,7 +58,8 @@ const routes: Routes = [
     FormContratoComponent,
     AdoptantesComponent,
     FormAdoptanteComponent,
-    FormFichaMedicaComponent
+    FormFichaMedicaComponent,
+    FichasMedicasComponent
   ],
   imports: [
     BrowserModule,

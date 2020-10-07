@@ -5,12 +5,12 @@ export class FichaMedica {
     id: number; 
     fecha: string; 
     desparasitacion: string;
-    productoDesparasitacion: string;
+    nombreProducto: string;
     vacuna: string; 
     nombreVacuna: string; 
     diagnostico: string; 
-    mascota: number[];
-    veterinaria: number[]; 
+    idMascota: number[];
+    idVeterinaria: number[]; 
     tratamiento: string; 
     descripcionTratamiento: string;
 
@@ -20,12 +20,12 @@ export class FichaMedica {
         const fichaMedica = new FichaMedica();
         fichaMedica.id = null;
         fichaMedica.desparasitacion = "";
-        fichaMedica.productoDesparasitacion= "";
+        fichaMedica.nombreProducto= "";
         fichaMedica.vacuna = "";
         fichaMedica.nombreVacuna= ""; 
         fichaMedica.diagnostico= ""; 
-        fichaMedica.mascota= null;
-        fichaMedica.veterinaria= null; 
+        fichaMedica.idMascota= null;
+        fichaMedica.idVeterinaria= null; 
         fichaMedica.tratamiento= ""; 
         fichaMedica.descripcionTratamiento= "";
 
