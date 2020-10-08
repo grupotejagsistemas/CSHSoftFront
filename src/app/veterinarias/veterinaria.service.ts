@@ -18,23 +18,29 @@ export class VeterinariaService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getVeterinarias(): Observable<Veterinaria[]> {
-    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinarias`)
+    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`)
   }
+
   getVeterinariasRazonSocial(razonSocial: any): Observable<Veterinaria[]> {
     return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria/filtrar?razonSocial=${razonSocial}`)
   }
+
   crearVeterinaria(veterinaria: Veterinaria) {
     console.log('vol ', veterinaria);
     return this.http.post(`${this.urlAPI}/veterinaria`, veterinaria)
   }
+
   getVeterinaria(id: number): Observable<Veterinaria>{
     return this.http.get<Veterinaria>(`${this.urlAPI}/veterinaria/${id}`)
   }
-modificarVeterinaria(veterinaria: Veterinaria) {
-  console.log('modifica', veterinaria)
-  return this.http.put(`${this.urlAPI}/veterinaria/${veterinaria.id}`, veterinaria)
-  } 
+
+  modificarVeterinaria(veterinaria: Veterinaria) {
+    console.log('modifica', veterinaria)
+    return this.http.put(`${this.urlAPI}/veterinaria/${veterinaria.id}`, veterinaria)
+  }
+
   borrarVeterinaria(id: number) {
     return this.http.delete(`${this.urlAPI}/veterinaria/${id}`);
  }
+ 
 }

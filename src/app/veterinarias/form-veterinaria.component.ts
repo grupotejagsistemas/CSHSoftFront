@@ -14,6 +14,7 @@ export class FormVeterinariaComponent implements OnInit {
 
   veterinaria: Veterinaria = new Veterinaria()
   titulo: string = 'Nueva Veterinaria'
+  checked: boolean;
 
   constructor(
     private veterinariaService: VeterinariaService, 
@@ -28,29 +29,51 @@ export class FormVeterinariaComponent implements OnInit {
   this.veterinariaService.getVeterinaria(id).subscribe((resp: any) => {
     this.veterinaria = resp;
     console.log('id' , this.veterinaria.id);
+    console.log('se modifica', this.veterinaria)
   })
 }
 
 
 public agregar(veterinaria): void {
   console.log('veterinaria', veterinaria);
+    if(this.checked === true){
+        veterinaria.internacion = 'SI' 
+    } else {
+        veterinaria.internacion = 'NO'
+    }
+
   this.veterinariaService.crearVeterinaria(veterinaria)
   .subscribe(
     response => {
       this.router.navigate(['/veterinarias'])
+      swal.fire({
+        icon: 'success',
+        title: 'Creación exitosa',
+        showConfirmButton: false,
+        timer: 1500
+      })
       return response;
     })
+
 }
 
 public modificar(veterinaria): void {
   console.log('vol', veterinaria)
+  if(this.checked === true){
+    veterinaria.internacion = 'SI' 
+    this.checked = true;
+} else {
+    veterinaria.internacion = 'NO'
+    this.checked = false;
+}
+
   this.veterinariaService.modificarVeterinaria(veterinaria)
   .subscribe(
     response =>{
       this.router.navigate(['/veterinarias'])
       swal.fire({
         icon: 'success',
-        title: 'Creación exitosa',
+        title: 'La veterinaria ha sido modificada',
         showConfirmButton: false,
         timer: 1500
       })
@@ -59,4 +82,7 @@ public modificar(veterinaria): void {
     }
   )
 }
+
+
+
 }
