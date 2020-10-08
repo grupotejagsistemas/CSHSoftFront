@@ -12,6 +12,7 @@ export class VeterinariasComponent implements OnInit {
 
 
   veterinarias : Veterinaria[];
+  busquedaRazonSocial: string;
 
   constructor(private veterinariaService: VeterinariaService) {
 
@@ -28,10 +29,10 @@ export class VeterinariasComponent implements OnInit {
 
   }
 
-  filtroNombre(nombre: string): void{
-    console.log('nombre:', nombre)
+  filtroRazonSocial(razonSocial: string): void{
+    console.log('razonSocial:', razonSocial)
     
-    this.veterinariaService.getVeterinariasNombre(nombre).subscribe((data: any) => {
+    this.veterinariaService.getVeterinariasRazonSocial(razonSocial).subscribe((data: any) => {
       this.veterinarias = data;
       
     })

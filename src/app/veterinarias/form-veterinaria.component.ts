@@ -28,6 +28,7 @@ export class FormVeterinariaComponent implements OnInit {
   this.veterinariaService.getVeterinaria(id).subscribe((resp: any) => {
     this.veterinaria = resp;
     console.log('id' , this.veterinaria.id);
+    console.log('se modifica', this.veterinaria)
   })
 }
 
@@ -50,7 +51,7 @@ public modificar(veterinaria): void {
       this.router.navigate(['/veterinarias'])
       swal.fire({
         icon: 'success',
-        title: 'Creación exitosa',
+        title: 'Modificación exitosa',
         showConfirmButton: false,
         timer: 1500
       })
