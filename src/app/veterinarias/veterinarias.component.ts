@@ -21,17 +21,13 @@ export class VeterinariasComponent implements OnInit {
   ngOnInit(): void {
 
     this.veterinariaService.getVeterinarias().subscribe((data: any) => {
-
       this.veterinarias = data;
-      console.log('array de veterinarias: ' + this.veterinarias);
 
     });
 
   }
 
   filtroRazonSocial(razonSocial: string): void{
-    console.log('razonSocial:', razonSocial)
-    
     this.veterinariaService.getVeterinariasRazonSocial(razonSocial).subscribe((data: any) => {
       this.veterinarias = data;
       
@@ -40,7 +36,7 @@ export class VeterinariasComponent implements OnInit {
 
   borrarVeterinaria(id: number): void {
       swal.fire({
-        title: '',
+        text: `¿Desea eliminar la veterinaria?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -49,6 +45,7 @@ export class VeterinariasComponent implements OnInit {
       }).then((result) => {
         if (result.value) {
             this.veterinariaService.borrarVeterinaria(id).subscribe()
+            this.veterinariaService.getVeterinarias();
         }
       })
   }
