@@ -18,36 +18,37 @@ export class VeterinariasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.veterinariaService.getVeterinarias().subscribe(
-      veterinarias => this.veterinarias = veterinarias
-    );
+
+    this.veterinariaService.getVeterinarias().subscribe((data: any) => {
+
+      this.veterinarias = data;
+      console.log('array de veterinarias: ' + this.veterinarias);
+
+    });
+
   }
 
-/*  delete(veterinaria: Veterinaria): void {
-    swal.fire({
-      title: '',
-      text: `¿Desea eliminar la veterinaria ${veterinaria.razonSocial}?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: 'Cancelar',
-      confirmButtonText: 'Confirmar'
-    }).then((result) => {
-      if (result.value) {
-
-        console.log('se elimino: ', veterinaria)
-        this.veterinariaService.delete(veterinaria.id).subscribe(
-          response => {
-            this.veterinarias = this.veterinarias.filter(vet => vet !== veterinaria)
-            swal.fire(
-              'Eliminado!',
-              '',
-              'success',
-              )
-            }
-        )
-      }
+  filtroNombre(nombre: string): void{
+    console.log('nombre:', nombre)
+    
+    this.veterinariaService.getVeterinariasNombre(nombre).subscribe((data: any) => {
+      this.veterinarias = data;
+      
     })
-  }*/
+  }
 
+  borrarVeterinaria(id: number): void {
+      swal.fire({
+        title: '',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: 'Cancelar',
+        confirmButtonText: 'Confirmar'
+      }).then((result) => {
+        if (result.value) {
+            this.veterinariaService.borrarVeterinaria(id).subscribe()
+        }
+      })
+  }
 }
