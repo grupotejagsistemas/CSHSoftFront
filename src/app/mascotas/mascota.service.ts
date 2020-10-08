@@ -23,7 +23,7 @@ export class MascotaService {
   }
 
   getEstados(): Observable<Estado[]> {
-    return this.http.get<Estado[]>(`${this.urlAPI}/estados`)
+    return this.http.get<Estado[]>(`${this.urlAPI}/estadoMascota`)
   }
  
 

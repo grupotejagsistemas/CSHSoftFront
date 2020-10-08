@@ -15,6 +15,8 @@ export class FormMascotasComponent implements OnInit {
   mascota: Mascota;
   estados: Estado;    
   titulo: string = 'Nueva Mascota'
+
+
   constructor(
     private mascotaService: MascotaService, 
     private router: Router,
@@ -25,14 +27,18 @@ export class FormMascotasComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.mascota = Mascota.build();
+
     this.mascotaService.getMascota(id).subscribe((resp: any) => {
       this.mascota = resp;
       console.log('id', this.mascota.id)
     })
 
-   /* this.mascotaService.getEstados().subscribe((resp: any) => {
-        this.mascota = resp;
-    })*/
+    this.mascotaService.getEstados()
+    .subscribe((resp: any) => {
+        this.estados = resp;
+        console.log('estados', this.estados)
+
+    })
   }
 
   public agregar(mascota): void {

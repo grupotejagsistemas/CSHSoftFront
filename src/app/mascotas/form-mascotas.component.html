@@ -52,8 +52,8 @@
         <div class="form-group row">
             <label for="estado" class="col-form-label col-sm-2">Estado</label>
             <div class="col-sm-6">
-                <select type="number" class="form-control"  name="estados" [(ngModel)]="estados.id" style="width:500px;" >
-                    <option *ngFor="let estado of estados" [value]="estados.id">{{mascota.descripcion}}</option>
+                <select type="number" class="form-control" [(ngModel)]="mascota.estado.id"  name="estado" >
+                    <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
                 </select>
             </div>
         </div>
@@ -63,7 +63,7 @@
                      Agregar
                 </button>
                 <ng-template #elseBlock>
-                    <button class="btn btn-primary" role="button" (click)="modificar(mascota)">
+                    <button class="btn btn-primary" role="button" (click)="modificar(mascota)" >
                         Modificar
                     </button>
                 </ng-template>
