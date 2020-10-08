@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Veterinaria } from './veterinaria';
 import { VeterinariaService } from './veterinaria.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import swal from 'sweetalert2'
 
 
@@ -17,21 +17,46 @@ export class FormVeterinariaComponent implements OnInit {
 
   constructor(
     private veterinariaService: VeterinariaService, 
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
-  }
-/*
-  public create(): void {
-    this.veterinariaService.create(this.veterinaria).subscribe(
-      response => {
-        this.router.navigate(['/veterinarias'])
-   
-      }
-      )
-      console.log('se guarda los datos: ')
-      console.log(this.veterinaria)
-  }
-*/
+  const id = +this.route.snapshot.paramMap.get('id');
+
+  this.veterinaria = Veterinaria.build();
+  this.veterinariaService.getVeterinaria(id).subscribe((resp: any) => {
+    this.veterinaria = resp;
+    console.log('id' , this.veterinaria.id);
+  })
+}
+
+
+public agregar(veterinaria): void {
+  console.log('veterinaria', veterinaria);
+  this.veterinariaService.crearVeterinaria(veterinaria)
+  .subscribe(
+    response => {
+      this.router.navigate(['/veterinarias'])
+      return response;
+    })
+}
+
+public modificar(veterinaria): void {
+  console.log('vol', veterinaria)
+  this.veterinariaService.modificarVeterinaria(veterinaria)
+  .subscribe(
+    response =>{
+      this.router.navigate(['/veterinarias'])
+      swal.fire({
+        icon: 'success',
+        title: 'Creación exitosa',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      
+      return response;
+    }
+  )
+}
 }
