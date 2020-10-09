@@ -11,6 +11,9 @@ import { FichaMedicaService } from './ficha-medica.service';
 })
 export class FormFichaMedicaComponent implements OnInit {
 
+  checkedVacuna: boolean;
+  checkedTratamiento: boolean;
+  checkedDesparasitacion: boolean;
   mascota: Mascota;
   fichaMedica: FichaMedica;
   titulo: string = 'Nuevo Ficha Medica'
@@ -37,6 +40,25 @@ export class FormFichaMedicaComponent implements OnInit {
 
   public agregar(fichaMedica): void {
     console.log('ficham', fichaMedica);
+
+    if(this.checkedVacuna === true){
+      fichaMedica.vacuna = "SI";
+    } else {
+      fichaMedica.vacuna = "NO";
+    }
+
+    if(this.checkedDesparasitacion === true){
+      fichaMedica.desparasitacion = "SI";
+    } else {
+      fichaMedica.desparasitacion = "NO";
+    }
+
+    if(this.checkedTratamiento === true) {
+      fichaMedica.tratamiento = "SI";
+    }else {
+      fichaMedica.tratamiento = "NO";
+    }
+
     this.fichasMedicasService.crearFichaMedica(fichaMedica)
     .subscribe(
       response => {

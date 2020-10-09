@@ -9,6 +9,7 @@ import { FichaMedicaService } from './ficha-medica.service';
   styleUrls: ['./fichas-medicas.component.css']
 })
 export class FichasMedicasComponent implements OnInit {
+  
 
   fichasMedicas: FichaMedica[] = [];
   constructor(public fichaMedicaService: FichaMedicaService) { }
