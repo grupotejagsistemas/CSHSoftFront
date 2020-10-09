@@ -4,62 +4,62 @@
         <form>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="mascotaPost.nombre" required>
+                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="mascotaObj.nombre" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="fechaNacimiento" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
                 <div class="col-sm-6">
-                    <input type="date" placeholder="Fecha de Nacimiento" name="fechaNacimiento" [(ngModel)]="mascotaPost.fechaNacimiento" required>
+                    <input type="date" placeholder="Fecha de Nacimiento" name="fechaNacimiento" [(ngModel)]="mascotaObj.fechaNacimiento" required>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisica" [(ngModel)]="mascotaPost.particularidadesFisicas" required>
+                    <input type="text" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisica" [(ngModel)]="mascotaObj.particularidadesFisicas" required>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Sexo" name="sexo" [(ngModel)]="mascotaPost.sexo" required>
+                    <input type="text" class="form-control" placeholder="Sexo" name="sexo" [(ngModel)]="mascotaObj.sexo" required>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Foto" name="fotoMascota" [(ngModel)]="mascotaPost.fotoMascota" required>
+                    <input type="text" class="form-control" placeholder="Foto" name="fotoMascota" [(ngModel)]="mascotaObj.fotoMascota" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="fechaRescate" class="col-form-label col-sm-2">Fecha de rescate</label>
                 <div class="col-sm-6">
-                    <input type="date" placeholder="Fecha de rescate" name="fechaRescate" [(ngModel)]="mascotaPost.fechaRescate" required>
+                    <input type="date" placeholder="Fecha de rescate" name="fechaRescate" [(ngModel)]="mascotaObj.fechaRescate" required>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaPost.lugarRescate" required>
+                    <input type="text" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaObj.lugarRescate" required>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaPost.descripcionRescate" required>
+                    <input type="text" class="form-control" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaObj.descripcionRescate" required>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Especie" name="especie" [(ngModel)]="mascotaPost.especie" required>
+                    <input type="text" class="form-control" placeholder="Especie" name="especie" [(ngModel)]="mascotaObj.especie" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="estado" class="col-form-label col-sm-2">Estado</label>
                 <div class="col-sm-6">
-                    <select class="form-control" type=number [(ngModel)]="mascotaPost.estado" name="estadoMascota">
+                    <select class="form-control" type=number [(ngModel)]="mascotaObj.estado" name="estadoMascota">
                     <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
                 </select>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <button class="btn btn-primary" role="button" (click)="agregar()" *ngIf="!mascota.id else elseBlock">
+                    <button class="btn btn-primary" role="button" (click)="agregar()" *ngIf="!mascotaObj.id else elseBlock">
                      Agregar
                 </button>
                     <ng-template #elseBlock>

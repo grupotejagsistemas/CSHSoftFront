@@ -29,19 +29,18 @@ export class FormMascotasComponent implements OnInit {
     this.mascota = Mascota.build();
 
     this.mascotaService.getMascota(id).subscribe((resp: any) => {
-      this.mascota = resp;
-      console.log('id', this.mascota.id)
+      this.mascotaObj = resp;
     })
 
     this.mascotaService.getEstados()
     .subscribe((resp: any) => {
         this.estados = resp;
-        console.log('estados', this.estados);
 
     })
 }
 
-mascotaPost = {
+mascotaObj = {
+  id: null,
   nombre : "",
   fechaNacimiento : new Date(),
   particularidadesFisicas : "",
@@ -55,8 +54,8 @@ mascotaPost = {
 };
 
   public agregar(): void {
-    console.log(' agregar mascota', this.mascotaPost);
-    this.mascotaService.crearMascota(this.mascotaPost)
+    console.log(' agregar mascota', this.mascotaObj);
+    this.mascotaService.crearMascota(this.mascotaObj)
     .subscribe(
     response => {
         this.router.navigate(['/mascotas'])
@@ -64,9 +63,9 @@ mascotaPost = {
     })
 }
 
-public modificar(mascota): void{
-  console.log('modificar mascota', mascota);
-  this.mascotaService.modificarMascota(mascota)
+public modificar(): void{
+  console.log('modificar mascota', this.mascotaObj);
+  this.mascotaService.modificarMascota(this.mascotaObj)
   .subscribe(
     response => {
       this.router.navigate(['/mascotas'])

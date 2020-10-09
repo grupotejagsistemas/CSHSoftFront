@@ -41,7 +41,7 @@ export class MascotaService {
     return this.http.get<Mascota>(`${this.urlAPI}/mascotas/${id}`)
   }
 
-  modificarMascota(mascota: Mascota){
+  modificarMascota(mascota: any){
     console.log('modifica', mascota)
     return this.http.put(`${this.urlAPI}/mascotas/${mascota.id}`, mascota);
   }
