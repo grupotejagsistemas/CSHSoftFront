@@ -31,7 +31,7 @@ export class VeterinariasComponent implements OnInit {
   filtroNombre(nombre: string): void{
     console.log('nombre:', nombre)
     
-    this.veterinariaService.getVeterinariasNombre(nombre).subscribe((data: any) => {
+    this.veterinariaService.getVeterinariasRazonSocial(nombre).subscribe((data: any) => {
       this.veterinarias = data;
       
     })
