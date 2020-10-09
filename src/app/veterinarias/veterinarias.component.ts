@@ -34,7 +34,7 @@ export class VeterinariasComponent implements OnInit {
     })
   }
 
-  borrarVeterinaria(id: number): void {
+  borrarVeterinaria(id: number, i: number): void {
       swal.fire({
         text: `¿Desea eliminar la veterinaria?`,
         icon: 'warning',
@@ -44,8 +44,8 @@ export class VeterinariasComponent implements OnInit {
         confirmButtonText: 'Confirmar'
       }).then((result) => {
         if (result.value) {
-            this.veterinariaService.borrarVeterinaria(id).subscribe()
-            this.veterinariaService.getVeterinarias();
+          this.veterinarias.splice(i, 1)
+          this.veterinariaService.borrarVeterinaria(id).subscribe()
         }
       })
   }

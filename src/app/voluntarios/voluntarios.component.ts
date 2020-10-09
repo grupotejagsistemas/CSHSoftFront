@@ -37,7 +37,7 @@ export class VoluntariosComponent implements OnInit {
     })
   }
 
-  borrarVoluntario(id: number): void {
+  borrarVoluntario(id: number, i: number): void {
       Swal.fire({
         title: '',
         // text: `¿Desea eliminar al voluntario ${voluntarios.nombrecompleto}?`,
@@ -48,6 +48,7 @@ export class VoluntariosComponent implements OnInit {
         confirmButtonText: 'Confirmar'
       }).then((result) => {
         if (result.value) {
+          this.voluntarios.splice(i, 1)
             this.voluntarioService.borrarVoluntario(id).subscribe()
         }
       })

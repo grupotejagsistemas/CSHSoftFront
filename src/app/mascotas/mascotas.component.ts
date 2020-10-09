@@ -29,7 +29,7 @@ export class MascotasComponent implements OnInit {
      })
   }
 
-  borrarMascota(id: number): void {
+  borrarMascota(id: number, i: number): void {
     Swal.fire({
       title: '',
       icon: 'warning',
@@ -39,6 +39,7 @@ export class MascotasComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
+        this.mascotas.splice(i, 1)
           this.mascotaService.borrarMascota(id).subscribe()
       }
     })
