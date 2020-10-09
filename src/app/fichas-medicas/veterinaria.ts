@@ -1,4 +1,4 @@
 export class Veterinaria{
-    idVeterinaria: number;
+    id: number;
     razonSocial: string;
 }
