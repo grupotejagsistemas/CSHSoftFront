@@ -17,6 +17,7 @@ export class FichasMedicasComponent implements OnInit {
   ngOnInit(): void {
     this.fichaMedicaService.getFichasMedicas().subscribe((data: any) => {
       this.fichasMedicas = data; 
+      console.log("fichas", data)
     })
   }
 

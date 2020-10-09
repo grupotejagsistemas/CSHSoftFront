@@ -26,6 +26,7 @@ export class MascotasComponent implements OnInit {
 
     this.mascotaService.getMascotasNombre(nombre).subscribe((data: any ) => {
       this.mascotas = data;
+      console.log('mascotas', data)
      })
   }
 
