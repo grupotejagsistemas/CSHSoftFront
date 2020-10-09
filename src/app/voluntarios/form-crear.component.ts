@@ -13,8 +13,11 @@ import swal from 'sweetalert2'
 })
 export class FormCrearComponent implements OnInit {
 
+  checkedTransito: boolean;
+  checkedPresencial: boolean; 
+  checkedTraslado: boolean; 
   voluntario:  Voluntario;
-  veterinarias: Veterinaria[];
+  veterinarias: any [] = [] ;
   titulo: string = 'Nuevo Voluntario'
 
   constructor(
@@ -31,15 +34,34 @@ export class FormCrearComponent implements OnInit {
       this.voluntario = resp;
       console.log('id' , this.voluntario.id);
     })
-    /*  this.voluntarioService.getVeterinarias().subscribe((resp: any) => {
+      this.voluntarioService.getVeterinarias().subscribe((resp: any) => {
         this.veterinarias = resp;
         console.log('veterinariascercanas', this.veterinarias)
-      })*/
+      })
   }
 
 
   public agregar(voluntario): void {
-    console.log('voluntario', voluntario);
+    
+    if(this.checkedPresencial === true){
+      voluntario.presencial = "SI";
+    } else {
+      voluntario.presencial = "NO";
+    }
+
+    if(this.checkedTransito === true){
+      voluntario.transito = "SI";
+    } else {
+      voluntario.transito = "NO";
+    }
+
+    if(this.checkedTraslado === true) {
+      voluntario.traslado = "SI";
+    }else {
+      voluntario.traslado = "NO";
+    }
+
+
     this.voluntarioService.crearVoluntario(voluntario)
     .subscribe(
       response => {
@@ -49,7 +71,25 @@ export class FormCrearComponent implements OnInit {
   }
 
   public modificar(voluntario): void {
-    console.log('vol', voluntario)
+
+    if(this.checkedPresencial === true){
+      voluntario.presencial = "SI";
+    } else {
+      voluntario.presencial = "NO";
+    }
+
+    if(this.checkedTransito === true){
+      voluntario.transito = "SI";
+    } else {
+      voluntario.transito = "NO";
+    }
+
+    if(this.checkedTraslado === true) {
+      voluntario.traslado = "SI";
+    }else {
+      voluntario.traslado = "NO";
+    }
+
     this.voluntarioService.modificarVoluntario(voluntario)
     .subscribe(
       response =>{
@@ -60,7 +100,6 @@ export class FormCrearComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-        
         return response;
       }
     )

@@ -2,10 +2,10 @@ import { Veterinaria } from './veterinaria';
 
 export class Voluntario {
     id: number;
-    nombreCompleto: string;
+    nombrecompleto: string;
     telefono: string;
     direccion: string ;
-    idveterinarias: number[];
+    idveterinarias: any [] = [];
     localidad: string;
     transito: string;
     traslado: string;
@@ -19,10 +19,10 @@ export class Voluntario {
     public static build(){
         const voluntario = new Voluntario();
         voluntario.id = null;
-        voluntario.nombreCompleto = '';
+        voluntario.nombrecompleto = '';
         voluntario.telefono = '';
         voluntario.direccion = ''; 
-        voluntario.idveterinarias=  null; 
+        voluntario.idveterinarias =  [] = []; 
         voluntario.localidad = ''; 
         voluntario.transito = '';
         voluntario.traslado ='';
