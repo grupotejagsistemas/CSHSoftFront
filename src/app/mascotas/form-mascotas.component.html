@@ -1,73 +1,73 @@
 <div class="card text-white" style="background-color:#00396b">
     <div class="card-header" id="titulo">{{titulo}} </div>
-    <div class="card-body"> 
+    <div class="card-body">
         <form>
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="mascota.nombre" required >
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="mascotaPost.nombre" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="fechaNacimiento" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
-            <div class="col-sm-6">
-                <input type="date" placeholder="Fecha de Nacimiento" name="fechaNacimiento" [(ngModel)]="mascota.fechaNacimiento" required >
+            <div class="form-group row">
+                <label for="fechaNacimiento" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
+                <div class="col-sm-6">
+                    <input type="date" placeholder="Fecha de Nacimiento" name="fechaNacimiento" [(ngModel)]="mascotaPost.fechaNacimiento" required>
+                </div>
             </div>
-        </div>        
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisica" [(ngModel)]="mascota.particularidadesFisica" required >
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisica" [(ngModel)]="mascotaPost.particularidadesFisicas" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="Sexo" name="sexo" [(ngModel)]="mascota.sexo" required >
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Sexo" name="sexo" [(ngModel)]="mascotaPost.sexo" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="Foto" name="fotoMascota" [(ngModel)]="mascota.fotoMascota" required >
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Foto" name="fotoMascota" [(ngModel)]="mascotaPost.fotoMascota" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="fechaRescate" class="col-form-label col-sm-2">Fecha de rescate</label>
-            <div class="col-sm-6">
-                <input type="date" placeholder="Fecha de rescate" name="fechaRescate" [(ngModel)]="mascota.fechaRescate" required >
+            <div class="form-group row">
+                <label for="fechaRescate" class="col-form-label col-sm-2">Fecha de rescate</label>
+                <div class="col-sm-6">
+                    <input type="date" placeholder="Fecha de rescate" name="fechaRescate" [(ngModel)]="mascotaPost.fechaRescate" required>
+                </div>
             </div>
-        </div>              
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="Lugar de rescate" name="lugarRescate"  [(ngModel)]="mascota.lugarRescate" required >
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaPost.lugarRescate" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="Descripción del rescate" name="descripcionRescate"  [(ngModel)]="mascota.descripcionRescate" required >
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaPost.descripcionRescate" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="Especie" name="especie"  [(ngModel)]="mascota.especie" required >
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Especie" name="especie" [(ngModel)]="mascotaPost.especie" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="estado" class="col-form-label col-sm-2">Estado</label>
-            <div class="col-sm-6">
-                <select type="number" class="form-control" [(ngModel)]="mascota.estado.id"  name="estado" >
+            <div class="form-group row">
+                <label for="estado" class="col-form-label col-sm-2">Estado</label>
+                <div class="col-sm-6">
+                    <select class="form-control" type=number [(ngModel)]="mascotaPost.estado" name="estadoMascota">
                     <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
                 </select>
+                </div>
             </div>
-        </div>
-        <div class ="form-group row">
-            <div class="col-sm-6">
-                <button class="btn btn-primary" role="button" (click)="agregar(mascota)" *ngIf="!mascota.id else elseBlock">
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" (click)="agregar()" *ngIf="!mascota.id else elseBlock">
                      Agregar
                 </button>
-                <ng-template #elseBlock>
-                    <button class="btn btn-primary" role="button" (click)="modificar(mascota)" >
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)="modificar()">
                         Modificar
                     </button>
-                </ng-template>
+                    </ng-template>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>

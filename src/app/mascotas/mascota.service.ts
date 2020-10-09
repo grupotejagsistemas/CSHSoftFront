@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Mascota } from './mascota';
-import { Estado } from './estado';
+import { EstadoMascota } from './estadoMascota';
 import {of,  Observable, throwError } from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, catchError} from 'rxjs/operators';
@@ -22,8 +22,8 @@ export class MascotaService {
     return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas`);
   }
 
-  getEstados(): Observable<Estado[]> {
-    return this.http.get<Estado[]>(`${this.urlAPI}/estadoMascota`)
+  getEstados(): Observable<EstadoMascota[]> {
+    return this.http.get<EstadoMascota[]>(`${this.urlAPI}/estadoMascota`)
   }
  
 
@@ -32,7 +32,7 @@ export class MascotaService {
     return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas/filtrar?nombre=${nombre}`);
   }
 
-  crearMascota(mascota: Mascota) {
+  crearMascota(mascota: any) {
     console.log('masc', mascota);
     return this.http.post(`${this.urlAPI}/mascotas`, mascota);
   }

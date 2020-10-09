@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mascota } from './mascota';
-import {Estado} from './estado';
+import {EstadoMascota } from './estadoMascota';
 import { MascotaService } from './mascota.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -13,12 +13,12 @@ export class FormMascotasComponent implements OnInit {
 
 
   mascota: Mascota;
-  estados: Estado;    
+  estados: EstadoMascota[];
   titulo: string = 'Nueva Mascota'
 
 
   constructor(
-    private mascotaService: MascotaService, 
+    private mascotaService: MascotaService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -36,14 +36,27 @@ export class FormMascotasComponent implements OnInit {
     this.mascotaService.getEstados()
     .subscribe((resp: any) => {
         this.estados = resp;
-        console.log('estados', this.estados)
+        console.log('estados', this.estados);
 
     })
-  }
+}
 
-  public agregar(mascota): void {
-    console.log(' agregar mascota', mascota);
-    this.mascotaService.crearMascota(mascota)
+mascotaPost = {
+  nombre : "",
+  fechaNacimiento : new Date(),
+  particularidadesFisicas : "",
+  sexo: "",
+  fotoMascota: "",
+  fechaRescate: new Date(),
+  lugarRescate: "",
+  descripcionRescate: "",
+  especie: "",
+  estado:0
+};
+
+  public agregar(): void {
+    console.log(' agregar mascota', this.mascotaPost);
+    this.mascotaService.crearMascota(this.mascotaPost)
     .subscribe(
     response => {
         this.router.navigate(['/mascotas'])

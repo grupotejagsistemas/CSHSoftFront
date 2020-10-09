@@ -1,4 +1,4 @@
-import { Estado } from './estado';
+import { EstadoMascota } from './estadoMascota';
 
 export class Mascota {
     id: number;
@@ -11,7 +11,7 @@ export class Mascota {
     lugarRescate: string;
     descripcionRescate: string;
     especie: string;
-    estadoMascota: Estado;
+    estadoMascota: EstadoMascota;
 
     constructor(){ }
 
@@ -27,7 +27,7 @@ export class Mascota {
         mascota.lugarRescate= "";
         mascota.descripcionRescate= "";
         mascota.especie= "";
-        mascota.estadoMascota = {descripcion: '', id: null};
+        mascota.estadoMascota = {id: 0, descripcion: ''};
         
         return mascota;
     }
