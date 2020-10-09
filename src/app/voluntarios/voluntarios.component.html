@@ -39,7 +39,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let voluntario of voluntarios">
-                    <td>{{voluntario.nombreCompleto}}</td>
+                    <td>{{voluntario.nombrecompleto}}</td>
                     <td>{{voluntario.telefono}}</td>
                     <td>{{voluntario.direccion}}</td>
                     <td>{{voluntario.localidad}}</td>
@@ -53,5 +53,9 @@
                         <button type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id)' class="btn btn-danger btn-sm" >Eliminar</button>
                     </td>
                 </tr>
+
+                <div data-pagination="" data-num-pages="numOfPages()" 
+      data-current-page="curPage" data-max-size="maxSize"  
+      data-boundary-links="true"></div>
             </tbody>
         </table>  

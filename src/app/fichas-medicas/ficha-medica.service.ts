@@ -38,12 +38,12 @@ export class FichaMedicaService {
       return this.http.get<FichaMedica>(`${this.urlAPI}/fichasMedicas/${id}`);
       
     }
-    crearFichaMedica(fichaMedica: FichaMedica) {
+    crearFichaMedica(fichaMedica: any) {
       console.log('ficha', fichaMedica);
       return this.http.post(`${this.urlAPI}/fichasMedicas`, fichaMedica)
     }
 
-    modificarFichaMedica(fichaMedica: FichaMedica){
+    modificarFichaMedica(fichaMedica: any){
       console.log('modifica ', fichaMedica);
       return this.http.put(`${this.urlAPI}/fichasMedicas/${fichaMedica.id}`, fichaMedica);
     }

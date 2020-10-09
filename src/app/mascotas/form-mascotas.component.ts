@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mascota } from './mascota';
-import {Estado} from './estado';
+import {EstadoMascota } from './estadoMascota';
 import { MascotaService } from './mascota.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -13,10 +13,12 @@ export class FormMascotasComponent implements OnInit {
 
 
   mascota: Mascota;
-  estados: Estado;    
+  estados: EstadoMascota[];
   titulo: string = 'Nueva Mascota'
+
+
   constructor(
-    private mascotaService: MascotaService, 
+    private mascotaService: MascotaService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -25,19 +27,35 @@ export class FormMascotasComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.mascota = Mascota.build();
+
     this.mascotaService.getMascota(id).subscribe((resp: any) => {
-      this.mascota = resp;
-      console.log('id', this.mascota.id)
+      this.mascotaObj = resp;
     })
 
-   /* this.mascotaService.getEstados().subscribe((resp: any) => {
-        this.mascota = resp;
-    })*/
-  }
+    this.mascotaService.getEstados()
+    .subscribe((resp: any) => {
+        this.estados = resp;
 
-  public agregar(mascota): void {
-    console.log(' agregar mascota', mascota);
-    this.mascotaService.crearMascota(mascota)
+    })
+}
+
+mascotaObj = {
+  id: null,
+  nombre : "",
+  fechaNacimiento : new Date(),
+  particularidadesFisicas : "",
+  sexo: "",
+  fotoMascota: "",
+  fechaRescate: new Date(),
+  lugarRescate: "",
+  descripcionRescate: "",
+  especie: "",
+  estado:0
+};
+
+  public agregar(): void {
+    console.log(' agregar mascota', this.mascotaObj);
+    this.mascotaService.crearMascota(this.mascotaObj)
     .subscribe(
     response => {
         this.router.navigate(['/mascotas'])
@@ -45,9 +63,9 @@ export class FormMascotasComponent implements OnInit {
     })
 }
 
-public modificar(mascota): void{
-  console.log('modificar mascota', mascota);
-  this.mascotaService.modificarMascota(mascota)
+public modificar(): void{
+  console.log('modificar mascota', this.mascotaObj);
+  this.mascotaService.modificarMascota(this.mascotaObj)
   .subscribe(
     response => {
       this.router.navigate(['/mascotas'])

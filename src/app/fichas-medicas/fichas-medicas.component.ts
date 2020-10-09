@@ -9,6 +9,7 @@ import { FichaMedicaService } from './ficha-medica.service';
   styleUrls: ['./fichas-medicas.component.css']
 })
 export class FichasMedicasComponent implements OnInit {
+  
 
   fichasMedicas: FichaMedica[] = [];
   constructor(public fichaMedicaService: FichaMedicaService) { }
@@ -16,6 +17,7 @@ export class FichasMedicasComponent implements OnInit {
   ngOnInit(): void {
     this.fichaMedicaService.getFichasMedicas().subscribe((data: any) => {
       this.fichasMedicas = data; 
+      console.log("fichas", data)
     })
   }
 

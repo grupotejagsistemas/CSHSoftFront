@@ -21,7 +21,7 @@ export class VoluntarioService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getVeterinarias(): Observable<Veterinaria[]> {
-    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinarias`) 
+    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`) 
   }
 
   getVoluntarios(): Observable<Voluntario[]> {
@@ -35,40 +35,15 @@ export class VoluntarioService {
   crearVoluntario(voluntario: Voluntario) {
     console.log('vol ', voluntario);
     return this.http.post(`${this.urlAPI}/voluntario`, voluntario)
-
-    /*.pipe(
-      map( (response: any) => response.voluntario as Voluntario),
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al crear al voluntario', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )*/
   } 
 
   getVoluntario(id: number): Observable<Voluntario>{
     return this.http.get<Voluntario>(`${this.urlAPI}/voluntario/${id}`)
-    /*.pipe(
-      catchError(e => {
-        this.router.navigate(['/voluntarios']);
-        console.error(e.error.mensaje);
-        swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError(e);
-      })
-    );*/
   }
 
   modificarVoluntario(voluntario: Voluntario) {
     console.log('modifica', voluntario)
     return this.http.put(`${this.urlAPI}/voluntario/${voluntario.id}`, voluntario)
-    
-    /*.pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al modificar al voluntario', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )*/
    }
 
   borrarVoluntario(id: number) {
