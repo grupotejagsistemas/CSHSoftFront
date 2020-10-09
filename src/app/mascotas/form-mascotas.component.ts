@@ -3,7 +3,7 @@ import { Mascota } from './mascota';
 import {EstadoMascota } from './estadoMascota';
 import { MascotaService } from './mascota.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import swal from 'sweetalert2'
 @Component({
   selector: 'app-form-mascotas',
   templateUrl: './form-mascotas.component.html',
@@ -53,25 +53,36 @@ mascotaObj = {
   estado:0
 };
 
-  public agregar(): void {
+  public agregar(mascota): void {
     console.log(' agregar mascota', this.mascotaObj);
     this.mascotaService.crearMascota(this.mascotaObj)
     .subscribe(
     response => {
         this.router.navigate(['/mascotas'])
-        return response;
-    })
-}
-
-public modificar(): void{
-  console.log('modificar mascota', this.mascotaObj);
-  this.mascotaService.modificarMascota(this.mascotaObj)
-  .subscribe(
-    response => {
-      this.router.navigate(['/mascotas'])
-      return response;
+        swal.fire({
+          icon: 'success',
+          title: 'Creación exitosa',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        return response; 
+      })
     }
-  )
-}
 
+  public modificar(mascota): void{
+    console.log('modificar mascota', this.mascotaObj);
+      this.mascotaService.modificarMascota(this.mascotaObj)
+      .subscribe(
+        response => {
+          this.router.navigate(['/mascotas'])
+          swal.fire({
+            icon: 'success',
+            title: 'La mascota ha sido modificada',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          return response;
+        }
+  ) 
+  }
 }

@@ -24,7 +24,7 @@ export class FichasMedicasComponent implements OnInit {
   borrarFichasMedicas(id: number, i: number): void {
     Swal.fire({
       title: '',
-      // text: `¿Desea eliminar al voluntario ${voluntarios.nombrecompleto}?`,
+      text: `¿Desea eliminar la ficha médica ?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

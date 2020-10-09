@@ -22,11 +22,10 @@ export class ContratosComponent implements OnInit {
       contratos => this.contratos = contratos
     );
   }
-/*
-  delete(contrato: Contrato): void {
+  borrarContrato(id: number, i: number): void {
     swal.fire({
       title: '',
-      text: `¿Desea eliminar el contrato ${contrato.id}?`,
+      text: `¿Desea eliminar el contrato ?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -34,20 +33,10 @@ export class ContratosComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
-
-        console.log('se elimino: ', contrato)
-        this.contratoService.delete(contrato.id).subscribe(
-          response => {
-            this.contratos = this.contratos.filter(vet => vet !== contrato)
-            swal.fire(
-              'Eliminado!',
-              '',
-              'success',
-              )
-            }
-        )
+        this.contratos.splice(i, 1)
+          this.contratoService.borrarContrato(id).subscribe()
       }
     })
-  }*/
+}
 
 }

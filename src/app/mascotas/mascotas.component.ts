@@ -32,7 +32,7 @@ export class MascotasComponent implements OnInit {
 
   borrarMascota(id: number, i: number): void {
     Swal.fire({
-      title: '',
+      title: '¿Desea eliminar la mascota?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

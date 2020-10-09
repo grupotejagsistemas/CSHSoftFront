@@ -4,6 +4,7 @@ import { Mascota } from '../mascotas/mascota';
 import { Veterinaria } from '../voluntarios/veterinaria';
 import { FichaMedica } from './ficha-medica';
 import { FichaMedicaService } from './ficha-medica.service';
+import swal from 'sweetalert2'
 
 @Component({
   selector: 'app-form-ficha-medica',
@@ -83,6 +84,12 @@ export class FormFichaMedicaComponent implements OnInit {
     .subscribe(
       response => {
         this.router.navigate(['/fichas-medicas'])
+        swal.fire({
+          icon: 'success',
+          title: 'Creación exitosa',
+          showConfirmButton: false,
+          timer: 1500
+        })
         return response;
       }
     )
@@ -112,6 +119,12 @@ export class FormFichaMedicaComponent implements OnInit {
     .subscribe(
       response => {
         this.router.navigate(['/fichas-medicas'])
+        swal.fire({
+          icon: 'success',
+          title: 'La ficha médica ha sido modificada',
+          showConfirmButton: false,
+          timer: 1500
+        })
         return response;
       }
     )

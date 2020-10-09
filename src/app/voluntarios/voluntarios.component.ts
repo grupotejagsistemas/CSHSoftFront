@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Voluntario } from './voluntario';
 import { VoluntarioService }from './voluntario.service';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -38,9 +38,9 @@ export class VoluntariosComponent implements OnInit {
   }
 
   borrarVoluntario(id: number, i: number): void {
-      Swal.fire({
+      swal.fire({
         title: '',
-        // text: `¿Desea eliminar al voluntario ${voluntarios.nombrecompleto}?`,
+        text: `¿Desea eliminar al voluntario ?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
