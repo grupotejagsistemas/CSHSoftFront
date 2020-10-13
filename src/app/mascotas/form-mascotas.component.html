@@ -49,8 +49,8 @@
                     <input type="text" class="form-control" placeholder="Especie" name="especie" [(ngModel)]="mascotaObj.especie" required>
                 </div>
             </div>
+            <label for="estado" class="col-form-label col-sm-2">Estado</label>
             <div class="form-group row">
-                <label for="estado" class="col-form-label col-sm-2">Estado</label>
                 <div class="col-sm-6">
                     <select class="form-control" type=number [(ngModel)]="mascotaObj.estado" name="estadoMascota">
                     <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>

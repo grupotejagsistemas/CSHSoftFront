@@ -18,8 +18,8 @@
                 </div>
             </div>
             <div></div>
+            <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria Cercana</label>
             <div class="form-group row">
-                <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria Cercana</label>
                 <div class="col-sm-6">
                     <select type="number" class="form-control"  name="idveterinarias" [(ngModel)]="voluntario.idveterinarias"  >
                         <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.id">{{veterinaria.razonSocial}}</option>

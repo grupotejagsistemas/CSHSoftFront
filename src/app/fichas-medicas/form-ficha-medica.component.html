@@ -2,8 +2,8 @@
     <div class="card-header" id="titulo">{{titulo}} </div>
         <div class="card-body"> 
             <form>
+                <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
                 <div class="form-group row">
-                    <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
                         <div class="col-sm-6">
                             <input type="date" class="form-control" name="fecha" [(ngModel)]="fichaMedicaObj.fecha" required>
                         </div>
@@ -37,16 +37,16 @@
                         </div>
                 </div>
             
+                <label for="mascota" class="col-form-label col-sm-2">Mascota </label>
                 <div class="form-group row">
-                     <label for="mascota" class="col-form-label col-sm-2">Mascota </label>
                          <div class="col-sm-6">
                              <select type="number" class="form-control" name="mascota"  [(ngModel)]="fichaMedicaObj.idMascota" required>
                                  <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">{{mascota.nombre}}</option>
                              </select>
                          </div>
                  </div>
+                 <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                  <div class="form-group row">
-                     <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                          <div class="col-sm-6">
                              <select  class="form-control"  name="veterinaria" [(ngModel)]="fichaMedicaObj.idVeterinaria" required >
                                  <option *ngFor="let veterinaria of veterinarias" [ngValue]="veterinaria.id">{{veterinaria.razonSocial}}</option>
