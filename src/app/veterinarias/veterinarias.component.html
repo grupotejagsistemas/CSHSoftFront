@@ -1,13 +1,11 @@
-        <h5 class="card-title" >Veterinarias</h5>
-        <div class="form-group">
+        <h5>Veterinarias</h5>
             <div class="input-group">
-                <div class="input-group-text bg-white">
+                <div class="input bg-white">
                     <input type="text" name="busquedaRazonSocial" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaRazonSocial" (change)="filtroRazonSocial(busquedaRazonSocial)">
                 </div>
-            </div>
         </div>
-        <div class="my-2 text-left" >
-            <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/veterinarias/crear']">Nueva veterinaria</button>
+        <div class="my-4 text-right" >
+            <button class="btn btn-outline-success" type="button" [routerLink] = "['/veterinarias/crear']">Nueva veterinaria</button>
         </div>
         <div *ngIf="veterinarias?.length==0" class="alert alert-info">
             No se encontraron datos registrados
@@ -21,8 +19,7 @@
                     <th>Dirección</th>
                     <th>Internación Cercana</th>
                     <th>Observación</th>
-                    <th>Editar</th>
-                    <th>Borrar</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -34,10 +31,10 @@
                     <td>{{veterinaria.internacion}}</td>
                     <td>{{veterinaria.observacion}}</td>
                     <td>
-                        <button type="button" name="button" [routerLink]="['/veterinarias/editar', veterinaria.id]" class="btn btn-primary">Editar</button>
+                        <button type="button" name="button" [routerLink]="['/veterinarias/editar', veterinaria.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
                     </td>
                     <td>
-                        <button type="button" name="eliminar" (click)='borrarVeterinaria(veterinaria.id)' class="btn btn-danger btn-sm">Eliminar</button>
+                        <button type="button" name="eliminar" (click)='borrarVeterinaria(veterinaria.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
