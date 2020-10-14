@@ -1,7 +1,7 @@
 <h5 class="card-title" >Fichas Médicas</h5>
         
-<div class="my-2 text-left" >
-    <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/fichas-medicas/crear']">Nuevo Ficha Médica</button>
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success" type="button" [routerLink] = "['/fichas-medicas/crear']">Nuevo Ficha Médica</button>
     
 </div>
 <div *ngIf="fichasMedicas?.length==0" class="alert alert-info">
@@ -20,8 +20,7 @@
             <th>Veterinaria</th>
             <th>Tratamiento</th>
             <th>Descrip Tratamiento</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
+
         </tr>
     </thead>
     <tbody>
@@ -37,10 +36,10 @@
             <td>{{fichaMedica.tratamiento}}</td>
             <td>{{fichaMedica.descripcionTratamiento}}</td>
             <td>
-                <button type="button" name="button" [routerLink]="['/fichas-medicas/editar', fichaMedica.id]" class="btn btn-primary">Editar</button>
+                <button type="button" name="button" [routerLink]="['/fichas-medicas/editar', fichaMedica.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
             </td>
             <td>
-                <button type="button" name="eliminar" (click)='borrarFichasMedicas(fichaMedica.id)' class="btn btn-danger btn-sm">Eliminar</button>
+                <button type="button" name="eliminar" (click)='borrarFichasMedicas(fichaMedica.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
             </td>
         </tr>
     </tbody>
