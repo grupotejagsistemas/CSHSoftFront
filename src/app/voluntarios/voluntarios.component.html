@@ -1,25 +1,12 @@
-        <h5 class="card-title" >Voluntarios</h5>
-        <div class="form-group">
+        <h5  >Voluntarios</h5>
             <div class="input-group">
-                <div class="input-group-text bg-white">
+                <div class="input bg-white">
                     <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
                 </div>
-            <!--
-                <div class="input-group-text bg-white">
-                    <input type="checkbox" name="busquedaTransito" class="form-control" placeholder="Buscar por tránsito">
-                </div>
-                <div class="input-group-text bg-white">
-                    <input type="checkbox" name="busquedaTraslado" class="form-control" placeholder="Buscar por traslado">               
-                </div>
-                <div class="input-group-text bg-white">
-                    <input type="checkbox" name="busquedaPresencial" class="form-control" placeholder="Buscar por presencial">
-                </div>
-            -->
             </div>
-        </div>
-        <div class="my-2 text-left" >
-            <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
-        </div>
+                    <div class="my-4 text-right" >
+                        <button class="btn btn-outline-success" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
+                    </div>
         <div *ngIf="voluntarios?.length==0" class="alert alert-info">
             No se encontraron datos registrados
         </div>
@@ -33,8 +20,7 @@
                     <th>Tránsito</th>
                     <th>Traslado</th>
                     <th>Presencial</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -47,15 +33,15 @@
                     <td>{{voluntario.traslado}}</td>
                     <td>{{voluntario.presencial}}</td>
                     <td>
-                        <button type="button" name="button" [routerLink]="['/voluntarios/editar/', voluntario.id]" class="btn btn-primary">Editar</button>
+                        <button class="btn btn-outline" type="button" name="button" [routerLink]="['/voluntarios/editar/', voluntario.id]"><i class='fas fa-pen'></i></button>
                     </td>
                     <td>
-                        <button type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id)' class="btn btn-danger btn-sm" >Eliminar</button>
+                        <button class="btn btn-outline" type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id)' ><i class='fas fa-trash'></i></button>
                     </td>
                 </tr>
 
                 <div data-pagination="" data-num-pages="numOfPages()" 
-      data-current-page="curPage" data-max-size="maxSize"  
-      data-boundary-links="true"></div>
+                    data-current-page="curPage" data-max-size="maxSize"  
+                    data-boundary-links="true"></div>
             </tbody>
         </table>  
