@@ -1,38 +1,53 @@
-<div class="card">
+<div class="card w-550 mx-auto"  style="width: 525px;"> 
     <div class="card-header" id="titulo" style="background-color: white;">{{titulo}}</div>
-    <div class="card-body">
+    <div class="card-body mx-auto" style="width: 800px">
         <form>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Nombre Completo" name="nombrecompleto" [(ngModel)]="voluntario.nombrecompleto" >
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control resizedTextbox" placeholder="Nombre Completo" name="nombrecompleto" [(ngModel)]="voluntario.nombrecompleto" >
+                    <style>
+                        .resizedTextbox {width: 485px; height: 35px}
+                    </style>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                        <input type="text" class="form-control" placeholder="Télefono" name="telefono" [(ngModel)]="voluntario.telefono" >
+                <div class="form-group col-md-6 " >
+                        <input type="text" class= "form-control resizedTextbox" placeholder="Télefono" name="telefono" [(ngModel)]="voluntario.telefono" >
+                        <style>
+                            .resizedTextbox {width: 485px; height: 35px}
+                        </style>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="voluntario.direccion" >
+                <div class="form-group col-md-6 ">
+                    <input type="text" class="form-control resizedTextbox" placeholder="Dirección" name="direccion" [(ngModel)]="voluntario.direccion" >
+                    <style>
+                        .resizedTextbox {width: 485px; height: 35px}
+                    </style>
                 </div>
             </div>
-            <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria Cercana</label>
+            <label for="veterinaria" class="col-form-label col-sm-3">Veterinaria Cercana</label>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <select type="number" class="form-control"  name="idveterinarias" [(ngModel)]="voluntario.idveterinarias"  >
+                <div class="form-group col-md-6 ">
+                    <select type="number" class="form-control resizedTextbox"  name="idveterinarias" [(ngModel)]="voluntario.idveterinarias"  >
+                        <style>
+                            .resizedTextbox {width: 485px; height: 35px}
+                        </style>
                         <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.id">{{veterinaria.razonSocial}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="localidad" name="localidad" [(ngModel)]="voluntario.localidad" >
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control resizedTextbox" placeholder="localidad " name="localidad" [(ngModel)]="voluntario.localidad" >
+                    <style>
+                        .resizedTextbox {width: 485px; height: 35px}
+                    </style>
                 </div>
             </div>
             <div class="form-row">
                 <label for="transito" class="col-form-label col-sm-2">Tránsito</label>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 resizedTextbox">
                     <input type="checkbox" name="transito" [(ngModel)]="checkedTransito">
                 </div>
             </div>
@@ -50,7 +65,7 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group  col-md-6 ">
                     <button class="btn btn-outline-success" role="button" (click)='agregar(voluntario)' *ngIf="!voluntario.id else elseBlock">Agregar</button>
                     <ng-template #elseBlock>
                         <button class="btn btn-outline-success" role="button" (click)='modificar(voluntario)'>Modificar</button>
