@@ -1,11 +1,17 @@
-<div class="card">
-    <div class="card-header" id="titulo" style="background-color: white;">{{titulo}} </div>
-        <div class="card-body"> 
+<div class="card w-550 mx-auto " style="width: 525px;" >
+    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!fichaMedicaObj.id else elseBlock">Nueva ficha médica</div>
+    <ng-template #elseBlock>
+        <div class="card-header" id="titulo" style="background-color: white;">Modificar ficha médica</div>
+         </ng-template>
+        <div class="card-body mx-auto" style="width: 800px"> 
             <form>
                 <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
                 <div class="form-row">
                         <div class="form-group col-md-4">
-                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fichaMedicaObj.fecha" required>
+                            <input type="date" class="form-control resizedTextbox" name="fecha" [(ngModel)]="fichaMedicaObj.fecha" required>
+                            <style>
+                                .resizedTextbox {width: 485px; height: 35px}
+                            </style>
                         </div>
                 </div>
                 <div class="form-row">
@@ -17,7 +23,10 @@
 
                 <div class="form-row">
                         <div class="form-group col-md-4">
-                            <input type="text" class="form-control" placeholder="Nombre del Producto" name="nombreProducto" [(ngModel)]="fichaMedicaObj.nombreProducto" required >
+                            <input type="text" class="form-control resizedTextbox" placeholder="Nombre del Producto" name="nombreProducto" [(ngModel)]="fichaMedicaObj.nombreProducto" required >
+                            <style>
+                                .resizedTextbox {width: 485px; height: 35px}
+                            </style>
                         </div>
                 </div>
                 <div class="form-row">
@@ -28,29 +37,41 @@
                 </div>
                 <div class="form-row">
                         <div class="form-group col-md-4">
-                            <input type="text" class="form-control" placeholder="Nombre de Vacuna" name="nombreVacuna" [(ngModel)]="fichaMedicaObj.nombreVacuna"  required>
+                            <input type="text" class="form-control resizedTextbox" placeholder="Nombre de Vacuna" name="nombreVacuna" [(ngModel)]="fichaMedicaObj.nombreVacuna"  required>
+                            <style>
+                                .resizedTextbox {width: 485px; height: 35px}
+                            </style>
                         </div>
                 </div>               
                  <div class="form-row">
                         <div class="form-group col-md-4">
-                            <input type="text" class="form-control" placeholder="Diagnóstico" name="diagnostico"  [(ngModel)]="fichaMedicaObj.diagnostico" required>
+                            <input type="text" class="form-control resizedTextbox" placeholder="Diagnóstico" name="diagnostico"  [(ngModel)]="fichaMedicaObj.diagnostico" required>
+                            <style>
+                                .resizedTextbox {width: 485px; height: 35px}
+                            </style>
                         </div>
                 </div>
             
                 <label for="mascota" class="col-form-label col-sm-2">Mascota </label>
                 <div class="form-row">
                          <div class="form-group col-md-4">
-                             <select type="number" class="form-control" name="mascota"  [(ngModel)]="fichaMedicaObj.idMascota" required>
+                             <select type="number" class="form-control resizedTextbox" name="mascota"  [(ngModel)]="fichaMedicaObj.idMascota" required>
                                  <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">{{mascota.nombre}}</option>
                              </select>
+                             <style>
+                                 .resizedTextbox {width: 485px; height: 35px}
+                             </style>
                          </div>
                  </div>
                  <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                  <div class="form-row">
                          <div class="form-group col-md-4">
-                             <select  class="form-control"  name="veterinaria" [(ngModel)]="fichaMedicaObj.idVeterinaria" required >
+                             <select  class="form-control resizedTextbox"  name="veterinaria" [(ngModel)]="fichaMedicaObj.idVeterinaria" required >
                                  <option *ngFor="let veterinaria of veterinarias" [ngValue]="veterinaria.id">{{veterinaria.razonSocial}}</option>
                              </select>
+                             <style>
+                                 .resizedTextbox {width: 485px; height: 35px}
+                             </style>
                          </div>
                  </div>
                 <div class="form-row">
@@ -61,7 +82,10 @@
                 </div>
                 <div class="form-row">
                         <div class="form-group col-md-4">
-                            <input type="text" class="form-control" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" [(ngModel)]="fichaMedicaObj.descripcionTratamiento"required >
+                            <input type="text" class="form-control resizedTextbox" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" [(ngModel)]="fichaMedicaObj.descripcionTratamiento"required >
+                            <style>
+                                .resizedTextbox {width: 485px; height: 35px}
+                            </style>
                         </div>
                 </div>
 

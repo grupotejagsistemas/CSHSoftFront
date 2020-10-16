@@ -1,60 +1,84 @@
-<div class="card">
-    <div class="card-header" id="titulo" style="background-color: white;">{{titulo}} </div>
-    <div class="card-body">
+<div class="card w-550 mx-auto " style="width: 525px;">
+    <div class="card-header"id="titulo" style="background-color: white;">{{titulo}} </div>
+    <div class="card-body mx-auto" style="width: 800px;">
         <form>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="mascotaObj.nombre" required>
+                    <input type="text" class="form-control resizedTexbox" placeholder="Nombre" name="nombre" [(ngModel)]="mascotaObj.nombre" required>
                 </div>
+            <style>
+                .resizedTexbox {width: 485px; height: 25px;}
+            </style>
             </div>
+            <label for="fechaNacimiento" class="col-form-label col-sm-4">Fecha de Nacimiento</label>
             <div class="form-row">
-                <label for="fechaNacimiento" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
                 <div class="form-group col-md-4">
                     <input type="date" placeholder="Fecha de Nacimiento" name="fechaNacimiento" [(ngModel)]="mascotaObj.fechaNacimiento" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisicas" [(ngModel)]="mascotaObj.particularidadesFisicas" required>
+                    <input type="text" class="form-control resizedTexbox" placeholder="Particularidades Físicas" name="particularidadesFisicas" [(ngModel)]="mascotaObj.particularidadesFisicas" required>
+                </div>
+                <style>
+                    .resizedTexbox {width: 485px; height: 25px;}
+                </style>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control resizedTexbox" placeholder="Sexo" name="sexo" [(ngModel)]="mascotaObj.sexo" required>
+                    <style>
+                        .resizedTexbox {width: 485px; height: 25px;}
+                    </style>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Sexo" name="sexo" [(ngModel)]="mascotaObj.sexo" required>
+                    <input type="text" class="form-control resizedTexbox" placeholder="Foto" name="fotoMascota" [(ngModel)]="mascotaObj.fotoMascota" required>
+                    <style>
+                        .resizedTexbox {width: 485px; height: 25px;}
+                    </style>
                 </div>
             </div>
+            <label for="fechaRescate" class="col-form-label col-sm-4">Fecha de rescate</label>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Foto" name="fotoMascota" [(ngModel)]="mascotaObj.fotoMascota" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <label for="fechaRescate" class="col-form-label col-sm-2">Fecha de rescate</label>
                 <div class="form-group col-md-4">
                     <input type="date" placeholder="Fecha de rescate" name="fechaRescate" [(ngModel)]="mascotaObj.fechaRescate" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaObj.lugarRescate" required>
+                    <input type="text" class="form-control resizedTexbox" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaObj.lugarRescate" required>
+                    <style>
+                        .resizedTexbox {width: 485px; height: 25px;}
+                    </style>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaObj.descripcionRescate" required>
+                    <input type="text" class="form-control resizedTexbox" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaObj.descripcionRescate" required>
+                    <style>
+                        .resizedTexbox {width: 485px; height: 25px;}
+                    </style>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Especie" name="especie" [(ngModel)]="mascotaObj.especie" required>
+                    <input type="text" class="form-control resizedTexbox" placeholder="Especie" name="especie" [(ngModel)]="mascotaObj.especie" required>
+                    <style>
+                        .resizedTexbox {width: 485px; height: 25px;}
+                    </style>
                 </div>
             </div>
             <label for="estado" class="col-form-label col-sm-2">Estado</label>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <select class="form-control" type=number [(ngModel)]="mascotaObj.estado" name="estadoMascota">
+                    <select class="form-control resizedTexbox" type=number [(ngModel)]="mascotaObj.estado" name="estadoMascota">
                     <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
                 </select>
+                <style>
+                    .resizedTexbox {width: 485px; height: 25px;}
+                </style>
                 </div>
             </div>
             <div class="form-row">

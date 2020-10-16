@@ -19,8 +19,6 @@ export class FormFichaMedicaComponent implements OnInit {
   mascotas: Mascota[];
   veterinarias: Veterinaria[];
   fichaMedica: FichaMedica;
-  titulo: string = 'Nuevo Ficha Medica'
-
   constructor(
     private fichasMedicasService: FichaMedicaService,
     private router: Router,
