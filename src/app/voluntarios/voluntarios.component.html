@@ -4,9 +4,27 @@
                     <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
                 </div>
             </div>
-                    <div class="my-4 text-right" >
-                        <button class="btn btn-outline-success" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
-                    </div>
+            <div class="form-row">
+                <label for="transito" class="col-form-label col-sm-2"> Transito</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="transito" name="transito" [(ngModel)]="checkedTransito" (change)="filtroTransito()">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="traslado" class="col-form-label col-sm-2"> Traslado</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="traslado" name="traslado" [(ngModel)]="checkedTraslado" (change)="filtroTraslado()">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="presencial" class="col-form-label col-sm-2"> Presencial</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="presencial" name="presencial" [(ngModel)]="checkedPresencial" (change)="filtroPresencial()">
+                </div>
+            </div>
+            <div class="my-4 text-right" >
+                <button class="btn btn-outline-success" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
+            </div>
         <div *ngIf="voluntarios?.length==0" class="alert alert-info">
             No se encontraron datos registrados
         </div>
@@ -39,9 +57,5 @@
                         <button class="btn btn-outline" type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id)' ><i class='fas fa-trash'></i></button>
                     </td>
                 </tr>
-
-                <div data-pagination="" data-num-pages="numOfPages()" 
-                    data-current-page="curPage" data-max-size="maxSize"  
-                    data-boundary-links="true"></div>
             </tbody>
         </table>  

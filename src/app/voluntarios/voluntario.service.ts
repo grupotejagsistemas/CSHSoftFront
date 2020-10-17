@@ -49,4 +49,16 @@ export class VoluntarioService {
   borrarVoluntario(id: number) {
      return this.http.delete(`${this.urlAPI}/voluntario/${id}`);
   }
+
+  filtrarPresencial(presencial: string){
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarPresencial?presencial=${presencial}`);
+  }
+
+  filtrarTransito(transito: string){
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarTransito?transito=${transito}`);
+  }
+
+  filtrarTraslado(traslado: string){
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarTraslado?traslado=${traslado}`);
+  }
 }
