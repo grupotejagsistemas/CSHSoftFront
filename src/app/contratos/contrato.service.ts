@@ -20,7 +20,6 @@ export class ContratoService {
 
   getContratos(): Observable<Contrato[]> {
     return this.http.get<Contrato[]>(`${this.urlAPI}/contrato`)
-     
   }
 
   crearContrato(contrato: Contrato) {

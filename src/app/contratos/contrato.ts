@@ -1,15 +1,15 @@
 export class Contrato {
-    id: number;
-    nombreAdoptante: string;
-    nombreMascota: string;
-    nuevoNombreMascota: string;
+    idContrato: number;
+    adoptante: string;
+    mascota: string;
+    nuevoNombre: string;
 
     public static build(){
         const contrato = new Contrato();
-        contrato.id = null;
-        contrato.nombreAdoptante = "";
-        contrato.nombreMascota= "";
-        contrato.nuevoNombreMascota = ""
+        contrato.idContrato = null; 
+        contrato.adoptante   = "";
+        contrato.mascota= "";
+        contrato.nuevoNombre = ""
 
         return contrato;
     }

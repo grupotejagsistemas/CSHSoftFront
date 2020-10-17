@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Contrato } from './contrato';
 import { ContratoService }from './contrato.service';
 import swal from 'sweetalert2';
+import { runInThisContext } from 'vm';
 
 
 @Component({
@@ -18,10 +19,13 @@ export class ContratosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contratoService.getContratos().subscribe(
-      contratos => this.contratos = contratos
-    );
+    
+    this.contratoService.getContratos().subscribe((data: any) => {
+      this.contratos = data;
+    })
   }
+
+
   borrarContrato(id: number, i: number): void {
     swal.fire({
       title: '',
