@@ -3,7 +3,13 @@
                 <div class="input bg-white">
                     <input type="text" name="busquedaRazonSocial" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaRazonSocial" (change)="filtroRazonSocial(busquedaRazonSocial)">
                 </div>
-        </div>
+            </div>
+            <div class="form-row">
+                <label for="internacion" class="col-form-label col-sm-2"> Internacion</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="internacion" name="internacion" [(ngModel)]="checked" (change)="filtroInternacion()">
+                </div>
+            </div>
         <div class="my-4 text-right" >
             <button class="btn btn-outline-success" type="button" [routerLink] = "['/veterinarias/crear']">Nueva veterinaria</button>
         </div>
