@@ -1,7 +1,11 @@
-<h5 class="card-title" >Contratos</h5>
-            
-<div class="my-2 text-left" >
-    <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/contratos/crear']">Nuevo contrato</button>
+<h5 >Contratos</h5>
+<div class="input-group">
+    <div class="input bg-white">
+        <input type="text" name="busquedaMascota" class="form-control" placeholder="Buscar por mascota" [(ngModel)]="busquedaMascota" (change)="filtroMascota(busquedaMascota)">
+    </div>
+</div>
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success"  type="button" [routerLink] = "['/contratos/crear']">Nuevo contrato</button>
 </div>
 <div *ngIf="contratos?.length==0" class="alert alert-info">
     No se encontraron datos registrados
@@ -9,7 +13,6 @@
 <table class="table table-striped" *ngIf="contratos?.length>0">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Nombre del adoptante</th>
             <th>Nombre de la mascota</th>
             <th>Nuevo nombre de la mascota</th>
@@ -17,16 +20,10 @@
     </thead>
     <tbody>
         <tr *ngFor="let contrato of contratos">
-            <td>{{contrato.id}}</td>
-            <td>{{contrato.nombreAdoptante}}</td>
-            <td>{{contrato.nombreMascota}}</td>
-            <td>{{contrato.nuevoNombreMascota}}</td>
-            <td>
-                <button type="button" name="button" [routerLink]="['/contratos/editar', contrato.id]" class="btn btn-primary">Editar</button>
-            </td>
-            <td>
-                <button type="button" name="eliminar" (click)='delete(contrato)' class="btn btn-danger btn-sm">Eliminar</button>
-            </td>
+            <td>{{contrato.adoptante}}</td>
+            <td>{{contrato.mascota}}</td>
+            <td>{{contrato.nuevoNombre}}</td>
+
         </tr>
     </tbody>
 </table>  

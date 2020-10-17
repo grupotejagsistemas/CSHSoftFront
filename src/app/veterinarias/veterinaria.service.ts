@@ -42,5 +42,13 @@ export class VeterinariaService {
   borrarVeterinaria(id: number) {
     return this.http.delete(`${this.urlAPI}/veterinaria/${id}`);
  }
+
+ filtrarInternacion(internacion: string){
+   return this.http.get(`${this.urlAPI}/veterinaria/filtrarInternacion?internacion=${internacion}`);
+ }
+
+ filtrarNoInternacion(internacion: string){
+   return this.http.get(`${this.urlAPI}/veterinaria/filtrarInternacion?internacion=${internacion}`)
+ }
  
 }

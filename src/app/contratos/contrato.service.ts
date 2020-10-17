@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-//import {CONTRATOS} from './contratos.json';
 import { Contrato } from './contrato';
-import {of,  Observable, throwError } from 'rxjs';
+import {Observable } from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map, catchError} from 'rxjs/operators';
-import swal from 'sweetalert2';
 import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
+import { Mascota } from '../adoptantes/mascota';
+import { Adoptante } from '../adoptantes/adoptante';
 
 @Injectable({
   providedIn: 'root'
@@ -20,25 +19,21 @@ export class ContratoService {
 
   getContratos(): Observable<Contrato[]> {
     return this.http.get<Contrato[]>(`${this.urlAPI}/contrato`)
-     
   }
 
-  crearContrato(contrato: Contrato) {
-    console.log('vol ', contrato);
+  getContratosMascota(mascota: any): Observable<Contrato[]>{
+    return this.http.get<Contrato[]>(`${this.urlAPI}/contrato/filtrar?nombreMascota=${mascota}`);
+  }
+
+  getMascotas(): Observable<Mascota[]>{
+    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas`)
+  }
+
+  getAdoptantes(): Observable<Adoptante[]>{
+    return this.http.get<Adoptante[]>(`${this.urlAPI}/adoptante`)
+  }
+
+  crearContrato(contrato: any) {
     return this.http.post(`${this.urlAPI}/contrato`, contrato)
   }
-
-  getContrato(id: number): Observable<Contrato>{
-    return this.http.get<Contrato>(`${this.urlAPI}/contrato/${id}`)
-  }
-
-  modificarContrato(contrato: Contrato) {
-    console.log('modifica', contrato)
-    return this.http.put(`${this.urlAPI}/contrato/${contrato.id}`, contrato)
-  }
-
-  borrarContrato(id: number) {
-    return this.http.delete(`${this.urlAPI}/contrato/${id}`);
- }
-  
 }

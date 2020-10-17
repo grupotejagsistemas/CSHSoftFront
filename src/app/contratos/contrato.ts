@@ -1,15 +1,18 @@
+import { Adoptante } from './adoptante';
+import { Mascota } from './mascota';
+
 export class Contrato {
-    id: number;
-    nombreAdoptante: string;
-    nombreMascota: string;
-    nuevoNombreMascota: string;
+    idContrato: number;
+    adoptante: Adoptante;
+    mascota: Mascota;
+    nuevoNombre: string;
 
     public static build(){
         const contrato = new Contrato();
-        contrato.id = null;
-        contrato.nombreAdoptante = "";
-        contrato.nombreMascota= "";
-        contrato.nuevoNombreMascota = ""
+        contrato.idContrato = null; 
+        contrato.adoptante   = {id: 0, nombreCompleto: ""};
+        contrato.mascota= {id: 0, nombre: ""};
+        contrato.nuevoNombre = ""
 
         return contrato;
     }

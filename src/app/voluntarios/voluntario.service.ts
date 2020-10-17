@@ -25,7 +25,8 @@ export class VoluntarioService {
   }
 
   getVoluntarios(): Observable<Voluntario[]> {
-    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario`);
+    return this.http.get<Voluntario[]>(`https://colitassinhogar-desarrollo.herokuapp.com/api/voluntario
+    `);
   }
 
   getVoluntariosNombre(nombre: any): Observable<Voluntario[]> {
@@ -48,5 +49,17 @@ export class VoluntarioService {
 
   borrarVoluntario(id: number) {
      return this.http.delete(`${this.urlAPI}/voluntario/${id}`);
+  }
+
+  filtrarPresencial(presencial: string){
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarPresencial?presencial=${presencial}`);
+  }
+
+  filtrarTransito(transito: string){
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarTransito?transito=${transito}`);
+  }
+
+  filtrarTraslado(traslado: string){
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarTraslado?traslado=${traslado}`);
   }
 }

@@ -13,6 +13,8 @@ export class VeterinariasComponent implements OnInit {
 
   veterinarias : Veterinaria[];
   busquedaRazonSocial: string;
+  checked: boolean; 
+  checkedNo: boolean;
 
   constructor(private veterinariaService: VeterinariaService) {
 
@@ -32,6 +34,30 @@ export class VeterinariasComponent implements OnInit {
       this.veterinarias = data;
       
     })
+  }
+
+  filtroInternacion(): void {
+    if(this.checked === true){
+      this.veterinariaService.filtrarInternacion("si").subscribe((data: any) => {
+        this.veterinarias = data;
+      })
+    } else {
+      this.veterinariaService.getVeterinarias().subscribe((data: any) => {
+      this.veterinarias = data;
+    })
+    }
+  }
+
+  filtroNoInternacion(): void {
+    if(this.checkedNo === true){
+      this.veterinariaService.filtrarNoInternacion("no").subscribe((data: any) => {
+        this.veterinarias = data;
+      })
+    } else {
+      this.veterinariaService.getVeterinarias().subscribe((data: any) => {
+        this.veterinarias = data;
+      })
+    }
   }
 
   borrarVeterinaria(id: number, i: number): void {

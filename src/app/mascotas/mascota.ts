@@ -4,7 +4,7 @@ export class Mascota {
     id: number;
     nombre: string;
     fechaNacimiento: number;
-    particularidadesFisica: string;
+    particularidadesFisicas: string;
     sexo: string;
     fotoMascota: string;
     fechaRescate: Date;
@@ -20,7 +20,7 @@ export class Mascota {
         mascota.id = null; 
         mascota.nombre = "";
         mascota.fechaNacimiento= null;
-        mascota.particularidadesFisica= "";
+        mascota.particularidadesFisicas= "";
         mascota.sexo= "";
         mascota.fotoMascota= "";
         mascota.fechaRescate= null;
