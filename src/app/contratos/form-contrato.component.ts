@@ -3,6 +3,8 @@ import { Contrato } from './contrato';
 import { ContratoService } from './contrato.service';
 import {ActivatedRoute,Router} from '@angular/router';
 import swal from 'sweetalert2'
+import { Mascota } from '../adoptantes/mascota';
+import { Adoptante } from '../adoptantes/adoptante';
 
 @Component({
   selector: 'app-form-contrato',
@@ -11,7 +13,10 @@ import swal from 'sweetalert2'
 })
 export class FormContratoComponent implements OnInit {
 
+  mascotas: Mascota[];
+  adoptantes: Adoptante[];
   contrato: Contrato = new Contrato()
+
   titulo: string = 'Nuevo Contrato'
 
   constructor(
@@ -22,17 +27,29 @@ export class FormContratoComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.contrato = Contrato.build();
-  this.contratoService.getContrato(id).subscribe((resp: any) => {
-    this.contrato = resp;
-    console.log('id' , this.contrato.id);
-    console.log('se modifica', this.contrato)
 
-  })
+    this.contrato = Contrato.build();
+
+    this.contratoService.getAdoptantes()
+      .subscribe((resp: any) => {
+        this.adoptantes = resp;
+      })
+
+    this.contratoService.getMascotas()
+      .subscribe((resp: any) => {
+        this.mascotas = resp;
+      })
   }
-  public agregar(mascota): void {
-    console.log('vol', mascota)
-    this.contratoService.crearContrato(this.contrato)
+
+  contratoObj = {
+    idMascota: 1, 
+    idAdoptante: 2, 
+    nuevoNombre: ""
+  }
+
+  public agregar(): void {
+    console.log('vol', this.contratoObj)
+    this.contratoService.crearContrato(this.contratoObj)
   .subscribe(
     response => {
       this.router.navigate(['/contratos'])
@@ -46,19 +63,5 @@ export class FormContratoComponent implements OnInit {
     })
 
 }
-public modificar(mascota): void {
-  console.log('vol', mascota)
-  this.contratoService.modificarContrato(this.contrato)
-.subscribe(
-  response => {
-    this.router.navigate(['/contratos'])
-    swal.fire({
-      icon: 'success',
-      title: 'El contrato ha sido modificado',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    return response;
-  })
-}
+
 }

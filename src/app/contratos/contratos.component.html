@@ -1,5 +1,9 @@
-<h5 class="card-title" >Contratos</h5>
-            
+<h5 >Contratos</h5>
+<div class="input-group">
+    <div class="input bg-white">
+        <input type="text" name="busquedaMascota" class="form-control" placeholder="Buscar por mascota" [(ngModel)]="busquedaMascota" (change)="filtroMascota(busquedaMascota)">
+    </div>
+</div>
 <div class="my-4 text-right" >
     <button class="btn btn-outline-success"  type="button" [routerLink] = "['/contratos/crear']">Nuevo contrato</button>
 </div>
@@ -19,12 +23,7 @@
             <td>{{contrato.adoptante}}</td>
             <td>{{contrato.mascota}}</td>
             <td>{{contrato.nuevoNombre}}</td>
-            <td>
-                <button type="button" name="button" [routerLink]="['/contratos/editar', contrato.id]" class="btn btn-primary">Editar</button>
-            </td>
-            <td>
-                <button type="button" name="eliminar" (click)='delete(contrato)' class="btn btn-danger btn-sm">Eliminar</button>
-            </td>
+
         </tr>
     </tbody>
 </table>  

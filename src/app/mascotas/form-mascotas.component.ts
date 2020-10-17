@@ -53,7 +53,7 @@ mascotaObj = {
   estado:0
 };
 
-  public agregar(mascota): void {
+  public agregar(): void {
     console.log(' agregar mascota', this.mascotaObj);
     this.mascotaService.crearMascota(this.mascotaObj)
     .subscribe(
