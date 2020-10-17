@@ -21,6 +21,8 @@ import {FichasMedicasComponent} from './fichas-medicas/fichas-medicas.component'
 import { FormFichaMedicaComponent } from './fichas-medicas/form-ficha-medica.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { FormMascotasComponent } from './mascotas/form-mascotas.component';
+import { MovimientosRecursosComponent } from './movimientos-recursos/movimientos-recursos.component';
+import { FormMovRecursoComponent } from './movimientos-recursos/form-mov-recurso.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -41,7 +43,9 @@ const routes: Routes = [
   {path: 'contratos/editar/id', component: FormContratoComponent},
   {path: 'adoptantes', component: AdoptantesComponent},
   {path: 'adoptantes/crear', component: FormAdoptanteComponent},
-  {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent}
+  {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent},
+  {path: 'movimientos-recursos', component: MovimientosRecursosComponent},
+  {path: 'movimientos-recursos/crear', component: FormMovRecursoComponent}
 ]
 @NgModule({
   declarations: [
@@ -59,7 +63,9 @@ const routes: Routes = [
     FormFichaMedicaComponent,
     FichasMedicasComponent,
     MascotasComponent,
-    FormMascotasComponent
+    FormMascotasComponent,
+    MovimientosRecursosComponent,
+    FormMovRecursoComponent,
   ],
   imports: [
     BrowserModule,

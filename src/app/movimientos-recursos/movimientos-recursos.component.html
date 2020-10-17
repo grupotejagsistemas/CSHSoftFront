@@ -1,0 +1,28 @@
+<h5 >Movimientos Recursos</h5>
+
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success"  type="button" [routerLink] = "['/movimientos-recursos/crear']">Nuevo Movimiento Recurso</button>
+</div>
+<div *ngIf="movimientosRecursos?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+<table class="table table-striped" *ngIf="movimientosRecursos?.length>0">
+    <thead>
+        <tr>
+            <th>Donante</th>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Movimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let movimientoRecurso of movimientosRecursos">
+            <td>{{movimientoRecurso.donante}}</td>
+            <td>{{movimientoRecurso.fecha}}</td>
+            <td>{{movimientoRecurso.descripcion}}</td>
+            <td>{{movimientoRecurso.cantidad}}</td>
+            <td>{{movimientoRecurso.tipoMovimiento}}</td>
+        </tr>
+    </tbody>
+</table>  
