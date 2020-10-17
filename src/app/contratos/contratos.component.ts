@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Contrato } from './contrato';
 import { ContratoService }from './contrato.service';
 import swal from 'sweetalert2';
-import { runInThisContext } from 'vm';
 
 
 @Component({

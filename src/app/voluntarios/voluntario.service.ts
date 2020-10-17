@@ -25,7 +25,8 @@ export class VoluntarioService {
   }
 
   getVoluntarios(): Observable<Voluntario[]> {
-    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario`);
+    return this.http.get<Voluntario[]>(`https://colitassinhogar-desarrollo.herokuapp.com/api/voluntario
+    `);
   }
 
   getVoluntariosNombre(nombre: any): Observable<Voluntario[]> {
