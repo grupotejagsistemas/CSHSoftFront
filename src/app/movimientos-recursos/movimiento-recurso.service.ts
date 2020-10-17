@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MovimientoRecurso } from './movimiento-recurso';
+import { TipoMovimiento } from './tipoMovimiento';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,12 @@ export class MovimientoRecursoService {
   getMovRecursos(): Observable<MovimientoRecurso[]> {
     return this.http.get<MovimientoRecurso[]>(`${this.urlAPI}/movimientorecursos`)
   }
-  
+
+  getTipoMovimiento(): Observable<TipoMovimiento[]> {
+    return this.http.get<TipoMovimiento[]>(`${this.urlAPI}/tipomovimiento`)
+  }
+
+  crearMovRecursos(movRecurso: any){
+    return this.http.post(`${this.urlAPI}/movimientorecursos`, movRecurso);
+  }
 }

@@ -2,7 +2,6 @@ export class TipoMovimiento {
     id: number;
     descripcion: string; 
 
-    constructor (){ }
 
     public static build(){
         const tipoMovimiento = new TipoMovimiento();

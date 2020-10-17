@@ -1,27 +1,24 @@
-import { TipoMovimiento } from './tipoMovimiento';
+import {TipoMovimiento} from './tipoMovimiento';
 
 export class MovimientoRecurso {
     id: number;
     descripcion: string;
     cantidad: string;
     donante: string;
-    tipoMovimiento: TipoMovimiento[];
+    tipoMovimiento: TipoMovimiento;
     fecha: Date;
 
-    constructor (){
-
-    }
+    constructor (){}
 
     public static build(){
-        const movRec = new MovimientoRecurso();
-            movRec.id = 0; 
-            movRec.descripcion = "";
-            movRec.cantidad = "";
-            movRec.donante = "";
-            movRec.tipoMovimiento = {id: 0, descripcion: ""}
-            movRec.fecha = null;
+        const movimientoRecurso = new MovimientoRecurso();
+        movimientoRecurso.id = 0;
+        movimientoRecurso.descripcion = "";
+        movimientoRecurso.cantidad = "";
+        movimientoRecurso.donante = "";
+        movimientoRecurso.tipoMovimiento = {id: 0, descripcion: ""}
+        movimientoRecurso.fecha = null;
 
-            return movRec;
-        
+        return movimientoRecurso;
     }
 }
