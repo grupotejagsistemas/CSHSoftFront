@@ -11,7 +11,9 @@ import { MascotaService } from './mascota.service';
 export class MascotasComponent implements OnInit {
 
   busquedaNombre: string;
-  mascotas: Mascota[]
+  mascotas: Mascota[];
+  checkedM: boolean;
+  checkedH: boolean;
 
   constructor(public mascotaService: MascotaService) { }
 
@@ -30,6 +32,30 @@ export class MascotasComponent implements OnInit {
      })
   }
 
+  filtroMacho(): void {
+    if(this.checkedM === true){
+      this.mascotaService.filtroMascotaMacho("Macho").subscribe((data: any) => {
+        this.mascotas = data;
+      })
+    } else {
+      this.mascotaService.getMascotas().subscribe((data: any) => {
+        this.mascotas = data;
+      })
+    }
+  }
+
+  filtroHembra(): void {
+    if(this.checkedH === true) {
+      this.mascotaService.filtroMascotaHembra("Hembra").subscribe((data: any) => {
+        this.mascotas = data;
+      })
+    } else {
+      this.mascotaService.getMascotas().subscribe((data: any) => {
+        this.mascotas = data;
+      })
+    }
+  }
+  
   borrarMascota(id: number, i: number): void {
     Swal.fire({
       title: '¿Desea eliminar la mascota?',

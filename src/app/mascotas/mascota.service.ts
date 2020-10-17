@@ -49,4 +49,12 @@ export class MascotaService {
   borrarMascota(id: number){ 
     return this.http.delete(`${this.urlAPI}/mascotas/${id}`);
   }
+  
+  filtroMascotaMacho(sexo: string){
+    return this.http.get(`${this.urlAPI}/mascotas/filtrarSexo?sexo=${sexo}`);
+  }
+
+  filtroMascotaHembra(sexo: string){ 
+    return this.http.get(`${this.urlAPI}/mascotas/filtrarSexo?sexo=${sexo}`);
+  }
 }
