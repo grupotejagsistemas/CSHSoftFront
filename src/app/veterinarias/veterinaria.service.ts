@@ -44,8 +44,11 @@ export class VeterinariaService {
  }
 
  filtrarInternacion(internacion: string){
-   console.log('internacion', internacion)
    return this.http.get(`${this.urlAPI}/veterinaria/filtrarInternacion?internacion=${internacion}`);
+ }
+
+ filtrarNoInternacion(internacion: string){
+   return this.http.get(`${this.urlAPI}/veterinaria/filtrarInternacion?internacion=${internacion}`)
  }
  
 }

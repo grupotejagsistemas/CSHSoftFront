@@ -10,6 +10,12 @@
                     <input type="checkbox" placeholder="internacion" name="internacion" [(ngModel)]="checked" (change)="filtroInternacion()">
                 </div>
             </div>
+            <div class="form-row">
+                <label for="noInternacion" class="col-form-label col-sm-2"> No Internacion</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="noInternacion" name="noInternacion" [(ngModel)]="checkedNo" (change)="filtroNoInternacion()">
+                </div>
+            </div>
         <div class="my-4 text-right" >
             <button class="btn btn-outline-success" type="button" [routerLink] = "['/veterinarias/crear']">Nueva veterinaria</button>
         </div>
