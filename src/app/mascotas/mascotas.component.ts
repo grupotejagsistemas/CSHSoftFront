@@ -36,6 +36,7 @@ export class MascotasComponent implements OnInit {
     if(this.checkedM === true){
       this.mascotaService.filtroMascotaMacho("Macho").subscribe((data: any) => {
         this.mascotas = data;
+        this.checkedH = false;
       })
     } else {
       this.mascotaService.getMascotas().subscribe((data: any) => {
@@ -48,6 +49,7 @@ export class MascotasComponent implements OnInit {
     if(this.checkedH === true) {
       this.mascotaService.filtroMascotaHembra("Hembra").subscribe((data: any) => {
         this.mascotas = data;
+        this.checkedM = false;
       })
     } else {
       this.mascotaService.getMascotas().subscribe((data: any) => {

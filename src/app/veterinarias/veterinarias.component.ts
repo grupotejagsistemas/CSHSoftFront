@@ -40,6 +40,7 @@ export class VeterinariasComponent implements OnInit {
     if(this.checked === true){
       this.veterinariaService.filtrarInternacion("si").subscribe((data: any) => {
         this.veterinarias = data;
+        this.checkedNo = false;
       })
     } else {
       this.veterinariaService.getVeterinarias().subscribe((data: any) => {
@@ -52,6 +53,7 @@ export class VeterinariasComponent implements OnInit {
     if(this.checkedNo === true){
       this.veterinariaService.filtrarNoInternacion("no").subscribe((data: any) => {
         this.veterinarias = data;
+        this.checked = false;
       })
     } else {
       this.veterinariaService.getVeterinarias().subscribe((data: any) => {
