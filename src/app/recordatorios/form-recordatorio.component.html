@@ -1,5 +1,5 @@
 <div class="card w-550 mx-auto"  style="width: 525px;"> 
-    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!recordatorioObj.id else elseTitulo">Nueva Recordatorio</div>
+    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!recordatorioObj.idRecordatorio else elseTitulo">Nueva Recordatorio</div>
     <ng-template #elseTitulo>
         <div class="card-header" id="titulo" style="background-color: white;">Modificar Recordatorio</div>
          </ng-template>    <div class="card-body mx-auto" style="width: 800px">
