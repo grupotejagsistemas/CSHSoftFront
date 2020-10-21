@@ -16,11 +16,24 @@
                     #home {color: #ffffff}
                 </style>
             </li>
-            <li class="nav-item" routerLinkActive="active">
-                <a  id ="voluntarios" class="nav-link" routerLink ="/voluntarios">Voluntarios</a>
+
+            <li  class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"  href="#" id="adop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Voluntarios
+                </a>
                 <style>
-                    #voluntarios { color: #FFffff; }
+                    #adop {color: #FFffff}
                 </style>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:#1C7C74" >
+                    <a id="voluntarios" class="nav-link" routerLink="/voluntarios">Voluntarios</a>
+                    <style>
+                        #voluntarios {color:#FFffff}
+                    </style>
+                    <a id="historialVoluntarios" class="nav-link" routerLink="/historial">Historial</a>
+                    <style>
+                        #historialVoluntarios {color:#FFffff}
+                    </style>
+                </div>
             </li>
             <li class="nav-item" routerLinkActive="active">
                 <a id="veterinarias" class="nav-link" routerLink="/veterinarias">Veterinarias</a>
