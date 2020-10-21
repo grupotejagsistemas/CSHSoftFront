@@ -28,12 +28,10 @@ export class MascotaService {
  
 
   getMascotasNombre(nombre: any): Observable<Mascota[]> {
-    console.log('name', nombre)
     return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas/filtrar?nombre=${nombre}`);
   }
 
   crearMascota(mascota: any) {
-    console.log('masc', mascota);
     return this.http.post(`${this.urlAPI}/mascotas`, mascota);
   }
 
@@ -42,7 +40,6 @@ export class MascotaService {
   }
 
   modificarMascota(mascota: any){
-    console.log('modifica', mascota)
     return this.http.put(`${this.urlAPI}/mascotas/${mascota.id}`, mascota);
   }
 

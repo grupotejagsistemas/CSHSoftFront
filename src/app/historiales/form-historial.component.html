@@ -1,1 +1,50 @@
-<p>form-historial works!</p>
+<div class="card w-550 mx-auto " style="width: 525px;">
+    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!historialObj.id else elseTitulo">Nueva Historial</div>
+    <ng-template #elseTitulo>
+        <div class="card-header" id="titulo" style="background-color: white;">Modificar Historial</div>
+         </ng-template>
+
+    <div class="card-body mx-auto" style="width: 800px;">
+        <form>
+            <label for="voluntario" class="col-form-label col-sm-2">Voluntario</label>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <select class="form-control resizedTexbox" type=number [(ngModel)]="historialObj.idVoluntario" name="idVoluntario">
+                    <option *ngFor=" let voluntario of voluntarios" [value]="voluntario.id">{{voluntario.nombrecompleto}}</option>
+                </select>
+                <style>
+                    .resizedTexbox {width: 485px; height: 25px;}
+                </style>
+                </div>
+            </div>
+        <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <select class="form-control resizedTexbox" type=number [(ngModel)]="historialObj.idMascota" name="idMascota">
+                <option *ngFor=" let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
+            </select>
+            <style>
+                .resizedTexbox {width: 485px; height: 25px;}
+            </style>
+            </div>
+        </div> 
+            <label for="fecha" class="col-form-label col-sm-4">Fecha</label>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="date" placeholder="Fecha" name="fecha" [(ngModel)]="historialObj.fecha" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <button class="btn btn-outline-success" role="button" (click)="agregar()" *ngIf="!historialObj.id else elseBlock">
+                     Agregar
+                </button>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-outline-success" role="button" (click)="modificar()">
+                        Modificar
+                    </button>
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+    </div>

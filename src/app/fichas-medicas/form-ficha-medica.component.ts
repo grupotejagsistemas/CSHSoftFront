@@ -19,6 +19,7 @@ export class FormFichaMedicaComponent implements OnInit {
   mascotas: Mascota[];
   veterinarias: Veterinaria[];
   fichaMedica: FichaMedica;
+  disabledDesparasitacion: boolean  = false;
 
   
   constructor(
@@ -95,7 +96,7 @@ export class FormFichaMedicaComponent implements OnInit {
     )
   }
 
-  public modificar(fichaMedica): void {
+  public modificar(): void {
 
     if(this.checkedVacuna === true){
       this.fichaMedicaObj.vacuna = "SI";
@@ -128,5 +129,12 @@ export class FormFichaMedicaComponent implements OnInit {
         return response;
       }
     )
+  }
+
+  disabledInputDesparasitacion(): void {
+    if(this.checkedDesparasitacion == false){
+      this.disabledDesparasitacion === true;
+    }
+
   }
 }

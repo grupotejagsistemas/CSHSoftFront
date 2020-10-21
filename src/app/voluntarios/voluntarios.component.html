@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let voluntario of voluntarios | paginate: {itemsPerPag: 10, currentPage: p} let vol = index">
+                <tr *ngFor="let voluntario of voluntarios | paginate: {itemsPerPag: 10, currentPage: p}  let v = index">
                     <td>{{voluntario.nombrecompleto}}</td>
                     <td>{{voluntario.telefono}}</td>
                     <td>{{voluntario.direccion}}</td>
@@ -59,4 +59,6 @@
                 </tr>
             </tbody>
         </table>  
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+           <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
