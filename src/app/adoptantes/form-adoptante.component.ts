@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import {Adoptante} from './adoptante';
 import {AdoptanteService} from './adoptante.service';
 import {Router} from '@angular/router';
@@ -36,5 +36,6 @@ export class FormAdoptanteComponent implements OnInit {
       }
     )
     console.log('se guarda los datos: ' + this.adoptante)
-  }*/
+  }
 }
+*/

@@ -1,6 +1,6 @@
 <div class="card w-550 mx-auto " style="width: 525px;" >
-    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!fichaMedicaObj.id else elseBlock">Nueva ficha médica</div>
-    <ng-template #elseBlock>
+    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!fichaMedicaObj.id else elseTitulo">Nueva ficha médica</div>
+    <ng-template #elseTitulo>
         <div class="card-header" id="titulo" style="background-color: white;">Modificar ficha médica</div>
          </ng-template>
         <div class="card-body mx-auto" style="width: 800px"> 

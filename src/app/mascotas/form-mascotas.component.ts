@@ -69,7 +69,7 @@ mascotaObj = {
       })
     }
 
-  public modificar(mascota): void{
+  public modificar(): void{
     console.log('modificar mascota', this.mascotaObj);
       this.mascotaService.modificarMascota(this.mascotaObj)
       .subscribe(

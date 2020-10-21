@@ -1,0 +1,34 @@
+<div class="card w-550 mx-auto"  style="width: 525px;"> 
+    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!recordatorioObj.idRecordatorio else elseTitulo">Nueva Recordatorio</div>
+    <ng-template #elseTitulo>
+        <div class="card-header" id="titulo" style="background-color: white;">Modificar Recordatorio</div>
+         </ng-template>    <div class="card-body mx-auto" style="width: 800px">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control resizedTextbox" placeholder="Recordatorio" name="recordatorio" [(ngModel)]="recordatorioObj.descripcionRecordatorio" >
+                    <style>
+                        .resizedTextbox {width: 485px; height: 35px}
+                    </style>
+                </div>
+            </div>
+            <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
+            <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <input type="date" class="form-control resizedTextbox" name="fecha" [(ngModel)]="recordatorioObj.fecha" required>
+                        <style>
+                            .resizedTextbox {width: 485px; height: 35px}
+                        </style>
+                    </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group  col-md-6 ">
+                    <button class="btn btn-outline-success" role="button" (click)='agregar()' *ngIf="!recordatorioObj.idRecordatorio else elseBlock">Agregar</button>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-outline-success" role="button" (click)='modificar()'>Modificar</button>
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
