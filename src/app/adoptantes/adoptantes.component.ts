@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { Adoptante } from './adoptante';
 import { AdoptanteService }from './adoptante.service';
 import swal from 'sweetalert2';
@@ -50,3 +50,4 @@ export class AdoptantesComponent implements OnInit {
   // }
 
 }
+*/

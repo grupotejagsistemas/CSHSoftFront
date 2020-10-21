@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import { Adoptante } from './adoptante';
 import {Mascota} from './mascota';
 import {EstadoAdoptante} from './estado-adoptante';
@@ -71,5 +71,6 @@ export class AdoptanteService {
     )
   }
 
-*/
+
 }
+*/

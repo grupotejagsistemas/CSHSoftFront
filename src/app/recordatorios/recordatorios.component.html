@@ -1,0 +1,24 @@
+<h5 >Recordatorios</h5>
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success"  type="button" [routerLink] = "['/recordatorios/crear']">Nuevo Recordatorio</button>
+</div>
+<div *ngIf="recordatorios?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+<table class="table table-striped" *ngIf="recordatorios?.length>0">
+    <thead>
+        <tr>
+            <th>Recordatorio</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let recordatorio of recordatorios">
+            <td>{{recordatorio.descripcionRecordatorio}}</td>
+            <td>{{recordatorio.fecha}}</td>
+            <td>
+                <button class="btn btn-outline" type="button" name="button" [routerLink]="['/recordatorios/editar/', recordatorio.idRecordatorio]"><i class='fas fa-pen'></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>  
