@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="text" class="form-control resizedTexbox" placeholder="Edad" name="edad" [(ngModel)]="adoptante.edad" required>
+                        <input type="text" class="form-control resizedTexbox" placeholder="Fecha nacimiento" name="fechaNacimiento" [(ngModel)]="adoptante.fechaNacimiento" required>
                         <style>
                             .resizedTexbox {width: 485px; height: 25px;}
                         </style>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <textarea maxlength="255"  type="text" class="form-control resizedTexboxx" placeholder="Situación laboral" name="situacionLaboral" [(ngModel)]="adoptante.situacionLaboral" ></textarea>
+                        <textarea maxlength="255" style="resize:none"  type="text" class="form-control resizedTexboxx" placeholder="Situación laboral" name="situacionLaboral" [(ngModel)]="adoptante.situacionLaboral" ></textarea>
                         <style>
                             .resizedTexboxx {width: 485px; height: 80px;}
                         </style>
@@ -98,28 +98,15 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <textarea type="text" class="form-control resizedTexboxx" placeholder="Observaciones"  name="observaciones" [(ngModel)]="adoptante.observaciones"></textarea>
+                        <textarea type="text" maxlength="255"  style="resize:none" class="form-control resizedTexboxx" placeholder="Observaciones"  name="observaciones" [(ngModel)]="adoptante.observaciones"></textarea>
                         <style>
                             .resizedTexboxx {width: 485px; height: 80px;}
                         </style>
                     </div>
                 </div>
-                <label for="estado" class="col-form-label col-sm-2">Estado</label>
-                <div class="form-group row">         
-                    <div class="col-sm-6">
-                        <select type="select" class="form-control resizedTexbox" name="estado" [(ngModel)]="adoptante.estado" required>
-                            <option *ngFor="let estado of estados" [ngValue]="estado">
-                                {{estado.descripcion}}
-                            </option>
-                        </select>
-                        <style>
-                            .resizedTexbox {width: 485px; height: 25px;}
-                        </style>
-                    </div>
-                </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!adoptante.idAdoptante else elseBlock">Agregar</button>
+                        <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!adoptante.idEstadoAdoptante else elseBlock">Agregar</button>
                         <ng-template #elseBlock>
                             <button class="btn btn-primary" role="button" (click)='update()'>Modificar</button>
                         </ng-template>

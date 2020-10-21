@@ -12,6 +12,8 @@ export class FichasMedicasComponent implements OnInit {
   
 
   fichasMedicas: FichaMedica[] = [];
+  p: number = 1;
+
   constructor(public fichaMedicaService: FichaMedicaService) { }
 
   ngOnInit(): void {

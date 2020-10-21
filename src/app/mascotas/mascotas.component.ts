@@ -14,6 +14,7 @@ export class MascotasComponent implements OnInit {
   mascotas: Mascota[];
   checkedM: boolean;
   checkedH: boolean;
+  p: number = 1;
 
   constructor(public mascotaService: MascotaService) { }
 

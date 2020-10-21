@@ -16,6 +16,7 @@ export class FormContratoComponent implements OnInit {
   mascotas: Mascota[];
   adoptantes: Adoptante[];
   contrato: Contrato = new Contrato()
+  
 
   titulo: string = 'Nuevo Contrato'
 

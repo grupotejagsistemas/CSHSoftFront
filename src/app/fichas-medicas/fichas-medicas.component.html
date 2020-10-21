@@ -24,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let fichaMedica of fichasMedicas">
+        <tr *ngFor="let fichaMedica of fichasMedicas | paginate: {itemsPerPag: 10, currentPage: p} let ficM = index">
             <td>{{fichaMedica.fecha}}</td>
             <td>{{fichaMedica.desparasitacion}}</td>
             <td>{{fichaMedica.nombreProducto}}</td>
@@ -44,3 +44,4 @@
         </tr>
     </tbody>
 </table>  
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

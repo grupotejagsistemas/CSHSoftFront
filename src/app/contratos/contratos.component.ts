@@ -13,6 +13,7 @@ export class ContratosComponent implements OnInit {
 
   contratos : Contrato[];
   busquedaMascota: string;
+  p: number = 1;
 
   constructor(private contratoService: ContratoService) {
 
