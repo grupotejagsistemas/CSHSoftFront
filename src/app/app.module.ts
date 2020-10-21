@@ -27,6 +27,8 @@ import { MovimientosMonetariosComponent } from './movimientos-monetarios/movimie
 import { FormMovMonetarioComponent } from './movimientos-monetarios/form-mov-monetario.component';
 import { RecordatoriosComponent } from './recordatorios/recordatorios.component';
 import { FormRecordatorioComponent } from './recordatorios/form-recordatorio.component';
+import { HistorialesComponent } from './historiales/historiales.component';
+import { FormHistorialComponent } from './historiales/form-historial.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -54,7 +56,10 @@ const routes: Routes = [
   {path: 'movimientos-monetarios/crear', component: FormMovMonetarioComponent},
   {path: 'recordatorios', component: RecordatoriosComponent},
   {path: 'recordatorios/crear', component: FormRecordatorioComponent},
-  {path: 'recordatorios/editar/:id', component: FormRecordatorioComponent}
+  {path: 'recordatorios/editar/:id', component: FormRecordatorioComponent},
+  {path: 'historial', component: HistorialesComponent},
+  {path: 'historial/crear', component: FormHistorialComponent},
+  {path: 'historial/editar/:id', component:FormHistorialComponent}
 ]
 @NgModule({
   declarations: [
@@ -79,6 +84,8 @@ const routes: Routes = [
     FormMovMonetarioComponent,
     RecordatoriosComponent,
     FormRecordatorioComponent,
+    HistorialesComponent,
+    FormHistorialComponent
   ],
   imports: [
     BrowserModule,
