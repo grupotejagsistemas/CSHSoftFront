@@ -25,7 +25,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let adoptante of adoptantes">
+        <tr *ngFor="let adoptante of adoptantes | paginate: {itemsPerPag: 10, currentPage: p} let adop = index">
             <td>{{adoptante.IdAdoptante}}</td>
             <td>{{adoptante.IdMascota}}</td>
             <td>{{adoptante.numeroFormulario}}</td>
@@ -49,4 +49,6 @@
             </td>
         </tr>
     </tbody>
+</table>  
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>  -->

@@ -11,6 +11,7 @@ import { MovimientoMonetarioService } from './movimiento-monetario.service';
 export class MovimientosMonetariosComponent implements OnInit {
 
   movimientosMonetarios: MovimientoMonetario[];
+  p: number = 1;
   
   constructor(private movimientoMonetarioService: MovimientoMonetarioService) { }
 

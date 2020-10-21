@@ -18,10 +18,10 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control resizedTexbox" placeholder="Particularidades Físicas" name="particularidadesFisicas" [(ngModel)]="mascotaObj.particularidadesFisicas" required>
+                    <textarea type="text" maxlength="255"  style="resize:none" class="form-control resizedTexboxxx" placeholder="Particularidades Físicas" name="particularidadesFisicas" [(ngModel)]="mascotaObj.particularidadesFisicas" required></textarea> 
                 </div>
                 <style>
-                    .resizedTexbox {width: 485px; height: 25px;}
+                    .resizedTexboxxx {width: 485px; height: 45px;}
                 </style>
             </div>
             <div class="form-row">
@@ -36,7 +36,7 @@
                 <div class="form-group col-md-4">
                     <input type="text" class="form-control resizedTexbox" placeholder="Foto" name="fotoMascota" [(ngModel)]="mascotaObj.fotoMascota" required>
                     <style>
-                        .resizedTexbox {width: 485px; height: 25px;}
+                        .resizedTexbox {width: 485px; height: 30px;}
                     </style>
                 </div>
             </div>
@@ -48,17 +48,17 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control resizedTexbox" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaObj.lugarRescate" required>
+                    <textarea type="text" maxlength="255"  style="resize:none" class="form-control resizedTexboxx" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaObj.lugarRescate" required></textarea> 
                     <style>
-                        .resizedTexbox {width: 485px; height: 25px;}
+                        .resizedTexboxx {width: 485px; height: 80px;}
                     </style>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" class="form-control resizedTexbox" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaObj.descripcionRescate" required>
+                    <textarea type="text" maxlength="255"   class="form-control resizedTexboxx" style="resize:none" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaObj.descripcionRescate" required></textarea> 
                     <style>
-                        .resizedTexbox {width: 485px; height: 25px;}
+                        .resizedTexboxx {width: 485px; height: 80px;}
                     </style>
                 </div>
             </div>

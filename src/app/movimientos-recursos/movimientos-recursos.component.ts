@@ -10,6 +10,7 @@ import { MovimientoRecursoService } from './movimiento-recurso.service';
 export class MovimientosRecursosComponent implements OnInit {
 
   movimientosRecursos: MovimientoRecurso[];
+  p: number = 1;
 
 
   constructor(private movimientoRecursoService: MovimientoRecursoService) { }

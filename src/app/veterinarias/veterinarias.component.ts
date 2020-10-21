@@ -15,6 +15,7 @@ export class VeterinariasComponent implements OnInit {
   busquedaRazonSocial: string;
   checked: boolean; 
   checkedNo: boolean;
+  p: number = 1;
 
   constructor(private veterinariaService: VeterinariaService) {
 

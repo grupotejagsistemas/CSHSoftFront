@@ -32,7 +32,7 @@
                 <div class="form-row">
                     <label for="vacuna" class="col-form-label col-sm-2"> Vacuna</label>
                         <div class="form-group col-md-4">
-                            <input type="checkbox" placeholder="Vacuna"  name="vacuna" [(ngModel)]="fichaMedicaObj.vacuna" required >
+                            <input type="checkbox" class="visible" placeholder="Vacuna"  name="vacuna" [(ngModel)]="fichaMedicaObj.vacuna" required >
                         </div>
                 </div>
                 <div class="form-row">
@@ -81,10 +81,10 @@
                         </div>
                 </div>
                 <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <input type="text" class="form-control resizedTextbox" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" [(ngModel)]="fichaMedicaObj.descripcionTratamiento"required >
+                        <div class="col-md-6">
+                            <textarea type="text" maxlength="255"  style="resize:none" class="form-control resizedTextboxx" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" [(ngModel)]="fichaMedicaObj.descripcionTratamiento"required ></textarea> 
                             <style>
-                                .resizedTextbox {width: 485px; height: 35px}
+                                .resizedTextboxx {width: 485px; height: 80px}
                             </style>
                         </div>
                 </div>

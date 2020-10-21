@@ -15,6 +15,7 @@ export class VoluntariosComponent implements OnInit {
   checkedTransito: boolean;
   checkedTraslado: boolean;
   checkedPresencial: boolean;
+  p: number = 1;
 
   constructor(public voluntarioService: VoluntarioService) {
 

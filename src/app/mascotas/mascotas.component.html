@@ -37,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let mascota of mascotas">
+        <tr *ngFor="let mascota of mascotas | paginate: {itemsPerPag : 10, currentPage: p} let mas = index">
             <td>{{mascota.nombre}}</td>
             <td>{{mascota.fechaNacimiento}}</td>
             <td>{{mascota.particularidadesFisicas}}</td>
@@ -55,4 +55,5 @@
         </tr>
     </tbody>
 </table>  
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 

@@ -35,7 +35,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let veterinaria of veterinarias">
+                <tr *ngFor="let veterinaria of veterinarias | paginate: {itemsPerPag: 10, currentPage: p} let vet = index">
                     <td>{{veterinaria.id}}</td>
                     <td>{{veterinaria.razonSocial}}</td>
                     <td>{{veterinaria.horarioAtencion}}</td>
@@ -51,4 +51,5 @@
                 </tr>
             </tbody>
         </table>  
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
 

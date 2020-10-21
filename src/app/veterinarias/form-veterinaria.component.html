@@ -34,9 +34,9 @@
             </div>               
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <input type="text" class="form-control resizedTexbox" placeholder="Observación" name="observacion"  [(ngModel)]="veterinaria.observacion" required >
+                        <textarea type="text" maxlength="255"  style="resize:none" class="form-control resizedTexboxx" placeholder="Observación" name="observacion"  [(ngModel)]="veterinaria.observacion" required > </textarea>
                         <style>
-                            .resizedTexbox{width: 485px; height: 35px;}
+                            .resizedTexboxx{width: 485px; height: 80px;}
                         </style>
                     </div>
                 </div>

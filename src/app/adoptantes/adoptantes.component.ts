@@ -11,6 +11,7 @@ import swal from 'sweetalert2';
 export class AdoptantesComponent implements OnInit {
 
   adoptantes: Adoptante[]
+  p: number = 1;
 
   constructor(private adoptanteService: AdoptanteService) { }
 

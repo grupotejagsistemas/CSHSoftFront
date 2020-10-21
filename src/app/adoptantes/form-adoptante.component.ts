@@ -17,6 +17,7 @@ export class FormAdoptanteComponent implements OnInit {
   mascotas: Mascota[];
   estados: EstadoAdoptante[];
   titulo: string = "Nuevo Adoptante";
+  p: number = 1;
 
   constructor(
     private adoptanteService: AdoptanteService,
