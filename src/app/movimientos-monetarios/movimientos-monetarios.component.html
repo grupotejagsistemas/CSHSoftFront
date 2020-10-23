@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let movimientoMonetario of movimientosMonetarios  paginate: {itemsPerPag: 10, currentPage: p} let movM = index">
+        <tr *ngFor="let movimientoMonetario of movimientosMonetarios">
             <td>{{movimientoMonetario.autor}}</td>
             <td>{{movimientoMonetario.fecha}}</td>
             <td>{{movimientoMonetario.monto}}</td>
@@ -26,4 +26,4 @@
         </tr>
     </tbody>
 </table>  
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->
