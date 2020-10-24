@@ -27,11 +27,12 @@ export class FormHistorialComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.historial = Historial.build();
-
-    this.historialService.getHistorial(id).subscribe((resp: any) => {
-      console.log('POR ID', id)
-      this.historialObj = resp;
-    })
+    
+    if(id !== 0){
+      this.historialService.getHistorial(id).subscribe((resp: any) => {
+        this.historialObj = resp;
+      })
+    }
 
     this.historialService.getMascotas().subscribe((resp: any) => {
       this.mascotas = resp;

@@ -2,6 +2,7 @@ import {Mascota} from './mascota';
 import { EstadoAdoptante} from './estado-adoptante';
 
 export class Adoptante {
+    id: number;
     numeroFormulario: number; 
     nombreCompleto: string; 
     fechaNacimiento: Date;
@@ -12,7 +13,8 @@ export class Adoptante {
     facebook: string; 
     instagram: string; 
     situacionLaboral: string; 
+    veteriniaria_cercana: [];
     observaciones: string; 
-    mascota: Mascota; 
-    idEstadoAdoptante: EstadoAdoptante;
+    mascotaInteresada: Mascota; 
+    estado_adoptante: EstadoAdoptante;
 }

@@ -36,4 +36,8 @@ export class ContratoService {
   crearContrato(contrato: any) {
     return this.http.post(`${this.urlAPI}/contrato`, contrato)
   }
+
+  exportPdfProducts(): Observable<Blob>{
+    return this.http.get(`${this.urlAPI}/export/pdf`, {responseType: 'blob'})
+  }
 }
