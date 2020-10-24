@@ -1,4 +1,4 @@
 export class EstadoAdoptante {
-    idEstadoAdoptante: number; 
+    id: number; 
     descripcion: string; 
 }

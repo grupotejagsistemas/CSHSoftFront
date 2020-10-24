@@ -1,7 +1,7 @@
-<!--<h5 class="card-title" >Adoptantes</h5>
+<h5 class="card-title" >Adoptantes</h5>
             
-<div class="my-2 text-left" >
-    <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/adoptantes/crear']">Nuevo Adoptante</button>
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success" type="button" [routerLink] = "['/adoptantes/crear']">Nuevo Adoptante</button>
 </div>
 <div *ngIf="adoptantes?.length==0" class="alert alert-info">
     No se encontraron datos registrados
@@ -9,11 +9,9 @@
 <table class="table table-striped" *ngIf="adoptantes?.length>0">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Mascota</th>
             <th>Numero formulario</th>
-            <th>Nombre Completo</th>
-            <th>Edad</th>
+            <th>Nombre</th>
+            <th>Fecha Nacimiento</th>
             <th>Domicilio</th>
             <th>Barrio</th>
             <th>Celular</th>
@@ -21,16 +19,16 @@
             <th>Facebook</th>
             <th>Instagram</th>
             <th>Situación laboral</th>
+            <th>Observaciones</th>
             <th>Estado adoptante</th>
+            <th>Mascota</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let adoptante of adoptantes | paginate: {itemsPerPag: 10, currentPage: p} let adop = index">
-            <td>{{adoptante.IdAdoptante}}</td>
-            <td>{{adoptante.IdMascota}}</td>
+        <tr *ngFor="let adoptante of adoptantes">
             <td>{{adoptante.numeroFormulario}}</td>
             <td>{{adoptante.nombreCompleto}}</td>
-            <td>{{adoptante.edad}}</td>
+            <td>{{adoptante.fechaNacimiento}}</td>
             <td>{{adoptante.domicilio}}</td>
             <td>{{adoptante.barrio}}</td>
             <td>{{adoptante.celular}}</td>
@@ -39,16 +37,15 @@
             <td>{{adoptante.instagram}}</td>
             <td>{{adoptante.situacionLaboral}}</td>
             <td>{{adoptante.observaciones}}</td>
-            <td>{{adoptante.idEstadoAdoptante}}</td>
+            <td>{{adoptante.estado_adoptante}}</td>
+            <td>{{adoptante.mascotaInteresada}}</td>
 
             <td>
-                <button type="button" name="button" [routerLink]="['/adoptantes/editar', adoptante.idAdoptante]" class="btn btn-primary">Editar</button>
+                <button type="button" name="button" [routerLink]="['/adoptantes/editar/', adoptante.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
             </td>
             <td>
-                <button type="button" name="eliminar" (click)='delete(adoptante)' class="btn btn-danger btn-sm">Eliminar</button>
+                <button type="button" name="eliminar" (click)='borrarAdoptante(adoptante.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
             </td>
         </tr>
     </tbody>
 </table>  
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
-</table>  -->

@@ -1,4 +1,4 @@
-/*import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Adoptante } from './adoptante';
 import {Mascota} from './mascota';
 import {EstadoAdoptante} from './estado-adoptante';
@@ -27,50 +27,8 @@ export class AdoptanteService {
     return this.http.get<EstadoAdoptante[]>(this.urlAPI + '/estadoAdoptante');
   }
   getAdoptantes(): Observable<Adoptante[]> {
-    return this.http.get<Adoptante[]>(`${this.urlAPI}/adoptantes`)
+    return this.http.get<Adoptante[]>(`${this.urlAPI}/adoptante`)
   }
-  /*create(adoptante: Adoptante) : Observable<Adoptante>{
-    return this.http.post(this.urlAPI, adoptante, {headers: this.httpHeaders}).pipe(
-      map( (response: any) => response.adoptante as Adoptante),
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al crear al adoptante', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
-  } 
-
-  getAdoptante(idAdoptante): Observable<Adoptante>{
-    return this.http.get<Adoptante>(`${this.urlAPI}/${idAdoptante}`).pipe(
-      catchError(e => {
-        this.router.navigate(['/adoptantes']);
-        console.error(e.error.mensaje);
-        swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError(e);
-      })
-    );
-  }
-
-  update(adoptante: Adoptante): Observable<any>{
-    return this.http.put<any>(`${this.urlAPI}/${adoptante.idAdoptante}`, adoptante, {headers:this.httpHeaders}).pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al modificar al adoptante', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
-  }
-
-  delete(idAdoptante: number): Observable<Adoptante>{
-    return this.http.delete<Adoptante>(`${this.urlAPI}/${idAdoptante}`, {headers: this.httpHeaders}).pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al eliminar al adoptante', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
-  }
-
+ 
 
 }
-*/

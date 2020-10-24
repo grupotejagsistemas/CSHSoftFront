@@ -15,8 +15,8 @@ import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { ContratosComponent } from './contratos/contratos.component';
 import { FormContratoComponent } from './contratos/form-contrato.component';
-//import { AdoptantesComponent } from './adoptantes/adoptantes.component';
-//import { FormAdoptanteComponent } from './adoptantes/form-adoptante.component';
+import { AdoptantesComponent } from './adoptantes/adoptantes.component';
+import { FormAdoptanteComponent } from './adoptantes/form-adoptante.component';
 import {FichasMedicasComponent} from './fichas-medicas/fichas-medicas.component';
 import { FormFichaMedicaComponent } from './fichas-medicas/form-ficha-medica.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
@@ -47,9 +47,9 @@ const routes: Routes = [
   {path: 'contratos', component: ContratosComponent},
   {path: 'contratos/crear', component: FormContratoComponent},
   {path: 'contratos/editar/id', component: FormContratoComponent},
-  //{path: 'adoptantes', component: AdoptantesComponent},
- // {path: 'adoptantes/crear', component: FormAdoptanteComponent},
- // {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent},
+  {path: 'adoptantes', component: AdoptantesComponent},
+  {path: 'adoptantes/crear', component: FormAdoptanteComponent},
+  {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent},
   {path: 'movimientos-recursos', component: MovimientosRecursosComponent},
   {path: 'movimientos-recursos/crear', component: FormMovRecursoComponent},
   {path: 'movimientos-monetarios', component: MovimientosMonetariosComponent},
@@ -72,8 +72,8 @@ const routes: Routes = [
     FormVeterinariaComponent,
     ContratosComponent,
     FormContratoComponent,
-   // AdoptantesComponent,
-   // FormAdoptanteComponent,
+    AdoptantesComponent,
+    FormAdoptanteComponent,
     FormFichaMedicaComponent,
     FichasMedicasComponent,
     MascotasComponent,
