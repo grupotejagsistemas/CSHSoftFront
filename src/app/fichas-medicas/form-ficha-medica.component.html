@@ -17,7 +17,7 @@
                 <div class="form-row">
                     <label for="desparasitacion" class="col-form-label col-sm-2"> Desparasitacion</label>
                     <div class="form-group col-md-4">
-                        <input type="checkbox" placeholder="desparasitacion" name="desparasitacion" [(ngModel)]="fichaMedicaObj.desparasitacion">
+                        <input type="checkbox" placeholder="desparasitacion" name="desparasitacion" [(ngModel)]="checkedDesparasitacion">
                     </div>
                 </div>
 
@@ -32,7 +32,7 @@
                 <div class="form-row">
                     <label for="vacuna" class="col-form-label col-sm-2"> Vacuna</label>
                         <div class="form-group col-md-4">
-                            <input type="checkbox" class="visible" placeholder="Vacuna"  name="vacuna" [(ngModel)]="fichaMedicaObj.vacuna" required >
+                            <input type="checkbox" class="visible" placeholder="Vacuna"  name="vacuna" [(ngModel)]="checkedVacuna" required >
                         </div>
                 </div>
                 <div class="form-row">
@@ -77,7 +77,7 @@
                 <div class="form-row">
                     <label for="tratamiento" class="col-form-label col-sm-2">Tratamiento</label>
                         <div class="form-group col-md-4">
-                            <input type="checkbox"  name="tratamiento" [(ngModel)]="fichaMedicaObj.tratamiento" required>
+                            <input type="checkbox"  name="tratamiento" [(ngModel)]="checkedTratamiento" required>
                         </div>
                 </div>
                 <div class="form-row">

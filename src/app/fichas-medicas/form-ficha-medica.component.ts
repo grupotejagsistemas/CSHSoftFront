@@ -37,8 +37,27 @@ export class FormFichaMedicaComponent implements OnInit {
       if(id !== 0) {
         this.fichasMedicasService.getFichaMedica(id).subscribe((resp: any) => { 
         this.fichaMedicaObj = resp;
+        
+        if(this.fichaMedicaObj.desparasitacion === "SI"){
+          this.checkedDesparasitacion = true;
+        } else {
+          this.checkedDesparasitacion = false;
+        }
+
+        if(this.fichaMedicaObj.vacuna === "SI"){
+          this.checkedVacuna = true;
+        } else {
+          this.checkedVacuna = false;
+        }
+
+        if(this.fichaMedicaObj.tratamiento === "SI"){
+          this.checkedTratamiento = true; 
+        }else {
+          this.checkedTratamiento = false;
+        }
+
       })
-      }
+    }
     
     this.fichasMedicasService.getMascotas().subscribe((resp: any) => {
       this.mascotas = resp; 
@@ -83,7 +102,7 @@ export class FormFichaMedicaComponent implements OnInit {
     }else {
       this.fichaMedicaObj.tratamiento = "NO";
     }
-
+  console.log('ficha', this.fichaMedicaObj)
     this.fichasMedicasService.crearFichaMedica(this.fichaMedicaObj)
     .subscribe(
       response => {
