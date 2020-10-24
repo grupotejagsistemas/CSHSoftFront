@@ -85,7 +85,7 @@ const routes: Routes = [
     RecordatoriosComponent,
     FormRecordatorioComponent,
     HistorialesComponent,
-    FormHistorialComponent
+    FormHistorialComponent,
   ],
   imports: [
     BrowserModule,
