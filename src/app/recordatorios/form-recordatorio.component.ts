@@ -26,10 +26,12 @@ export class FormRecordatorioComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id')
 
     this.recordatorio = Recordatorio.build();
+    if(id !== 0){
 
-    this.recordatorioService.getRecordatorio(id).subscribe((resp: any) => {
-      this.recordatorioObj = resp; 
-    })
+      this.recordatorioService.getRecordatorio(id).subscribe((resp: any) => {
+        this.recordatorioObj = resp; 
+      })
+    }
   }
 
   recordatorioObj = {

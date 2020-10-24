@@ -40,6 +40,7 @@ export class VeterinariaService {
   }
 
   borrarVeterinaria(id: number) {
+    console.log('iddd', id)
     return this.http.delete(`${this.urlAPI}/veterinaria/${id}`);
  }
 

@@ -30,10 +30,13 @@ export class FormCrearComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.voluntario = Voluntario.build();
-    this.voluntarioService.getVoluntario(id).subscribe((resp: any) => {
-      this.voluntario = resp;
-      console.log('id' , this.voluntario.id);
-    })
+
+    if(id !== 0){
+      this.voluntarioService.getVoluntario(id).subscribe((resp: any) => {
+        this.voluntario = resp;
+      })
+    } 
+
       this.voluntarioService.getVeterinarias().subscribe((resp: any) => {
         this.veterinarias = resp;
         console.log('veterinariascercanas', this.veterinarias)

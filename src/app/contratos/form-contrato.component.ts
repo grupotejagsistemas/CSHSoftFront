@@ -30,11 +30,12 @@ export class FormContratoComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.contrato = Contrato.build();
-
-    this.contratoService.getAdoptantes()
-      .subscribe((resp: any) => {
-        this.adoptantes = resp;
-      })
+    if(id !== 0) {
+      this.contratoService.getAdoptantes()
+        .subscribe((resp: any) => {
+          this.adoptantes = resp;
+        })
+    }
 
     this.contratoService.getMascotas()
       .subscribe((resp: any) => {

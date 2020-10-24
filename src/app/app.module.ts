@@ -46,7 +46,7 @@ const routes: Routes = [
   {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent },
   {path: 'contratos', component: ContratosComponent},
   {path: 'contratos/crear', component: FormContratoComponent},
-  {path: 'contratos/editar/id', component: FormContratoComponent},
+  {path: 'contratos/editar/:id', component: FormContratoComponent},
   {path: 'adoptantes', component: AdoptantesComponent},
   {path: 'adoptantes/crear', component: FormAdoptanteComponent},
   {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent},

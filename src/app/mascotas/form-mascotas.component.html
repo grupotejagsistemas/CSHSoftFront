@@ -83,13 +83,13 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <button class="btn btn-outline-success" role="button" (click)="agregar()" *ngIf="!mascotaObj.id else elseBlock">
-                     Agregar
-                </button>
+                    <button class="btn btn-outline-success" role="button" (click)="agregar()" *ngIf="!mascotaObj.id else elseBlock" >
+                         Agregar
+                    </button>
                     <ng-template #elseBlock>
                         <button class="btn btn-outline-success" role="button" (click)="modificar()">
-                        Modificar
-                    </button>
+                            Modificar
+                        </button>
                     </ng-template>
                 </div>
             </div>

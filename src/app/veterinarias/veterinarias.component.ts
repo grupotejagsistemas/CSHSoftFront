@@ -64,8 +64,9 @@ export class VeterinariasComponent implements OnInit {
   }
 
   borrarVeterinaria(id: number, i: number): void {
+    console.log('vet', id)
       swal.fire({
-        text: `¿Desea eliminar la veterinaria?`,
+        text: `¿Desea eliminar la veterinaria ${id}?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -73,8 +74,10 @@ export class VeterinariasComponent implements OnInit {
         confirmButtonText: 'Confirmar'
       }).then((result) => {
         if (result.value) {
+          console.log('id', id)
           this.veterinarias.splice(i, 1)
           this.veterinariaService.borrarVeterinaria(id).subscribe()
+
         }
       })
   }

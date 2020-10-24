@@ -33,9 +33,12 @@ export class FormFichaMedicaComponent implements OnInit {
       const id = +this.route.snapshot.paramMap.get('id');
 
       this.fichaMedica = FichaMedica.build();
-      this.fichasMedicasService.getFichaMedica(id).subscribe((resp: any) => { 
-      this.fichaMedicaObj = resp;
-    })
+      
+      if(id !== 0) {
+        this.fichasMedicasService.getFichaMedica(id).subscribe((resp: any) => { 
+        this.fichaMedicaObj = resp;
+      })
+      }
     
     this.fichasMedicasService.getMascotas().subscribe((resp: any) => {
       this.mascotas = resp; 
