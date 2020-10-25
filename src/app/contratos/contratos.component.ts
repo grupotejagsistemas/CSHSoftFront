@@ -33,8 +33,8 @@ export class ContratosComponent implements OnInit {
     })
   }
 
-  exportProductsPdf(){
-    this.contratoService.exportPdfProducts().subscribe(x => {
+  exportProductsPdf(id: number){
+    this.contratoService.exportPdfProducts(id).subscribe(x => {
       const blob = new Blob([x], {type: 'application/pdf'});
       
       if(window.navigator && window.navigator.msSaveOrOpenBlob){
