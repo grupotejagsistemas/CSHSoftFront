@@ -4,6 +4,7 @@ import {EstadoMascota } from './estadoMascota';
 import { MascotaService } from './mascota.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-form-mascotas',
   templateUrl: './form-mascotas.component.html',
@@ -14,7 +15,7 @@ export class FormMascotasComponent implements OnInit {
 
   mascota: Mascota;
   estados: EstadoMascota[];
-  titulo: string = 'Nueva Mascota'
+  private fotoSeleccionada: File;
 
 
   constructor(
@@ -27,7 +28,8 @@ export class FormMascotasComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     
     if(id !== 0){
-      this.mascotaService.getMascota(this.mascota.id).subscribe((resp: any) => {
+      this.mascotaService.getMascota(id).subscribe((resp: any) => {
+        console.log('mascota', id)
         this.mascotaObj = resp;
       })
     }
@@ -85,4 +87,25 @@ mascotaObj = {
       ) 
     }
 
+    seleccionarFoto(event){
+      this.fotoSeleccionada = event.target.files[0];
+      console.log(this.fotoSeleccionada);
+      if(this.fotoSeleccionada.type.indexOf('image') < 0){
+        Swal.fire('Error', 'El archivo debe ser del tipo imagen', 'error');
+        this.fotoSeleccionada = null;
+      } 
+    }
+  
+    subirFoto(){
+      if(!this.fotoSeleccionada){
+        Swal.fire('error', 'Debe seleccionar una foto', 'error') ;
+      }else {
+        this.mascotaService.subirFoto(this.fotoSeleccionada, this.mascotaObj.id)
+        .subscribe(mascota => {
+          this.mascota = mascota;
+  
+        })
+
+      }
+    }
 }

@@ -25,6 +25,7 @@
 <table class="table table-striped" *ngIf="mascotas?.length>0">
     <thead>
         <tr>
+            <th>Imagen</th>
             <th>Nombre</th>
             <th>Fecha de Nacimiento </th>
             <th>Particularidades físicas</th>
@@ -38,6 +39,15 @@
     </thead>
     <tbody>
         <tr *ngFor="let mascota of mascotas">
+            <td>
+                <img 
+                    *ngIf="mascotaObj?.fotoMascota" 
+                    src="http://localhost:8080/api/mascotas/upload/img/{{mascotaObj.fotoMascota}}" 
+                    alt="{{mascotaObj.fotoMascota}}" 
+                    class="img-thumbnail rounded"
+                    style="width:64%;"
+                >
+            </td>
             <td>{{mascota.nombre}}</td>
             <td>{{mascota.fechaNacimiento}}</td>
             <td>{{mascota.particularidadesFisicas}}</td>

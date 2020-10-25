@@ -54,4 +54,16 @@ export class MascotaService {
   filtroMascotaHembra(sexo: string){ 
     return this.http.get(`${this.urlAPI}/mascotas/filtrarSexo?sexo=${sexo}`);
   }
+
+  subirFoto(archivo: File, id): Observable<Mascota>{
+
+    let formData = new FormData();
+    
+    formData.append("archivo", archivo);
+    formData.append('id', id);
+
+    return this.http.post(`${this.urlAPI}/mascotas/upload`, formData).pipe(
+      map((resp: any) => resp.mascota as Mascota)
+    );
+  }
 }
