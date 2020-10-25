@@ -51,14 +51,14 @@ export class VoluntarioService {
   }
 
   filtrarPresencial(presencial: string){
-    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioppt?filtro=${presencial}`);
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${presencial}`);
   }
 
   filtrarTransito(transito: string){
-    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioppt?filtro=${transito}`);
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${transito}`);
   }
 
   filtrarTraslado(traslado: string){
-    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioppt?filtro=${traslado}`);
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${traslado}`);
   }
 }

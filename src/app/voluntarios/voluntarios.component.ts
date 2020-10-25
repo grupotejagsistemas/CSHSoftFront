@@ -40,8 +40,10 @@ export class VoluntariosComponent implements OnInit {
 
   filtroPresencial(): void{
     if(this.checkedPresencial === true) {
-      this.voluntarioService.filtrarPresencial("s").subscribe((data: any) => {
+      this.voluntarioService.filtrarPresencial("presencial").subscribe((data: any) => {
         this.voluntarios = data;
+        this.checkedTransito = false;
+        this.checkedTraslado = false;
       })
     } else {
       this.voluntarioService.getVoluntarios().subscribe((data: any) => {
@@ -52,8 +54,10 @@ export class VoluntariosComponent implements OnInit {
 
   filtroTransito(): void {
     if(this.checkedTransito === true){
-      this.voluntarioService.filtrarTransito("s").subscribe((data: any) => {
+      this.voluntarioService.filtrarTransito("transito").subscribe((data: any) => {
         this.voluntarios = data; 
+        this.checkedPresencial = false;
+        this.checkedTraslado = false; 
       })
     } else {
       this.voluntarioService.getVoluntarios().subscribe((data: any) => {
@@ -64,8 +68,10 @@ export class VoluntariosComponent implements OnInit {
 
   filtroTraslado(): void {
     if(this.checkedTraslado === true){
-      this.voluntarioService.filtrarTraslado("s").subscribe((data: any) => {
+      this.voluntarioService.filtrarTraslado("traslado").subscribe((data: any) => {
         this.voluntarios = data;
+        this.checkedPresencial = false; 
+        this.checkedTransito = false; 
       })
     } else {
       this.voluntarioService.getVoluntarios().subscribe((data: any) => {
