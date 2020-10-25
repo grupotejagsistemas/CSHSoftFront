@@ -25,12 +25,12 @@ export class FormMascotasComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-
-    if (id !== 0) {
-    this.mascotaService.getMascota(this.mascota.id).subscribe((resp: any) => {
-      this.mascotaObj = resp;
-    })
-  }
+    
+    if(id !== 0){
+      this.mascotaService.getMascota(this.mascota.id).subscribe((resp: any) => {
+        this.mascotaObj = resp;
+      })
+    }
 
     this.mascotaService.getEstados().subscribe((resp: any) => {
         this.estados = resp;
@@ -82,6 +82,7 @@ mascotaObj = {
           })
           return response;
         }
-  ) 
-  }
+      ) 
+    }
+
 }

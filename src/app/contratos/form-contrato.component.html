@@ -5,7 +5,7 @@
                     <label for="adoptante" class="col-form-label col-sm-2">Adoptante</label>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <select class="form-control resizedTexbox" type=number [(ngModel)]="contratoObj.idAdoptante" name="idAdoptante">
+                            <select  class="form-control resizedTexbox" type=number [(ngModel)]="contratoObj.idAdoptante" name="idAdoptante">
                             <option *ngFor=" let adoptante of adoptantes" [value]="adoptante.id">{{adoptante.nombreCompleto}}</option>
                         </select>
                         <style>
