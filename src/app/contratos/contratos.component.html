@@ -24,7 +24,7 @@
             <td>{{contrato.mascota}}</td>
             <td>{{contrato.nuevoNombre}}</td>
             <td>
-                <button (click)="exportProductsPdf()"> PDF</button>
+                <button type="button" (click)="exportProductsPdf(contrato.idContrato)" class="btn btn-outline" > <i class="fas fa-file-pdf"></i></button>
             </td>
 
         </tr>
