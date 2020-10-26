@@ -44,7 +44,7 @@ export class ContratosComponent implements OnInit {
       const data = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = data;
-      link.download = 'products.pdf';
+      link.download = 'contrato.pdf';
       link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
 
       setTimeout(function() {
