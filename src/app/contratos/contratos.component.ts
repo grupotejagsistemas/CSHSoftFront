@@ -33,7 +33,7 @@ export class ContratosComponent implements OnInit {
     })
   }
 
-  exportProductsPdf(id: number){
+  exportProductsPdf(id: number, nombre:string){
     this.contratoService.exportPdfProducts(id).subscribe(x => {
       const blob = new Blob([x], {type: 'application/pdf'});
       
@@ -44,7 +44,7 @@ export class ContratosComponent implements OnInit {
       const data = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = data;
-      link.download = 'contrato.pdf';
+      link.download = nombre + " " + 'contrato.pdf';
       link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
 
       setTimeout(function() {
