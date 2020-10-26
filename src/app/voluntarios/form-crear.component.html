@@ -1,10 +1,10 @@
 <div class="card w-550 mx-auto"  style="width: 525px;"> 
-    <div class="card-header" id="titulo" style="background-color: white;">{{titulo}}</div>
+    <div class="card-header" id="titulo" style="background-color: white;">HOLA</div>
     <div class="card-body mx-auto" style="width: 800px">
         <form>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control resizedTextbox" placeholder="Nombre Completo" name="nombrecompleto" [(ngModel)]="voluntario.nombrecompleto" >
+                    <input type="text" class="form-control resizedTextbox" placeholder="Nombre Completo" name="nombreCompleto" [(ngModel)]="voluntarioObj.nombreCompleto" >
                     <style>
                         .resizedTextbox {width: 485px; height: 35px}
                     </style>
@@ -12,7 +12,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6 " >
-                        <input type="text" class= "form-control resizedTextbox" placeholder="Télefono" name="telefono" [(ngModel)]="voluntario.telefono" >
+                        <input type="text" class= "form-control resizedTextbox" placeholder="Télefono" name="telefono" [(ngModel)]="voluntarioObj.telefono" >
                         <style>
                             .resizedTextbox {width: 485px; height: 35px}
                         </style>
@@ -20,26 +20,43 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6 ">
-                    <input type="text" class="form-control resizedTextbox" placeholder="Dirección" name="direccion" [(ngModel)]="voluntario.direccion" >
+                    <input type="text" class="form-control resizedTextbox" placeholder="Dirección" name="direccion" [(ngModel)]="voluntarioObj.direccion" >
                     <style>
                         .resizedTextbox {width: 485px; height: 35px}
                     </style>
                 </div>
             </div>
             <label for="veterinaria" class="col-form-label col-sm-3">Veterinaria Cercana</label>
-            <div class="form-row">
+                <button   (click)="agregarVeterinaria()" class="btn btn-light btn-lg my-3">
+                    <i class="fas fa-plus"></i>
+                </button>
+            <div class="form-row" *ngFor="let veterinariaCercana of veterinariasCercanas; let i = index" >
                 <div class="form-group col-md-6 ">
-                    <select type="number" class="form-control resizedTextbox"  name="idveterinarias" [(ngModel)]="voluntario.idveterinarias"  >
-                        <style>
-                            .resizedTextbox {width: 485px; height: 35px}
-                        </style>
-                        <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.id">{{veterinaria.razonSocial}}</option>
+                    <select 
+                        type="number" 
+                        class="form-control resizedTextbox"  
+                        name="idveterinarias" 
+                        [(ngModel)]="voluntarioObj.idveterinarias"
+                        
+                        >
+                        <option 
+                            *ngFor="let veterinaria of veterinarias" 
+                            [value]="veterinaria.id"
+
+                        >
+                            {{veterinaria.razonSocial}}
+                        </option>
                     </select>
+                    <div class="form-group col-md-1">
+                        <button class="btn btn-danger btn-sm" (click)="eliminarVeterinaria(veterinaria, i)">
+                            <i class='fas fa-trash'></i>
+                        </button>
+                    </div> 
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control resizedTextbox" placeholder="localidad " name="localidad" [(ngModel)]="voluntario.localidad" >
+                    <input type="text" class="form-control resizedTextbox" placeholder="localidad " name="localidad" [(ngModel)]="voluntarioObj.localidad" >
                     <style>
                         .resizedTextbox {width: 485px; height: 35px}
                     </style>
@@ -66,9 +83,9 @@
 
             <div class="form-row">
                 <div class="form-group  col-md-6 ">
-                    <button class="btn btn-outline-success" role="button" (click)='agregar(voluntario)' *ngIf="!voluntario.id else elseBlock">Agregar</button>
+                    <button class="btn btn-outline-success" role="button" (click)='agregar()' *ngIf="!voluntario.id else elseBlock">Agregar</button>
                     <ng-template #elseBlock>
-                        <button class="btn btn-outline-success" role="button" (click)='modificar(voluntario)'>Modificar</button>
+                        <button class="btn btn-outline-success" role="button" (click)='modificar()'>Modificar</button>
 
                     </ng-template>
                 </div>

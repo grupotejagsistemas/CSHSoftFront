@@ -40,13 +40,15 @@
                           <input (change)="seleccionarFoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
                           <label class="custom-file-label" for="inputGroupFile04">Seleccionar foto</label>
                         </div>
-                        <div class="input-group-append">
-                          <button (click)="subirFoto()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir foto</button>
-                        </div>
                       </div>
                 </div>
                 <div class="col-sm">
-                    <img *ngIf="mascotaObj?.fotoMascota" src="http://localhost:8080/api/mascotas/upload/img/{{mascotaObj.fotoMascota}}" alt="{{mascotaObj.fotoMascota}}" class="img-thumbnail rounded">
+                    <img 
+                        *ngIf="mascotaObj?.fotoMascota" 
+                        src="http://localhost:8080/api/mascotas/upload/img/{{mascotaObj.fotoMascota}}" 
+                        alt="{{mascotaObj.fotoMascota}}" 
+                        class="img-thumbnail rounded"
+                    >
                 </div>
             </div>
             

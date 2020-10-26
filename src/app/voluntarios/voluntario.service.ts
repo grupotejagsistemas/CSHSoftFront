@@ -32,7 +32,7 @@ export class VoluntarioService {
     return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario/filtrar?nombre=${nombre}`)
   }
 
-  crearVoluntario(voluntario: Voluntario) {
+  crearVoluntario(voluntario: any) {
     console.log('vol ', voluntario);
     return this.http.post(`${this.urlAPI}/voluntario`, voluntario)
   } 
@@ -41,7 +41,7 @@ export class VoluntarioService {
     return this.http.get<Voluntario>(`${this.urlAPI}/voluntario/${id}`)
   }
 
-  modificarVoluntario(voluntario: Voluntario) {
+  modificarVoluntario(voluntario: any) {
     console.log('modifica', voluntario)
     return this.http.put(`${this.urlAPI}/voluntario/${voluntario.id}`, voluntario)
    }

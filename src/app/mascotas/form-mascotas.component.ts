@@ -14,6 +14,7 @@ export class FormMascotasComponent implements OnInit {
 
 
   mascota: Mascota;
+
   estados: EstadoMascota[];
   private fotoSeleccionada: File;
 
@@ -57,8 +58,7 @@ mascotaObj = {
   public agregar(): void {
     console.log(' agregar mascota', this.mascotaObj);
     this.mascotaService.crearMascota(this.mascotaObj)
-    .subscribe(
-    response => {
+    .subscribe((response: any) => {
         this.router.navigate(['/mascotas'])
         swal.fire({
           icon: 'success',
@@ -66,11 +66,15 @@ mascotaObj = {
           showConfirmButton: false,
           timer: 1500
         })
+        this.mascota = response;
+        this.subirFoto(response.id.toString())
         return response; 
       })
     }
 
   public modificar(): void{
+     const id = +this.route.snapshot.paramMap.get('id');
+
     console.log('modificar mascota', this.mascotaObj);
       this.mascotaService.modificarMascota(this.mascotaObj)
       .subscribe(
@@ -82,6 +86,9 @@ mascotaObj = {
             showConfirmButton: false,
             timer: 1500
           })
+          if(id !== 0){
+            this.subirFoto(id.toString())
+          }
           return response;
         }
       ) 
@@ -96,14 +103,15 @@ mascotaObj = {
       } 
     }
   
-    subirFoto(){
+    subirFoto(id: string){
+
       if(!this.fotoSeleccionada){
-        Swal.fire('error', 'Debe seleccionar una foto', 'error') ;
+        Swal.fire('warning', 'La mascota fue creada sin imagen', 'warning') ;
       }else {
-        this.mascotaService.subirFoto(this.fotoSeleccionada, this.mascotaObj.id)
+        console.log('id', id);
+        this.mascotaService.subirFoto(this.fotoSeleccionada, id)
         .subscribe(mascota => {
           this.mascota = mascota;
-  
         })
 
       }
