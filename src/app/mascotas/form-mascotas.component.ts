@@ -4,6 +4,7 @@ import {EstadoMascota } from './estadoMascota';
 import { MascotaService } from './mascota.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-form-mascotas',
   templateUrl: './form-mascotas.component.html',
@@ -13,8 +14,9 @@ export class FormMascotasComponent implements OnInit {
 
 
   mascota: Mascota;
+
   estados: EstadoMascota[];
-  titulo: string = 'Nueva Mascota'
+  private fotoSeleccionada: File;
 
 
   constructor(
@@ -27,7 +29,8 @@ export class FormMascotasComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     
     if(id !== 0){
-      this.mascotaService.getMascota(this.mascota.id).subscribe((resp: any) => {
+      this.mascotaService.getMascota(id).subscribe((resp: any) => {
+        console.log('mascota', id)
         this.mascotaObj = resp;
       })
     }
@@ -55,8 +58,7 @@ mascotaObj = {
   public agregar(): void {
     console.log(' agregar mascota', this.mascotaObj);
     this.mascotaService.crearMascota(this.mascotaObj)
-    .subscribe(
-    response => {
+    .subscribe((response: any) => {
         this.router.navigate(['/mascotas'])
         swal.fire({
           icon: 'success',
@@ -64,11 +66,15 @@ mascotaObj = {
           showConfirmButton: false,
           timer: 1500
         })
+        this.mascota = response;
+        this.subirFoto(response.id.toString())
         return response; 
       })
     }
 
   public modificar(): void{
+     const id = +this.route.snapshot.paramMap.get('id');
+
     console.log('modificar mascota', this.mascotaObj);
       this.mascotaService.modificarMascota(this.mascotaObj)
       .subscribe(
@@ -80,9 +86,34 @@ mascotaObj = {
             showConfirmButton: false,
             timer: 1500
           })
+          if(id !== 0){
+            this.subirFoto(id.toString())
+          }
           return response;
         }
       ) 
     }
 
+    seleccionarFoto(event){
+      this.fotoSeleccionada = event.target.files[0];
+      console.log(this.fotoSeleccionada);
+      if(this.fotoSeleccionada.type.indexOf('image') < 0){
+        Swal.fire('Error', 'El archivo debe ser del tipo imagen', 'error');
+        this.fotoSeleccionada = null;
+      } 
+    }
+  
+    subirFoto(id: string){
+
+      if(!this.fotoSeleccionada){
+        Swal.fire('warning', 'La mascota fue creada sin imagen', 'warning') ;
+      }else {
+        console.log('id', id);
+        this.mascotaService.subirFoto(this.fotoSeleccionada, id)
+        .subscribe(mascota => {
+          this.mascota = mascota;
+        })
+
+      }
+    }
 }

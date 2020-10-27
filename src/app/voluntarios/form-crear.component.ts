@@ -18,7 +18,7 @@ export class FormCrearComponent implements OnInit {
   checkedTraslado: boolean; 
   voluntario:  Voluntario;
   veterinarias: any [] = [] ;
-  titulo: string = 'Nuevo Voluntario'
+  veterinariasCercanas: any [] = [];
 
   constructor(
     private voluntarioService: VoluntarioService, 
@@ -43,29 +43,40 @@ export class FormCrearComponent implements OnInit {
       })
   }
 
+  voluntarioObj = {
+    id: null,
+    nombreCompleto: "", 
+    telefono: null,
+    direccion: "",
+    idveterinarias: [],
+    localidad: "",
+    transito: "",
+    traslado: "",
+    presencial: ""
+  }
 
-  public agregar(voluntario): void {
+  public agregar(): void {
     
     if(this.checkedPresencial === true){
-      voluntario.presencial = "SI";
+      this.voluntarioObj.presencial = "SI";
     } else {
-      voluntario.presencial = "NO";
+      this.voluntarioObj.presencial = "NO";
     }
 
     if(this.checkedTransito === true){
-      voluntario.transito = "SI";
+      this.voluntarioObj.transito = "SI";
     } else {
-      voluntario.transito = "NO";
+      this.voluntarioObj.transito = "NO";
     }
 
     if(this.checkedTraslado === true) {
-      voluntario.traslado = "SI";
+      this.voluntarioObj.traslado = "SI";
     }else {
-      voluntario.traslado = "NO";
+      this.voluntarioObj.traslado = "NO";
     }
 
 
-    this.voluntarioService.crearVoluntario(voluntario)
+    this.voluntarioService.crearVoluntario(this.voluntarioObj)
     .subscribe(
       response => {
         this.router.navigate(['/voluntarios'])
@@ -79,29 +90,28 @@ export class FormCrearComponent implements OnInit {
       })
   }
 
-  public modificar(voluntario): void {
+  public modificar(): void {
 
     if(this.checkedPresencial === true){
-      voluntario.presencial = "SI";
+      this.voluntarioObj.presencial = "SI";
     } else {
-      voluntario.presencial = "NO";
+      this.voluntarioObj.presencial = "NO";
     }
 
     if(this.checkedTransito === true){
-      voluntario.transito = "SI";
+      this.voluntarioObj.transito = "SI";
     } else {
-      voluntario.transito = "NO";
+      this.voluntarioObj.transito = "NO";
     }
 
     if(this.checkedTraslado === true) {
-      voluntario.traslado = "SI";
+      this.voluntarioObj.traslado = "SI";
     }else {
-      voluntario.traslado = "NO";
+      this.voluntarioObj.traslado = "NO";
     }
 
-    this.voluntarioService.modificarVoluntario(voluntario)
-    .subscribe(
-      response =>{
+    this.voluntarioService.modificarVoluntario(this.voluntarioObj)
+    .subscribe( response =>{
         this.router.navigate(['/voluntarios'])
         swal.fire({
           icon: 'success',
@@ -110,7 +120,15 @@ export class FormCrearComponent implements OnInit {
           timer: 1500
         })
         return response;
-      }
-    )
+      })
+  }
+
+  agregarVeterinaria(): void {
+    this.veterinariasCercanas.push(new Veterinaria())
+  }
+
+  eliminarVeterinaria(veterinaria: any): void {
+    this.veterinariasCercanas = this.veterinariasCercanas.filter(v => veterinaria.id !== v.id)
+    console.log('elim', veterinaria.id)
   }
 }

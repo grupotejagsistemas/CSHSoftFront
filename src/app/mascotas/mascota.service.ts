@@ -33,6 +33,7 @@ export class MascotaService {
 
   crearMascota(mascota: any) {
     return this.http.post(`${this.urlAPI}/mascotas`, mascota);
+
   }
 
   getMascota(id: number): Observable<Mascota> {
@@ -53,5 +54,17 @@ export class MascotaService {
 
   filtroMascotaHembra(sexo: string){ 
     return this.http.get(`${this.urlAPI}/mascotas/filtrarSexo?sexo=${sexo}`);
+  }
+
+  subirFoto(file: File, id): Observable<Mascota>{
+
+    let formData = new FormData();
+    
+    formData.append("file", file);
+    formData.append('id', id);
+
+    return this.http.post(`${this.urlAPI}/mascotas/upload`, formData).pipe(
+      map((resp: any) => resp.mascota as Mascota)
+    );
   }
 }
