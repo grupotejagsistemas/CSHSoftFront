@@ -23,7 +23,7 @@
 
                 <div class="form-row">
                         <div class="form-group col-md-4">
-                            <input type="text" class="form-control resizedTextbox" placeholder="Nombre del Producto" (change)="disabledInputDesparasitacion()" [disabled]="disabledDesparasitacion" name="nombreProducto" [(ngModel)]="fichaMedicaObj.nombreProducto" required >
+                            <input type="text" [disabled]="checkedDesparasitacion === false" class="form-control resizedTextbox" placeholder="Nombre del Producto" name="nombreProducto" [(ngModel)]="fichaMedicaObj.nombreProducto" required >
                             <style>
                                 .resizedTextbox {width: 485px; height: 35px}
                             </style>

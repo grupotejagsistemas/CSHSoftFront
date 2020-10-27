@@ -31,6 +31,10 @@ export class FormMovRecursoComponent implements OnInit {
     this.movimientoRecursoService.getTipoMovimiento()
     .subscribe((resp: any) => {
       this.tiposMovimientos = resp;
+      this.tiposMovimientos.unshift({
+        descripcion: 'Seleccione un tipo de movimiento',
+        id: null
+      })
     })
   }
 

@@ -4,7 +4,7 @@ export class Mascota {
 
     public static build(){
         const mascota = new Mascota();
-        mascota.id = 0;
+        mascota.id = null;
         mascota.nombre = "";
     }
 }

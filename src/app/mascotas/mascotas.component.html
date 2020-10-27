@@ -44,8 +44,7 @@
                     *ngIf="mascota?.fotoMascota else elseImagen" 
                     src="http://localhost:8080/api/mascotas/upload/img/{{mascota.fotoMascota}}" 
                     alt="{{mascota.fotoMascota}}" 
-                    class="img-thumbnail rounded"
-                    style="width: 50%"
+                    class="img-fluid"
                 >
                 <ng-template #elseImagen>
                     <img 

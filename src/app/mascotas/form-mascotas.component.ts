@@ -37,6 +37,10 @@ export class FormMascotasComponent implements OnInit {
 
     this.mascotaService.getEstados().subscribe((resp: any) => {
         this.estados = resp;
+        this.estados.unshift({
+          descripcion: 'Seleccione estado',
+          id: null
+        })
 
     })
 }
@@ -46,7 +50,7 @@ mascotaObj = {
   nombre : "",
   fechaNacimiento : new Date(),
   particularidadesFisicas : "",
-  sexo: "",
+  sexo: null,
   fotoMascota: "",
   fechaRescate: new Date(),
   lugarRescate: "",

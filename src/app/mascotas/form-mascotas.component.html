@@ -23,9 +23,11 @@
                     <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisicas" [(ngModel)]="mascotaObj.particularidadesFisicas" required></textarea> 
                 </div>
             </div>
+            <label for="sexo" class="col-form-label col-sm-4">Sexo</label>
             <div class="form-row">
                 <div class="form-group col-md-7">
                     <select type="text" class="form-control " placeholder="Sexo" name="sexo" [(ngModel)]="mascotaObj.sexo" required>
+                        <option [value]=null> Seleccione sexo</option>
                         <option>Macho</option>
                         <option>Hembra</option>
                     </select>

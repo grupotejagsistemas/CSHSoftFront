@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Mascota } from '../mascotas/mascota';
-import { Veterinaria } from '../voluntarios/veterinaria';
+import { Mascota } from './mascota';
+import { Veterinaria } from './veterinaria';
 import { FichaMedica } from './ficha-medica';
 import { FichaMedicaService } from './ficha-medica.service';
 import swal from 'sweetalert2'
@@ -61,10 +61,18 @@ export class FormFichaMedicaComponent implements OnInit {
     
     this.fichasMedicasService.getMascotas().subscribe((resp: any) => {
       this.mascotas = resp; 
+      this.mascotas.unshift({
+        nombre: 'Seleccione una mascota',
+        id: null
+      })
     });
 
     this.fichasMedicasService.getVeterinarias().subscribe((resp: any) => {
       this.veterinarias = resp;
+      this.veterinarias.unshift({
+        razonSocial: 'Seleccione una veterinaria',
+        id: null
+      })
     })
 
   }

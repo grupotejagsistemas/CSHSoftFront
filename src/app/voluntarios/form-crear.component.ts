@@ -130,7 +130,7 @@ export class FormCrearComponent implements OnInit {
   }
 
   eliminarVeterinaria(i: any): void {
-    this.veterinariasCercanas = this.veterinariasCercanas.splice(i, 1)
+    this.veterinariasCercanas = this.veterinariasCercanas.splice(i, 1)[0];
     console.log('index', i)
       console.log('veteCercana', this.veterinariasCercanas)
   }

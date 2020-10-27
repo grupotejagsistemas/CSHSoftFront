@@ -3,8 +3,8 @@ import { Contrato } from './contrato';
 import { ContratoService } from './contrato.service';
 import {ActivatedRoute,Router} from '@angular/router';
 import swal from 'sweetalert2'
-import { Mascota } from '../adoptantes/mascota';
-import { Adoptante } from '../adoptantes/adoptante';
+import { Mascota } from './mascota';
+import { Adoptante } from './adoptante';
 
 @Component({
   selector: 'app-form-contrato',
@@ -30,20 +30,29 @@ export class FormContratoComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.contrato = Contrato.build();
+
       this.contratoService.getAdoptantes()
         .subscribe((resp: any) => {
           this.adoptantes = resp;
+          this.adoptantes.unshift({
+            nombreCompleto: 'Seleccione un adoptante',
+            id: null
+          })
         })
 
     this.contratoService.getMascotas()
       .subscribe((resp: any) => {
         this.mascotas = resp;
+        this.mascotas.unshift({
+          nombre: 'Seleccione una mascota',
+          id: null
+        })
       })
   }
 
   contratoObj = {
-    idMascota: 1, 
-    idAdoptante: 2, 
+    idMascota: null, 
+    idAdoptante: null, 
     nuevoNombre: ""
   }
 
