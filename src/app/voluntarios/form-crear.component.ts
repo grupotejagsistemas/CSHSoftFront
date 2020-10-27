@@ -48,7 +48,7 @@ export class FormCrearComponent implements OnInit {
     nombreCompleto: "", 
     telefono: null,
     direccion: "",
-    idveterinarias: [],
+    idveterinarias: "",
     localidad: "",
     transito: "",
     traslado: "",
@@ -58,19 +58,19 @@ export class FormCrearComponent implements OnInit {
   public agregar(): void {
     
     if(this.checkedPresencial === true){
-      this.voluntarioObj.presencial = "SI";
+      this.voluntarioObj.presencial = "s";
     } else {
       this.voluntarioObj.presencial = "NO";
     }
 
     if(this.checkedTransito === true){
-      this.voluntarioObj.transito = "SI";
+      this.voluntarioObj.transito = "s";
     } else {
       this.voluntarioObj.transito = "NO";
     }
 
     if(this.checkedTraslado === true) {
-      this.voluntarioObj.traslado = "SI";
+      this.voluntarioObj.traslado = "s";
     }else {
       this.voluntarioObj.traslado = "NO";
     }
@@ -93,19 +93,19 @@ export class FormCrearComponent implements OnInit {
   public modificar(): void {
 
     if(this.checkedPresencial === true){
-      this.voluntarioObj.presencial = "SI";
+      this.voluntarioObj.presencial = "s";
     } else {
       this.voluntarioObj.presencial = "NO";
     }
 
     if(this.checkedTransito === true){
-      this.voluntarioObj.transito = "SI";
+      this.voluntarioObj.transito = "s";
     } else {
       this.voluntarioObj.transito = "NO";
     }
 
     if(this.checkedTraslado === true) {
-      this.voluntarioObj.traslado = "SI";
+      this.voluntarioObj.traslado = "s";
     }else {
       this.voluntarioObj.traslado = "NO";
     }
@@ -124,11 +124,14 @@ export class FormCrearComponent implements OnInit {
   }
 
   agregarVeterinaria(): void {
-    this.veterinariasCercanas.push(new Veterinaria())
+    this.veterinariasCercanas.push(this.voluntarioObj.idveterinarias);
+    console.log('vete', this.veterinariasCercanas)
+
   }
 
-  eliminarVeterinaria(veterinaria: any): void {
-    this.veterinariasCercanas = this.veterinariasCercanas.filter(v => veterinaria.id !== v.id)
-    console.log('elim', veterinaria.id)
+  eliminarVeterinaria(i: any): void {
+    this.veterinariasCercanas = this.veterinariasCercanas.splice(i, 1)
+    console.log('index', i)
+      console.log('veteCercana', this.veterinariasCercanas)
   }
 }
