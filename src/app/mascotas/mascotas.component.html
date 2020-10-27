@@ -41,11 +41,21 @@
         <tr *ngFor="let mascota of mascotas">
             <td>
                 <img 
-                    *ngIf="mascotaObj?.fotoMascota" 
-                    src="http://localhost:8080/api/mascotas/upload/img/{{mascotaObj.fotoMascota}}" 
-                    alt="{{mascotaObj.fotoMascota}}" 
+                    *ngIf="mascota?.fotoMascota else elseImagen" 
+                    src="http://localhost:8080/api/mascotas/upload/img/{{mascota.fotoMascota}}" 
+                    alt="{{mascota.fotoMascota}}" 
                     class="img-thumbnail rounded"
+                    style="width: 50%"
                 >
+                <ng-template #elseImagen>
+                    <img 
+                    src="http://localhost:8080/api/mascotas/upload/img/patitas.png" 
+                    alt="sin foto" 
+                    class="img-thumbnail rounded"
+                    style="width: 40%"
+                >                    
+             </ng-template>
+
             </td>
             <td>{{mascota.nombre}}</td>
             <td>{{mascota.fechaNacimiento}}</td>
