@@ -1,0 +1,33 @@
+<h5>Contratos</h5>
+<div class="input-group">
+    <div class="input bg-white">
+        <input type="text" name="busquedaMascota" class="form-control" placeholder="Buscar por mascota" [(ngModel)]="busquedaMascota" (change)="filtroMascota(busquedaMascota)">
+    </div>
+</div>
+<div class="my-4 text-right">
+    <button class="btn btn-outline-success" type="button" [routerLink]="['/contratos/crear']">Nuevo contrato</button>
+</div>
+<div *ngIf="contratos?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+<table class="table table-striped" *ngIf="contratos?.length>0">
+    <thead>
+        <tr>
+            <th>Nombre del adoptante</th>
+            <th>Nombre de la mascota</th>
+            <th>Nuevo nombre de la mascota</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contrato of contratos  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
+            <td>{{contrato.adoptante}}</td>
+            <td>{{contrato.mascota}}</td>
+            <td>{{contrato.nuevoNombre}}</td>
+            <td>
+                <button type="button" (click)="exportProductsPdf(contrato.idContrato, contrato.nuevoNombre)" class="btn btn-outline"> <i class="fas fa-file-pdf"></i></button>
+            </td>
+
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>

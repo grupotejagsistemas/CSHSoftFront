@@ -1,13 +1,36 @@
 import { Veterinaria } from './veterinaria';
 
 export class Voluntario {
-    idVoluntario: number;
-    nombreCompleto: string;
+    id: number;
+    nombrecompleto: string;
     telefono: string;
     direccion: string ;
-    idVeterinariaCercana: Veterinaria;
-    zona: string;
+    idveterinarias: any [] = [];
+    localidad: string;
     transito: string;
     traslado: string;
     presencial: string;
+  static nombrecompleto: any;
+
+    constructor (){
+
+    }
+
+    public static build(){
+        const voluntario = new Voluntario();
+        voluntario.id = null;
+        voluntario.nombrecompleto = '';
+        voluntario.telefono = '';
+        voluntario.direccion = ''; 
+        voluntario.idveterinarias =  [] = []; 
+        voluntario.localidad = ''; 
+        voluntario.transito = '';
+        voluntario.traslado ='';
+        voluntario.presencial = ''; 
+
+        return voluntario;
+    }
 }
+
+
+

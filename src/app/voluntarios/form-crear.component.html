@@ -1,66 +1,76 @@
-<div class="card text-white" style="background-color:#00396b">
-    <div class="card-header" id="titulo">{{titulo}} </div>
-    <div class="card-body">
+<div class="card w-550 mx-auto"  style="width: 525px;"> 
+    <div class="card-header" id="titulo" style="background-color: white;">HOLA</div>
+    <div class="card-body mx-auto" style="width: 800px">
         <form>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control"  placeholder ="ID" name="id" [(ngModel)]="voluntario.idVoluntario" required>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Nombre Completo" name="nombreCompleto" [(ngModel)]="voluntarioObj.nombreCompleto" >
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Nombre Completo" name="nombreCompleto" [(ngModel)]="voluntario.nombreCompleto" required>
+            <div class="form-row">
+                <div class="form-group col-md-6 " >
+                        <input type="text" class= "form-control" placeholder="Télefono" name="telefono" [(ngModel)]="voluntarioObj.telefono" >
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Télefono" name="telefono" [(ngModel)]="voluntario.telefono" required>
+            <div class="form-row">
+                <div class="form-group col-md-6 ">
+                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="voluntarioObj.direccion" >
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="voluntario.direccion" required>
-                </div>
-            </div>
-            <div></div>
-            <div class="form-group row">
-                <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria Cercana</label>
-                <div class="col-sm-6">
-                    <select class="form-control"  name="idVeterinariaCercana" [(ngModel)]="voluntario.idVeterinariaCercana" style="width:500px;" required>
-                    <option *ngFor="let veterinaria of veterinarias" [ngValue]="veterinaria">{{veterinaria.razonSocial}}</option>
-                    
+            <label for="veterinaria" class="col-form-label col-sm-3">Veterinaria Cercana</label>
+                <button   (click)="agregarVeterinaria()" class="btn btn-light btn-lg my-3">
+                    <i class="fas fa-plus"></i>
+                </button>
+            <div class="form-row" *ngFor="let veterinariaCercana of veterinariasCercanas; let i = index">
+                <div class="form-group col-md-6 ">
+                    <select 
+                        type="number" 
+                        class="form-control resizedTextbox" 
+                        [(ngModel)]="voluntarioObj.idveterinarias"
+                    >
+                        <option
+                            *ngFor="let veterinaria of veterinarias"
+                            [value]="veterinaria.id"
+                        >
+                        {{veterinaria.razonSocial}}
+                    </option>
                     </select>
+                    <div class="form-group col-md-1">
+                        <button class="btn btn-danger btn-sm" (click)="eliminarVeterinaria(veterinariaCercana)">
+                            <i class='fas fa-trash'></i>
+                        </button>
+                    </div> 
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="zona" name="zona" [(ngModel)]="voluntario.zona" required>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="localidad " name="localidad" [(ngModel)]="voluntarioObj.localidad" >
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-row">
                 <label for="transito" class="col-form-label col-sm-2">Tránsito</label>
-                <div class="col-sm-6">
-                    <input type="checkbox" name="transito" [(ngModel)]="voluntario.transito">
+                <div class="form-group col-md-4">
+                    <input type="checkbox" name="transito" [(ngModel)]="checkedTransito">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-row">
                 <label for="traslado" class="col-form-label col-sm-2">Traslado</label>
-                <div class="col-sm-6">
-                    <input type="checkbox" name="traslado" [(ngModel)]="voluntario.traslado">
+                <div class="form-group col-md-4">
+                    <input type="checkbox" name="traslado" [(ngModel)]="checkedTraslado">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-row">
                 <label for="presencial" class="col-form-label col-sm-2">Presencial</label>
-                <div class="col-sm-6">
-                    <input type="checkbox" name="presencial"  [(ngModel)]="voluntario.presencial">
+                <div class="form-group col-md-6">
+                    <input type="checkbox" name="presencial"  [(ngModel)]="checkedPresencial">
                 </div>
             </div>
 
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!voluntario.idVoluntario else elseBlock">Agregar</button>
+            <div class="form-row">
+                <div class="form-group  col-md-6 ">
+                    <button class="btn btn-outline-success" role="button" (click)='agregar()' *ngIf="!voluntario.id else elseBlock">Agregar</button>
                     <ng-template #elseBlock>
-                        <button class="btn btn-primary" role="button" (click)='update()'>Modificar</button>
+                        <button class="btn btn-outline-success" role="button" (click)='modificar()'>Modificar</button>
 
                     </ng-template>
                 </div>

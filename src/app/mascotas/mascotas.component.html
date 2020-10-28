@@ -1,7 +1,23 @@
-<h5 class="card-title" >Mascotas</h5>
-            
-<div class="my-2 text-left" >
-    <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/mascotas/crear']">Nueva mascota</button>
+<h5>Mascotas</h5>
+<div class="input-group">
+    <div class="input bg-white">
+        <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)] ="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
+    </div>
+</div>
+<div class="form-row">
+    <label for="macho" class="col-form-label col-sm-2"> Macho</label>
+    <div class="form-group col-md-4">
+        <input type="checkbox" placeholder="macho" name="macho" [(ngModel)]="checkedM" (change)="filtroMacho()">
+    </div>
+</div>
+<div class="form-row">
+    <label for="hembra" class="col-form-label col-sm-2"> Hembra</label>
+    <div class="form-group col-md-4">
+        <input type="checkbox" placeholder="hembra" name="hembra" [(ngModel)]="checkedH" (change)="filtroHembra()">
+    </div>
+</div>
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success" type="button" [routerLink] = "['/mascotas/crear']">Nueva mascota</button>
 </div>
 <div *ngIf="mascotas?.length==0" class="alert alert-info">
     No se encontraron datos registrados
@@ -9,38 +25,53 @@
 <table class="table table-striped" *ngIf="mascotas?.length>0">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>Imagen</th>
             <th>Nombre</th>
-            <th>Edad</th>
-            <th>Particulares físicas</th>
+            <th>Fecha de Nacimiento </th>
+            <th>Particularidades físicas</th>
             <th>Sexo</th>
             <th>Fecha del rescate</th>
             <th>Lugar del rescate</th>
             <th>Descripción del rescate</th>
-            <th>Imagen</th>
             <th>Especie</th>
-            <th>Estado</th>
+
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let mascota of mascotas">
-            <td>{{mascota.id}}</td>
+        <tr *ngFor="let mascota of mascotas|  paginate: { itemsPerPage: 10 , currentPage: p } ">
+            <td>
+                <img 
+                    *ngIf="mascota?.fotoMascota else elseImagen" 
+                    src="http://localhost:8080/api/mascotas/upload/img/{{mascota.fotoMascota}}" 
+                    alt="{{mascota.fotoMascota}}" 
+                    class="img-fluid"
+                >
+                <ng-template #elseImagen>
+                    <img 
+                    src="http://localhost:8080/api/mascotas/upload/img/patitas.png" 
+                    alt="sin foto" 
+                    class="img-thumbnail rounded"
+                    style="width: 40%"
+                >                    
+             </ng-template>
+
+            </td>
             <td>{{mascota.nombre}}</td>
-            <td>{{mascota.particularesFisicas}}</td>
+            <td>{{mascota.fechaNacimiento}}</td>
+            <td>{{mascota.particularidadesFisicas}}</td>
             <td>{{mascota.sexo}}</td>
             <td>{{mascota.fechaRescate}}</td>
             <td>{{mascota.lugarRescate}}</td>
             <td>{{mascota.descripcionRescate}}</td>
-            <td>{{mascota.imagen}}</td>
             <td>{{mascota.especie}}</td>
-            <td>{{mascota.estado}}</td>
             <td>
-                <button type="button" name="button" [routerLink]="['/mascotas/editar', mascota.id]" class="btn btn-primary">Editar</button>
+                <button type="button" name="button" [routerLink]="['/mascotas/editar/', mascota.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
             </td>
             <td>
-                <button type="button" name="eliminar" (click)='delete(mascota)' class="btn btn-danger btn-sm">Eliminar</button>
+                <button type="button" name="eliminar" (click)='borrarMascota(mascota.id, mascota.nombre)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
             </td>
         </tr>
     </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>  
 

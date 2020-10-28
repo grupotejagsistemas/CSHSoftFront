@@ -1,0 +1,47 @@
+<h5 class="card-title" >Fichas Médicas</h5>
+        
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success" type="button" [routerLink] = "['/fichas-medicas/crear']">Nueva Ficha Médica</button>
+    
+</div>
+<div *ngIf="fichasMedicas?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+<table class="table table-striped" *ngIf="fichasMedicas?.length>0">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Desparasitacion</th>
+            <th>Nombre</th>
+            <th>Vacuna</th>
+            <th>Nombre vacuna</th>
+            <th>Diagnóstico</th>
+            <th>Mascota</th>
+            <th>Veterinaria</th>
+            <th>Tratamiento</th>
+            <th>Descrip Tratamiento</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let fichaMedica of fichasMedicas   |  paginate: { itemsPerPage: 10 , currentPage: p } ">
+            <td>{{fichaMedica.fecha}}</td>
+            <td>{{fichaMedica.desparasitacion}}</td>
+            <td>{{fichaMedica.nombreProducto}}</td>
+            <td>{{fichaMedica.vacuna}}</td>
+            <td>{{fichaMedica.nombreVacuna}}</td>
+            <td>{{fichaMedica.diagnostico}}</td>
+            <td>{{fichaMedica.mascota}}</td>
+            <td>{{fichaMedica.veterinaria}}</td>
+            <td>{{fichaMedica.tratamiento}}</td>
+            <td>{{fichaMedica.descripcionTratamiento}}</td>
+            <td>
+                <button type="button" name="button" [routerLink]="['/fichas-medicas/editar', fichaMedica.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
+            </td>
+            <td>
+                <button type="button" name="eliminar" (click)='borrarFichasMedicas(fichaMedica.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>  

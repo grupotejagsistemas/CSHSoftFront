@@ -1,0 +1,38 @@
+<h5>Mascotas</h5>
+<div class="input-group">
+    <div class="input bg-white">
+        <input type="text" name="busquedaNombreMascota" class="form-control" placeholder="Buscar por nombre de mascota" [(ngModel)] ="busquedaNombreMascota" (change)="filtroNombreMascota(busquedaNombreMascota)">
+    </div>
+</div>
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success" type="button" [routerLink] = "['/historial/crear']">Nuevo historial</button>
+</div>
+<div *ngIf="historiales?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+<table class="table table-striped" *ngIf="historiales?.length>0">
+    <thead>
+        <tr>
+            <th>Voluntario</th>
+            <th>Domicilio </th>
+            <th>Mascota</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let historial of historiales |  paginate: { itemsPerPage: 10 , currentPage: p } ">
+            <td>{{historial.nombreVoluntario}}</td>
+            <td>{{historial.domicilioVoluntario}}</td>
+            <td>{{historial.nombreMascota}}</td>
+            <td>{{historial.fecha}}</td>
+            <td>
+                <button type="button" name="button" [routerLink]="['/historial/editar/', historial.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
+            </td>
+            <td>
+                <button type="button" name="eliminar" (click)='borrarHistorial(historial.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>  
+

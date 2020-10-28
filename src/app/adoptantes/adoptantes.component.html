@@ -1,0 +1,56 @@
+<h5 class="card-title" >Adoptantes</h5>
+            
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success" type="button" [routerLink] = "['/adoptantes/crear']">Nuevo Adoptante</button>
+</div>
+<div *ngIf="adoptantes?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+
+    <table id="table-responsive"class="table table-striped" *ngIf="adoptantes?.length>0">
+
+
+    <thead>
+        <tr>
+            <th>Numero formulario</th>
+            <th>Nombre</th>
+            <th>Fecha Nacimiento</th>
+            <th>Domicilio</th>
+            <th>Barrio</th>
+            <th>Celular</th>
+            <th>Email</th>
+            <th>Facebook</th>
+            <th>Instagram</th>
+            <th>Situación laboral</th>
+            <th>Observaciones</th>
+            <th>Estado adoptante</th>
+            <th>Mascota</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let adoptante of adoptantes  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
+            <td>{{adoptante.numeroFormulario}}</td>
+            <td>{{adoptante.nombreCompleto}}</td>
+            <td>{{adoptante.fechaNacimiento}}</td>
+            <td>{{adoptante.domicilio}}</td>
+            <td>{{adoptante.barrio}}</td>
+            <td>{{adoptante.celular}}</td>
+            <td>{{adoptante.email}}</td>
+            <td>{{adoptante.facebook}}</td>
+            <td>{{adoptante.instagram}}</td>
+            <td>{{adoptante.situacionLaboral}}</td>
+            <td>{{adoptante.observaciones}}</td>
+            <td>{{adoptante.estado_adoptante}}</td>
+            <td>{{adoptante.mascotaInteresada}}</td>
+
+            <td>
+                <button type="button" name="button" [routerLink]="['/adoptantes/editar/', adoptante.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
+            </td>
+            <td>
+                <button type="button" name="eliminar" (click)='borrarAdoptante(adoptante.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>  
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

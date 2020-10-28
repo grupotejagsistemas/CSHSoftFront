@@ -1,0 +1,103 @@
+<div class="card w-550 mx-auto " style="width: 525px;">
+    <div class="card-header"id="titulo" style="background-color: white;" *ngIf="!mascotaObj.id else elseTitulo">Nueva mascota</div>
+    <ng-template #elseTitulo>
+        <div class="card-header" id="titulo" style="background-color: white;">Modificar mascota</div>
+         </ng-template>
+    <div class="card-body mx-auto" style="width: 800px;">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <input type="text" class="form-control " placeholder="Nombre" name="nombre" [(ngModel)]="mascotaObj.nombre" required>
+                </div>
+            <style>
+            </style>
+            </div>
+            <label for="fechaNacimiento" class="col-form-label col-sm-4">Fecha de Nacimiento</label>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <input type="date" class="form-control" placeholder="Fecha de Nacimiento" name="fechaNacimiento" [(ngModel)]="mascotaObj.fechaNacimiento" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisicas" [(ngModel)]="mascotaObj.particularidadesFisicas" required></textarea> 
+                </div>
+            </div>
+            <label for="sexo" class="col-form-label col-sm-4">Sexo</label>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <select type="text" class="form-control " placeholder="Sexo" name="sexo" [(ngModel)]="mascotaObj.sexo" required>
+                        <option [value]=null> Seleccione sexo</option>
+                        <option>Macho</option>
+                        <option>Hembra</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class= "form-group col-md-7">
+                <div class="col-sm">
+
+                    <div class="input-group">
+                        <div class="custom-file">
+                          <input (change)="seleccionarFoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                          <label class="custom-file-label" for="inputGroupFile04">Seleccionar foto</label>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-sm">
+                    <img 
+                        *ngIf="mascotaObj?.fotoMascota" 
+                        src="http://localhost:8080/api/mascotas/upload/img/{{mascotaObj.fotoMascota}}" 
+                        alt="{{mascotaObj.fotoMascota}}" 
+                        class="img-thumbnail rounded"
+                    >
+                </div>
+            </div>
+            
+
+            <label for="fechaRescate" class="col-form-label col-sm-4">Fecha de rescate</label>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <input type="date" class="form-control" placeholder="Fecha de rescate" name="fechaRescate" [(ngModel)]="mascotaObj.fechaRescate" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaObj.lugarRescate" required></textarea> 
+
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <textarea type="text" maxlength="255"   class="form-control" style="resize:none" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaObj.descripcionRescate" required></textarea> 
+
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <input type="text" class="form-control " placeholder="Especie" name="especie" [(ngModel)]="mascotaObj.especie" required>
+
+                </div>
+            </div>
+            <label for="estado" class="col-form-label col-sm-2">Estado</label>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <select [compareWith]="compararEstado" class="form-control " type=number [(ngModel)]="mascotaObj.estado" name="estadoMascota">
+                    <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="my-4 text-right">
+                    <button class="btn btn-outline-success" role="button" (click)="agregar()" *ngIf="!mascotaObj.id else elseBlock" >
+                         Agregar
+                    </button>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-outline-success" role="button" (click)="modificar()">
+                            Modificar
+                        </button>
+                    </ng-template>
+            </div>
+            </div>
+        </form>
+    </div>

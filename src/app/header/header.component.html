@@ -1,28 +1,141 @@
-<nav class="navbar navbar-expand-lg navbar-light " style="background-color:#00396b" >
-    <a class="navbar-brand" href="#">{{title}}</a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#1C7C74"  >
+    <img src="/assets/img/csh1.png" width="110" height="50" class="d-inline-block align-top" alt="">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
     </button>
-  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a id="home" class="nav-link mx-1,5"  href="#">Home 
+                    <span class="sr-only">(current)</span>                
+                </a>
+                <style>
+                    #home {color: #ffffff}
+                </style>
+            </li>
+          
+
+        
+
+            <li  class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mx-1,5"  href="#" id="adop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Adoptantes
+                </a>
+                <style>
+                    #adop {color: #FFffff}
+                </style>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:#1C7C74" >
+                    <a id="adoptantes" class="nav-link" routerLink="/adoptantes">Adoptantes</a>
+                    <style>
+                        #adoptantes {color:#FFffff}
+                    </style>
+                    <a id="contratos" class="nav-link" routerLink="/contratos">Contratos</a>
+                    <style>
+                        #contratos {color:#FFffff}
+                    </style>
+                </div>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a id="fichas-medicas" class="nav-link mx-1,5" routerLink="/fichas-medicas">Ficha Médica</a>
+                <style>
+                    #fichas-medicas {color:#FFffff}
+                </style>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a id="mascotas" class="nav-link mx-1,5" routerLink="/mascotas">Mascotas</a>
+                <style>
+                    #mascotas {color:#FFffff}
+                </style>
+            </li>
+            <li  class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mx-1,5"  href="#" id="adop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Movimientos
+                </a>
+                <style>
+                    #adop {color: #FFffff}
+                </style>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:#1C7C74" >
+                    <a id="movimientosRecursos" class="nav-link" routerLink="/movimientos-recursos">Movimientos Recursos</a>
+                    <style>
+                        #movimientosRecursos {color:#FFffff}
+                    </style>
+                    <a id="movimientosMonetarios" class="nav-link" routerLink="/movimientos-monetarios">Movimientos Monetarios</a>
+                    <style>
+                        #movimientosMonetarios {color:#FFffff}
+                    </style>
+                </div>
+            </li>
+            <li class="nav-item " routerLinkActive="active">
+                <a id="veterinarias" class="nav-link mx-1,5" routerLink="/veterinarias">Veterinarias</a>
+                <style>
+                    #veterinarias {color: #ffffff}
+                </style>
+            </li>
+            <li  class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"  href="#" id="adop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Voluntarios
+                </a>
+                <style>
+                    #adop {color: #FFffff}
+                </style>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:#1C7C74" >
+                    <a id="voluntarios" class="nav-link" routerLink="/voluntarios">Voluntarios</a>
+                    <style>
+                        #voluntarios {color:#FFffff}
+                    </style>
+                    <a id="historialVoluntarios" class="nav-link" routerLink="/historial">Historial</a>
+                    <style>
+                        #historialVoluntarios {color:#FFffff}
+                    </style>
+                </div>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a id="recordatorios" class="nav-link" routerLink="/recordatorios">Recordatorios</a>
+                <style>
+                    #recordatorios {color:#FFffff}
+                </style>
+            </li>
+            <li  class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"  href="#" id="configuraciones" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Configuraciones
+                </a>
+                <style>
+                    #configuraciones {color: #FFffff}
+                </style>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:#1C7C74" >
+                    <a id="registrarUsuario" class="nav-link" routerLink="/registrar-usuario">Registrar usuario</a>
+                    <style>
+                        #registrarUsuario {color:#FFffff}
+                    </style>
+                    <a id="cambiarContrasena" class="nav-link" routerLink="/cambiar-contrasena">Cambiar contraseña</a>
+                    <style>
+                        #cambiarContrasena {color:#FFffff}
+                    </style>
+                    <a id="eliminarUsuario" class="nav-link" routerLink="/eliminar-usuario">Elminar usuario</a>
+                    <style>
+                        #eliminarUsuario {color:#FFffff}
+                    </style>
+                    <a id="modifTipoUsuario" class="nav-link" routerLink="/modificacion-tipo-usuario">Modificar tipo usuario</a>
+                    <style>
+                        #modifTipoUsuario {color:#FFffff}
+                    </style>
+                </div>
+            </li>
+
+       </ul>     
+       <ul class="navbar-nav navbar-right">
+        <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-light">Iniciar Sesión</a></li>
+  
+        <li *ngIf="authService.isAuthenticated()" class="dropdown">
+          <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{authService.usuario.username}}
+          </a>
+  
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+             <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesión</button>
+          </div>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink ="/voluntarios">Voluntarios</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/veterinarias">Veterinarias</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" routerLink="/mascotas">Mascotas</a>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-    <a class="nav-link" routerLink="/fichas-medicas">Ficha Médica</a>
-  </li>
       </ul>
-    
     </div>
-  </nav>
+</nav>
    

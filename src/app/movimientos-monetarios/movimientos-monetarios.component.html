@@ -1,0 +1,29 @@
+<h5 >Movimientos Monetarios</h5>
+
+<div class="my-4 text-right" >
+    <button class="btn btn-outline-success"  type="button" [routerLink] = "['/movimientos-monetarios/crear']">Nuevo Movimiento Monetario</button>
+</div>
+<div *ngIf="movimientosMonetarios?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+<table class="table table-striped" *ngIf="movimientosMonetarios?.length>0">
+    <thead>
+        <tr>
+            <th>Autor</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Medio</th>
+            <th>Movimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let movimientoMonetario of movimientosMonetarios |  paginate: { itemsPerPage: 10 , currentPage: p } ">
+            <td>{{movimientoMonetario.autor}}</td>
+            <td>{{movimientoMonetario.fecha}}</td>
+            <td>{{movimientoMonetario.monto}}</td>
+            <td>{{movimientoMonetario.medio}}</td>
+            <td>{{movimientoMonetario.tipoMovimiento}}</td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>  

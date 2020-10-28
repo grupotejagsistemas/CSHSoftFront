@@ -12,42 +12,76 @@ export class VeterinariasComponent implements OnInit {
 
 
   veterinarias : Veterinaria[];
+  busquedaRazonSocial: string;
+  checked: boolean; 
+  checkedNo: boolean;
+  p: number = 1;
 
   constructor(private veterinariaService: VeterinariaService) {
 
   }
 
   ngOnInit(): void {
-    this.veterinariaService.getVeterinarias().subscribe(
-      veterinarias => this.veterinarias = veterinarias
-    );
+
+    this.veterinariaService.getVeterinarias().subscribe((data: any) => {
+      this.veterinarias = data;
+
+    });
+
   }
 
-  delete(veterinaria: Veterinaria): void {
-    swal.fire({
-      title: '',
-      text: `¿Desea eliminar la veterinaria ${veterinaria.razonSocial}?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: 'Cancelar',
-      confirmButtonText: 'Confirmar'
-    }).then((result) => {
-      if (result.value) {
-
-        console.log('se elimino: ', veterinaria)
-        this.veterinariaService.delete(veterinaria.id).subscribe(
-          response => {
-            this.veterinarias = this.veterinarias.filter(vet => vet !== veterinaria)
-            swal.fire(
-              'Eliminado!',
-              '',
-              'success',
-              )
-            }
-        )
-      }
+  filtroRazonSocial(razonSocial: string): void{
+    this.veterinariaService.getVeterinariasRazonSocial(razonSocial).subscribe((data: any) => {
+      this.veterinarias = data;
+      
     })
   }
 
+  filtroInternacion(): void {
+    if(this.checked === true){
+      this.veterinariaService.filtrarInternacion("si").subscribe((data: any) => {
+        this.veterinarias = data;
+        this.checkedNo = false;
+      })
+    } else {
+      this.veterinariaService.getVeterinarias().subscribe((data: any) => {
+      this.veterinarias = data;
+    })
+    }
+  }
+
+  filtroNoInternacion(): void {
+    if(this.checkedNo === true){
+      this.veterinariaService.filtrarNoInternacion("no").subscribe((data: any) => {
+        this.veterinarias = data;
+        this.checked = false;
+      })
+    } else {
+      this.veterinariaService.getVeterinarias().subscribe((data: any) => {
+        this.veterinarias = data;
+      })
+    }
+  }
+
+  borrarVeterinaria(id: number, veterinaria: string): void {
+    console.log('vet', id)
+      swal.fire({
+        text: `¿Desea eliminar la veterinaria ${veterinaria}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: 'Cancelar',
+        confirmButtonText: 'Confirmar'
+      }).then((result) => {
+        if (result.value) {
+          console.log('id', id)
+          this.veterinariaService.borrarVeterinaria(id).subscribe(
+            () => {
+              this.veterinarias = this.veterinarias.filter(vet => vet.id !== id);
+            }
+          )
+
+        }
+      })
+  }
 }

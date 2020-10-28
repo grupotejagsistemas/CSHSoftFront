@@ -1,30 +1,36 @@
-        <h5 class="card-title" >Voluntarios</h5>
-        <div class="form-group">
+        <h5  >Voluntarios</h5>
             <div class="input-group">
-                <div class="input-group-text bg-white">
-                    <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="voluntarioService.busquedaNombre">
-                </div>
-                <div class="input-group-text bg-white">
-                    <input type="text" name="busquedaTransito" class="form-control" placeholder="Buscar por tránsito" [(ngModel)]="voluntarioService.busquedaTransito">
-                </div>
-                <div class="input-group-text bg-white">
-                    <input type="text" name="busquedaTraslado" class="form-control" placeholder="Buscar por traslado" [(ngModel)]="voluntarioService.busquedaTraslado">
-                </div>
-                <div class="input-group-text bg-white">
-                    <input type="text" name="busquedaPresencial" class="form-control" placeholder="Buscar por presencial" [(ngModel)]="voluntarioService.busquedaPresencial">
+                <div class="input bg-white">
+                    <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
                 </div>
             </div>
-        </div>
-        <div class="my-2 text-left" >
-            <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
-        </div>
+            <div class="form-row">
+                <label for="transito" class="col-form-label col-sm-2"> Transito</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="transito" name="transito" [(ngModel)]="checkedTransito" (change)="filtroTransito()">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="traslado" class="col-form-label col-sm-2"> Traslado</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="traslado" name="traslado" [(ngModel)]="checkedTraslado" (change)="filtroTraslado()">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="presencial" class="col-form-label col-sm-2"> Presencial</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="presencial" name="presencial" [(ngModel)]="checkedPresencial" (change)="filtroPresencial()">
+                </div>
+            </div>
+            <div class="my-4 text-right" >
+                <button class="btn btn-outline-success" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
+            </div>
         <div *ngIf="voluntarios?.length==0" class="alert alert-info">
             No se encontraron datos registrados
         </div>
         <table class="table table-striped" *ngIf="voluntarios?.length>0">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Télefono</th>
                     <th>Dirección</th>
@@ -32,26 +38,27 @@
                     <th>Tránsito</th>
                     <th>Traslado</th>
                     <th>Presencial</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let voluntario of voluntarios|busquedaNombre:'nombreCompleto:voluntarioService.busquedaNombre'">
-                    <td>{{voluntario.idVoluntario}}</td>
-                    <td>{{voluntario.nombreCompleto}}</td>
+                <tr *ngFor="let voluntario of voluntarios |  paginate: { itemsPerPage: 10 , currentPage: p }" >
+                    <td>{{voluntario.nombrecompleto}}</td>
                     <td>{{voluntario.telefono}}</td>
                     <td>{{voluntario.direccion}}</td>
-                    <td>{{voluntario.zona}}</td>
+                    <td>{{voluntario.localidad}}</td>
                     <td>{{voluntario.transito}}</td>
                     <td>{{voluntario.traslado}}</td>
                     <td>{{voluntario.presencial}}</td>
                     <td>
-                        <button type="button" name="button" [routerLink]="['/voluntarios/editar', voluntario.id]" class="btn btn-primary">Editar</button>
+                        <button class="btn btn-outline" type="button" name="button" [routerLink]="['/voluntarios/editar/', voluntario.id]"><i class='fas fa-pen'></i></button>
                     </td>
                     <td>
-                        <button type="button" name="eliminar" (click)='delete(voluntario)' class="btn btn-danger btn-sm">Eliminar</button>
+                        <button class="btn btn-outline" type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id, voluntario.nombrecompleto)' ><i class='fas fa-trash'></i></button>
                     </td>
                 </tr>
             </tbody>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </table>  
+
+

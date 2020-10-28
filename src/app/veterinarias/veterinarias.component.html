@@ -1,7 +1,23 @@
-        <h5 class="card-title" >Veterinarias</h5>
-            
-        <div class="my-2 text-left" >
-            <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/veterinarias/crear']">Nueva veterinaria</button>
+        <h5>Veterinarias</h5>
+            <div class="input-group">
+                <div class="input bg-white">
+                    <input type="text" name="busquedaRazonSocial" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaRazonSocial" (change)="filtroRazonSocial(busquedaRazonSocial)">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="internacion" class="col-form-label col-sm-2"> Internacion</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="internacion" name="internacion" [(ngModel)]="checked" (change)="filtroInternacion()">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="noInternacion" class="col-form-label col-sm-2"> No Internacion</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" placeholder="noInternacion" name="noInternacion" [(ngModel)]="checkedNo" (change)="filtroNoInternacion()">
+                </div>
+            </div>
+        <div class="my-4 text-right" >
+            <button class="btn btn-outline-success" type="button" [routerLink] = "['/veterinarias/crear']">Nueva veterinaria</button>
         </div>
         <div *ngIf="veterinarias?.length==0" class="alert alert-info">
             No se encontraron datos registrados
@@ -15,10 +31,11 @@
                     <th>Dirección</th>
                     <th>Internación Cercana</th>
                     <th>Observación</th>
+
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let veterinaria of veterinarias">
+                <tr *ngFor="let veterinaria of veterinarias |  paginate: { itemsPerPage: 10 , currentPage: p } ">
                     <td>{{veterinaria.id}}</td>
                     <td>{{veterinaria.razonSocial}}</td>
                     <td>{{veterinaria.horarioAtencion}}</td>
@@ -26,12 +43,13 @@
                     <td>{{veterinaria.internacion}}</td>
                     <td>{{veterinaria.observacion}}</td>
                     <td>
-                        <button type="button" name="button" [routerLink]="['/veterinarias/editar', veterinaria.id]" class="btn btn-primary">Editar</button>
+                        <button type="button" name="button" [routerLink]="['/veterinarias/editar', veterinaria.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
                     </td>
                     <td>
-                        <button type="button" name="eliminar" (click)='delete(veterinaria)' class="btn btn-danger btn-sm">Eliminar</button>
+                        <button type="button" name="eliminar" (click)='borrarVeterinaria(veterinaria.id, veterinaria.razonSocial)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </table>  
 

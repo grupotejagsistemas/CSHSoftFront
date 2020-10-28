@@ -10,8 +10,12 @@ import swal from 'sweetalert2';
 })
 export class VoluntariosComponent implements OnInit {
 
-
+  busquedaNombre: string;
   voluntarios: Voluntario[];
+  checkedTransito: boolean;
+  checkedTraslado: boolean;
+  checkedPresencial: boolean;
+  p: number = 1;
 
   constructor(public voluntarioService: VoluntarioService) {
 
@@ -22,37 +26,79 @@ export class VoluntariosComponent implements OnInit {
     this.voluntarioService.getVoluntarios().subscribe((data: any) => {
 
       this.voluntarios = data;
-      console.log('array de voluntarios: ' + this.voluntarios);
 
     });
 
   }
 
-  // delete(voluntario: Voluntario): void {
-  //   swal.fire({
-  //     title: '',
-  //     text: `¿Desea eliminar al voluntario ${voluntario.nombreCompleto}?`,
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: 'Cancelar',
-  //     confirmButtonText: 'Confirmar'
-  //   }).then((result) => {
-  //     if (result.value) {
+  filtroNombre(nombre: string): void{
+    this.voluntarioService.getVoluntariosNombre(nombre).subscribe((data: any) => {
+      this.voluntarios = data;
+      
+    })
+  }
 
-  //       console.log('se elimino: ', voluntario)
-  //       this.voluntarioService.delete(voluntario.id).subscribe(
-  //         response => {
-  //           this.voluntarios = this.voluntarios.filter(vol => vol !== voluntario)
-  //           swal.fire(
-  //             'Eliminado!',
-  //             '',
-  //             'success',
-  //             )
-  //           }
-  //       )
-  //     }
-  //   })
-  // }
+  filtroPresencial(): void{
+    if(this.checkedPresencial === true) {
+      this.voluntarioService.filtrarPresencial("presencial").subscribe((data: any) => {
+        this.voluntarios = data;
+        this.checkedTransito = false;
+        this.checkedTraslado = false;
+      })
+    } else {
+      this.voluntarioService.getVoluntarios().subscribe((data: any) => {
+        this.voluntarios = data; 
+      })
+    }
+  }
 
+  filtroTransito(): void {
+    if(this.checkedTransito === true){
+      this.voluntarioService.filtrarTransito("transito").subscribe((data: any) => {
+        this.voluntarios = data; 
+        this.checkedPresencial = false;
+        this.checkedTraslado = false; 
+      })
+    } else {
+      this.voluntarioService.getVoluntarios().subscribe((data: any) => {
+        this.voluntarios = data;
+      })
+    }
+  }
+
+  filtroTraslado(): void {
+    if(this.checkedTraslado === true){
+      this.voluntarioService.filtrarTraslado("traslado").subscribe((data: any) => {
+        this.voluntarios = data;
+        this.checkedPresencial = false; 
+        this.checkedTransito = false; 
+      })
+    } else {
+      this.voluntarioService.getVoluntarios().subscribe((data: any) => {
+        this.voluntarios = data;
+      })
+    }
+  }
+
+  borrarVoluntario(id: number, voluntario: string): void {
+
+      console.log(voluntario)
+      swal.fire({
+        title: '',
+        text: `¿Desea eliminar al voluntario ${voluntario} ?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: 'Cancelar',
+        confirmButtonText: 'Confirmar'
+      }).then((result) => {
+        if (result.value) {
+            this.voluntarioService.borrarVoluntario(id).subscribe(
+              () => {
+                this.voluntarios = this.voluntarios.filter(vol => vol.id !== id);
+              }
+            )
+        }
+      })
+  }
 }

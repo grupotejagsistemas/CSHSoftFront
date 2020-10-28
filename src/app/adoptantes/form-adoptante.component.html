@@ -1,0 +1,117 @@
+<!--<div class="card w-550 mx-auto " style="width: 525px;">
+    <div class="card-header" id="titulo" style="background-color: white;">{{titulo}} </div>
+        <div class="card-body mx-auto" style="width: 800px;">
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control resizedTexbox" placeholder="Número de formulario" name="numeroFormulario"  [(ngModel)]="adoptante.numeroFormulario" required>
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>
+                </div>
+                <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <select type="select" class="form-control resizedTexbox" name="mascota" [(ngModel)]="adoptante.mascota" required>
+                            <option *ngFor="let mascota of mascotas" [ngValue]="mascota">
+                                {{mascota.nombre}}
+                            </option>
+                        </select>
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control resizedTexbox" placeholder="Nombre completo" name="nombreCompleto" [(ngModel)]="adoptante.nombreCompleto" required>
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control resizedTexbox" placeholder="Fecha nacimiento" name="fechaNacimiento" [(ngModel)]="adoptante.fechaNacimiento" required>
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>              
+                </div>
+                <div></div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control resizedTexbox" placeholder="Domicilio" name="domicilio" [(ngModel)]="adoptante.domicilio" required>
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control resizedTexbox" placeholder="Barrio" name="barrio" [(ngModel)]="adoptante.barrio" required>
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text"class="form-control resizedTexbox" placeholder="Celular"  name="celular" [(ngModel)]="adoptante.celular">
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control resizedTexbox" placeholder="Email"  name="email" [(ngModel)]="adoptante.email">
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control resizedTexbox" placeholder="Facebook"  name="facebook" [(ngModel)]="adoptante.facebook">
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text"class="form-control resizedTexbox" placeholder="Instagram"   name="instagram" [(ngModel)]="adoptante.instagram">
+                        <style>
+                            .resizedTexbox {width: 485px; height: 25px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <textarea maxlength="255" style="resize:none"  type="text" class="form-control resizedTexboxx" placeholder="Situación laboral" name="situacionLaboral" [(ngModel)]="adoptante.situacionLaboral" ></textarea>
+                        <style>
+                            .resizedTexboxx {width: 485px; height: 80px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <textarea type="text" maxlength="255"  style="resize:none" class="form-control resizedTexboxx" placeholder="Observaciones"  name="observaciones" [(ngModel)]="adoptante.observaciones"></textarea>
+                        <style>
+                            .resizedTexboxx {width: 485px; height: 80px;}
+                        </style>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!adoptante.idEstadoAdoptante else elseBlock">Agregar</button>
+                        <ng-template #elseBlock>
+                            <button class="btn btn-primary" role="button" (click)='update()'>Modificar</button>
+                        </ng-template>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>-->

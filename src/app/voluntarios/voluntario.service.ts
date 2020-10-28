@@ -14,63 +14,49 @@ import { environment } from 'src/environments/environment';
 export class VoluntarioService {
 
   private urlAPI: string = environment.urlCSH;
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-  busquedaNombre: '';
-  busquedaPresencial: '';
-  busquedaTransito: '';
-  busquedaTraslado: '';
+
 
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getVeterinarias(): Observable<Veterinaria[]> {
-    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinarias`) 
 
+  getVeterinarias(): Observable<Veterinaria[]> {
+    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`);
   }
 
   getVoluntarios(): Observable<Voluntario[]> {
-    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntarios`);
+    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario`);
   }
 
-  create(voluntario: Voluntario) : Observable<Voluntario>{
-    return this.http.post(this.urlAPI, voluntario, {headers: this.httpHeaders}).pipe(
-      map( (response: any) => response.voluntario as Voluntario),
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al crear al voluntario', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
+  getVoluntariosNombre(nombre: any): Observable<Voluntario[]> {
+    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario/filtrar?nombre=${nombre}`);
+  }
+
+  crearVoluntario(voluntario: any) {
+    return this.http.post(`${this.urlAPI}/voluntario`, voluntario);
   } 
 
-  getVoluntario(id): Observable<Voluntario>{
-    return this.http.get<Voluntario>(`${this.urlAPI}/${id}`).pipe(
-      catchError(e => {
-        this.router.navigate(['/voluntarios']);
-        console.error(e.error.mensaje);
-        swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError(e);
-      })
-    );
+  getVoluntario(id: number): Observable<Voluntario>{
+    return this.http.get<Voluntario>(`${this.urlAPI}/voluntario/${id}`);
   }
 
-  update(voluntario: Voluntario): Observable<any>{
-    return this.http.put<any>(`${this.urlAPI}/${voluntario.idVoluntario}`, voluntario, {headers:this.httpHeaders}).pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al modificar al voluntario', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
+  modificarVoluntario(voluntario: any) {
+    return this.http.put(`${this.urlAPI}/voluntario/${voluntario.id}`, voluntario);
+   }
+
+  borrarVoluntario(id: number) {
+     return this.http.delete(`${this.urlAPI}/voluntario/${id}`);
   }
 
-  delete(id: number): Observable<Voluntario>{
-    return this.http.delete<Voluntario>(`${this.urlAPI}/${id}`, {headers: this.httpHeaders}).pipe(
-      catchError(e => {
-        console.log(e.error.mensaje);
-        swal.fire('Error al eliminar al voluntario', e.error.mensaje, 'error')
-        return throwError(e);
-      })
-    )
+  filtrarPresencial(presencial: string){
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${presencial}`);
+  }
+
+  filtrarTransito(transito: string){
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${transito}`);
+  }
+
+  filtrarTraslado(traslado: string){
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${traslado}`);
   }
 }

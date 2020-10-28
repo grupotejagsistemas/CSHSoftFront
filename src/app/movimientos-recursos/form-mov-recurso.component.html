@@ -1,0 +1,40 @@
+<div class="card" >
+    <div class="card-header" id="titulo" style="background-color: white;">{{titulo}} </div>
+        <div class="card-body"> 
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" placeholder="Autor" name="donante" [(ngModel)]= "movRecObj.donante">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <textarea type="text" maxlength="255"  style="resize:none"  class="form-control" placeholder="Descripción" name="descripcion" [(ngModel)]= "movRecObj.descripcion"> </textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <input type="text" class="form-control" placeholder="Cantidad" name="cantidad" [(ngModel)]= "movRecObj.cantidad"required  >
+                    </div>
+                </div>
+                    <label for="idTipoMovimiento" class="col-form-label col-md-8">Tipo Movimiento</label>
+                    <div class="form-group row">
+                        <div class="col-md-8">
+                            <select class="form-control" type = number [(ngModel)] = "movRecObj.idTipoMovimiento" name = "idTipoMovimiento">
+                            <option *ngFor = "let tipoMovimiento of tiposMovimientos" [value] = "tipoMovimiento.id">{{tipoMovimiento.descripcion}}</option>
+                        </select>
+                        </div>
+                    </div>
+                    <label for="fecha" class="col-form-label col-md-8">Fecha </label>
+                    <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <input type="date" class="form-control " name="fecha" [(ngModel)]="movRecObj.fecha" required>
+                            </div>
+                    </div>
+                <div class = "form-group row">
+                    <div class = "col-sm-6">
+                        <button class = "btn btn-outline-success" role = "button" (click) = 'agregar()'>Agregar</button>
+                    </div>
+                </div>
+            </form>
+    </div>
