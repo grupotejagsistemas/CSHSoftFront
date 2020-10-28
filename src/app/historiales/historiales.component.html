@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let historial of historiales ">
+        <tr *ngFor="let historial of historiales |  paginate: { itemsPerPage: 10 , currentPage: p } ">
             <td>{{historial.nombreVoluntario}}</td>
             <td>{{historial.domicilioVoluntario}}</td>
             <td>{{historial.nombreMascota}}</td>
@@ -33,5 +33,6 @@
             </td>
         </tr>
     </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>  
 

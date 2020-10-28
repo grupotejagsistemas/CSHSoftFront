@@ -10,6 +10,7 @@ import { RecordatorioService } from './recordatorio.service';
 export class RecordatoriosComponent implements OnInit {
 
   recordatorios: Recordatorio[];
+  p: number = 1;
 
   constructor(public recordatorioService: RecordatorioService) { }
 

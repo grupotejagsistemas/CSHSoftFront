@@ -80,10 +80,12 @@ export class VoluntariosComponent implements OnInit {
     }
   }
 
-  borrarVoluntario(id: number, i: number): void {
+  borrarVoluntario(id: number, voluntario: string): void {
+
+      console.log(voluntario)
       swal.fire({
         title: '',
-        text: `¿Desea eliminar al voluntario ?`,
+        text: `¿Desea eliminar al voluntario ${voluntario} ?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -91,8 +93,11 @@ export class VoluntariosComponent implements OnInit {
         confirmButtonText: 'Confirmar'
       }).then((result) => {
         if (result.value) {
-          this.voluntarios.splice(i, 1)
-            this.voluntarioService.borrarVoluntario(id).subscribe()
+            this.voluntarioService.borrarVoluntario(id).subscribe(
+              () => {
+                this.voluntarios = this.voluntarios.filter(vol => vol.id !== id);
+              }
+            )
         }
       })
   }

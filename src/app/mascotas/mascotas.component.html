@@ -38,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let mascota of mascotas">
+        <tr *ngFor="let mascota of mascotas|  paginate: { itemsPerPage: 10 , currentPage: p } ">
             <td>
                 <img 
                     *ngIf="mascota?.fotoMascota else elseImagen" 
@@ -68,10 +68,10 @@
                 <button type="button" name="button" [routerLink]="['/mascotas/editar/', mascota.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
             </td>
             <td>
-                <button type="button" name="eliminar" (click)='borrarMascota(mascota.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
+                <button type="button" name="eliminar" (click)='borrarMascota(mascota.id, mascota.nombre)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
             </td>
         </tr>
     </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>  
-<!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->
 

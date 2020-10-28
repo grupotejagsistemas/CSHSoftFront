@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let contrato of contratos">
+        <tr *ngFor="let contrato of contratos  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
             <td>{{contrato.adoptante}}</td>
             <td>{{contrato.mascota}}</td>
             <td>{{contrato.nuevoNombre}}</td>
@@ -29,5 +29,5 @@
 
         </tr>
     </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>
-<!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->

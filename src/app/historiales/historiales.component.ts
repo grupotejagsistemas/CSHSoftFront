@@ -12,7 +12,7 @@ export class HistorialesComponent implements OnInit {
 
   busquedaNombreMascota: string; 
   historiales: Historial[];
-
+  p: number = 1;
   
   constructor(public historialService: HistorialService) { }
 

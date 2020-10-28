@@ -30,6 +30,10 @@ export class FormMovMonetarioComponent implements OnInit {
     this.movimientoMonetarioService.getTipoMovimiento()
     .subscribe((resp: any) => {
       this.tiposMovimientos = resp;
+      this.tiposMovimientos.unshift({
+        descripcion: 'Seleccione un tipo de movimiento',
+        id: null
+      })
     })
   }
 
