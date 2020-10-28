@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let recordatorio of recordatorios">
+        <tr *ngFor="let recordatorio of recordatorios |  paginate: { itemsPerPage: 10 , currentPage: p } ">
             <td>{{recordatorio.descripcionRecordatorio}}</td>
             <td>{{recordatorio.fecha}}</td>
             <td>
@@ -21,4 +21,6 @@
             </td>
         </tr>
     </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>  
+

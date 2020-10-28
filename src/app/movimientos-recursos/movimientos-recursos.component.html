@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let movimientoRecurso of movimientosRecursos">
+        <tr *ngFor="let movimientoRecurso of movimientosRecursos |  paginate: { itemsPerPage: 10 , currentPage: p } ">
             <td>{{movimientoRecurso.donante}}</td>
             <td>{{movimientoRecurso.fecha}}</td>
             <td>{{movimientoRecurso.descripcion}}</td>
@@ -25,5 +25,5 @@
             <td>{{movimientoRecurso.tipoMovimiento}}</td>
         </tr>
     </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>  
-<!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->

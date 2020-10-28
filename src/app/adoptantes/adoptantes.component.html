@@ -6,7 +6,10 @@
 <div *ngIf="adoptantes?.length==0" class="alert alert-info">
     No se encontraron datos registrados
 </div>
-<table class="table table-striped" *ngIf="adoptantes?.length>0">
+
+    <table id="table-responsive"class="table table-striped" *ngIf="adoptantes?.length>0">
+
+
     <thead>
         <tr>
             <th>Numero formulario</th>
@@ -25,7 +28,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let adoptante of adoptantes">
+        <tr *ngFor="let adoptante of adoptantes  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
             <td>{{adoptante.numeroFormulario}}</td>
             <td>{{adoptante.nombreCompleto}}</td>
             <td>{{adoptante.fechaNacimiento}}</td>
@@ -49,3 +52,5 @@
         </tr>
     </tbody>
 </table>  
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
