@@ -18,97 +18,42 @@ export class MascotaService {
   
   constructor(private http: HttpClient, private router: Router) { }
 
-  private isNoAutorizado(e): boolean {
-    if(e.status == 401 || e.status==403){
-      this.router.navigate(['/login'])
-      return true;
-    }
-    return false;
-  }
 
   getMascotas(): Observable<Mascota[]> {
-    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas`).pipe(
-      catchError(e => {
-        this.isNoAutorizado(e);
-        return throwError(e);
-      })
-    );
+    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas`);
   }
 
   getEstados(): Observable<EstadoMascota[]> {
-    return this.http.get<EstadoMascota[]>(`${this.urlAPI}/estadoMascota`)
+    return this.http.get<EstadoMascota[]>(`${this.urlAPI}/estadoMascota`);
   }
  
 
   getMascotasNombre(nombre: any): Observable<Mascota[]> {
-    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas/filtrar?nombre=${nombre}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError(e);
-        }
-      })
-    );
+    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas/filtrar?nombre=${nombre}`);
   }
 
   crearMascota(mascota: any) {
-    return this.http.post(`${this.urlAPI}/mascotas`, mascota).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError(e)
-        }
-      })
-    );
-
+    return this.http.post(`${this.urlAPI}/mascotas`, mascota);
   }
 
   getMascota(id: number): Observable<Mascota> {
-    return this.http.get<Mascota>(`${this.urlAPI}/mascotas/${id}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    )
+    return this.http.get<Mascota>(`${this.urlAPI}/mascotas/${id}`);
   }
 
   modificarMascota(mascota: any){
-    return this.http.put(`${this.urlAPI}/mascotas/${mascota.id}`, mascota).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.put(`${this.urlAPI}/mascotas/${mascota.id}`, mascota);
   }
 
   borrarMascota(id: number){ 
-    return this.http.delete(`${this.urlAPI}/mascotas/${id}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.delete(`${this.urlAPI}/mascotas/${id}`);
   }
   
   filtroMascotaMacho(sexo: string){
-    return this.http.get(`${this.urlAPI}/mascotas/filtrarSexo?sexo=${sexo}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.get(`${this.urlAPI}/mascotas/filtrarSexo?sexo=${sexo}`);
   }
 
   filtroMascotaHembra(sexo: string){ 
-    return this.http.get(`${this.urlAPI}/mascotas/filtrarSexo?sexo=${sexo}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.get(`${this.urlAPI}/mascotas/filtrarSexo?sexo=${sexo}`);
   }
 
   subirFoto(file: File, id): Observable<Mascota>{
@@ -119,12 +64,7 @@ export class MascotaService {
     formData.append('id', id);
 
     return this.http.post(`${this.urlAPI}/mascotas/upload`, formData).pipe(
-      map((resp: any) => resp.mascota as Mascota),
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+      map((resp: any) => resp.mascota as Mascota)
+      )
   }
 }

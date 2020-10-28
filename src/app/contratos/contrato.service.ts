@@ -27,66 +27,29 @@ export class ContratoService {
     return this.httpHeaders;
   }
 
-  private isNoAutorizado(e): boolean {
-    if(e.status == 401){
-      if(this.authService.isAuthenticated()){
-        this.authService.logout();
-      }
-      this.router.navigate(['/login'])
-      return true;
-    }
-
-    if(e.status === 403){
-      this.router.navigate(["/"]);
-      return true;
-    }
-    return false;
-  }
 
   getContratos(): Observable<Contrato[]> {
-    return this.http.get<Contrato[]>(`${this.urlAPI}/contrato`, {headers: this.agregarAuthorizationHeader()}).pipe(
-      catchError(e => {
-        this.isNoAutorizado(e);
-          return throwError(e);
-      })
-    );
+    return this.http.get<Contrato[]>(`${this.urlAPI}/contrato`)
   }
 
   getContratosMascota(mascota: any): Observable<Contrato[]>{
-    return this.http.get<Contrato[]>(`${this.urlAPI}/contrato/filtrar?nombreMascota=${mascota}`,  {headers: this.agregarAuthorizationHeader()}).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.get<Contrato[]>(`${this.urlAPI}/contrato/filtrar?nombreMascota=${mascota}`)
   }
 
   getMascotas(): Observable<Mascota[]>{
-    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas`, {headers: this.agregarAuthorizationHeader()} )
+    return this.http.get<Mascota[]>(`${this.urlAPI}/mascotas` )
   }
 
   getAdoptantes(): Observable<Adoptante[]>{
-    return this.http.get<Adoptante[]>(`${this.urlAPI}/adoptante`,  {headers: this.agregarAuthorizationHeader()})
+    return this.http.get<Adoptante[]>(`${this.urlAPI}/adoptante`)
   }
 
   crearContrato(contrato: any) {
-    return this.http.post(`${this.urlAPI}/contrato`, contrato,  {headers: this.agregarAuthorizationHeader()}).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    )
+    return this.http.post(`${this.urlAPI}/contrato`, contrato)
   }
 
   exportPdfProducts(id: number): Observable<Blob>{
-    return this.http.get(`${this.urlAPI}/export/pdf/${id}`, {responseType: 'blob'}).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    )
+    return this.http.get(`${this.urlAPI}/export/pdf/${id}`, {responseType: 'blob'})
   }
+
 }

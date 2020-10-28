@@ -17,92 +17,36 @@ export class VeterinariaService {
   
   constructor(private http: HttpClient, private router: Router) { }
 
-  private isNoAutorizado(e): boolean {
-    if(e.status == 401 || e.status==403){
-      this.router.navigate(['/login'])
-      return true;
-    }
-    return false;
-  }
-
 
   getVeterinarias(): Observable<Veterinaria[]> {
-    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`).pipe(
-      catchError(e => {
-        this.isNoAutorizado(e);
-        return throwError(e);
-      })
-    );
+    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`);
   }
 
   getVeterinariasRazonSocial(razonSocial: any): Observable<Veterinaria[]> {
-    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria/filtrar?razonSocial=${razonSocial}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError(e);
-        }
-      })
-    )
+    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria/filtrar?razonSocial=${razonSocial}`);
   }
 
   crearVeterinaria(veterinaria: Veterinaria) {
-    return this.http.post(`${this.urlAPI}/veterinaria`, veterinaria).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    )
+    return this.http.post(`${this.urlAPI}/veterinaria`, veterinaria);
   }
 
   getVeterinaria(id: number): Observable<Veterinaria>{
-    return this.http.get<Veterinaria>(`${this.urlAPI}/veterinaria/${id}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    )
+    return this.http.get<Veterinaria>(`${this.urlAPI}/veterinaria/${id}`);
   }
 
   modificarVeterinaria(veterinaria: Veterinaria) {
-    return this.http.put(`${this.urlAPI}/veterinaria/${veterinaria.id}`, veterinaria).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    )
+    return this.http.put(`${this.urlAPI}/veterinaria/${veterinaria.id}`, veterinaria);
   }
 
   borrarVeterinaria(id: number) {
-    return this.http.delete(`${this.urlAPI}/veterinaria/${id}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.delete(`${this.urlAPI}/veterinaria/${id}`);
  }
 
  filtrarInternacion(internacion: string){
-   return this.http.get(`${this.urlAPI}/veterinaria/filtrarInternacion?internacion=${internacion}`).pipe(
-     catchError(e => {
-       if(this.isNoAutorizado(e)){
-         return throwError;
-       }
-     })
-   );
+   return this.http.get(`${this.urlAPI}/veterinaria/filtrarInternacion?internacion=${internacion}`);
  }
 
  filtrarNoInternacion(internacion: string){
-   return this.http.get(`${this.urlAPI}/veterinaria/filtrarInternacion?internacion=${internacion}`).pipe(
-     catchError(e => {
-       if(this.isNoAutorizado(e)){
-         return throwError;
-       }
-     })
-   )
+   return this.http.get(`${this.urlAPI}/veterinaria/filtrarInternacion?internacion=${internacion}`);
  }
- 
 }

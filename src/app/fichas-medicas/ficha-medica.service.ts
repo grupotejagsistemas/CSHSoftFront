@@ -31,12 +31,7 @@ export class FichaMedicaService {
         }
       
     getFichasMedicas(): Observable<FichaMedica[]>{
-        return this.http.get<FichaMedica[]>(`${this.urlAPI}/fichasMedicas`).pipe(
-          catchError(e => {
-            this.isNoAutorizado(e);
-            return throwError(e);
-          })
-        );
+        return this.http.get<FichaMedica[]>(`${this.urlAPI}/fichasMedicas`)
     }
 
     getMascotas(): Observable<Mascota[]>{
@@ -48,42 +43,17 @@ export class FichaMedicaService {
     }
 
     getFichaMedica(id: number): Observable<FichaMedica>{
-      return this.http.get<FichaMedica>(`${this.urlAPI}/fichasMedicas/${id}`).pipe(
-        catchError(e => {
-          if(this.isNoAutorizado(e)){
-            return throwError;
-          }
-        })
-      );
-      
+      return this.http.get<FichaMedica>(`${this.urlAPI}/fichasMedicas/${id}`)
     }
     crearFichaMedica(fichaMedica: any) {
-      return this.http.post(`${this.urlAPI}/fichasMedicas`, fichaMedica).pipe(
-        catchError(e => {
-          if(this.isNoAutorizado(e)){
-            return throwError;
-          }
-        })
-      )
+      return this.http.post(`${this.urlAPI}/fichasMedicas`, fichaMedica)
     }
 
     modificarFichaMedica(fichaMedica: any){
-      return this.http.put(`${this.urlAPI}/fichasMedicas/${fichaMedica.id}`, fichaMedica).pipe(
-        catchError(e => {
-          if(this.isNoAutorizado(e)){
-            return throwError;
-          }
-        })
-      );
+      return this.http.put(`${this.urlAPI}/fichasMedicas/${fichaMedica.id}`, fichaMedica)
     }
 
     borrarFichasMedicas(id: number) {
-      return this.http.delete(`${this.urlAPI}/fichasMedicas/${id}`).pipe(
-        catchError(e => {
-          if(this.isNoAutorizado(e)){
-            return throwError;
-          }
-        })
-      );
+      return this.http.delete(`${this.urlAPI}/fichasMedicas/${id}`)
     }
 }

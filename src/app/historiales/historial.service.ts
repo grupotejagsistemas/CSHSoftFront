@@ -18,34 +18,16 @@ export class HistorialService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  private isNoAutorizado(e): boolean {
-    if(e.status == 401 || e.status==403){
-      this.router.navigate(['/login'])
-      return true;
-    }
-    return false;
-  }
 
 
   getHistoriales(): Observable<Historial[]>{
-    return this.http.get<Historial[]>(`${this.urlAPI}/historial`).pipe(
-      catchError(e => {
-        this.isNoAutorizado(e);
-        return throwError(e);
-      })
-    );
+    return this.http.get<Historial[]>(`${this.urlAPI}/historial`);
   }
 
   getHistorial(id: number): Observable<Historial> {
     console.log('por id', id);
 
-    return this.http.get<Historial>(`${this.urlAPI}/historial/${id}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.get<Historial>(`${this.urlAPI}/historial/${id}`);
   }
   
   getMascotas(): Observable<Mascota[]>{
@@ -57,43 +39,18 @@ export class HistorialService {
   }
 
   getNombreMascota(nombreMascota: string){
-    return this.http.get(`${this.urlAPI}/historial/filtrar?nombre=${nombreMascota}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.get(`${this.urlAPI}/historial/filtrar?nombre=${nombreMascota}`);
   }
   
   crearHistorial(historial: any) {
-    return this.http.post(`${this.urlAPI}/historial`, historial).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.post(`${this.urlAPI}/historial`, historial);
   }
 
   modificarHistorial(historial: any){
-    console.log('modificar', historial)
-    return this.http.put(`${this.urlAPI}/historial/${historial.id}`, historial).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.put(`${this.urlAPI}/historial/${historial.id}`, historial);
   }
 
   borrarHistorial(id: number) {
-    return this.http.delete(`${this.urlAPI}/historial/${id}`).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.delete(`${this.urlAPI}/historial/${id}`);
   }
 }

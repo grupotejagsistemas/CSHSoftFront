@@ -17,34 +17,15 @@ export class MovimientoRecursoService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  private isNoAutorizado(e): boolean {
-    if(e.status == 401 || e.status==403){
-      this.router.navigate(['/login'])
-      return true;
-    }
-    return false;
-  }
-
   getMovRecursos(): Observable<MovimientoRecurso[]> {
-    return this.http.get<MovimientoRecurso[]>(`${this.urlAPI}/movimientorecursos`).pipe(
-      catchError(e => {
-        this.isNoAutorizado(e);
-        return throwError(e);
-      })
-    );
+    return this.http.get<MovimientoRecurso[]>(`${this.urlAPI}/movimientorecursos`);
   }
 
   getTipoMovimiento(): Observable<TipoMovimiento[]> {
-    return this.http.get<TipoMovimiento[]>(`${this.urlAPI}/tipomovimiento`)
+    return this.http.get<TipoMovimiento[]>(`${this.urlAPI}/tipomovimiento`);
   }
 
   crearMovRecursos(movRecurso: any){
-    return this.http.post(`${this.urlAPI}/movimientorecursos`, movRecurso).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError;
-        }
-      })
-    );
+    return this.http.post(`${this.urlAPI}/movimientorecursos`, movRecurso);
   }
 }
