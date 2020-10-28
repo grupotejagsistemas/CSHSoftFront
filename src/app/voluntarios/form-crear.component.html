@@ -4,26 +4,17 @@
         <form>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control resizedTextbox" placeholder="Nombre Completo" name="nombreCompleto" [(ngModel)]="voluntarioObj.nombreCompleto" >
-                    <style>
-                        .resizedTextbox {width: 485px; height: 35px}
-                    </style>
+                    <input type="text" class="form-control" placeholder="Nombre Completo" name="nombreCompleto" [(ngModel)]="voluntarioObj.nombreCompleto" >
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6 " >
-                        <input type="text" class= "form-control resizedTextbox" placeholder="Télefono" name="telefono" [(ngModel)]="voluntarioObj.telefono" >
-                        <style>
-                            .resizedTextbox {width: 485px; height: 35px}
-                        </style>
+                        <input type="text" class= "form-control" placeholder="Télefono" name="telefono" [(ngModel)]="voluntarioObj.telefono" >
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6 ">
-                    <input type="text" class="form-control resizedTextbox" placeholder="Dirección" name="direccion" [(ngModel)]="voluntarioObj.direccion" >
-                    <style>
-                        .resizedTextbox {width: 485px; height: 35px}
-                    </style>
+                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" [(ngModel)]="voluntarioObj.direccion" >
                 </div>
             </div>
             <label for="veterinaria" class="col-form-label col-sm-3">Veterinaria Cercana</label>
@@ -53,15 +44,12 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control resizedTextbox" placeholder="localidad " name="localidad" [(ngModel)]="voluntarioObj.localidad" >
-                    <style>
-                        .resizedTextbox {width: 485px; height: 35px}
-                    </style>
+                    <input type="text" class="form-control" placeholder="localidad " name="localidad" [(ngModel)]="voluntarioObj.localidad" >
                 </div>
             </div>
             <div class="form-row">
                 <label for="transito" class="col-form-label col-sm-2">Tránsito</label>
-                <div class="form-group col-md-4 resizedTextbox">
+                <div class="form-group col-md-4">
                     <input type="checkbox" name="transito" [(ngModel)]="checkedTransito">
                 </div>
             </div>

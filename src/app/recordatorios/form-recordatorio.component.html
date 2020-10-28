@@ -6,19 +6,13 @@
         <form>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control resizedTextbox" placeholder="Recordatorio" name="recordatorio" [(ngModel)]="recordatorioObj.descripcionRecordatorio" >
-                    <style>
-                        .resizedTextbox {width: 485px; height: 35px}
-                    </style>
+                    <input type="text" class="form-control" placeholder="Recordatorio" name="recordatorio" [(ngModel)]="recordatorioObj.descripcionRecordatorio" >
                 </div>
             </div>
             <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
             <div class="form-row">
                     <div class="form-group col-md-4">
-                        <input type="date" class="form-control resizedTextbox" name="fecha" [(ngModel)]="recordatorioObj.fecha" required>
-                        <style>
-                            .resizedTextbox {width: 485px; height: 35px}
-                        </style>
+                        <input type="date" class="form-control" name="fecha" [(ngModel)]="recordatorioObj.fecha" required>
                     </div>
             </div>
             <div class="form-row">

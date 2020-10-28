@@ -95,6 +95,33 @@
                     #recordatorios {color:#FFffff}
                 </style>
             </li>
+            <li  class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"  href="#" id="configuraciones" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Configuraciones
+                </a>
+                <style>
+                    #configuraciones {color: #FFffff}
+                </style>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:#1C7C74" >
+                    <a id="registrarUsuario" class="nav-link" routerLink="/registrar-usuario">Registrar usuario</a>
+                    <style>
+                        #registrarUsuario {color:#FFffff}
+                    </style>
+                    <a id="cambiarContrasena" class="nav-link" routerLink="/cambiar-contrasena">Cambiar contraseña</a>
+                    <style>
+                        #cambiarContrasena {color:#FFffff}
+                    </style>
+                    <a id="eliminarUsuario" class="nav-link" routerLink="/eliminar-usuario">Elminar usuario</a>
+                    <style>
+                        #eliminarUsuario {color:#FFffff}
+                    </style>
+                    <a id="modifTipoUsuario" class="nav-link" routerLink="/modificacion-tipo-usuario">Modificar tipo usuario</a>
+                    <style>
+                        #modifTipoUsuario {color:#FFffff}
+                    </style>
+                </div>
+            </li>
+
        </ul>     
        <ul class="navbar-nav navbar-right">
         <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Iniciar Sesión</a></li>
