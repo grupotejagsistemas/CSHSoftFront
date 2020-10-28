@@ -22,8 +22,21 @@ export class FichaMedicaService {
         private router: Router,
         private route: ActivatedRoute) {}
 
+        private isNoAutorizado(e): boolean {
+          if(e.status == 401 || e.status==403){
+            this.router.navigate(['/login'])
+            return true;
+          }
+          return false;
+        }
+      
     getFichasMedicas(): Observable<FichaMedica[]>{
-        return this.http.get<FichaMedica[]>(`${this.urlAPI}/fichasMedicas`)
+        return this.http.get<FichaMedica[]>(`${this.urlAPI}/fichasMedicas`).pipe(
+          catchError(e => {
+            this.isNoAutorizado(e);
+            return throwError(e);
+          })
+        );
     }
 
     getMascotas(): Observable<Mascota[]>{
@@ -35,20 +48,42 @@ export class FichaMedicaService {
     }
 
     getFichaMedica(id: number): Observable<FichaMedica>{
-      return this.http.get<FichaMedica>(`${this.urlAPI}/fichasMedicas/${id}`);
+      return this.http.get<FichaMedica>(`${this.urlAPI}/fichasMedicas/${id}`).pipe(
+        catchError(e => {
+          if(this.isNoAutorizado(e)){
+            return throwError;
+          }
+        })
+      );
       
     }
     crearFichaMedica(fichaMedica: any) {
-      console.log('ficha', fichaMedica);
-      return this.http.post(`${this.urlAPI}/fichasMedicas`, fichaMedica)
+      return this.http.post(`${this.urlAPI}/fichasMedicas`, fichaMedica).pipe(
+        catchError(e => {
+          if(this.isNoAutorizado(e)){
+            return throwError;
+          }
+        })
+      )
     }
 
     modificarFichaMedica(fichaMedica: any){
-      console.log('modifica ', fichaMedica);
-      return this.http.put(`${this.urlAPI}/fichasMedicas/${fichaMedica.id}`, fichaMedica);
+      return this.http.put(`${this.urlAPI}/fichasMedicas/${fichaMedica.id}`, fichaMedica).pipe(
+        catchError(e => {
+          if(this.isNoAutorizado(e)){
+            return throwError;
+          }
+        })
+      );
     }
 
     borrarFichasMedicas(id: number) {
-      return this.http.delete(`${this.urlAPI}/fichasMedicas/${id}`);
+      return this.http.delete(`${this.urlAPI}/fichasMedicas/${id}`).pipe(
+        catchError(e => {
+          if(this.isNoAutorizado(e)){
+            return throwError;
+          }
+        })
+      );
     }
 }

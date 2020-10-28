@@ -29,6 +29,7 @@ import { RecordatoriosComponent } from './recordatorios/recordatorios.component'
 import { FormRecordatorioComponent } from './recordatorios/form-recordatorio.component';
 import { HistorialesComponent } from './historiales/historiales.component';
 import { FormHistorialComponent } from './historiales/form-historial.component';
+import { LoginComponent } from './usuarios/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -59,7 +60,8 @@ const routes: Routes = [
   {path: 'recordatorios/editar/:id', component: FormRecordatorioComponent},
   {path: 'historial', component: HistorialesComponent},
   {path: 'historial/crear', component: FormHistorialComponent},
-  {path: 'historial/editar/:id', component:FormHistorialComponent}
+  {path: 'historial/editar/:id', component:FormHistorialComponent},
+  {path: 'login', component: LoginComponent}
 ]
 @NgModule({
   declarations: [
@@ -86,6 +88,7 @@ const routes: Routes = [
     FormRecordatorioComponent,
     HistorialesComponent,
     FormHistorialComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

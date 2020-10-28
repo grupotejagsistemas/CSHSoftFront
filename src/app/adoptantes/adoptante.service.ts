@@ -19,8 +19,21 @@ export class AdoptanteService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  private isNoAutorizado(e): boolean {
+    if(e.status == 401 || e.status==403){
+      this.router.navigate(['/login'])
+      return true;
+    }
+    return false;
+  }
+
   getMascotas(): Observable<Mascota[]>{
-    return this.http.get<Mascota[]>(this.urlAPI + '/mascota');
+    return this.http.get<Mascota[]>(this.urlAPI + '/mascota').pipe(
+      catchError(e => {
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
   }
 
   getEstadosAdoptante(): Observable<EstadoAdoptante[]> {

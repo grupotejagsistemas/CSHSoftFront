@@ -20,45 +20,111 @@ export class VoluntarioService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  private isNoAutorizado(e): boolean {
+    if(e.status == 401 || e.status==403){
+      this.router.navigate(['/login'])
+      return true;
+    }
+    return false;
+  }
+
+
   getVeterinarias(): Observable<Veterinaria[]> {
-    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`) 
+    return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`).pipe(
+      catchError(e => {
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
   }
 
   getVoluntarios(): Observable<Voluntario[]> {
-    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario`);
+    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario`).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError;
+        }
+      })
+    );
   }
 
   getVoluntariosNombre(nombre: any): Observable<Voluntario[]> {
-    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario/filtrar?nombre=${nombre}`)
+    return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario/filtrar?nombre=${nombre}`).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError;
+        }
+      })
+    )
   }
 
   crearVoluntario(voluntario: any) {
-    console.log('vol ', voluntario);
-    return this.http.post(`${this.urlAPI}/voluntario`, voluntario)
+    return this.http.post(`${this.urlAPI}/voluntario`, voluntario).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError;
+        }
+      })
+    )
   } 
 
   getVoluntario(id: number): Observable<Voluntario>{
-    return this.http.get<Voluntario>(`${this.urlAPI}/voluntario/${id}`)
+    return this.http.get<Voluntario>(`${this.urlAPI}/voluntario/${id}`).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError;
+        }
+      })
+    )
   }
 
   modificarVoluntario(voluntario: any) {
-    console.log('modifica', voluntario)
-    return this.http.put(`${this.urlAPI}/voluntario/${voluntario.id}`, voluntario)
+    return this.http.put(`${this.urlAPI}/voluntario/${voluntario.id}`, voluntario).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError;
+        }
+      })
+    )
    }
 
   borrarVoluntario(id: number) {
-     return this.http.delete(`${this.urlAPI}/voluntario/${id}`);
+     return this.http.delete(`${this.urlAPI}/voluntario/${id}`).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError;
+        }
+      })
+     );
   }
 
   filtrarPresencial(presencial: string){
-    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${presencial}`);
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${presencial}`).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError;
+        }
+      })
+    );
   }
 
   filtrarTransito(transito: string){
-    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${transito}`);
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${transito}`).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError;
+        }
+      })
+    );
   }
 
   filtrarTraslado(traslado: string){
-    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${traslado}`);
+    return this.http.get(`${this.urlAPI}/voluntario/filtrarvoluntarioptt?filtro=${traslado}`).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError;
+        }
+      })
+    );
   }
 }
