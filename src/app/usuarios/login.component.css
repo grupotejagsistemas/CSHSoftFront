@@ -1,0 +1,18 @@
+.abs-center {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .form {
+    width: 600px;
+    height: 200px;
+  }
+
+  .sizeH{
+    background-color: rgb(184, 252, 229);
+    justify-content: center;
+    display: flex;
+    width: 600px;
+    height: 60px;
+  }
