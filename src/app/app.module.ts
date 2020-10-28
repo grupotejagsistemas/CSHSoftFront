@@ -31,6 +31,11 @@ import { HistorialesComponent } from './historiales/historiales.component';
 import { FormHistorialComponent } from './historiales/form-historial.component';
 import { LoginComponent } from './usuarios/login.component';
 import { UsuarioCrearComponent } from './usuarios/crear-usuario/usuario-crear.component';
+import { ModifContrasenaComponent } from './usuarios/modif-contrasena/modif-contrasena.component';
+import { BajaUsuarioComponent } from './usuarios/baja-usuario/baja-usuario.component';
+import { ModifTipoUsuarioComponent } from './usuarios/modif-tipo-usuario/modif-tipo-usuario.component';
+import { TipoUsuarioComponent } from './usuarios/modif-tipo-usuario/tipo-usuario.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -63,7 +68,11 @@ const routes: Routes = [
   {path: 'historial/crear', component: FormHistorialComponent},
   {path: 'historial/editar/:id', component:FormHistorialComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'registrar-usuario', component: UsuarioCrearComponent }
+  {path: 'registrar-usuario', component: UsuarioCrearComponent },
+  {path: 'cambiar-contrasena', component: ModifContrasenaComponent},
+  {path: 'eliminar-usuario', component: BajaUsuarioComponent},
+  {path: 'modificacion-tipo-usuario', component: TipoUsuarioComponent},
+  {path: 'modificacion-tipo-usuario/:id', component: ModifTipoUsuarioComponent}
 ]
 @NgModule({
   declarations: [
@@ -92,6 +101,10 @@ const routes: Routes = [
     FormHistorialComponent,
     LoginComponent,
     UsuarioCrearComponent,
+    ModifContrasenaComponent,
+    BajaUsuarioComponent,
+    ModifTipoUsuarioComponent,
+    TipoUsuarioComponent,
   ],
   imports: [
     BrowserModule,
