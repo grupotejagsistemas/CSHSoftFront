@@ -14,7 +14,6 @@ import { environment } from 'src/environments/environment';
 })
 export class MascotaService {
   private urlAPI: string = environment.urlCSH;
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   
   constructor(private http: HttpClient, private router: Router) { }
 

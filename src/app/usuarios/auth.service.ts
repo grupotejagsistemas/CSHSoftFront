@@ -31,6 +31,13 @@ export class AuthService {
     }
     return null;
   }
+  
+  hasRole(role: string): boolean {
+    if (this.usuario.roles.includes(role)) {
+      return true;
+    }
+    return false;
+  }
 
   login(usuario: Usuario): Observable<any>{
     const urlEndpoint = "http://localhost:8080/oauth/token";

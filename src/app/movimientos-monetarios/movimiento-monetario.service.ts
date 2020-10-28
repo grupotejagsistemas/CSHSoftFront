@@ -14,7 +14,6 @@ import { MovimientoMonetario } from './movimiento-monetario';
 export class MovimientoMonetarioService {
   
   private urlAPI: string = environment.urlCSH;
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient, private router: Router) { }
 

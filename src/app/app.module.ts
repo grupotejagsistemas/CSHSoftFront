@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HeaderComponent} from './header/header.component'
 import {FooterComponent} from './footer/footer.component';
@@ -10,7 +9,7 @@ import {VoluntarioService} from './voluntarios/voluntario.service';
 import {RouterModule, Routes} from '@angular/router';
 import  {FormsModule} from '@angular/forms';
 import { FormCrearComponent } from './voluntarios/form-crear.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { VeterinariasComponent } from './veterinarias/veterinarias.component';
 import {FormVeterinariaComponent} from './veterinarias/form-veterinaria.component';
 import { ContratosComponent } from './contratos/contratos.component';
@@ -35,44 +34,118 @@ import { ModifContrasenaComponent } from './usuarios/modif-contrasena/modif-cont
 import { BajaUsuarioComponent } from './usuarios/baja-usuario/baja-usuario.component';
 import { ModifTipoUsuarioComponent } from './usuarios/modif-tipo-usuario/modif-tipo-usuario.component';
 import { TipoUsuarioComponent } from './usuarios/modif-tipo-usuario/tipo-usuario.component';
-
+import { AuthGuard } from './usuarios/guards/auth.guard';
+import { RoleGuard } from './usuarios/guards/role.guard';
+import { TokenInterceptor } from './usuarios/interceptors/token.interceptor'; 
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
-  {path: 'voluntarios', component: VoluntariosComponent},
-  {path: 'voluntarios/crear', component: FormCrearComponent},
-  {path: 'voluntarios/editar/:id', component: FormCrearComponent},
-  {path: 'fichas-medicas', component: FichasMedicasComponent},
-  {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent},
-  {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent},
-  {path: 'mascotas', component: MascotasComponent},
-  {path: 'mascotas/crear', component: FormMascotasComponent},
-  {path: 'mascotas/editar/:id', component: FormMascotasComponent},
-  {path: 'veterinarias', component: VeterinariasComponent},
-  {path: 'veterinarias/crear',component: FormVeterinariaComponent },
-  {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent },
-  {path: 'contratos', component: ContratosComponent},
-  {path: 'contratos/crear', component: FormContratoComponent},
-  {path: 'contratos/editar/:id', component: FormContratoComponent},
-  {path: 'adoptantes', component: AdoptantesComponent},
-  {path: 'adoptantes/crear', component: FormAdoptanteComponent},
-  {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent},
-  {path: 'movimientos-recursos', component: MovimientosRecursosComponent},
-  {path: 'movimientos-recursos/crear', component: FormMovRecursoComponent},
-  {path: 'movimientos-monetarios', component: MovimientosMonetariosComponent},
-  {path: 'movimientos-monetarios/crear', component: FormMovMonetarioComponent},
-  {path: 'recordatorios', component: RecordatoriosComponent},
-  {path: 'recordatorios/crear', component: FormRecordatorioComponent},
-  {path: 'recordatorios/editar/:id', component: FormRecordatorioComponent},
-  {path: 'historial', component: HistorialesComponent},
-  {path: 'historial/crear', component: FormHistorialComponent},
-  {path: 'historial/editar/:id', component:FormHistorialComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'registrar-usuario', component: UsuarioCrearComponent },
-  {path: 'cambiar-contrasena', component: ModifContrasenaComponent},
-  {path: 'eliminar-usuario', component: BajaUsuarioComponent},
-  {path: 'modificacion-tipo-usuario', component: TipoUsuarioComponent},
-  {path: 'modificacion-tipo-usuario/:id', component: ModifTipoUsuarioComponent}
+  {path: 'voluntarios', component: VoluntariosComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'voluntarios/crear', component: FormCrearComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'voluntarios/editar/:id', component: FormCrearComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'fichas-medicas', component: FichasMedicasComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'mascotas', component: MascotasComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'mascotas/crear', component: FormMascotasComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'mascotas/editar/:id', component: FormMascotasComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'veterinarias', component: VeterinariasComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'veterinarias/crear',component: FormVeterinariaComponent , 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent , 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'contratos', component: ContratosComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'contratos/crear', component: FormContratoComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'contratos/editar/:id', component: FormContratoComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'adoptantes', component: AdoptantesComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'adoptantes/crear', component: FormAdoptanteComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'movimientos-recursos', component: MovimientosRecursosComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'movimientos-recursos/crear', component: FormMovRecursoComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'movimientos-monetarios', component: MovimientosMonetariosComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'movimientos-monetarios/crear', component: FormMovMonetarioComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'recordatorios', component: RecordatoriosComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'recordatorios/crear', component: FormRecordatorioComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'recordatorios/editar/:id', component: FormRecordatorioComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'historial', component: HistorialesComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'historial/crear', component: FormHistorialComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'historial/editar/:id', component:FormHistorialComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'login', component: LoginComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'registrar-usuario', component: UsuarioCrearComponent
+  //canActivate: [AuthGuard, RoleGuard]
+ // , data:{role: 'SUPER_ADMIN'}
+},
+  {path: 'cambiar-contrasena', component: ModifContrasenaComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+  {path: 'eliminar-usuario', component: BajaUsuarioComponent 
+  //canActivate: [AuthGuard, RoleGuard]
+  //, data:{role: 'SUPER_ADMIN'}
+},
+  {path: 'modificacion-tipo-usuario', component: TipoUsuarioComponent 
+  //canActivate: [AuthGuard, RoleGuard]
+  //, data: {role: 'SUPER_ADMIN'}
+},
+  {path: 'modificacion-tipo-usuario/:id', component: ModifTipoUsuarioComponent 
+  //canActivate: [AuthGuard, RoleGuard]
+  //, data: {role: 'SUPER_ADMIN'}
+}
 ]
 @NgModule({
   declarations: [
@@ -113,7 +186,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     NgxPaginationModule,
   ],
-  providers: [VoluntarioService],
+  providers: [VoluntarioService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor,  multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,7 +6,6 @@ import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
 import { Mascota } from '../adoptantes/mascota';
 import { Adoptante } from '../adoptantes/adoptante';
-import { catchError } from 'rxjs/operators';
 import { AuthService } from '../usuarios/auth.service';
 
 @Injectable({
@@ -15,18 +14,8 @@ import { AuthService } from '../usuarios/auth.service';
 export class ContratoService {
 
   private urlAPI: string = environment.urlCSH;
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   
-  constructor(private http: HttpClient, private router: Router, public authService : AuthService) { }
-
-  private agregarAuthorizationHeader() {
-    let token = this.authService.token;
-    if(token != null){
-      return this.httpHeaders.append('Authorization', 'Bearer' + token);
-    }
-    return this.httpHeaders;
-  }
-
+  constructor(private http: HttpClient, private router: Router) { }
 
   getContratos(): Observable<Contrato[]> {
     return this.http.get<Contrato[]>(`${this.urlAPI}/contrato`)

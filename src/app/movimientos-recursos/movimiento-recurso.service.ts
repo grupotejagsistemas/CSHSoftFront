@@ -13,7 +13,6 @@ import { TipoMovimiento } from './tipoMovimiento';
 export class MovimientoRecursoService {
 
   private urlAPI: string = environment.urlCSH;
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient, private router: Router) { }
 

@@ -14,7 +14,6 @@ import { catchError } from 'rxjs/operators';
 export class HistorialService {
 
   private urlAPI: string = environment.urlCSH;
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient, private router: Router) { }
 
