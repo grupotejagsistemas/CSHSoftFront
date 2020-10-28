@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Mascota } from '../adoptantes/mascota';
+import { Mascota } from './mascota';
 import { MascotaService } from './mascota.service';
 
 @Component({
@@ -59,9 +59,10 @@ export class MascotasComponent implements OnInit {
     }
   }
   
-  borrarMascota(id: number, i: number): void {
+  borrarMascota(id: number, mascota: string): void {
     Swal.fire({
-      title: '¿Desea eliminar la mascota?',
+      title: '',
+      text: `¿Desea eliminar al voluntario ${mascota} ?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -69,8 +70,11 @@ export class MascotasComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
-        this.mascotas.splice(i, 1)
-          this.mascotaService.borrarMascota(id).subscribe()
+          this.mascotaService.borrarMascota(id).subscribe(
+            () => {
+              this.mascotas = this.mascotas.filter(mas => mas.id !== id)
+            }
+          )
       }
     })
   }

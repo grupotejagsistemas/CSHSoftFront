@@ -23,10 +23,10 @@ export class FichasMedicasComponent implements OnInit {
     })
   }
 
-  borrarFichasMedicas(id: number, i: number): void {
+  borrarFichasMedicas(id: number): void {
     Swal.fire({
       title: '',
-      text: `¿Desea eliminar la ficha médica ?`,
+      text: `¿Desea eliminar la ficha médica?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -34,8 +34,11 @@ export class FichasMedicasComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
-          this.fichasMedicas.splice(i, 1);
-          this.fichaMedicaService.borrarFichasMedicas(id).subscribe()
+          this.fichaMedicaService.borrarFichasMedicas(id).subscribe(
+            () => {
+              this.fichasMedicas = this.fichasMedicas.filter(fic => fic.id !== id);
+            }
+          )
       }
     })
   }

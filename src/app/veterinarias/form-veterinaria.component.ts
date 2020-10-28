@@ -54,10 +54,6 @@ public agregar(veterinaria): void {
       swal.fire({
         icon: 'success',
         title: 'Creación exitosa',
-        showCancelButton:true,
-        showConfirmButton: true,
-        cancelButtonColor: 'Cancelar',
-        confirmButtonText: 'Confirmar',
       }).then((result) => {
         if(result.value){
           this.router.navigate(['/veterinarias'])
@@ -85,7 +81,6 @@ public modificar(veterinaria): void {
         icon: 'success',
         title: 'La veterinaria ha sido modificada',
         showConfirmButton: true,
-        confirmButtonText: 'Confirmar',
         timer: 1500
       })
       
