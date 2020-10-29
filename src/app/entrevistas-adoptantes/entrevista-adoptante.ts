@@ -1,6 +1,6 @@
 export class EntrevistaAdoptante {
     id: number;
-    adoptante: number;
+    adoptante: string;
     respuesta1: string;
     respuesta2: string;
     respuesta3: string;
@@ -22,12 +22,12 @@ export class EntrevistaAdoptante {
     respuesta19: string;
     respuesta20: string;
     respuesta21: string;
-    respuesta22: string
+    respuesta22: string;
 
     public static build() {
         const entrevista = new EntrevistaAdoptante();
         entrevista.id = null;
-        entrevista.adoptante = null;
+        entrevista.adoptante = "";
         entrevista.respuesta1 = "";
         entrevista.respuesta2 = "";
         entrevista.respuesta3 = "";

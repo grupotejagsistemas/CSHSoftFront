@@ -38,7 +38,8 @@ import { AuthGuard } from './usuarios/guards/auth.guard';
 import { RoleGuard } from './usuarios/guards/role.guard';
 import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
 import { EntrevistasAdoptantesComponent } from './entrevistas-adoptantes/entrevistas-adoptantes.component';
-import { FormEntrevistaAdoptanteComponent } from './entrevistas-adoptantes/form-entrevista-adoptante.component'; 
+import { FormEntrevistaAdoptanteComponent } from './entrevistas-adoptantes/form-entrevista-adoptante.component';
+import { RespuestasComponent } from './entrevistas-adoptantes/respuestas.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -103,6 +104,9 @@ const routes: Routes = [
 //  canActivate: [AuthGuard, RoleGuard]
 },
   {path: 'entrevistas/editar/:id', component: FormEntrevistaAdoptanteComponent 
+//  canActivate: [AuthGuard, RoleGuard]
+},
+{path: 'entrevistas/respuestas/:id', component: RespuestasComponent 
 //  canActivate: [AuthGuard, RoleGuard]
 },
   {path: 'movimientos-recursos', component: MovimientosRecursosComponent 
@@ -191,6 +195,7 @@ const routes: Routes = [
     TipoUsuarioComponent,
     EntrevistasAdoptantesComponent,
     FormEntrevistaAdoptanteComponent,
+    RespuestasComponent,
   ],
   imports: [
     BrowserModule,

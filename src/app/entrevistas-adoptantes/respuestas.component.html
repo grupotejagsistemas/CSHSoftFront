@@ -1,25 +1,20 @@
 <div class="card w-550 mx-auto " style="width: 525px;" >
-    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!entrevistaObj.id else elseTitulo">Nueva entrevista</div>
-    <ng-template #elseTitulo>
-        <div class="card-header" id="titulo" style="background-color: white;">Modificar entrevista </div>
-         </ng-template>
+    <div class="card-header" id="titulo" style="background-color: white;" >Visualización de Respuestas</div>
         <div class="card-body mx-auto" style="width: 800px"> 
             <form>
                 <label for="adoptante" class="col-form-label col-sm-2">Adoptante </label>
                 <div class="form-row">
-                         <div class="form-group col-md-4">
-                             <select type="number" class="form-control " name="adoptante"  [(ngModel)]="entrevistaObj.idAdoptante" required>
-                                 <option *ngFor="let adoptante of adoptantes" [ngValue]="adoptante.id">{{adoptante.nombreCompleto}}</option>
-                             </select>
-                         </div>
-                 </div>
+                    <div class="form-group col-md-8">
+                        <input type="text"  disabled class="form-control " name="adoptante" [(ngModel)]="entrevistaObj.adoptante" required >
+                    </div>
+            </div>
 
                  <label for="respuesta1" class="col-form-label col-sm-8"> 
                      ¿Hace cuánto nació el deseo por adoptar? ¿Por qué consideras que este es el momento indicado para adoptar?
                  </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"  class="form-control " name="respuesta1" [(ngModel)]="entrevistaObj.respuesta1" required ></textarea>
+                            <textarea type="text"  disabled class="form-control " name="respuesta1" [(ngModel)]="entrevistaObj.respuesta1" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta2" class="col-form-label col-sm-8"> 
@@ -27,7 +22,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta2" [(ngModel)]="entrevistaObj.respuesta2" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta2" [(ngModel)]="entrevistaObj.respuesta2" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta3" class="col-form-label col-sm-8"> 
@@ -35,7 +30,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta3" [(ngModel)]="entrevistaObj.respuesta3" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta3" [(ngModel)]="entrevistaObj.respuesta3" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta4" class="col-form-label col-sm-8"> 
@@ -43,7 +38,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta4" [(ngModel)]="entrevistaObj.respuesta4" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta4" [(ngModel)]="entrevistaObj.respuesta4" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta5" class="col-form-label col-sm-8"> 
@@ -51,7 +46,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta5" [(ngModel)]="entrevistaObj.respuesta5" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta5" [(ngModel)]="entrevistaObj.respuesta5" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta6" class="col-form-label col-sm-8"> 
@@ -59,7 +54,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta6" [(ngModel)]="entrevistaObj.respuesta6" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta6" [(ngModel)]="entrevistaObj.respuesta6" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta7" class="col-form-label col-sm-8"> 
@@ -67,7 +62,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta7" [(ngModel)]="entrevistaObj.respuesta7" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta7" [(ngModel)]="entrevistaObj.respuesta7" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta8" class="col-form-label col-sm-8"> 
@@ -75,7 +70,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta8" [(ngModel)]="entrevistaObj.respuesta8" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta8" [(ngModel)]="entrevistaObj.respuesta8" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta9" class="col-form-label col-sm-8"> 
@@ -83,7 +78,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta9" [(ngModel)]="entrevistaObj.respuesta9" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta9" [(ngModel)]="entrevistaObj.respuesta9" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta10" class="col-form-label col-sm-8"> 
@@ -92,7 +87,7 @@
                 
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta10" [(ngModel)]="entrevistaObj.respuesta10" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta10" [(ngModel)]="entrevistaObj.respuesta10" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta11" class="col-form-label col-sm-8"> 
@@ -100,7 +95,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta11" [(ngModel)]="entrevistaObj.respuesta11" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta11" [(ngModel)]="entrevistaObj.respuesta11" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta12" class="col-form-label col-sm-8"> 
@@ -108,7 +103,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta12" [(ngModel)]="entrevistaObj.respuesta12" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta12" [(ngModel)]="entrevistaObj.respuesta12" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta13" class="col-form-label col-sm-8"> 
@@ -116,7 +111,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta13" [(ngModel)]="entrevistaObj.respuesta13" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta13" [(ngModel)]="entrevistaObj.respuesta13" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta14" class="col-form-label col-sm-8"> 
@@ -124,7 +119,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta14" [(ngModel)]="entrevistaObj.respuesta14" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta14" [(ngModel)]="entrevistaObj.respuesta14" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta15" class="col-form-label col-sm-8"> 
@@ -132,7 +127,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta15" [(ngModel)]="entrevistaObj.respuesta15" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta15" [(ngModel)]="entrevistaObj.respuesta15" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta16" class="col-form-label col-sm-8"> 
@@ -140,7 +135,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta16" [(ngModel)]="entrevistaObj.respuesta16" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta16" [(ngModel)]="entrevistaObj.respuesta16" required ></textarea>
                         </div>
                 </div>                
                 <label for="respuesta17" class="col-form-label col-sm-8"> 
@@ -148,7 +143,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta17" [(ngModel)]="entrevistaObj.respuesta17" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta17" [(ngModel)]="entrevistaObj.respuesta17" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta18" class="col-form-label col-sm-8"> 
@@ -156,7 +151,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta18" [(ngModel)]="entrevistaObj.respuesta18" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta18" [(ngModel)]="entrevistaObj.respuesta18" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta19" class="col-form-label col-sm-8"> 
@@ -164,7 +159,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta19" [(ngModel)]="entrevistaObj.respuesta19" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta19" [(ngModel)]="entrevistaObj.respuesta19" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta20" class="col-form-label col-sm-8"> 
@@ -172,7 +167,7 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta20" [(ngModel)]="entrevistaObj.respuesta20" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta20" [(ngModel)]="entrevistaObj.respuesta20" required ></textarea>
                         </div>
                 </div>
                 <label for="respuesta21" class="col-form-label col-sm-8"> 
@@ -180,16 +175,8 @@
                 </label>
                 <div class="form-row">
                         <div class="form-group col-md-8">
-                            <textarea type="text"   class="form-control "  name="respuesta21" [(ngModel)]="entrevistaObj.respuesta21" required ></textarea>
+                            <textarea type="text" disabled   class="form-control "  name="respuesta21" [(ngModel)]="entrevistaObj.respuesta21" required ></textarea>
                         </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <button class="btn btn-outline-success" role="button" (click)='agregar()' *ngIf="!entrevistaObj.id else elseBlock">Agregar</button>
-                        <ng-template #elseBlock>
-                            <button class="btn btn-outline-success" role="button" (click)='modificar()'>Modificar</button>
-                        </ng-template>
-                    </div>
                 </div>
             </form>
     </div>
