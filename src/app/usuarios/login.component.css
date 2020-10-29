@@ -10,7 +10,7 @@
   }
 
   .sizeH{
-    background-color: rgb(184, 252, 229);
+   /* background-color: rgb(184, 252, 229);*/
     justify-content: center;
     display: flex;
     width: 600px;

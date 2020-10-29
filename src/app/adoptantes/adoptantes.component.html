@@ -1,5 +1,9 @@
 <h5 class="card-title" >Adoptantes</h5>
-            
+<div class="input-group">
+    <div class="input bg-white">
+        <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)] ="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
+    </div>
+</div>
 <div class="my-4 text-right" >
     <button class="btn btn-outline-success" type="button" [routerLink] = "['/adoptantes/crear']">Nuevo Adoptante</button>
 </div>

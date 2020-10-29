@@ -4,6 +4,8 @@ import { EntrevistaAdoptante } from './entrevista-adoptante';
 import { EntrevistaAdoptanteService } from './entrevista-adoptante.service';
 import swal from 'sweetalert2';
 import { Adoptante } from './adoptante';
+
+
 @Component({
   selector: 'app-form-entrevista-adoptante',
   templateUrl: './form-entrevista-adoptante.component.html',

@@ -42,6 +42,9 @@ export class AdoptanteService {
   getAdoptantes(): Observable<Adoptante[]> {
     return this.http.get<Adoptante[]>(`${this.urlAPI}/adoptante`)
   }
- 
+
+  getAdoptanteNombre(nombre: any): Observable<Adoptante[]>{
+    return this.http.get<Adoptante[]>(`${this.urlAPI}/adoptante/filtrarNombre?nombre=${nombre}`)
+  }
 
 }
