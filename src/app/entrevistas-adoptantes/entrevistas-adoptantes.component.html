@@ -1,0 +1,33 @@
+<h5>Contratos</h5>
+<div class="input-group">
+    <div class="input bg-white">
+        <input type="text" name="busquedaAdoptante" class="form-control" placeholder="Buscar por adoptante" [(ngModel)]="busquedaAdoptante" (change)="filtroAdoptante(busquedaAdoptante)">
+    </div>
+</div>
+<div class="my-4 text-right">
+    <button class="btn btn-outline-success" type="button" [routerLink]="['/entrevistas/crear']">Nueva entrevista</button>
+</div>
+<div *ngIf="entrevistas?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+<table class="table table-striped" *ngIf="entrevistas?.length>0">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Adoptatne</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let entrevista of entrevistas  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
+            <td>{{entrevista.id}}</td>
+            <td>{{entrevista.adoptante}}</td>
+            <td>{{entrevista.estado}}</td>
+            <td>
+                <button type="button" name="button" [routerLink]="['/entrevistas/editar', entrevista.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
+            </td>
+
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
