@@ -58,19 +58,19 @@ export class FormCrearComponent implements OnInit {
   public agregar(): void {
     
     if(this.checkedPresencial === true){
-      this.voluntarioObj.presencial = "s";
+      this.voluntarioObj.presencial = "SI";
     } else {
       this.voluntarioObj.presencial = "NO";
     }
 
     if(this.checkedTransito === true){
-      this.voluntarioObj.transito = "s";
+      this.voluntarioObj.transito = "SI";
     } else {
       this.voluntarioObj.transito = "NO";
     }
 
     if(this.checkedTraslado === true) {
-      this.voluntarioObj.traslado = "s";
+      this.voluntarioObj.traslado = "SI";
     }else {
       this.voluntarioObj.traslado = "NO";
     }
@@ -93,19 +93,19 @@ export class FormCrearComponent implements OnInit {
   public modificar(): void {
 
     if(this.checkedPresencial === true){
-      this.voluntarioObj.presencial = "s";
+      this.voluntarioObj.presencial = "SI";
     } else {
       this.voluntarioObj.presencial = "NO";
     }
 
     if(this.checkedTransito === true){
-      this.voluntarioObj.transito = "s";
+      this.voluntarioObj.transito = "SI";
     } else {
       this.voluntarioObj.transito = "NO";
     }
 
     if(this.checkedTraslado === true) {
-      this.voluntarioObj.traslado = "s";
+      this.voluntarioObj.traslado = "SI";
     }else {
       this.voluntarioObj.traslado = "NO";
     }
