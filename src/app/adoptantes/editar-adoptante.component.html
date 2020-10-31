@@ -4,14 +4,14 @@
             <form (submit)="submit()" [formGroup]="adoptanteObj">
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Número de formulario" name="numeroFormulario"  formControlName="numeroFormulario" required>
+                        <input type="text" class="form-control" placeholder="Número de formulario" [(ngModel)]="adoptante.numeroFormulario" name="numeroFormulario"  formControlName="numeroFormulario" required>
                       
                     </div>
                 </div>
                 <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
                 <div class="form-group row">
                     <div class="col-sm-4">
-                        <select type="select" class="form-control" name="mascota" formControlName="idMascota" required>
+                        <select type="select" class="form-control" [(ngModel)]="adoptante.mascotaInteresada" name="mascota" formControlName="idMascota" required>
                             <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">
                                 {{mascota.nombre}}
                             </option>
@@ -21,7 +21,7 @@
                 <div class="form-gropu row">
                     <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
                 </div>
-                <div formArrayName="idVeterinaria" *ngFor="let veterinaria of idVeterinaria.controls; let i = index">
+                <div [(ngModel)]="adoptante.veterinaria_cercana" formArrayName="idVeterinaria" *ngFor="let veterinaria of idVeterinaria.controls; let i = index">
                     <div [formGroupName]="i">
                         <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                         <div class="form-group row">
@@ -43,81 +43,76 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Nombre completo" name="nombreCompleto" formControlName="nombreCompleto" required>
+                        <input type="text" class="form-control" [(ngModel)]="adoptante.nombreCompleto" placeholder="Nombre completo" name="nombreCompleto" formControlName="nombreCompleto" required>
                       
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="date" class="form-control" placeholder="Fecha nacimiento" name="fechaNacimiento" formControlName="fechaNacimiento" required>
+                        <input type="date" class="form-control" placeholder="Fecha nacimiento"[(ngModel)]="adoptante.fechaNacimiento" name="fechaNacimiento" formControlName="fechaNacimiento" required>
                       
                     </div>              
                 </div>
                 <div></div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Domicilio" name="domicilio" formControlName="domicilio" required>
+                        <input type="text" class="form-control" placeholder="Domicilio" [(ngModel)]="adoptante.domicilio"  name="domicilio" formControlName="domicilio" required>
                       
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Barrio" name="barrio" formControlName="barrio" required>
+                        <input type="text" class="form-control" placeholder="Barrio" [(ngModel)]="adoptante.barrio" name="barrio" formControlName="barrio" required>
                       
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="text"class="form-control" placeholder="Celular"  name="celular" formControlName="celular">
+                        <input type="text"class="form-control" placeholder="Celular" [(ngModel)]="adoptante.celular"  name="celular" formControlName="celular">
                       
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Email"  name="email" formControlName="email">
+                        <input type="text" class="form-control" placeholder="Email" [(ngModel)]="adoptante.email"  name="email" formControlName="email">
                       
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Facebook"  name="facebook" formControlName="facebook">
+                        <input type="text" class="form-control" placeholder="Facebook" [(ngModel)]="adoptante.facebook"  name="facebook" formControlName="facebook">
                       
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="text"class="form-control" placeholder="Instagram"   name="instagram" formControlName="instagram">
+                        <input type="text"class="form-control" placeholder="Instagram" [(ngModel)]="adoptante.instagram"   name="instagram" formControlName="instagram">
                       
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <textarea maxlength="255" style="resize:none"  type="text" class="form-control" placeholder="Situación laboral" name="situacionLaboral" formControlName="situacionLaboral" ></textarea>
+                        <textarea maxlength="255" style="resize:none"  type="text" class="form-control" placeholder="Situación laboral"[(ngModel)]="adoptante.situacionLaboral"  name="situacionLaboral" formControlName="situacionLaboral" ></textarea>
                     
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Observaciones"  name="observaciones" formControlName="observaciones"></textarea>
+                        <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Observaciones" [(ngModel)]="adoptante.observaciones"  name="observaciones" formControlName="observaciones"></textarea>
                     </div>
                 </div>
                 <label for="estado" class="col-form-label col-sm-2">Estado</label>
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <select  class="form-control " type=number formControlName="idEstadoAdoptante" name="idEstadoAdoptante">
+                        <select  class="form-control " type=number formControlName="idEstadoAdoptante" [(ngModel)]="adoptante.estado_adoptante" name="idEstadoAdoptante">
                         <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
                     </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <button class="btn btn-primary" role="button" type="submit" >Agregar</button>
-                       <!--
+                        <button class="btn btn-primary" role="button" type="submit" >Modificar</button>
 
-                           <ng-template #elseBlock>
-                                <button class="btn btn-primary" role="button" (click)='update()'>Modificar</button>
-                            </ng-template>
-                       --> 
                     </div>
                 </div>
             </form>

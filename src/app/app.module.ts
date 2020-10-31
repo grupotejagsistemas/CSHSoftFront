@@ -40,122 +40,123 @@ import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
 import { EntrevistasAdoptantesComponent } from './entrevistas-adoptantes/entrevistas-adoptantes.component';
 import { FormEntrevistaAdoptanteComponent } from './entrevistas-adoptantes/form-entrevista-adoptante.component';
 import { RespuestasComponent } from './entrevistas-adoptantes/respuestas.component';
+import { EditarAdoptanteComponent } from './adoptantes/editar-adoptante.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'voluntarios', component: VoluntariosComponent,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'voluntarios/crear', component: FormCrearComponent,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'voluntarios/editar/:id', component: FormCrearComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'fichas-medicas', component: FichasMedicasComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'mascotas', component: MascotasComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'mascotas/crear', component: FormMascotasComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'mascotas/editar/:id', component: FormMascotasComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'veterinarias', component: VeterinariasComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'veterinarias/crear',component: FormVeterinariaComponent , 
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent , 
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'contratos', component: ContratosComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'contratos/crear', component: FormContratoComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'contratos/editar/:id', component: FormContratoComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'adoptantes', component: AdoptantesComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'adoptantes/crear', component: FormAdoptanteComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
-  {path: 'adoptantes/editar/:id', component: FormAdoptanteComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+  {path: 'adoptantes/editar/:id', component: EditarAdoptanteComponent ,
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
 {path: 'entrevistas', component: EntrevistasAdoptantesComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'entrevistas/crear', component: FormEntrevistaAdoptanteComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'entrevistas/editar/:id', component: FormEntrevistaAdoptanteComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
 {path: 'entrevistas/respuestas/:id', component: RespuestasComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'movimientos-recursos', component: MovimientosRecursosComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'movimientos-recursos/crear', component: FormMovRecursoComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'movimientos-monetarios', component: MovimientosMonetariosComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'movimientos-monetarios/crear', component: FormMovMonetarioComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'recordatorios', component: RecordatoriosComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'recordatorios/crear', component: FormRecordatorioComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'recordatorios/editar/:id', component: FormRecordatorioComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'historial', component: HistorialesComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'historial/crear', component: FormHistorialComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 
 },
   {path: 'historial/editar/:id', component:FormHistorialComponent ,
-  canActivate: [AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}
+ // canActivate: [AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}
 },
   {path: 'login', component: LoginComponent 
 },
   {path: 'registrar-usuario', component: UsuarioCrearComponent,
-  canActivate: [AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}
+ // canActivate: [AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}
 },
   {path: 'cambiar-contrasena', component: ModifContrasenaComponent, 
-    canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
+   // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
 },
   {path: 'eliminar-usuario', component: BajaUsuarioComponent, 
-  canActivate: [AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}
+ // canActivate: [AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}
 },
   {path: 'modificacion-tipo-usuario', component: TipoUsuarioComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
 },
   {path: 'modificacion-tipo-usuario/:id', component: ModifTipoUsuarioComponent ,
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
+ // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
 }
 ]
 @NgModule({
@@ -192,6 +193,7 @@ const routes: Routes = [
     EntrevistasAdoptantesComponent,
     FormEntrevistaAdoptanteComponent,
     RespuestasComponent,
+    EditarAdoptanteComponent,
   ],
   imports: [
     BrowserModule,
