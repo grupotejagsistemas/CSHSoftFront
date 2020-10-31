@@ -32,16 +32,17 @@ export class VoluntarioService {
     return this.http.get<Voluntario[]>(`${this.urlAPI}/voluntario/filtrar?nombre=${nombre}`);
   }
 
-  crearVoluntario(voluntario: any) {
-    return this.http.post(`${this.urlAPI}/voluntario`, voluntario);
+  crearVoluntario(voluntario: any): Observable<any> {
+    console.log('AGREGASERVICE', voluntario)
+    return this.http.post<any>(`${this.urlAPI}/voluntario`, voluntario);
   } 
 
   getVoluntario(id: number): Observable<Voluntario>{
     return this.http.get<Voluntario>(`${this.urlAPI}/voluntario/${id}`);
   }
 
-  modificarVoluntario(voluntario: any) {
-    return this.http.put(`${this.urlAPI}/voluntario/${voluntario.id}`, voluntario);
+  modificarVoluntario(voluntario: any) :Observable<any>{
+    return this.http.put<any>(`${this.urlAPI}/voluntario/${voluntario.id}`, voluntario);
    }
 
   borrarVoluntario(id: number) {
