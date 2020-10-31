@@ -7,7 +7,7 @@ import {FooterComponent} from './footer/footer.component';
 import { VoluntariosComponent } from './voluntarios/voluntarios.component';
 import {VoluntarioService} from './voluntarios/voluntario.service';
 import {RouterModule, Routes} from '@angular/router';
-import  {FormsModule} from '@angular/forms';
+import  {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { FormCrearComponent } from './voluntarios/form-crear.component';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { VeterinariasComponent } from './veterinarias/veterinarias.component';
@@ -197,6 +197,7 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     NgxPaginationModule,
   ],

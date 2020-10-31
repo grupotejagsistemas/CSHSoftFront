@@ -18,7 +18,7 @@ export class FormCrearComponent implements OnInit {
   checkedTraslado: boolean; 
   voluntario:  Voluntario;
   veterinarias: any [] = [] ;
-  veterinariasCercanas: any [] = [];
+  veterinariasCercanas: any [];
 
   constructor(
     private voluntarioService: VoluntarioService, 
@@ -130,7 +130,7 @@ export class FormCrearComponent implements OnInit {
   }
 
   eliminarVeterinaria(i: any): void {
-    this.veterinariasCercanas = this.veterinariasCercanas.splice(i, 1)[0];
+    this.veterinariasCercanas = this.veterinariasCercanas.splice(i);
     console.log('index', i)
       console.log('veteCercana', this.veterinariasCercanas)
   }
