@@ -6,6 +6,7 @@ import { Mascota } from './mascota';
 import {EstadoAdoptante} from './estado-adoptante';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { Veterinaria } from './veterinaria';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-adoptante',
@@ -90,15 +91,15 @@ export class FormAdoptanteComponent implements OnInit {
 
   submit(){
     this.adoptanteService.crearAdoptante(this.adoptanteObj.value).subscribe((response: any ) =>{
-
-      console.log('AGREGAR', response);
+      this.router.navigate(['/voluntarios'])
+      swal.fire({
+        icon: 'success',
+        title: 'Creación exitosa',
+        showConfirmButton: false,
+        timer: 1500
+      })
     return response;
     }
     );
   }
-
-
-
-
-
 }

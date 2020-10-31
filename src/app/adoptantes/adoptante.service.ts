@@ -32,6 +32,7 @@ export class AdoptanteService {
   getVeterinaria(): Observable<Veterinaria[]>{
     return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`);
   }
+  
   getAdoptantes(): Observable<Adoptante[]> {
     return this.http.get<Adoptante[]>(`${this.urlAPI}/adoptante`)
   }
@@ -45,9 +46,9 @@ export class AdoptanteService {
     return this.http.post<any>(`${this.urlAPI}/adoptante`, adoptante);
   }
 
-  modificarAdoptante(adoptante: any): Observable<Adoptante>{
+  modificarAdoptante(adoptante: any, id: number ): Observable<Adoptante>{
     console.log('SERVICEMODIFICAR', adoptante)
-    return this.http.put<Adoptante>(`${this.urlAPI}/adoptante/${adoptante.id}`, adoptante)
+    return this.http.put<Adoptante>(`${this.urlAPI}/adoptante/${id}`, adoptante)
   }
 
   getAdoptante(id: number): Observable<Adoptante>{

@@ -41,6 +41,7 @@ import { EntrevistasAdoptantesComponent } from './entrevistas-adoptantes/entrevi
 import { FormEntrevistaAdoptanteComponent } from './entrevistas-adoptantes/form-entrevista-adoptante.component';
 import { RespuestasComponent } from './entrevistas-adoptantes/respuestas.component';
 import { EditarAdoptanteComponent } from './adoptantes/editar-adoptante.component';
+import { EditarVoluntariosComponent } from './voluntarios/editar-voluntarios.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -50,7 +51,7 @@ const routes: Routes = [
   {path: 'voluntarios/crear', component: FormCrearComponent,
  // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
-  {path: 'voluntarios/editar/:id', component: FormCrearComponent ,
+  {path: 'voluntarios/editar/:id', component: EditarVoluntariosComponent ,
  // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
   {path: 'fichas-medicas', component: FichasMedicasComponent ,
@@ -194,6 +195,7 @@ const routes: Routes = [
     FormEntrevistaAdoptanteComponent,
     RespuestasComponent,
     EditarAdoptanteComponent,
+    EditarVoluntariosComponent,
   ],
   imports: [
     BrowserModule,

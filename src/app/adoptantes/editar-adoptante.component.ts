@@ -6,7 +6,7 @@ import { Mascota } from './mascota';
 import {EstadoAdoptante} from './estado-adoptante';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { Veterinaria } from './veterinaria';
-
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -73,7 +73,6 @@ export class EditarAdoptanteComponent implements OnInit {
   }
 
   adoptanteObj = this.formBuilder.group({
-    id: [null], 
     idMascota: [null],
     numeroFormulario: [null], 
     nombreCompleto: [""],
@@ -103,8 +102,17 @@ export class EditarAdoptanteComponent implements OnInit {
   }
 
   submit(){
-    this.adoptanteService.modificarAdoptante(this.adoptanteObj.value).subscribe((response: any ) => {
-      console.log('MODIFICAR', response)
+    const id = +this.route.snapshot.paramMap.get('id');
+
+
+    this.adoptanteService.modificarAdoptante(this.adoptanteObj.value, id).subscribe((response: any ) => {
+      this.router.navigate(['/adoptantes'])
+      swal.fire({
+        icon: 'success',
+        title: 'El voluntario ha sido modificado',
+        showConfirmButton: false,
+        timer: 1500
+      })
       return response;
     
     });

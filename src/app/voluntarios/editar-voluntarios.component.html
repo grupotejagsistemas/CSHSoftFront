@@ -1,0 +1,76 @@
+<div class="card w-550 mx-auto"  style="width: 525px;"> 
+    <div class="card-header" id="titulo" style="background-color: white;">Modificar Voluntario</div>
+    <div class="card-body mx-auto" style="width: 800px">
+        <form (submit)="submit()" [formGroup]="voluntarioObj">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Nombre Completo" [(ngModel)]="voluntario.nombrecompleto" name="nombreCompleto" formControlName="nombreCompleto" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 " >
+                        <input type="text" class= "form-control" placeholder="Télefono" [(ngModel)]="voluntario.telefono" name="telefono" formControlName="telefono" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 ">
+                    <input type="text" class="form-control" placeholder="Dirección" [(ngModel)]="voluntario.direccion" name="direccion" formControlName="direccion" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
+            </div>
+            <div formArrayName="idveterinarias" *ngFor="let veterinaria of idveterinarias.controls; let i = index">
+                <div [formGroupName]="i">
+                    <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <select type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
+                                <option
+                                *ngFor="let veterinaria of veterinarias"
+                                [value]="veterinaria.id"
+                            >
+                            {{veterinaria.razonSocial}}
+                        </option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-outline" (click)="eliminarVeterinaria(i)"><i class='fas fa-trash'></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="localidad " [(ngModel)]="voluntario.localidad" name="localidad" formControlName="localidad" >
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="transito" class="col-form-label col-sm-2">Tránsito</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" name="transito" [(ngModel)]="checkedTransito" formControlName="transito">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="traslado" class="col-form-label col-sm-2">Traslado</label>
+                <div class="form-group col-md-4">
+                    <input type="checkbox" name="traslado" [(ngModel)]="checkedTraslado" formControlName="traslado">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="presencial" class="col-form-label col-sm-2">Presencial</label>
+                <div class="form-group col-md-6">
+                    <input type="checkbox" name="presencial"  [(ngModel)]="checkedPresencial" formControlName="presencial">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group  col-md-6 ">
+                    <button class="btn btn-outline-success" role="button" type="submit">
+                        Modificar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

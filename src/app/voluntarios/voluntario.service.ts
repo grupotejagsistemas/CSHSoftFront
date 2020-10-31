@@ -38,11 +38,13 @@ export class VoluntarioService {
   } 
 
   getVoluntario(id: number): Observable<Voluntario>{
+    console.log('idservice', id)
     return this.http.get<Voluntario>(`${this.urlAPI}/voluntario/${id}`);
   }
 
-  modificarVoluntario(voluntario: any) :Observable<any>{
-    return this.http.put<any>(`${this.urlAPI}/voluntario/${voluntario.id}`, voluntario);
+  modificarVoluntario(voluntarioObj: any, id: number) :Observable<any>{
+    console.log('id', id);
+    return this.http.put<any>(`${this.urlAPI}/voluntario/${id}`, voluntarioObj);
    }
 
   borrarVoluntario(id: number) {
