@@ -21,7 +21,7 @@ export class AdoptanteService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getMascotas(): Observable<Mascota[]>{
-    return this.http.get<Mascota[]>(this.urlAPI + '/mascota');
+    return this.http.get<Mascota[]>(this.urlAPI + '/mascotas');
 
   }
 

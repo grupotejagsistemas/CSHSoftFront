@@ -17,7 +17,7 @@ export class FormAdoptanteComponent implements OnInit {
   adoptante: Adoptante = new Adoptante();
   mascotas: Mascota[];
   estados: EstadoAdoptante[];
-  veterinarias: any [] = [] ;
+  veterinarias: Veterinaria[];
   titulo: string = "Nuevo Adoptante";
   p: number = 1;
 
@@ -56,11 +56,31 @@ export class FormAdoptanteComponent implements OnInit {
   }) 
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+
+    this.adoptanteService.getMascotas().subscribe((resp: any) => {
+      this.mascotas = resp;
+      this.mascotas.unshift({
+        nombre: 'Seleccione una mascota',
+        idMascota: null
+      })
+    });
+    
+    this.adoptanteService.getEstadosAdoptante().subscribe((resp: any) => {
+      this.estados = resp;
+      this.estados.unshift({
+        descripcion: 'Seleccione estado',
+        id: null
+      })
+    });
 
     this.adoptanteService.getVeterinaria().subscribe((resp: any) => {
       this.veterinarias = resp;
-    })  
+      this.veterinarias.unshift({
+        razonSocial: 'Seleccione una veterinaria',
+        id: null
+      })
+
+    });
   }
 
 
@@ -75,7 +95,6 @@ export class FormAdoptanteComponent implements OnInit {
     this.idVeterinaria.removeAt(indice)
   }
 
-  
   submit(){
     this.adoptanteService.crearAdoptante(this.adoptanteObj.value).subscribe((response: any ) => response);
   }
