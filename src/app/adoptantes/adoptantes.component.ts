@@ -10,6 +10,11 @@ import swal from 'sweetalert2';
 })
 export class AdoptantesComponent implements OnInit {
 
+  checkedApto: boolean;
+  checkedNoApto: boolean;
+  checkedEnProceso: boolean;
+  checkedRechazado: boolean;
+  checkedFinalizado: boolean;
   busquedaNombre: string;
   adoptantes: Adoptante[];
   p: number = 1;
@@ -30,4 +35,86 @@ export class AdoptantesComponent implements OnInit {
       this.adoptantes = data;
     })
   }
+
+  filtroApto(): void{
+    if(this.checkedApto === true){
+      this.adoptanteService.filtrarApto("Apto").subscribe((data: any ) => {
+        this.adoptantes = data;
+        this.checkedNoApto = false;
+        this.checkedEnProceso = false; 
+        this.checkedFinalizado = false; 
+        this.checkedRechazado = false;
+      })
+    } else {
+      this.adoptanteService.getAdoptantes().subscribe((data: any) => {
+        this.adoptantes = data; 
+      })
+    }
+  }
+  
+  filtroNoApto(): void {
+    if(this.checkedNoApto === true){
+      this.adoptanteService.filtrarNoApto("NoApto").subscribe((data: any) => {
+        this.adoptantes = data;
+        this.checkedApto = false;
+        this.checkedEnProceso = false; 
+        this.checkedFinalizado = false; 
+        this.checkedRechazado = false;
+      })
+    }else {
+      this.adoptanteService.getAdoptantes().subscribe((data: any) => {
+        this.adoptantes = data; 
+      })
+    }
+  }
+  
+  filtroEnProceso(): void{
+    if(this.checkedEnProceso === true){
+      this.adoptanteService.filtrarEnProceso("EnProceso").subscribe((data: any) => {
+        this.adoptantes = data;
+        this.checkedApto = false;
+        this.checkedNoApto = false; 
+        this.checkedFinalizado = false; 
+        this.checkedRechazado = false;
+      })
+    }else {
+      this.adoptanteService.getAdoptantes().subscribe((data: any) => {
+        this.adoptantes = data; 
+      })
+    }
+  }
+
+  filtroRechazado(): void{
+    if(this.checkedRechazado === true) {
+      this.adoptanteService.filtrarRechazado('Rechazado').subscribe((data: any) => {
+        this.adoptantes = data;
+        this.checkedApto = false;
+        this.checkedNoApto = false; 
+        this.checkedEnProceso = false;
+        this.checkedFinalizado = false; 
+      })
+    }else {
+      this.adoptanteService.getAdoptantes().subscribe((data: any) => {
+        this.adoptantes = data; 
+      })
+    }
+
+  }
+  
+  filtroFinalizado(): void {
+    if(this.checkedFinalizado === true){
+      this.adoptanteService.filtrarFinalizado("Finalizado").subscribe((data: any) => {
+        this.adoptantes = data; 
+        this.checkedApto = false;
+        this.checkedNoApto = false; 
+        this.checkedEnProceso = false;
+        this.checkedRechazado = false; 
+      })
+    }else {
+      this.adoptanteService.getAdoptantes().subscribe((data: any) => {
+        this.adoptantes = data; 
+      })
+    }
+  }
+
  }

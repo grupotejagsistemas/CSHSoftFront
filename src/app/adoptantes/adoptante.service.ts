@@ -56,4 +56,23 @@ export class AdoptanteService {
     return this.http.get<Adoptante>(`${this.urlAPI}/adoptante/${id}`);
   }
 
+  filtrarApto(apto: string) {
+    return this.http.get(`${this.urlAPI}/adoptante/filtrarEstado?estado=${apto}`);
+  }
+
+  filtrarNoApto(noApto: string){
+    return this.http.get(`${this.urlAPI}/adoptante/filtrarEstado?estado=${noApto}`);
+  }
+
+  filtrarEnProceso(enProceso: string){
+    return this.http.get(`${this.urlAPI}/adoptante/filtrarEstado?estado=${enProceso}`);
+  }
+
+  filtrarRechazado(rechazado: string) {
+    return this.http.get(`${this.urlAPI}/adoptante/filtrarEstado?estado=${rechazado}`);
+  }
+
+  filtrarFinalizado(finalizado: string){
+    return this.http.get(`${this.urlAPI}/adoptante/filtrarEstado?estado=${finalizado}`);
+  }
 }
