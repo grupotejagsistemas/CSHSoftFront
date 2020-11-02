@@ -10,7 +10,6 @@ export class Voluntario {
     transito: string;
     traslado: string;
     presencial: string;
-  static nombrecompleto: any;
 
     constructor (){
 

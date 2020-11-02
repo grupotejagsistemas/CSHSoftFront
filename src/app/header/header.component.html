@@ -4,7 +4,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul *ngIf="authService.isAuthenticated()"  class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a id="home" class="nav-link mx-1,5"  href="#">Home 
                     <span class="sr-only">(current)</span>                
@@ -13,10 +13,6 @@
                     #home {color: #ffffff}
                 </style>
             </li>
-          
-
-        
-
             <li  class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mx-1,5"  href="#" id="adop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Adoptantes
@@ -28,6 +24,10 @@
                     <a id="adoptantes" class="nav-link" routerLink="/adoptantes">Adoptantes</a>
                     <style>
                         #adoptantes {color:#FFffff}
+                    </style>
+                    <a id="entrevistas" class="nav-link" routerLink="/entrevistas">Entrevistas</a>
+                    <style>
+                        #entrevistas {color:#FFffff}
                     </style>
                     <a id="contratos" class="nav-link" routerLink="/contratos">Contratos</a>
                     <style>

@@ -39,7 +39,7 @@ export class FormMascotasComponent implements OnInit {
         this.estados = resp;
         this.estados.unshift({
           descripcion: 'Seleccione estado',
-          id: null
+          id: this.mascotaObj.estado.id
         })
 
     })

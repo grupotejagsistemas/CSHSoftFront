@@ -1,5 +1,39 @@
 <h5 class="card-title" >Adoptantes</h5>
-            
+<div class="input-group">
+    <div class="input bg-white">
+        <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)] ="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
+    </div>
+</div>
+<div class="form-row">
+    <label for="apto" class="col-form-label col-sm-2">Apto</label>
+    <div class="form-group col-md-4">
+        <input type="checkbox" placeholder="apto" name="apto" [(ngModel)]="checkedApto" (change)="filtroApto()">
+    </div>
+</div>
+<div class="form-row">
+    <label for="noApto" class="col-form-label col-sm-2"> No Apto</label>
+    <div class="form-group col-md-4">
+        <input type="checkbox" placeholder="noApto" name="noApto" [(ngModel)]="checkedNoApto" (change)="filtroNoApto()">
+    </div>
+</div>
+<div class="form-row">
+    <label for="enProceso" class="col-form-label col-sm-2"> En Proceso</label>
+    <div class="form-group col-md-4">
+        <input type="checkbox" placeholder="enProceso" name="enProceso" [(ngModel)]="checkedEnProceso" (change)="filtroEnProceso()">
+    </div>
+</div>
+<div class="form-row">
+    <label for="rechazado" class="col-form-label col-sm-2"> Rechazado </label>
+    <div class="form-group col-md-4">
+        <input type="checkbox" placeholder="rechazado" name="rechazado" [(ngModel)]="checkedRechazado" (change)="filtroRechazado()">
+    </div>
+</div>
+<div class="form-row">
+    <label for="finalizado" class="col-form-label col-sm-2"> Finalizado </label>
+    <div class="form-group col-md-4">
+        <input type="checkbox" placeholder="finalizado" name="finalizado" [(ngModel)]="checkedFinalizado" (change)="filtroFinalizado()">
+    </div>
+</div>
 <div class="my-4 text-right" >
     <button class="btn btn-outline-success" type="button" [routerLink] = "['/adoptantes/crear']">Nuevo Adoptante</button>
 </div>
@@ -50,7 +84,6 @@
                 <button type="button" name="eliminar" (click)='borrarAdoptante(adoptante.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
             </td>
         </tr>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </tbody>
 </table>  
-
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
