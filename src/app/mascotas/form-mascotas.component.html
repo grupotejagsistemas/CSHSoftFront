@@ -1,7 +1,6 @@
-<div class="card w-550 mx-auto " style="width: 525px;">
-    <div class="card-header"id="titulo" style="background-color: white;" *ngIf="!mascotaObj.id else elseTitulo">Nueva mascota</div>
+    <div class="text-center"id="titulo" style="background-color: white;" *ngIf="!mascotaObj.id else elseTitulo">Nueva mascota</div>
     <ng-template #elseTitulo>
-        <div class="card-header" id="titulo" style="background-color: white;">Modificar mascota</div>
+        <div class="text-center" id="titulo" style="background-color: white;">Modificar mascota</div>
          </ng-template>
     <div class="card-body mx-auto" style="width: 800px;">
         <form>
@@ -100,4 +99,3 @@
             </div>
             </div>
         </form>
-    </div>

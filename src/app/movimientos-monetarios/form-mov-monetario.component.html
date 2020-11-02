@@ -1,40 +1,30 @@
-<div class="card w-550 mx-auto " style="width: 525px;">
-    <div class="card-header" id="titulo" style="background-color: white;">{{titulo}} </div>
-        <div class="card-body mx-auto" style="width: 800px;"> 
-            <form>
-                <div class="form-group row">
-                    <div class="col-sm-6">
+           <form class="border p-3 form">
+                <div class=" text-center">
+                    <h2>Nuevo movimiento monetario</h2> 
+                    <hr>
+                </div>
+                    <div class="form-group">
                         <input type="text" class="form-control" placeholder="Autor" name="autor" [(ngModel)]= "movMonObj.autor">
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
+                    <div class="form-group">
                         <input type="text" class="form-control" placeholder="Monto" name="monto" [(ngModel)]= "movMonObj.monto">
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
+                    <div class="form-group">
                         <input type="text" class="form-control" placeholder="Medio" name="medio" [(ngModel)]= "movMonObj.medio"required  >
                     </div>
-                </div>
-                    <label for="idTipoMovimiento" class="col-form-label col-sm-2">Tipo Movimiento</label>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
+                    <label for="idTipoMovimiento" class="col-form-label col-sm-6">Tipo Movimiento</label>
+                        <div class="form-group ">
                             <select class="form-control" type = number [(ngModel)] = "movMonObj.idTipoMovimiento" name = "idTipoMovimiento">
                             <option *ngFor = " let tipoMovimiento of tiposMovimientos" [value] = "tipoMovimiento.id">{{tipoMovimiento.descripcion}}</option>
                         </select>
-                        </div>
                     </div>
                     <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
-                    <div class="form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group">
                                 <input type="date" class="form-control" name="fecha" [(ngModel)]="movMonObj.fecha" required>
                             </div>
-                    </div>
                 <div class = "form-group row">
                     <div class = "col-sm-6">
                         <button class = "btn btn-outline-success" role = "button" (click) = 'agregar()'>Agregar</button>
                     </div>
                 </div>
             </form>
-    </div>

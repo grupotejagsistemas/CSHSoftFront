@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let voluntario of voluntarios |  paginate: { itemsPerPage: 10 , currentPage: p }" >
+                <tr *ngFor="let voluntario of voluntarios |  paginate: { itemsPerPage: 5 , currentPage: p }" >
                     <td>{{voluntario.nombrecompleto}}</td>
                     <td>{{voluntario.telefono}}</td>
                     <td>{{voluntario.direccion}}</td>
