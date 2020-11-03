@@ -22,6 +22,7 @@ export class UsuarioService {
   }
 
   modificarContrasena(contrasena: any){
+    console.log('service', contrasena)
     return this.http.put(`${this.urlAPI}/admin/usuario`, contrasena);
   }
 

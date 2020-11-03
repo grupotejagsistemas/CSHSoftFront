@@ -4,17 +4,17 @@
                     <hr>
                 </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Contraseña Actual" name="contrasenaActual">
+                        <input type="text" class="form-control" placeholder="Usuario" [(ngModel)]="usuarioObj.username" name="username">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder=" Nueva Contraseña" name="nuevaContrasena">
+                        <input type="text" class="form-control" placeholder="Contraseña actual" [(ngModel)]="usuarioObj.oldPass" name="oldPass">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Confirmar contraseña" name="confirmacion">
+                        <input type="text" class="form-control" placeholder="Nueva contraseña" [(ngModel)]="usuarioObj.newPass" name="newPass">
                     </div>
                 <div class = "form-group row">
                     <div class = "col-sm-6">
-                        <button class = "btn btn-outline-success" role = "button" >Confirmar</button>
+                        <button class = "btn btn-outline-success" (click)="modificar()" role = "button" >Confirmar</button>
                     </div>
                 </div>
             </form>
