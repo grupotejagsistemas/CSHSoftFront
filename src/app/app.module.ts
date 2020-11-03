@@ -45,6 +45,7 @@ import { EditarVoluntariosComponent } from './voluntarios/editar-voluntarios.com
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
+
   {path: 'voluntarios', component: VoluntariosComponent,
  // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} 
 },
@@ -159,6 +160,7 @@ const routes: Routes = [
   {path: 'modificacion-tipo-usuario/:id', component: ModifTipoUsuarioComponent ,
  // canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
 }
+
 ]
 @NgModule({
   declarations: [

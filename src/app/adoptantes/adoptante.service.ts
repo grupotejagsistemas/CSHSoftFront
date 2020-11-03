@@ -25,10 +25,6 @@ export class AdoptanteService {
 
   }
 
-  getEstadosAdoptante(): Observable<EstadoAdoptante[]> {
-    return this.http.get<EstadoAdoptante[]>(this.urlAPI + '/estadoAdoptante');
-  }
-
   getVeterinaria(): Observable<Veterinaria[]>{
     return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria`);
   }

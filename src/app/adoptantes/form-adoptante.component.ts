@@ -58,14 +58,6 @@ export class FormAdoptanteComponent implements OnInit {
       this.mascotas = resp;
 
     });
-    
-    this.adoptanteService.getEstadosAdoptante().subscribe((resp: any) => {
-      this.estados = resp;
-      this.estados.unshift({
-        descripcion: 'Seleccione estado',
-        id: null
-      })
-    });
 
     this.adoptanteService.getVeterinaria().subscribe((resp: any) => {
       this.veterinarias = resp;
