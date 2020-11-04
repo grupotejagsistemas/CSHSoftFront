@@ -1,22 +1,17 @@
-<div class="card w-550 mx-auto"  style="width: 525px;"> 
-    <div class="card-header" id="titulo" style="background-color: white;">Nuevo Voluntario</div>
-    <div class="card-body mx-auto" style="width: 800px">
-        <form (submit)="submit()" [formGroup]="voluntarioObj">
-            <div class="form-row">
-                <div class="form-group col-md-6">
+    <form (submit)="submit()" [formGroup]="voluntarioObj" class="border p-3 form">   
+            <div class=" text-center">
+                <h2>Modificar Voluntario</h2> 
+                <hr>
+            </div>
+                <div class="form-group">
                     <input type="text" class="form-control" placeholder="Nombre Completo" name="nombreCompleto" formControlName="nombreCompleto" >
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6 " >
+                <div class="form-group " >
                         <input type="text" class= "form-control" placeholder="Télefono" name="telefono" formControlName="telefono" >
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6 ">
+                <div class="form-group ">
                     <input type="text" class="form-control" placeholder="Dirección" name="direccion" formControlName="direccion" >
                 </div>
-            </div>
             <div class="form-group row">
                 <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
             </div>
@@ -40,33 +35,25 @@
                     </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group">
                     <input type="text" class="form-control" placeholder="localidad " name="localidad" formControlName="localidad" >
                 </div>
-            </div>
-            <div class="form-row">
                 <label for="transito" class="col-form-label col-sm-2">Tránsito</label>
                 <div class="form-group col-md-4">
                     <input type="checkbox" name="transito" [(ngModel)]="checkedTransito" formControlName="transito">
                 </div>
-            </div>
-            <div class="form-row">
                 <label for="traslado" class="col-form-label col-sm-2">Traslado</label>
                 <div class="form-group col-md-4">
                     <input type="checkbox" name="traslado" [(ngModel)]="checkedTraslado" formControlName="traslado">
                 </div>
-            </div>
-            <div class="form-row">
                 <label for="presencial" class="col-form-label col-sm-2">Presencial</label>
-                <div class="form-group col-md-6">
+                <div class="form-group">
                     <input type="checkbox" name="presencial"  [(ngModel)]="checkedPresencial" formControlName="presencial">
                 </div>
-            </div>
 
             <div class="form-row">
-                <div class="form-group  col-md-6 ">
+                <div class="form-group ">
                     <button class="btn btn-outline-success" role="button" type="submit">Agregar</button>
                 </div>
             </div>
-        </form>
+    </form>

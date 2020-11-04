@@ -1,68 +1,76 @@
-<div class="card w-550 mx-auto " style="width: 525px;" >
+<!--<div class="card w-550 mx-auto " style="width: 525px;" >
     <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!fichaMedicaObj.id else elseTitulo">Nueva ficha médica</div>
     <ng-template #elseTitulo>
         <div class="card-header" id="titulo" style="background-color: white;">Modificar ficha médica</div>
          </ng-template>
-        <div class="card-body mx-auto" style="width: 800px"> 
-            <form>
+        <div class="card-body mx-auto" style="width: 800px"> -->
+            <form class="border p-3 form">   
+                <div class=" text-center">
+                    <h2>Nueva ficha médica</h2> 
+                    <hr>
+                        <ng-template #elseTitulo>
+                            <h2>Modificar eficha médica</h2> 
+                            <hr>
+                         </ng-template>
+                </div>
                 <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
-                <div class="form-row">
-                        <div class="form-group col-md-4">
+                <div class="form-group">
+                        <div class="form-group">
                             <input type="date" class="form-control" name="fecha" [(ngModel)]="fichaMedicaObj.fecha" required>
                         </div>
                 </div>
-                <div class="form-row">
+                <div class="form-group">
                     <label for="desparasitacion" class="col-form-label col-sm-2"> Desparasitacion</label>
-                    <div class="form-group col-md-4">
+                    <div class="form-group">
                         <input type="checkbox" placeholder="desparasitacion" name="desparasitacion" [(ngModel)]="checkedDesparasitacion">
                     </div>
                 </div>
 
-                <div class="form-row">
-                        <div class="form-group col-md-4">
+                <div class="form-group">
+                        <div class="form-group">
                             <input type="text" [disabled]="checkedDesparasitacion === false" class="form-control " placeholder="Nombre del Producto" name="nombreProducto" [(ngModel)]="fichaMedicaObj.nombreProducto" required >
                         </div>
                 </div>
-                <div class="form-row">
+                <div class="form-group">
                     <label for="vacuna" class="col-form-label col-sm-2"> Vacuna</label>
-                        <div class="form-group col-md-4">
+                        <div class="form-group">
                             <input type="checkbox" class="visible" placeholder="Vacuna"  name="vacuna" [(ngModel)]="checkedVacuna" required >
                         </div>
                 </div>
-                <div class="form-row">
-                        <div class="form-group col-md-4">
+                <div class="form-group">
+                        <div class="form-group">
                             <input type="text" class="form-control " placeholder="Nombre de Vacuna" name="nombreVacuna" [(ngModel)]="fichaMedicaObj.nombreVacuna"  required>
                         </div>
                 </div>               
-                 <div class="form-row">
-                        <div class="form-group col-md-4">
+                 <div class="form-group">
+                        <div class="form-group">
                             <input type="text" class="form-control " placeholder="Diagnóstico" name="diagnostico"  [(ngModel)]="fichaMedicaObj.diagnostico" required>
                         </div>
                 </div>
             
                 <label for="mascota" class="col-form-label col-sm-2">Mascota </label>
-                <div class="form-row">
-                         <div class="form-group col-md-4">
+                <div class="form-group">
+                         <div class="form-group">
                              <select type="number" class="form-control " name="mascota"  [(ngModel)]="fichaMedicaObj.idMascota" required>
                                  <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">{{mascota.nombre}}</option>
                              </select>
                          </div>
                  </div>
                  <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
-                 <div class="form-row">
-                         <div class="form-group col-md-4">
+                 <div class="form-group">
+                         <div class="form-group">
                              <select  class="form-control "  name="veterinaria" [(ngModel)]="fichaMedicaObj.idVeterinaria" required >
                                  <option *ngFor="let veterinaria of veterinarias" [ngValue]="veterinaria.id">{{veterinaria.razonSocial}}</option>
                              </select>
                          </div>
                  </div>
-                <div class="form-row">
+                <div class="form-group">
                     <label for="tratamiento" class="col-form-label col-sm-2">Tratamiento</label>
-                        <div class="form-group col-md-4">
+                        <div class="form-group">
                             <input type="checkbox"  name="tratamiento" [(ngModel)]="checkedTratamiento" required>
                         </div>
                 </div>
-                <div class="form-row">
+                <div class="form-group">
                         <div class="col-md-6">
                             <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" [(ngModel)]="fichaMedicaObj.descripcionTratamiento"required ></textarea> 
                         </div>
@@ -76,6 +84,4 @@
                         </ng-template>
                     </div>
                 </div>
-            </form>
-    </div>
-</div>
+        </form>
