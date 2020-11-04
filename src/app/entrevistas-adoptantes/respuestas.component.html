@@ -2,12 +2,12 @@
             <form class="border p-3 form">   
                 <div class=" text-center">
                     <h2>Visualización de respuestas</h2> 
-                    <hr>>
-                <label for="adoptante" class="col-form-label col-sm-2">Adoptante </label>
+                    <hr>
+                    <label for="adoptante" class="col-form-label col-sm-2">Adoptante </label>
                     <div class="form-group col-md-8">
                         <input type="text"  disabled class="form-control " name="adoptante" [(ngModel)]="entrevistaObj.adoptante" required >
                     </div>
-
+                </div>
                  <label for="respuesta1" class="col-form-label col-sm-8"> 
                      ¿Hace cuánto nació el deseo por adoptar? ¿Por qué consideras que este es el momento indicado para adoptar?
                  </label>
@@ -135,4 +135,5 @@
                         <div class="form-group col-md-8">
                             <textarea type="text" disabled   class="form-control "  name="respuesta21" [(ngModel)]="entrevistaObj.respuesta21" required ></textarea>
                         </div>
+
             </form>
