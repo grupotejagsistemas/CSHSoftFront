@@ -61,11 +61,15 @@
                 </div>
                 <div class="form-group">
                     <textarea type="text" maxlength="255"   class="form-control" style="resize:none" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaObj.descripcionRescate" required></textarea> 
-
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control " placeholder="Especie" name="especie" [(ngModel)]="mascotaObj.especie" required>
-
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <select type="text" class="form-control " placeholder="Especie" name="especie" [(ngModel)]="mascotaObj.especie" required>
+                            <option [value]=null> Seleccione Especie</option>
+                            <option>Canino</option>
+                            <option>Felino</option>
+                        </select>
+                    </div>
                 </div>
             <label for="estado" class="col-form-label col-sm-2">Estado</label>
                 <div class="form-group">
