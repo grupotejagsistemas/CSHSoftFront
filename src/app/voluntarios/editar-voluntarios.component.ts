@@ -34,24 +34,25 @@ export class EditarVoluntariosComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.voluntarioService.getVoluntario(id).subscribe((data: any) => {
-        if(this.voluntarioObj.value.presencial ==="SI"){
+      this.voluntario = data;
+
+      if(this.voluntario.presencial === "SI"){
           this.checkedPresencial = true;
         } else {
           this.checkedPresencial = false;
         }
   
-        if(this.voluntarioObj.value.transito ==="SI"){
+        if(this.voluntario.transito ==="SI"){
           this.checkedTransito = true;
         } else {
           this.checkedTransito = false;
         }
   
-        if(this.voluntarioObj.value.traslado === "SI"){
-          this.checkedTraslado === true;
+        if(this.voluntario.traslado === "SI"){
+          this.checkedTraslado = true;
         } else {
           this.checkedTraslado = false;
         }
-        this.voluntario = data;
         console.log('data', data);
       })
       
@@ -71,9 +72,9 @@ export class EditarVoluntariosComponent implements OnInit {
     direccion: [""],
     idveterinarias: this.formBuilder.array([]),
     localidad: [""],
-    transito: [false],
-    traslado: [false],
-    presencial: [false]
+    transito: "",
+    traslado: "",
+    presencial: ""
   }) 
 
   agregarVeterinaria() {

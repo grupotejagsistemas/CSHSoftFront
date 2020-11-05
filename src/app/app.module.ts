@@ -204,7 +204,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule,
   ],
   providers: [VoluntarioService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor,  multi: true}],
