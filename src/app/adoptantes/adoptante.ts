@@ -13,8 +13,11 @@ export class Adoptante {
     facebook: string; 
     instagram: string; 
     situacionLaboral: string; 
-    veteriniaria_cercana: [];
+    // veteriniaria_cercana: [];
     observaciones: string; 
     mascotaInteresada: Mascota; 
+    idMascota: number;
+    idEstadoAdoptante: number;
+    idVeterinaria: [];
     estado_adoptante: EstadoAdoptante;
 }
