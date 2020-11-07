@@ -26,10 +26,10 @@ export class AuthService {
     if(this._token != null){
       return this._token;
     } else if (this._token == null && sessionStorage.getItem('token') != null){
-      this._token = JSON.parse(sessionStorage.getItem('token'));
+      this._token = JSON.stringify(sessionStorage.getItem('token'));
       return this._token;
     }
-    return null;
+    return this._token = JSON.parse(sessionStorage.getItem('token'));
   }
   
   hasRole(role: string): boolean {
@@ -53,9 +53,11 @@ export class AuthService {
     params.set('username', usuario.username);
     params.set('password', usuario.password);
 
-    console.log(params.toString());
+    console.log('HOLA', params.toString());
 
-    return this.http.post<any>(urlEndpoint, params.toString(),{headers: httpHeaders})
+    
+      return this.http.post<any>(urlEndpoint, params.toString(),{headers: httpHeaders})
+
   }
 
   guardarUsuario(accessToken: string) : void {

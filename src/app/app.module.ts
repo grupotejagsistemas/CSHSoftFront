@@ -43,6 +43,7 @@ import { RespuestasComponent } from './entrevistas-adoptantes/respuestas.compone
 import { EditarAdoptanteComponent } from './adoptantes/editar-adoptante.component';
 import { EditarVoluntariosComponent } from './voluntarios/editar-voluntarios.component';
 import { AuditoriaComponent } from './auditoria/auditoria.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full', 
@@ -213,7 +214,12 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule,
   ],
-  providers: [VoluntarioService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor,  multi: true}],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+
+    VoluntarioService, 
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor,  multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
