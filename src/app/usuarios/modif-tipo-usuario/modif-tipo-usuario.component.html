@@ -4,13 +4,21 @@
                     <hr>
                 </div>             
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="nombreUsuario" >
+                        <input type="text" class="form-control"  [(ngModel)]= "usuarioObj.username" placeholder="Nombre de usuario" name="username" disabled >
+                    </div>
+                    <label for="idRole"  class="col-form-label col-sm-8">Tipo de Usuario</label>
+                    <div class="form-group">
+                        <select [(ngModel)]="usuarioObj.idRole"  class="form-control" type="number">
+                            <option [value]=null> Seleccione rol</option>
+
+                            <option [value]=1>Administrador</option>
+                            <option [value]=2>Super Administrador</option>
+                        </select>
                     </div>
                 <!--
-                    <label for="idTipoUsuario" class="col-form-label col-sm-2">Tipo de Usuario</label>
                     <div class="form-group row">
                         <div class="col-sm-6">
-                            <select class="form-control" type = number [(ngModel)] = "usuario.idTipoUsuario" name = "idTipoUsuario">
+                            <select class="form-control" type = number [(ngModel)] = "usuario.idRole" name = "idTipoUsuario">
                             <option *ngFor = "let tipoUsuario of tiposUsuarios" [value] = "tipoUsuario.id">{{tipoUsuario.descripcion}}</option>
                         </select>
                         </div>
@@ -18,7 +26,7 @@
                 -->
                 <div class = "form-group row">
                     <div class = "col-sm-6">
-                        <button class = "btn btn-outline-success" role = "button">Confirmar</button>
+                        <button class = "btn btn-outline-success" (click)="modificar()" role = "button">Confirmar</button>
                     </div>
                 </div>
             </form>

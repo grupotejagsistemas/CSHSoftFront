@@ -1,5 +1,5 @@
 <h5 >Baja de usuarios</h5>
-<div class="alert alert-info">
+<div *ngIf="usuarios?.length == 0"class="alert alert-info">
     No se encontraron datos registrados
 </div>
 <table class="table table-striped">
@@ -11,15 +11,16 @@
     </thead>
     <tbody>
         <tr>
-       <!--
-           <tr *ngFor="let usuario of usuarios">
-        --> 
+
+        <tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: p }">
            
-            <td>username</td>
-            <td>tipoUsuario</td>
-            <td>
-                <button class="btn btn-outline-danger" type="button" name="button">Eliminar</button>
-            </td>
+                <td>{{usuario.nombreUsuario}}</td>
+                <td>{{usuario.tipoUsuario}}</td>
+                <td>
+                    <button class="btn btn-outline-danger" type="button" (click)="borrarUsuario(usuario.id, usuario.nombreUsuario)" name="button">Eliminar</button>
+                </td>
         </tr>
     </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
 </table>  
