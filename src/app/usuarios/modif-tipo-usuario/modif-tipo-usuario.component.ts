@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from './usuario';
 import { UsuarioService } from '../usuario.service';
 import swal from 'sweetalert2';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class ModifTipoUsuarioComponent implements OnInit {
 
   constructor(
     public usuarioService: UsuarioService,
+    public authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -31,7 +33,7 @@ export class ModifTipoUsuarioComponent implements OnInit {
   }
 usuarioObj = { 
 
-  username: "",
+  username:"",
   idRole: null,
 }
 

@@ -4,11 +4,11 @@
                     <hr>
                 </div>             
                     <div class="form-group">
-                        <input type="text" class="form-control"  [(ngModel)]= "usuarioObj.username" placeholder="Nombre de usuario" name="username" disabled >
+                        <input type="text" class="form-control"  [(ngModel)]= "usuarioObj.username" placeholder="Nombre de usuario" name="username">
                     </div>
                     <label for="idRole"  class="col-form-label col-sm-8">Tipo de Usuario</label>
                     <div class="form-group">
-                        <select [(ngModel)]="usuarioObj.idRole"  class="form-control" type="number">
+                        <select [(ngModel)]="usuarioObj.idRole"  class="form-control" type="number" name="idRole">
                             <option [value]=null> Seleccione rol</option>
 
                             <option [value]=1>Administrador</option>
