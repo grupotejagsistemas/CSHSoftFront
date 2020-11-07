@@ -26,10 +26,10 @@ export class AuthService {
     if(this._token != null){
       return this._token;
     } else if (this._token == null && sessionStorage.getItem('token') != null){
-      this._token = JSON.stringify(sessionStorage.getItem('token'));
+      this._token = JSON.stringify(localStorage.getItem('token'));
       return this._token;
     }
-    return this._token = JSON.parse(sessionStorage.getItem('token'));
+    return null;
   }
   
   hasRole(role: string): boolean {
@@ -69,15 +69,33 @@ export class AuthService {
     this._usuario.username = payload.user_name;
     this._usuario.roles = payload.authorities;
 
+    
+
+    localStorage.setItem("usuario", JSON.stringify(this._usuario));
     sessionStorage.setItem("usuario", JSON.stringify(this._usuario));
 
   }
 
+
+
   guardarToken(accessToken: string): void {
     this._token = accessToken;
     sessionStorage.setItem('token', accessToken);
+    localStorage.setItem('token', accessToken);
 
   }
+
+  leerToken(){
+    if(localStorage.getItem('token')) {
+      this._token = localStorage.getItem('token');
+
+    } else {
+      this._token = " "
+    }
+
+    return this._token;
+  }
+
 
   obtenerDatosToken(accessToken: string) : any {
 
@@ -99,6 +117,9 @@ export class AuthService {
   logout(): void {
     this._token = null;
     this._usuario = null;
+    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
     sessionStorage.clear();
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('usuario');

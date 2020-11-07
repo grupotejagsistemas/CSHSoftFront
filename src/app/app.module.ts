@@ -44,6 +44,8 @@ import { EditarAdoptanteComponent } from './adoptantes/editar-adoptante.componen
 import { EditarVoluntariosComponent } from './voluntarios/editar-voluntarios.component';
 import { AuditoriaComponent } from './auditoria/auditoria.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AuthService } from './usuarios/auth.service';
+import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full', 
@@ -216,9 +218,10 @@ const routes: Routes = [
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
-
+    AuthService,
     VoluntarioService, 
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor,  multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor,  multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
