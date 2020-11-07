@@ -83,7 +83,7 @@ export class FormAdoptanteComponent implements OnInit {
 
   submit(){
     this.adoptanteService.crearAdoptante(this.adoptanteObj.value).subscribe((response: any ) =>{
-      this.router.navigate(['/voluntarios'])
+      this.router.navigate(['/adoptantes'])
       swal.fire({
         icon: 'success',
         title: 'Creación exitosa',

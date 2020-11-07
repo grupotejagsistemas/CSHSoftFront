@@ -42,4 +42,26 @@ export class FichasMedicasComponent implements OnInit {
       }
     })
   }
+
+  exportProductsPdf(id: number, nombre:string){
+    this.fichaMedicaService.exportPdfProducts(id).subscribe(x => {
+      const blob = new Blob([x], {type: 'application/pdf'});
+      
+      if(window.navigator && window.navigator.msSaveOrOpenBlob){
+        window.navigator.msSaveOrOpenBlob(blob);
+        return;
+      }
+      const data = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = data;
+      link.download = nombre + " " + 'ficha-medica.pdf';
+      link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
+
+      setTimeout(function() {
+        window.URL.revokeObjectURL(data);
+        link.remove();
+      }, 100)
+    });
+
+  }
 }
