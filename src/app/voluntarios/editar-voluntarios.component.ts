@@ -17,6 +17,7 @@ export class EditarVoluntariosComponent implements OnInit {
   checkedTraslado: boolean; 
   voluntario:  Voluntario;
   veterinarias: Veterinaria[] ;
+  veterinariasArray:  any [] = [];
 
   constructor(
     private voluntarioService: VoluntarioService, 
@@ -35,6 +36,7 @@ export class EditarVoluntariosComponent implements OnInit {
 
     this.voluntarioService.getVoluntario(id).subscribe((data: any) => {
       this.voluntario = data;
+      this.idveterinariasArray();
 
       if(this.voluntario.presencial === "SI"){
           this.checkedPresencial = true;
@@ -65,7 +67,8 @@ export class EditarVoluntariosComponent implements OnInit {
   })
 }
 
-  
+
+ 
   voluntarioObj = this.formBuilder.group({
     nombreCompleto: [""], 
     telefono: [null],
@@ -76,6 +79,16 @@ export class EditarVoluntariosComponent implements OnInit {
     traslado: "",
     presencial: ""
   }) 
+
+  idveterinariasArray() {
+    this.veterinariasArray = this.voluntario.idveterinarias.map(vete => {
+      return vete.razonSocial;
+    })
+
+    console.log('ARRAY', this.veterinariasArray)
+    return this.veterinariasArray;
+  }
+  
 
   agregarVeterinaria() {
     const veterinariaFormGroup = this.formBuilder.group({ 

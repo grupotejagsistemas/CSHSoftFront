@@ -31,9 +31,9 @@ export class ModifTipoUsuarioComponent implements OnInit {
       })
     }
   }
+  
 usuarioObj = { 
-
-  username:"",
+  username: "",
   idRole: null,
 }
 

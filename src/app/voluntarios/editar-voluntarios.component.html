@@ -15,15 +15,21 @@
                 <div class="form-group ">
                     <input type="text" class="form-control" placeholder="Dirección" [(ngModel)]="voluntario.direccion" name="direccion" formControlName="direccion" >
                 </div>
-            <div class="form-group row">
-                <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
+                <div class="form-group row">
+                    <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
+                </div>
+                <div  class="form-group" *ngFor="let veterinaria of veterinariasArray; let i = index" >
+                    <span type="text" class="form-control">
+                        {{veterinaria}}
+                    </span>
+              
             </div>
             <div formArrayName="idveterinarias"  *ngFor="let veterinaria of idveterinarias.controls; let i = index">
                 <div [formGroupName]="i">
-                    <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
+                    <label for="veterinaria" class="col-form-label col-sm-8">Veterinaria</label>
                     <div class="form-group row">
-                        <div class="col-md-3">
-                            <select type="text" [(ngModel)]="idveterinarias" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
+                        <div class="col-md-8">
+                            <select type="text"  [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
                                 <option
                                 *ngFor="let veterinaria of veterinarias"
                                 [value]="veterinaria.id"

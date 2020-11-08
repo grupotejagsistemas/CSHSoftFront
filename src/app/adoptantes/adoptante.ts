@@ -18,6 +18,6 @@ export class Adoptante {
     mascotaInteresada: Mascota; 
     idMascota: number;
     idEstadoAdoptante: number;
-    idVeterinaria: [];
+    idVeterinaria: any [] = [];
     estado_adoptante: EstadoAdoptante;
 }
