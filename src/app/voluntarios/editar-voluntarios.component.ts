@@ -17,6 +17,7 @@ export class EditarVoluntariosComponent implements OnInit {
   checkedTraslado: boolean; 
   voluntario:  Voluntario;
   veterinarias: Veterinaria[] ;
+  veterinariasArray:  any [] = [];
 
   constructor(
     private voluntarioService: VoluntarioService, 
@@ -34,24 +35,26 @@ export class EditarVoluntariosComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.voluntarioService.getVoluntario(id).subscribe((data: any) => {
-        if(this.voluntarioObj.value.presencial ==="SI"){
+      this.voluntario = data;
+      this.idveterinariasArray();
+
+      if(this.voluntario.presencial === "SI"){
           this.checkedPresencial = true;
         } else {
           this.checkedPresencial = false;
         }
   
-        if(this.voluntarioObj.value.transito ==="SI"){
+        if(this.voluntario.transito ==="SI"){
           this.checkedTransito = true;
         } else {
           this.checkedTransito = false;
         }
   
-        if(this.voluntarioObj.value.traslado === "SI"){
-          this.checkedTraslado === true;
+        if(this.voluntario.traslado === "SI"){
+          this.checkedTraslado = true;
         } else {
           this.checkedTraslado = false;
         }
-        this.voluntario = data;
         console.log('data', data);
       }) 
     this.voluntarioService.getVeterinarias().subscribe((resp: any) => {
@@ -82,10 +85,20 @@ voluntarioObj = this.formBuilder.group({
   direccion: ["",Validators.required],
   idveterinarias: this.formBuilder.array([]),
   localidad: ["",Validators.required],
-  transito: [false],
-  traslado: [false],
-  presencial: [false]
+  transito: "",
+  traslado: "",
+  presencial: ""
 }) 
+
+  idveterinariasArray() {
+    this.veterinariasArray = this.voluntario.idveterinarias.map(vete => {
+      return vete.razonSocial;
+    })
+
+    console.log('ARRAY', this.veterinariasArray)
+    return this.veterinariasArray;
+  }
+  
 
   agregarVeterinaria() {
     const veterinariaFormGroup = this.formBuilder.group({ 

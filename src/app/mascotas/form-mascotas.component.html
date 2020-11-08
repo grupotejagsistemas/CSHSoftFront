@@ -73,8 +73,8 @@
                 
             <label for="estado" class="col-form-label col-sm-2">Estado</label>
                 <div class="form-group">
-                    <select [compareWith]="compararEstado" class="form-control " type=number [(ngModel)]="mascotaObj.estado" name="estadoMascota">
-                    <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
+                    <select  class="form-control " type=number [(ngModel)]="mascotaObj.estado" name="estado">
+                        <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
                 </select>
                 </div>
             <div class="form-row">

@@ -34,10 +34,7 @@ export class FormEntrevistaAdoptanteComponent implements OnInit {
 
     this.entrevistaService.getAdoptantes().subscribe((data: any) => {
       this.adoptantes = data;
-      this.adoptantes.unshift({
-        nombreCompleto: 'Seleccione un adoptante',
-        id: null
-      })
+
     })
 
   }

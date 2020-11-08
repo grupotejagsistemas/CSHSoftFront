@@ -41,7 +41,6 @@ export class FormMascotasComponent implements OnInit {
           descripcion: 'Seleccione estado',
           id: this.mascotaObj.estado.id
         })
-
     })
 }
 
@@ -56,6 +55,7 @@ mascotaObj = {
   lugarRescate: "",
   descripcionRescate: "",
   especie: "",
+  idEstado: "",
   estado: null
 };
 
@@ -120,11 +120,4 @@ mascotaObj = {
       }
     }
 
-    compararEstado(o1: EstadoMascota, o2: EstadoMascota): boolean {
-      if (o1 === undefined && o2 === undefined) {
-        return true;
-      }
-  
-      return o1 === null || o2 === null || o1 === undefined || o2 === undefined ? false : o1.id === o2.id;
-    }
 }

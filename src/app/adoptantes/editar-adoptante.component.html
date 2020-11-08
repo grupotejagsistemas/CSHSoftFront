@@ -1,4 +1,3 @@
-
  <form class="border p-3 form" (submit)="submit()" [formGroup]="adoptanteObj">  
                 <div class=" text-center">
                     <h2>Editar adoptante</h2> 
@@ -6,6 +5,42 @@
                 </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Número de formulario" [(ngModel)]="adoptante.numeroFormulario" name="numeroFormulario"  formControlName="numeroFormulario" >
+                        </div>
+                <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <select type="select" class="form-control" [(ngModel)]="adoptante.idMascota" name="idMascota" formControlName="idMascota" required>
+                            <option *ngFor="let mascota of mascotas" [value]="mascota.id">
+                                {{mascota.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-gropu row">
+                    <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
+                </div>
+                <div  class="form-group" *ngFor="let veterinaria of veterinariasArray; let i = index" >
+                    <span type="text" class="form-control">
+                        {{veterinaria}}
+                    </span>
+                </div>
+                <div [(ngModelChange)]="adoptante.idVeterinaria" formArrayName="idVeterinaria"*ngFor="let veterinaria of idVeterinaria.controls; let i = index" >
+                    <div [formGroupName]="i">
+                        <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
+                        <div class="form-group row">
+                            <div class="col-md-3" >
+                                <select  type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
+                                <option 
+                                    *ngFor="let veterinaria of veterinarias" 
+                                    [value]="veterinaria.id"
+                                >
+                                {{veterinaria.razonSocial}}
+                            </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-outline" (click)="eliminarVeterinaria(i)"><i class='fas fa-trash'></i></button>
+                            </div>
                         </div>
                     <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
                         <div class="form-group">

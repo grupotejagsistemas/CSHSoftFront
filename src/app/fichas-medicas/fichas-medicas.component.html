@@ -37,6 +37,9 @@
             <td>{{fichaMedica.tratamiento}}</td>
             <td>{{fichaMedica.descripcionTratamiento}}</td>
             <td>
+                <button type="button" (click)="exportProductsPdf(fichaMedica.id, fichaMedica.mascota)" class="btn btn-outline"> <i class="fas fa-file-pdf"></i></button>
+            </td>
+            <td>
                 <button type="button" name="button" [routerLink]="['/fichas-medicas/editar', fichaMedica.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
             </td>
             <td>

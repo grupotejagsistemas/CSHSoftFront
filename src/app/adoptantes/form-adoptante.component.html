@@ -9,7 +9,8 @@
                 <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
                     <div class="form-group">
                         <select type="select" class="form-control" name="mascota" formControlName="idMascota" required>
-                            <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">
+                            <option [value]="null">Seleccione una mascota </option>
+                            <option *ngFor="let mascota of mascotas" [value]="mascota.id">
                                 {{mascota.nombre}}
                             </option>
                         </select>
@@ -17,11 +18,13 @@
                 <div class="form-gropu row">
                     <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
                 </div>
+     
                 <div formArrayName="idVeterinaria" *ngFor="let veterinaria of idVeterinaria.controls; let i = index">
                     <div [formGroupName]="i">
                         <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                             <div class="col-md-8">
                                 <select type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
+                                  <option [value]=null>Seleccione veterinaria</option>
                                     <option
                                     *ngFor="let veterinaria of veterinarias"
                                     [value]="veterinaria.id"
@@ -78,6 +81,8 @@
                 <label for="estado" class="col-form-label col-sm-2">Estado</label>
                     <div class="form-group ">
                         <select  class="form-control " type="text" formControlName="idEstadoAdoptante" name="idEstadoAdoptante">
+
+                        <option [value]=null>Seleccione un estado</option>
                         <option [value]=1>Apto</option>    
                         <option [value]=2>No Apto</option>
                         <option [value]=3>En Proceso</option>
@@ -88,7 +93,7 @@
                 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <button class="btn btn-primary" role="button" type="submit" >Agregar</button>
+                        <button class="btn btn-outline-success" role="button" type="submit" >Agregar</button>
                     </div>
                 </div>
             </form>

@@ -1,9 +1,4 @@
-<!--<div class="card w-550 mx-auto " style="width: 525px;" >
-    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!fichaMedicaObj.id else elseTitulo">Nueva ficha médica</div>
-    <ng-template #elseTitulo>
-        <div class="card-header" id="titulo" style="background-color: white;">Modificar ficha médica</div>
-         </ng-template>
-        <div class="card-body mx-auto" style="width: 800px"> -->
+
             <form class="border p-3 form">   
                 <div class=" text-center">
                     <h2>Nueva ficha médica</h2> 
@@ -52,7 +47,7 @@
                 <div class="form-group">
                          <div class="form-group">
                              <select type="number" class="form-control " name="mascota"  [(ngModel)]="fichaMedicaObj.idMascota" required>
-                                 <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">{{mascota.nombre}}</option>
+                                 <option *ngFor="let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
                              </select>
                          </div>
                  </div>
@@ -60,7 +55,7 @@
                  <div class="form-group">
                          <div class="form-group">
                              <select  class="form-control "  name="veterinaria" [(ngModel)]="fichaMedicaObj.idVeterinaria" required >
-                                 <option *ngFor="let veterinaria of veterinarias" [ngValue]="veterinaria.id">{{veterinaria.razonSocial}}</option>
+                                 <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.id">{{veterinaria.razonSocial}}</option>
                              </select>
                          </div>
                  </div>

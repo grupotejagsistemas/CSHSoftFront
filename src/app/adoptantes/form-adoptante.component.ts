@@ -61,10 +61,6 @@ export class FormAdoptanteComponent implements OnInit {
 
     this.adoptanteService.getVeterinaria().subscribe((resp: any) => {
       this.veterinarias = resp;
-      this.veterinarias.unshift({
-        razonSocial: 'Seleccione una veterinaria',
-        id: null
-      })
 
     });
   }
@@ -83,7 +79,7 @@ export class FormAdoptanteComponent implements OnInit {
 
   submit(){
     this.adoptanteService.crearAdoptante(this.adoptanteObj.value).subscribe((response: any ) =>{
-      this.router.navigate(['/voluntarios'])
+      this.router.navigate(['/adoptantes'])
       swal.fire({
         icon: 'success',
         title: 'Creación exitosa',

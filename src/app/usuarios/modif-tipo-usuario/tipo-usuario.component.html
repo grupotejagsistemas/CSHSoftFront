@@ -1,5 +1,5 @@
-<h5 >Modificación de tipo de usuarios</h5>
-<div class="alert alert-info">
+<h5>Modificación de tipo de usuarios </h5>
+<div *ngIf="usuarios?.length == 0"class="alert alert-info">
     No se encontraron datos registrados
 </div>
 <table class="table table-striped">
@@ -11,14 +11,16 @@
     </thead>
     <tbody>
         <tr>
-        <!--
-            <tr *ngFor="let usuario of usuarios">
-        -->
-            <td>username</td>
-            <td>tipoUsuario</td>
-            <td>
-                <button class="btn btn-outline-success" type="button" name="button">Modificar</button>
-            </td>
+
+        <tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: p }">
+           
+                <td>{{usuario.username}}</td>
+                <td>{{usuario.idRole}}</td>
+                <td>
+                    <button type="button" name="button" [routerLink]="['/modificacion-tipo-usuario/', usuario.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
+                </td>
         </tr>
     </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
 </table>  

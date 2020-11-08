@@ -9,7 +9,7 @@
             <label for="voluntario" class="col-form-label col-sm-2">Voluntario</label>
                 <div class="form-group">
                     <select class="form-control" type=number [(ngModel)]="historialObj.idVoluntario" name="idVoluntario">
-                    <option *ngFor=" let voluntario of voluntarios" [value]="voluntario.id">{{voluntario.nombrecompleto}}</option>
+                    <option *ngFor=" let voluntario of voluntarios" [value]="voluntario.id">{{voluntario.nombreCompleto}}</option>
                 </select>
             </div>
         <label for="mascota" class="col-form-label col-sm-2">Mascota</label>

@@ -47,4 +47,8 @@ export class FichaMedicaService {
     borrarFichasMedicas(id: number) {
       return this.http.delete(`${this.urlAPI}/fichasMedicas/${id}`)
     }
+
+    exportPdfProducts(id: number): Observable<Blob>{
+      return this.http.get(`${this.urlAPI}/fichasMedicas/export/pdf/${id}`, {responseType: 'blob'})
+    }
 }
