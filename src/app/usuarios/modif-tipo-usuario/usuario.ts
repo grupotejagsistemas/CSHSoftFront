@@ -5,6 +5,7 @@ export class Usuario {
     email: string;
     idTipoUsuario: number;
     nombreUsuario: string; 
+    username: string;
     tipoUsuario: string;
 
 }

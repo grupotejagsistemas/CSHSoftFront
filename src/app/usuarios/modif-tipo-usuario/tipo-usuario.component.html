@@ -15,7 +15,7 @@
         <tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: p }">
            
                 <td>{{usuario.username}}</td>
-                <td>{{usuario.tipoUsuario}}</td>
+                <td>{{usuario.idRole}}</td>
                 <td>
                     <button type="button" name="button" [routerLink]="['/modificacion-tipo-usuario/', usuario.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
                 </td>
