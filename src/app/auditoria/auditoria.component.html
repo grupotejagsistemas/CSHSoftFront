@@ -1,0 +1,28 @@
+<h5>Auditoria</h5>
+<div class="input-group">
+    <div class="input bg-white">
+        <input type="text" name="busquedaUsuario" class="form-control" placeholder="Buscar por usuario" [(ngModel)]="busquedaUsuario" (change)="filtroUsuario(busquedaUsuario)">
+    </div>
+</div>
+<br/>
+<br/>
+<div *ngIf="auditoria?.length==0" class="alert alert-info">
+    No se encontraron datos registrados
+</div>
+<table class="table table-striped" *ngIf="auditoria?.length>0">
+    <thead>
+        <tr>
+            <th>Nombre de usuario</th>
+            <th>Acción</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let aud of auditoria  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
+            <td>{{aud.usuario}}</td>
+            <td>{{aud.accion}}</td>
+            <td>{{aud.fecha}}</td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>

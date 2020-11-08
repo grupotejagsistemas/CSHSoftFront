@@ -1,33 +1,35 @@
-<div class="card w-550 mx-auto " style="width: 525px;">
+<!-- <div class="card w-550 mx-auto " style="width: 525px;">
     <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!historialObj.id else elseTitulo">Nueva Historial</div>
     <ng-template #elseTitulo>
         <div class="card-header" id="titulo" style="background-color: white;">Modificar Historial</div>
          </ng-template>
 
-    <div class="card-body mx-auto" style="width: 800px;">
-        <form>
+    <div class="card-body mx-auto" style="width: 800px;"> -->
+        <form class="border p-3 form">   
+            <div class=" text-center">
+                <h2>Nuevo Historial</h2> 
+                <hr>
+                    <ng-template #elseTitulo>
+                        <h2>Modificar Historial</h2> 
+                        <hr>
+                     </ng-template>
+            </div>
             <label for="voluntario" class="col-form-label col-sm-2">Voluntario</label>
-            <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group">
                     <select class="form-control" type=number [(ngModel)]="historialObj.idVoluntario" name="idVoluntario">
-                    <option *ngFor=" let voluntario of voluntarios" [value]="voluntario.id">{{voluntario.nombrecompleto}}</option>
+                    <option *ngFor=" let voluntario of voluntarios" [value]="voluntario.id">{{voluntario.nombreCompleto}}</option>
                 </select>
-                </div>
             </div>
         <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
-        <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-group">
                 <select class="form-control" type=number [(ngModel)]="historialObj.idMascota" name="idMascota">
                 <option *ngFor=" let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
             </select>
             </div>
-        </div> 
             <label for="fecha" class="col-form-label col-sm-4">Fecha</label>
-            <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group">
                     <input type="date" placeholder="Fecha" name="fecha" [(ngModel)]="historialObj.fecha" required>
                 </div>
-            </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <button class="btn btn-outline-success" role="button" (click)="agregar()" *ngIf="!historialObj.id else elseBlock">
@@ -41,4 +43,3 @@
                 </div>
             </div>
         </form>
-    </div>

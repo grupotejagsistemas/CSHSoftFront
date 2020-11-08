@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Mascota } from './mascota';
 import { EstadoMascota } from './estadoMascota';
-import {of,  Observable, throwError } from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map, catchError} from 'rxjs/operators';
-import swal from 'sweetalert2';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
 

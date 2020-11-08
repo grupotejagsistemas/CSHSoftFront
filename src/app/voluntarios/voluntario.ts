@@ -2,7 +2,7 @@ import { Veterinaria } from './veterinaria';
 
 export class Voluntario {
     id: number;
-    nombrecompleto: string;
+    nombreCompleto: string;
     telefono: string;
     direccion: string ;
     idveterinarias: any [] = [];
@@ -10,7 +10,6 @@ export class Voluntario {
     transito: string;
     traslado: string;
     presencial: string;
-  static nombrecompleto: any;
 
     constructor (){
 
@@ -19,7 +18,7 @@ export class Voluntario {
     public static build(){
         const voluntario = new Voluntario();
         voluntario.id = null;
-        voluntario.nombrecompleto = '';
+        voluntario.nombreCompleto = '';
         voluntario.telefono = '';
         voluntario.direccion = ''; 
         voluntario.idveterinarias =  [] = []; 

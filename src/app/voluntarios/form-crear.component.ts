@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Voluntario } from './voluntario';
 import { Veterinaria} from './veterinaria';
+import { FormArray, FormBuilder } from '@angular/forms';
 import { VoluntarioService } from './voluntario.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import swal from 'sweetalert2'
@@ -17,66 +18,73 @@ export class FormCrearComponent implements OnInit {
   checkedPresencial: boolean; 
   checkedTraslado: boolean; 
   voluntario:  Voluntario;
-  veterinarias: any [] = [] ;
-  veterinariasCercanas: any [] = [];
+  veterinarias: Veterinaria[] ;
+  veterinariasCercanas: any [];
 
   constructor(
     private voluntarioService: VoluntarioService, 
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
     ) { }
 
+    get idveterinarias(){
+      return this.voluntarioObj.get('idveterinarias') as FormArray;
+    }
+
   ngOnInit(): void {   
-    const id = +this.route.snapshot.paramMap.get('id');
-
-    this.voluntario = Voluntario.build();
-
-    if(id !== 0){
-      this.voluntarioService.getVoluntario(id).subscribe((resp: any) => {
-        this.voluntario = resp;
-      })
-    } 
 
       this.voluntarioService.getVeterinarias().subscribe((resp: any) => {
         this.veterinarias = resp;
-        console.log('veterinariascercanas', this.veterinarias)
       })
   }
 
-  voluntarioObj = {
-    id: null,
-    nombreCompleto: "", 
-    telefono: null,
-    direccion: "",
-    idveterinarias: "",
-    localidad: "",
-    transito: "",
-    traslado: "",
-    presencial: ""
-  }
+  voluntarioObj = this.formBuilder.group({
+      id: [null],
+      nombreCompleto: [""], 
+      telefono: [null],
+      direccion: [""],
+      idveterinarias: this.formBuilder.array([]),
+      localidad: [""],
+      transito: [false],
+      traslado: [false],
+      presencial: [false]
+    }) 
 
-  public agregar(): void {
+    agregarVeterinaria() {
+      const veterinariaFormGroup = this.formBuilder.group({ 
+        id: ''
+    });
+      this.idveterinarias.push(veterinariaFormGroup)
+    }
+  
+    eliminarVeterinaria(indice: number) {
+      this.idveterinarias.removeAt(indice)
+    }
+  
+
+  submit(): void{
     
     if(this.checkedPresencial === true){
-      this.voluntarioObj.presencial = "s";
+      this.voluntarioObj.value.presencial = "SI";
     } else {
-      this.voluntarioObj.presencial = "NO";
+      this.voluntarioObj.value.presencial = "NO";
     }
 
     if(this.checkedTransito === true){
-      this.voluntarioObj.transito = "s";
+      this.voluntarioObj.value.transito = "SI";
     } else {
-      this.voluntarioObj.transito = "NO";
+      this.voluntarioObj.value.transito = "NO";
     }
 
     if(this.checkedTraslado === true) {
-      this.voluntarioObj.traslado = "s";
+      this.voluntarioObj.value.traslado = "SI";
     }else {
-      this.voluntarioObj.traslado = "NO";
+      this.voluntarioObj.value.traslado = "NO";
     }
 
 
-    this.voluntarioService.crearVoluntario(this.voluntarioObj)
+    this.voluntarioService.crearVoluntario(this.voluntarioObj.value)
     .subscribe(
       response => {
         this.router.navigate(['/voluntarios'])
@@ -86,52 +94,9 @@ export class FormCrearComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        console.log('AGREGAR', response);
         return response;
       })
   }
 
-  public modificar(): void {
-
-    if(this.checkedPresencial === true){
-      this.voluntarioObj.presencial = "s";
-    } else {
-      this.voluntarioObj.presencial = "NO";
-    }
-
-    if(this.checkedTransito === true){
-      this.voluntarioObj.transito = "s";
-    } else {
-      this.voluntarioObj.transito = "NO";
-    }
-
-    if(this.checkedTraslado === true) {
-      this.voluntarioObj.traslado = "s";
-    }else {
-      this.voluntarioObj.traslado = "NO";
-    }
-
-    this.voluntarioService.modificarVoluntario(this.voluntarioObj)
-    .subscribe( response =>{
-        this.router.navigate(['/voluntarios'])
-        swal.fire({
-          icon: 'success',
-          title: 'El voluntario ha sido modificado',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        return response;
-      })
-  }
-
-  agregarVeterinaria(): void {
-    this.veterinariasCercanas.push(this.voluntarioObj.idveterinarias);
-    console.log('vete', this.veterinariasCercanas)
-
-  }
-
-  eliminarVeterinaria(i: any): void {
-    this.veterinariasCercanas = this.veterinariasCercanas.splice(i, 1)[0];
-    console.log('index', i)
-      console.log('veteCercana', this.veterinariasCercanas)
-  }
 }
