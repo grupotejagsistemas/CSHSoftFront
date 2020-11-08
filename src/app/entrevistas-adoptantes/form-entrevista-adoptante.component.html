@@ -17,7 +17,8 @@
                 <label for="adoptante" class="col-form-label col-sm-2">Adoptante </label>
                          <div class="form-group">
                              <select type="number" class="form-control " name="adoptante"  [(ngModel)]="entrevistaObj.idAdoptante" required>
-                                 <option *ngFor="let adoptante of adoptantes" [value]="adoptante.id">{{adoptante.nombreCompleto}}</option>
+                                <option [value]=null>Seleccione un adoptante</option> 
+                                <option *ngFor="let adoptante of adoptantes" [value]="adoptante.id">{{adoptante.nombreCompleto}}</option>
                              </select>
                          </div>
 
