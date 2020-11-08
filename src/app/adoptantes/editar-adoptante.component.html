@@ -11,8 +11,8 @@
                 <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
                 <div class="form-group row">
                     <div class="col-sm-4">
-                        <select type="select" class="form-control" [(ngModel)]="adoptante.mascotaInteresada" name="mascota" formControlName="idMascota" required>
-                            <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">
+                        <select type="select" class="form-control" [(ngModel)]="adoptante.idMascota" name="idMascota" formControlName="idMascota" required>
+                            <option *ngFor="let mascota of mascotas" [value]="mascota.id">
                                 {{mascota.nombre}}
                             </option>
                         </select>
@@ -21,14 +21,19 @@
                 <div class="form-gropu row">
                     <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
                 </div>
-                <div [(ngModelChange)]="adoptante.veterinaria_cercana" formArrayName="idVeterinaria" *ngFor="let veterinaria of idVeterinaria.controls; let i = index">
+                <div  class="form-group" *ngFor="let veterinaria of veterinariasArray; let i = index" >
+                    <span type="text" class="form-control">
+                        {{veterinaria}}
+                    </span>
+                </div>
+                <div [(ngModelChange)]="adoptante.idVeterinaria" formArrayName="idVeterinaria"*ngFor="let veterinaria of idVeterinaria.controls; let i = index" >
                     <div [formGroupName]="i">
                         <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                         <div class="form-group row">
-                            <div class="col-md-3">
-                                <select type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
-                                    <option
-                                    *ngFor="let veterinaria of veterinarias"
+                            <div class="col-md-3" >
+                                <select  type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
+                                <option 
+                                    *ngFor="let veterinaria of veterinarias" 
                                     [value]="veterinaria.id"
                                 >
                                 {{veterinaria.razonSocial}}
@@ -41,6 +46,18 @@
                         </div>
                     </div>
                 </div>
+              <!--
+                  <div *ngIf="adoptante.idVeterinaria?.length > 0">
+                       <div *ngFor="let vet of idVeterinaria; let x = index"><span>Funciona o no funciona {{vet.razonSocia[x]}}</span> </div>
+                       
+                            <select type="select" class="form-control" [(ngModel)]="vet.id" name="idVeterinaria" formControlName="idVeterinaria">
+                               <option [value]="vet.id">
+                                   {{vet.razonSocial[x]}}
+                               </option>
+                           </select> 
+                   
+                   </div>
+            --> 
                 <div class="form-group row">
                     <div class="col-sm-6">
                         <input type="text" class="form-control" [(ngModel)]="adoptante.nombreCompleto" placeholder="Nombre completo" name="nombreCompleto" formControlName="nombreCompleto" required>
@@ -104,7 +121,7 @@
                 <label for="estado" class="col-form-label col-sm-2">Estado</label>
                 <div class="form-row">
                     <div class="form-group col-md-7">
-                        <select  class="form-control " type="text" formControlName="idEstadoAdoptante" name="idEstadoAdoptante">
+                        <select  [(ngModel)]="adoptante.idEstadoAdoptante" class="form-control " type="text" formControlName="idEstadoAdoptante" name="idEstadoAdoptante">
                         <option [value]=1>Apto</option>    
                         <option [value]=2>No Apto</option>
                         <option [value]=3>En Proceso</option>
@@ -115,7 +132,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <button class="btn btn-primary" role="button" type="submit" >Modificar</button>
+                        <button class="btn btn-outline-success" role="button" type="submit" >Modificar</button>
 
                     </div>
                 </div>

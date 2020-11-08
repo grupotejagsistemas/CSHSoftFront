@@ -6,7 +6,6 @@ import { Router } from "@angular/router";
 import { environment } from 'src/environments/environment';
 import { Mascota } from '../adoptantes/mascota';
 import { Adoptante } from '../adoptantes/adoptante';
-import { AuthService } from '../usuarios/auth.service';
 
 @Injectable({
   providedIn: 'root'

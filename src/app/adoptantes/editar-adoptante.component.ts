@@ -21,6 +21,7 @@ export class EditarAdoptanteComponent implements OnInit {
   estados: EstadoAdoptante[];
   veterinarias: Veterinaria[];
   titulo: string = "Modificar Adoptante";
+  veterinariasArray: any [] = [];
 
   constructor(
     private adoptanteService: AdoptanteService,
@@ -42,25 +43,18 @@ export class EditarAdoptanteComponent implements OnInit {
     this.adoptanteService.getAdoptante(id).subscribe((data: any) => {
 
       this.adoptante = data;
+      this.idveterinariasArray();
+
       console.log('data', data);
     })
 
 
     this.adoptanteService.getMascotas().subscribe((resp: any) => {
       this.mascotas = resp;
-      this.mascotas.unshift({
-        nombre: 'Seleccione una mascota',
-        idMascota: null
-      })
     });
     
     this.adoptanteService.getVeterinaria().subscribe((resp: any) => {
       this.veterinarias = resp;
-      this.veterinarias.unshift({
-        razonSocial: 'Seleccione una veterinaria',
-        id: null
-      })
-
     });
   }
 
@@ -81,6 +75,18 @@ export class EditarAdoptanteComponent implements OnInit {
     idEstadoAdoptante: [null]
 
 }) 
+
+
+idveterinariasArray() {
+  this.veterinariasArray = this.adoptante.idVeterinaria.map(vete => {
+    return vete.razonSocial
+  })
+
+  console.log('holahola', this.adoptante.idVeterinaria)
+  console.log('ARRAY', this.veterinariasArray)
+  return this.veterinariasArray;
+}
+
 
   agregarVeterinaria() {
     const veterinariaFormGroup = this.formBuilder.group({ 
