@@ -17,3 +17,8 @@
   table.dataTable thead .sorting_desc_disabled:before {
   bottom: .5em;
   }
+  .form {
+    min-height: 25vh;
+    margin: auto;
+    max-width: 450px;
+  }

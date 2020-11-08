@@ -7,8 +7,9 @@
 <div *ngIf="fichasMedicas?.length==0" class="alert alert-info">
     No se encontraron datos registrados
 </div>
+<div style="overflow-x:auto;">
 <table class="table table-striped" *ngIf="fichasMedicas?.length>0">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>Fecha</th>
             <th>Desparasitacion</th>
@@ -45,3 +46,4 @@
     </tbody>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>  
+</div>

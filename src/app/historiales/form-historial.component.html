@@ -1,17 +1,9 @@
-<!-- <div class="card w-550 mx-auto " style="width: 525px;">
-    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!historialObj.id else elseTitulo">Nueva Historial</div>
-    <ng-template #elseTitulo>
-        <div class="card-header" id="titulo" style="background-color: white;">Modificar Historial</div>
-         </ng-template>
-
-    <div class="card-body mx-auto" style="width: 800px;"> -->
         <form class="border p-3 form">   
             <div class=" text-center">
-                <h2>Nuevo Historial</h2> 
+                <h2 *ngif="!historialObj.id else elseTitulo">Nuevo Historial</h2> 
                 <hr>
                     <ng-template #elseTitulo>
                         <h2>Modificar Historial</h2> 
-                        <hr>
                      </ng-template>
             </div>
             <label for="voluntario" class="col-form-label col-sm-2">Voluntario</label>
@@ -28,7 +20,7 @@
             </div>
             <label for="fecha" class="col-form-label col-sm-4">Fecha</label>
                 <div class="form-group">
-                    <input type="date" placeholder="Fecha" name="fecha" [(ngModel)]="historialObj.fecha" required>
+                    <input class="form-control" type="date" placeholder="Fecha" name="fecha" [(ngModel)]="historialObj.fecha" required>
                 </div>
             <div class="form-row">
                 <div class="form-group col-md-4">

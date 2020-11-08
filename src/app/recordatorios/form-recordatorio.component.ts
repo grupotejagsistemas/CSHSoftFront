@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recordatorio } from './recordatorio';
 import { RecordatorioService } from './recordatorio.service';
-import swal from 'sweetalert2';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import swal from 'sweetalert2'
+
 
 
 @Component({
@@ -36,7 +38,7 @@ export class FormRecordatorioComponent implements OnInit {
 
   recordatorioObj = {
     idRecordatorio: null, 
-    descripcionRecordatorio: "",
+    descripcionRecordatorio: ["",Validators.required],
     fecha: new Date()
   }
 

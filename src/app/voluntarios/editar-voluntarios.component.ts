@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Veterinaria } from './veterinaria';
 import { Voluntario } from './voluntario';
@@ -53,8 +53,7 @@ export class EditarVoluntariosComponent implements OnInit {
         }
         this.voluntario = data;
         console.log('data', data);
-      })
-      
+      }) 
     this.voluntarioService.getVeterinarias().subscribe((resp: any) => {
       this.veterinarias = resp;
       this.veterinarias.unshift({
@@ -63,18 +62,30 @@ export class EditarVoluntariosComponent implements OnInit {
       })
   })
 }
+get nombreNoValido(){
+  return this.voluntarioObj.get('nombreCompleto').invalid && this.voluntarioObj.get('nombreCompleto').touched
 
+}
+get direccionNoValido(){
+  return this.voluntarioObj.get('direccion').invalid && this.voluntarioObj.get('direccion').touched
+
+}
+get localidadNoValido(){
+  return this.voluntarioObj.get('localidad').invalid && this.voluntarioObj.get('localidad').touched
+
+}
   
-  voluntarioObj = this.formBuilder.group({
-    nombreCompleto: [""], 
-    telefono: [null],
-    direccion: [""],
-    idveterinarias: this.formBuilder.array([]),
-    localidad: [""],
-    transito: [false],
-    traslado: [false],
-    presencial: [false]
-  }) 
+voluntarioObj = this.formBuilder.group({
+  id: [null],
+  nombreCompleto: ["",Validators.required], 
+  telefono: [null],
+  direccion: ["",Validators.required],
+  idveterinarias: this.formBuilder.array([]),
+  localidad: ["",Validators.required],
+  transito: [false],
+  traslado: [false],
+  presencial: [false]
+}) 
 
   agregarVeterinaria() {
     const veterinariaFormGroup = this.formBuilder.group({ 
@@ -88,6 +99,13 @@ export class EditarVoluntariosComponent implements OnInit {
   }
 
   submit(): void{
+    
+    console.log(this.voluntarioObj);  
+     if (this.voluntarioObj.invalid)
+     return  Object.values(this.voluntarioObj.controls).forEach(control => {
+        control.markAsTouched();
+      })
+
     const id = +this.route.snapshot.paramMap.get('id');
 
     if(this.checkedPresencial === true){

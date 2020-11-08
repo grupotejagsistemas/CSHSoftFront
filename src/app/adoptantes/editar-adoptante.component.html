@@ -1,124 +1,96 @@
-<div class="card w-550 mx-auto " style="width: 525px;">
-    <div class="card-header" id="titulo" style="background-color: white;">{{titulo}} </div>
-        <div class="card-body mx-auto" style="width: 800px;">
-            <form (submit)="submit()" [formGroup]="adoptanteObj">
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Número de formulario" [(ngModel)]="adoptante.numeroFormulario" name="numeroFormulario"  formControlName="numeroFormulario" required>
-                      
+
+ <form class="border p-3 form" (submit)="submit()" [formGroup]="adoptanteObj">  
+                <div class=" text-center">
+                    <h2>Editar adoptante</h2> 
+                    <hr>
+                </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Número de formulario" [(ngModel)]="adoptante.numeroFormulario" name="numeroFormulario"  formControlName="numeroFormulario" >
+                        </div>
+                    <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
+                        <div class="form-group">
+                            <select type="select" class="form-control" [(ngModel)]="adoptante.mascotaInteresada" name="mascota" formControlName="idMascota" required>
+                                <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">
+                                    {{mascota.nombre}}
+                                </option>
+                            </select>
+                        </div>
+                    <div class="form-gropu row">
+                        <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
                     </div>
-                </div>
-                <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
-                <div class="form-group row">
-                    <div class="col-sm-4">
-                        <select type="select" class="form-control" [(ngModel)]="adoptante.mascotaInteresada" name="mascota" formControlName="idMascota" required>
-                            <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">
-                                {{mascota.nombre}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-gropu row">
-                    <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
-                </div>
-                <div [(ngModelChange)]="adoptante.veterinaria_cercana" formArrayName="idVeterinaria" *ngFor="let veterinaria of idVeterinaria.controls; let i = index">
-                    <div [formGroupName]="i">
-                        <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
-                        <div class="form-group row">
-                            <div class="col-md-3">
-                                <select type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
-                                    <option
-                                    *ngFor="let veterinaria of veterinarias"
-                                    [value]="veterinaria.id"
-                                >
-                                {{veterinaria.razonSocial}}
-                            </option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-outline" (click)="eliminarVeterinaria(i)"><i class='fas fa-trash'></i></button>
-                            </div>
+                    <div [(ngModelChange)]="adoptante.veterinaria_cercana" formArrayName="idVeterinaria" *ngFor="let veterinaria of idVeterinaria.controls; let i = index">
+                        <div [formGroupName]="i">
+                            <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
+                                <div class="col-md-3">
+                                    <select type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
+                                        <option
+                                        *ngFor="let veterinaria of veterinarias"
+                                        [value]="veterinaria.id"
+                                    >
+                                    {{veterinaria.razonSocial}}
+                                </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-outline" (click)="eliminarVeterinaria(i)"><i class='fas fa-trash'></i></button>
+                                </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" [(ngModel)]="adoptante.nombreCompleto" placeholder="Nombre completo" name="nombreCompleto" formControlName="nombreCompleto" required>
-                      
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="date" class="form-control" placeholder="Fecha nacimiento"[(ngModel)]="adoptante.fechaNacimiento" name="fechaNacimiento" formControlName="fechaNacimiento" required>
-                      
-                    </div>              
-                </div>
-                <div></div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Domicilio" [(ngModel)]="adoptante.domicilio"  name="domicilio" formControlName="domicilio" required>
-                      
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Barrio" [(ngModel)]="adoptante.barrio" name="barrio" formControlName="barrio" required>
-                      
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="text"class="form-control" placeholder="Celular" [(ngModel)]="adoptante.celular"  name="celular" formControlName="celular">
-                      
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Email" [(ngModel)]="adoptante.email"  name="email" formControlName="email">
-                      
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" placeholder="Facebook" [(ngModel)]="adoptante.facebook"  name="facebook" formControlName="facebook">
-                      
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="text"class="form-control" placeholder="Instagram" [(ngModel)]="adoptante.instagram"   name="instagram" formControlName="instagram">
-                      
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <textarea maxlength="255" style="resize:none"  type="text" class="form-control" placeholder="Situación laboral"[(ngModel)]="adoptante.situacionLaboral"  name="situacionLaboral" formControlName="situacionLaboral" ></textarea>
-                    
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Observaciones" [(ngModel)]="adoptante.observaciones"  name="observaciones" formControlName="observaciones"></textarea>
-                    </div>
-                </div>
-                <label for="estado" class="col-form-label col-sm-2">Estado</label>
-                <div class="form-row">
-                    <div class="form-group col-md-7">
-                        <select  class="form-control " type="text" formControlName="idEstadoAdoptante" name="idEstadoAdoptante">
-                        <option [value]=1>Apto</option>    
-                        <option [value]=2>No Apto</option>
-                        <option [value]=3>En Proceso</option>
-                        <option [value]=4>Rechazado</option>
-                        <option [value]=5>Finalizado</option>                        
-                    </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <button class="btn btn-primary" role="button" type="submit" >Modificar</button>
+                        <div class="form-group">
+                            <input type="text" maxlength="50" class="form-control" [(ngModel)]="adoptante.nombreCompleto" placeholder="Nombre completo" name="nombreCompleto" formControlName="nombreCompleto" required [class.is-invalid]="nombreNoValido">                     
+                            <label *ngIf="nombreNoValido" class="text-danger">Por favor, complete el campo</label>
+                        
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" placeholder="Fecha nacimiento"[(ngModel)]="adoptante.fechaNacimiento" name="fechaNacimiento" formControlName="fechaNacimiento" required>
+                        
+                        </div>              
+                        <div class="form-group">
+                            <input type="text" maxlength="50" class="form-control" placeholder="Domicilio" [(ngModel)]="adoptante.domicilio"  name="domicilio" formControlName="domicilio" required>
+                        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" maxlength="50" class="form-control" placeholder="Barrio" [(ngModel)]="adoptante.barrio" name="barrio" formControlName="barrio" required>
+                        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" maxlength="50" class="form-control" placeholder="Celular" [(ngModel)]="adoptante.celular"  name="celular" formControlName="celular">
+                        
+                        </div>
 
+                        <div class="form-group">
+                            <input type="text" maxlength="50" class="form-control" placeholder="Email" [(ngModel)]="adoptante.email"  name="email" formControlName="email">
+                        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" maxlength="50" class="form-control" placeholder="Facebook" [(ngModel)]="adoptante.facebook"  name="facebook" formControlName="facebook">
+                        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" maxlength="50" class="form-control" placeholder="Instagram" [(ngModel)]="adoptante.instagram"   name="instagram" formControlName="instagram">
+                        
+                        </div>
+                        <div class="form-group">
+                            <textarea maxlength="100" style="resize:none"  type="text" class="form-control" placeholder="Situación laboral"[(ngModel)]="adoptante.situacionLaboral"  name="situacionLaboral" formControlName="situacionLaboral" ></textarea>
+                        
+                        </div>
+                        <div class="form-group">
+                            <textarea type="text" maxlength="100"  style="resize:none" class="form-control" placeholder="Observaciones" [(ngModel)]="adoptante.observaciones"  name="observaciones" formControlName="observaciones"></textarea>
+                        </div>
+                    <label for="estado" class="col-form-label col-sm-2">Estado</label>
+                        <div class="form-group">
+                            <select  class="form-control " type="text" formControlName="idEstadoAdoptante" name="idEstadoAdoptante">
+                            <option [value]=1>Apto</option>    
+                            <option [value]=2>No Apto</option>
+                            <option [value]=3>En Proceso</option>
+                            <option [value]=4>Rechazado</option>
+                            <option [value]=5>Finalizado</option>                        
+                        </select>
+                        </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <button class="btn btn-primary" role="button" type="submit" >Modificar</button>
+
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-</div>
+     </form>

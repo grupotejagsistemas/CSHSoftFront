@@ -13,7 +13,7 @@
                      </ng-template>
             </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="mascotaObj.nombre" required>
+                    <input type="text" maxlength="50" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="mascotaObj.nombre" required>
                 </div>
             <label for="fechaNacimiento" class="col-form-label col-sm-8">Fecha de Nacimiento</label>
                 <div class="form-group">
@@ -32,7 +32,7 @@
 
                 </div>
             <div class= "form-group">
-                <div class="col-sm">
+                <div class="form-group">
                     <div class="input-group">
                         <div class="custom-file">
                           <input (change)="seleccionarFoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
@@ -56,21 +56,21 @@
                     <input type="date" class="form-control" placeholder="Fecha de rescate" name="fechaRescate" [(ngModel)]="mascotaObj.fechaRescate" required>
                 </div>
                 <div class="form-group">
-                    <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaObj.lugarRescate" required></textarea> 
+                    <textarea type="text" maxlength="50"  style="resize:none" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaObj.lugarRescate" required></textarea> 
 
                 </div>
                 <div class="form-group">
                     <textarea type="text" maxlength="255"   class="form-control" style="resize:none" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaObj.descripcionRescate" required></textarea> 
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-7">
+                
+                    <div class="form-group">
                         <select type="text" class="form-control " placeholder="Especie" name="especie" [(ngModel)]="mascotaObj.especie" required>
                             <option [value]=null> Seleccione Especie</option>
                             <option>Canino</option>
                             <option>Felino</option>
                         </select>
                     </div>
-                </div>
+                
             <label for="estado" class="col-form-label col-sm-2">Estado</label>
                 <div class="form-group">
                     <select [compareWith]="compararEstado" class="form-control " type=number [(ngModel)]="mascotaObj.estado" name="estadoMascota">

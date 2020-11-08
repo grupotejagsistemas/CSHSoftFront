@@ -2,24 +2,26 @@
 <div class="alert alert-info">
     No se encontraron datos registrados
 </div>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Usuario </th>
-            <th>Tipo de Usuario</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-       <!--
-           <tr *ngFor="let usuario of usuarios">
-        --> 
-           
-            <td>username</td>
-            <td>tipoUsuario</td>
-            <td>
-                <button class="btn btn-outline-danger" type="button" name="button">Eliminar</button>
-            </td>
-        </tr>
-    </tbody>
-</table>  
+<div style="overflow-x:auto;">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Usuario </th>
+                <th>Tipo de Usuario</th>
+            </tr>
+        </thead >
+        <tbody>
+            <tr>
+        <!--
+            <tr *ngFor="let usuario of usuarios">
+            --> 
+            
+                <td>username</td>
+                <td>tipoUsuario</td>
+                <td>
+                    <button class="btn btn-outline-danger" type="button" name="button">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>  
+</div>

@@ -4,26 +4,27 @@
                     <input type="text" name="busquedaRazonSocial" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaRazonSocial" (change)="filtroRazonSocial(busquedaRazonSocial)">
                 </div>
             </div>
-            <div class="form-row">
-                <label for="internacion" class="col-form-label col-sm-2"> Internacion</label>
-                <div class="form-group col-md-4">
-                    <input type="checkbox" placeholder="internacion" name="internacion" [(ngModel)]="checked" (change)="filtroInternacion()">
+            <br>
+                <h5>Internación</h5>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" placeholder="internacion" name="internacion" [(ngModel)]="checked" (change)="filtroInternacion()">
+                    <label for="internacion" class="form-check-label"> Si</label>
                 </div>
-            </div>
-            <div class="form-row">
-                <label for="noInternacion" class="col-form-label col-sm-2"> No Internacion</label>
-                <div class="form-group col-md-4">
-                    <input type="checkbox" placeholder="noInternacion" name="noInternacion" [(ngModel)]="checkedNo" (change)="filtroNoInternacion()">
+            
+                
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" placeholder="noInternacion" name="noInternacion" [(ngModel)]="checkedNo" (change)="filtroNoInternacion()">
+                    <label for="noInternacion" class="form-check-label"> No </label>
                 </div>
-            </div>
         <div class="my-4 text-right" >
             <button class="btn btn-outline-success" type="button" [routerLink] = "['/veterinarias/crear']">Nueva veterinaria</button>
         </div>
         <div *ngIf="veterinarias?.length==0" class="alert alert-info">
             No se encontraron datos registrados
         </div>
+    <div style="overflow-x:auto;">
         <table class="table table-striped" *ngIf="veterinarias?.length>0">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Razón social</th>
@@ -52,4 +53,4 @@
             </tbody>
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </table>  
-
+    </div>
