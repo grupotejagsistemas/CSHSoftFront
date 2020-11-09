@@ -4,7 +4,7 @@ import {AdoptanteService} from './adoptante.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Mascota } from './mascota';
 import {EstadoAdoptante} from './estado-adoptante';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Veterinaria } from './veterinaria';
 import swal from 'sweetalert2';
 
@@ -34,18 +34,17 @@ export class FormAdoptanteComponent implements OnInit {
 
 
     adoptanteObj = this.formBuilder.group({
-      id: [null], 
       idMascota: [null],
       numeroFormulario: [null], 
-      nombreCompleto: [""],
-      fechaNacimiento: [""],
-      domicilio: [""],
-      barrio: [""],
+      nombreCompleto: ["",Validators.required],
+      fechaNacimiento: ["",Validators.required],
+      domicilio: ["",Validators.required],
+      barrio: ["",Validators.required],
       celular: [""],
-      email: [""],
-      facebook: [""],
-      instagram: [""],
-      situacionLaboral: [""],
+      email: ["",Validators.required],
+      facebook: ["",Validators.required],
+      instagram: ["",Validators.required],
+      situacionLaboral: ["",Validators.required],
       idVeterinaria: this.formBuilder.array([]),
       observaciones: [""],
       idEstadoAdoptante: [null]
