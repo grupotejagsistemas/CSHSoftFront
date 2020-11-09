@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Voluntario } from './voluntario';
 import { Veterinaria} from './veterinaria';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { VoluntarioService } from './voluntario.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, GuardsCheckStart, Router} from '@angular/router';
 import swal from 'sweetalert2'
 
 
@@ -13,6 +13,8 @@ import swal from 'sweetalert2'
   styleUrls:['./form-crear.component.css']
 })
 export class FormCrearComponent implements OnInit {
+
+  
 
   checkedTransito: boolean;
   checkedPresencial: boolean; 
@@ -39,13 +41,26 @@ export class FormCrearComponent implements OnInit {
       })
   }
 
+get nombreNoValido(){
+  return this.voluntarioObj.get('nombreCompleto').invalid && this.voluntarioObj.get('nombreCompleto').touched
+
+}
+get direccionNoValido(){
+  return this.voluntarioObj.get('direccion').invalid && this.voluntarioObj.get('direccion').touched
+
+}
+get localidadNoValido(){
+  return this.voluntarioObj.get('localidad').invalid && this.voluntarioObj.get('localidad').touched
+
+}
+
   voluntarioObj = this.formBuilder.group({
       id: [null],
-      nombreCompleto: [""], 
+      nombreCompleto: ["",Validators.required], 
       telefono: [null],
-      direccion: [""],
+      direccion: ["",Validators.required],
       idveterinarias: this.formBuilder.array([]),
-      localidad: [""],
+      localidad: ["",Validators.required],
       transito: [false],
       traslado: [false],
       presencial: [false]
@@ -64,6 +79,12 @@ export class FormCrearComponent implements OnInit {
   
 
   submit(): void{
+
+    console.log(this.voluntarioObj);  
+     if (this.voluntarioObj.invalid)
+     return  Object.values(this.voluntarioObj.controls).forEach(control => {
+        control.markAsTouched();
+      })
     
     if(this.checkedPresencial === true){
       this.voluntarioObj.value.presencial = "SI";
@@ -82,7 +103,6 @@ export class FormCrearComponent implements OnInit {
     }else {
       this.voluntarioObj.value.traslado = "NO";
     }
-
 
     this.voluntarioService.crearVoluntario(this.voluntarioObj.value)
     .subscribe(

@@ -10,24 +10,26 @@
 <div *ngIf="contratos?.length==0" class="alert alert-info">
     No se encontraron datos registrados
 </div>
-<table class="table table-striped" *ngIf="contratos?.length>0">
-    <thead>
-        <tr>
-            <th>Nombre del adoptante</th>
-            <th>Nombre de la mascota</th>
-            <th>Nuevo nombre de la mascota</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let contrato of contratos  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
-            <td>{{contrato.adoptante}}</td>
-            <td>{{contrato.mascota}}</td>
-            <td>{{contrato.nuevoNombre}}</td>
-            <td>
-                <button type="button" (click)="exportProductsPdf(contrato.idContrato, contrato.nuevoNombre)" class="btn btn-outline"> <i class="fas fa-file-pdf"></i></button>
-            </td>
+<div style="overflow-x:auto;">
+    <table class="table table-striped" *ngIf="contratos?.length>0">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre del adoptante</th>
+                <th>Nombre de la mascota</th>
+                <th>Nuevo nombre de la mascota</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let contrato of contratos  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
+                <td>{{contrato.adoptante}}</td>
+                <td>{{contrato.mascota}}</td>
+                <td>{{contrato.nuevoNombre}}</td>
+                <td>
+                    <button type="button" (click)="exportProductsPdf(contrato.idContrato, contrato.nuevoNombre)" class="btn btn-outline"> <i class="fas fa-file-pdf"></i></button>
+                </td>
 
-        </tr>
-    </tbody>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-</table>
+            </tr>
+        </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </table>
+</div>

@@ -1,19 +1,14 @@
-<!-- <div class="card w-550 mx-auto"  style="width: 525px;"> 
-    <div class="card-header" id="titulo" style="background-color: white;" *ngIf="!recordatorioObj.idRecordatorio else elseTitulo">Nuevo Recordatorio</div>
-    <ng-template #elseTitulo>
-        <div class="card-header" id="titulo" style="background-color: white;">Modificar Recordatorio</div>
-         </ng-template>    <div class="card-body mx-auto" style="width: 800px"> -->
-            <form class="border p-3 form">   
+            <form [formGroup]="recordatorioObj" class="border p-3 form">   
             <div class=" text-center">
-                <h2>Nuevo Recordatorio</h2> 
+                <h2 *ngIf="!recordatorioObj.idRecordatorio else elseTitulo">Nuevo Recordatorio</h2> 
                 <hr>
                     <ng-template #elseTitulo>
                         <h2>Modificar Recordatorio</h2> 
-                        <hr>
+                        
                      </ng-template>
             </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Recordatorio" name="recordatorio" [(ngModel)]="recordatorioObj.descripcionRecordatorio" >
+                    <input type="text" maxlength="100" class="form-control" placeholder="Recordatorio" name="recordatorio" [(ngModel)]="recordatorioObj.descripcionRecordatorio" >
                 </div>
             <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
             
