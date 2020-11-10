@@ -3,6 +3,8 @@ import { Veterinaria } from './veterinaria';
 import { VeterinariaService } from './veterinaria.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import swal from 'sweetalert2'
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -18,6 +20,8 @@ export class FormVeterinariaComponent implements OnInit {
 
   constructor(
     private veterinariaService: VeterinariaService, 
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
     ) { }
@@ -40,6 +44,28 @@ export class FormVeterinariaComponent implements OnInit {
   }
 }
 
+auditoriaAgregarObj = {
+  usuario: this.authService.usuario.username,
+  accion: `Alta de veterinaria`
+}
+
+auditoriaModificarObj = {
+  usuario: this.authService.usuario.username,
+  accion: 'Modificación de veterinaria'
+}
+
+auditoriaAgregar() {
+  this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+    return response;
+  })
+}
+
+auditoriaModificar(){
+  this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+    return response;
+  })
+}
+
 
 public agregar(veterinaria): void {
     if(this.checked === true){
@@ -51,15 +77,13 @@ public agregar(veterinaria): void {
   this.veterinariaService.crearVeterinaria(veterinaria)
   .subscribe(
     response => {
+      this.router.navigate(['/veterinarias'])
       swal.fire({
         icon: 'success',
         title: 'Creación exitosa',
-      }).then((result) => {
-        if(result.value){
-          this.router.navigate(['/veterinarias'])
-          return response;
-        }
       })
+      this.auditoriaAgregar();
+      return response;
     })
 
 }
@@ -83,7 +107,7 @@ public modificar(veterinaria): void {
         showConfirmButton: true,
         timer: 1500
       })
-      
+      this.auditoriaModificar();
       return response;
     }
   )

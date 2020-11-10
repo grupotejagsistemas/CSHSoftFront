@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Veterinaria } from './veterinaria';
 import { VeterinariaService }from './veterinaria.service';
 import swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -17,9 +19,11 @@ export class VeterinariasComponent implements OnInit {
   checkedNo: boolean;
   p: number = 1;
 
-  constructor(private veterinariaService: VeterinariaService) {
-
-  }
+  constructor(
+    private veterinariaService: VeterinariaService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
 
@@ -63,6 +67,20 @@ export class VeterinariasComponent implements OnInit {
     }
   }
 
+
+  borrarAuditoriaObj = {
+    usuario: this.authService.usuario.username,
+    accion: 'Eliminación de veterinaria'
+  }
+
+  borrarAuditoria() {
+    this.auditoriaService.crearAuditoria(this.borrarAuditoriaObj)
+    .subscribe(response => {
+      return response;
+    })
+  }
+  
+  
   borrarVeterinaria(id: number, veterinaria: string): void {
     console.log('vet', id)
       swal.fire({
@@ -74,7 +92,7 @@ export class VeterinariasComponent implements OnInit {
         confirmButtonText: 'Confirmar'
       }).then((result) => {
         if (result.value) {
-          console.log('id', id)
+          this.borrarAuditoria();
           this.veterinariaService.borrarVeterinaria(id).subscribe(
             () => {
               this.veterinarias = this.veterinarias.filter(vet => vet.id !== id);
