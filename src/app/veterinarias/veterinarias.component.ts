@@ -70,7 +70,7 @@ export class VeterinariasComponent implements OnInit {
 
   borrarAuditoriaObj = {
     usuario: this.authService.usuario.username,
-    accion: 'Eliminación de veterinaria'
+    accion: `eliminación de veterinaria`
   }
 
   borrarAuditoria() {
@@ -93,12 +93,9 @@ export class VeterinariasComponent implements OnInit {
       }).then((result) => {
         if (result.value) {
           this.borrarAuditoria();
-          this.veterinariaService.borrarVeterinaria(id).subscribe(
-            () => {
+          this.veterinariaService.borrarVeterinaria(id).subscribe(() => {
               this.veterinarias = this.veterinarias.filter(vet => vet.id !== id);
-            }
-          )
-
+            })
         }
       })
   }

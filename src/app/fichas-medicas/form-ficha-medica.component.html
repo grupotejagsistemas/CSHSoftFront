@@ -1,6 +1,6 @@
 
             <form class="border p-3 form">   
-                <div class=" text-center">
+                <div class=" text-center" *ngIf="fichaMedicaObj.id else elseTitulo" >
                     <h2>Nueva ficha médica</h2> 
                     <hr>
                         <ng-template #elseTitulo>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 import { Mascota } from './mascota';
 import { MascotaService } from './mascota.service';
 
@@ -16,7 +18,12 @@ export class MascotasComponent implements OnInit {
   checkedH: boolean;
   p: number = 1;
 
-  constructor(public mascotaService: MascotaService) { }
+  constructor(
+    public mascotaService: MascotaService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+    
+    ) { }
 
   ngOnInit(): void {
     this.mascotaService.getMascotas().subscribe((data: any) => {
@@ -59,6 +66,19 @@ export class MascotasComponent implements OnInit {
     }
   }
   
+  auditoriaBorrarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Eliminación de mascotas`
+  }
+  
+
+  auditoriaBorrar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaBorrarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+
   borrarMascota(id: number, mascota: string): void {
     Swal.fire({
       title: '',
@@ -70,6 +90,7 @@ export class MascotasComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
+          this.auditoriaBorrar();
           this.mascotaService.borrarMascota(id).subscribe(
             () => {
               this.mascotas = this.mascotas.filter(mas => mas.id !== id)

@@ -5,6 +5,8 @@ import { Veterinaria } from './veterinaria';
 import { FichaMedica } from './ficha-medica';
 import { FichaMedicaService } from './ficha-medica.service';
 import swal from 'sweetalert2'
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 
 @Component({
   selector: 'app-form-ficha-medica',
@@ -25,7 +27,9 @@ export class FormFichaMedicaComponent implements OnInit {
   constructor(
     private fichasMedicasService: FichaMedicaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
     ngOnInit(): void {
@@ -91,6 +95,29 @@ export class FormFichaMedicaComponent implements OnInit {
     descripcionTratamiento: ""
   }
 
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de ficha médica`
+  }
+  
+  auditoriaModificarObj = {
+    usuario: this.authService.usuario.username,
+    accion: 'Modificación de ficha médica'
+  }
+  
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+  auditoriaModificar(){
+    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+      return response;
+    })
+  }
+
+
   public agregar(): void {
 
     if(this.checkedVacuna === true){
@@ -110,7 +137,6 @@ export class FormFichaMedicaComponent implements OnInit {
     }else {
       this.fichaMedicaObj.tratamiento = "NO";
     }
-  console.log('ficha', this.fichaMedicaObj)
     this.fichasMedicasService.crearFichaMedica(this.fichaMedicaObj)
     .subscribe(
       response => {
@@ -121,6 +147,7 @@ export class FormFichaMedicaComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.auditoriaAgregar();
         return response;
       }
     )
@@ -156,15 +183,10 @@ export class FormFichaMedicaComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.auditoriaModificar();
         return response;
       }
     )
   }
-
-  disabledInputDesparasitacion(): void {
-    if(this.checkedDesparasitacion == false){
-      this.disabledDesparasitacion === true;
-    }
-
-  }
+  
 }

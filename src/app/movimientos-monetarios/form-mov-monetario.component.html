@@ -1,10 +1,8 @@
            <form class="border p-3 form">
                 <div class=" text-center">
-                    <h2 *ngIf="!movMonObj.idTipoMovimiento else elseTitulo">Nuevo movimiento monetario</h2> 
+                    <h2>Nuevo movimiento monetario</h2> 
                     <hr>
-                    <ng-template #elseTitulo>
-                        <h2>Modificar Movimiento de recursos</h2> 
-                     </ng-template>
+                
                 </div>
                     <div class="form-group">
                         <input type="text" maxlength="20" class="form-control" placeholder="Autor" name="autor" [(ngModel)]= "movMonObj.autor">

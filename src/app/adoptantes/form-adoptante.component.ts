@@ -7,6 +7,8 @@ import {EstadoAdoptante} from './estado-adoptante';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { Veterinaria } from './veterinaria';
 import swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 
 @Component({
   selector: 'app-form-adoptante',
@@ -25,7 +27,9 @@ export class FormAdoptanteComponent implements OnInit {
     private adoptanteService: AdoptanteService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
     ) { }
 
     get idVeterinaria(){
@@ -77,6 +81,19 @@ export class FormAdoptanteComponent implements OnInit {
     this.idVeterinaria.removeAt(indice)
   }
 
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de adoptante`
+  }
+  
+
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+
   submit(){
     this.adoptanteService.crearAdoptante(this.adoptanteObj.value).subscribe((response: any ) =>{
       this.router.navigate(['/adoptantes'])
@@ -86,7 +103,8 @@ export class FormAdoptanteComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
-    return response;
+      this.auditoriaAgregar();
+      return response;
     }
     );
   }

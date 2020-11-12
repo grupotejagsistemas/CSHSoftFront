@@ -1,10 +1,8 @@
          <form class="border p-3 form">
-                <div class=" text-center">
-                    <h2 *ngIf="!movRecObj.idTipoMovimiento else elseTitulo">Nuevo movimiento de recursos</h2> 
+                <div class=" text-center" >
+                    <h2 >Nuevo movimiento de recursos</h2> 
                     <hr>
-                    <ng-template #elseTitulo>
-                        <h2>Modificar Movimiento de recursos</h2> 
-                     </ng-template>
+
                 </div>
                     <div class="form-group">
                         <input type="text" maxlength="50" class="form-control" placeholder="Autor" name="donante" [(ngModel)]= "movRecObj.donante">

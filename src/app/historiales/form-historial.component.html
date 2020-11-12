@@ -1,6 +1,6 @@
         <form class="border p-3 form">   
-            <div class=" text-center">
-                <h2 *ngif="!historialObj.id else elseTitulo">Nuevo Historial</h2> 
+            <div class=" text-center" *ngif="!historialObj.id else elseTitulo" >
+                <h2 >Nuevo Historial</h2> 
                 <hr>
                     <ng-template #elseTitulo>
                         <h2>Modificar Historial</h2> 

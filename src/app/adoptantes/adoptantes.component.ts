@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Adoptante } from './adoptante';
 import { AdoptanteService }from './adoptante.service';
 import swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 @Component({
   selector: 'app-adoptantes',
@@ -19,7 +21,12 @@ export class AdoptantesComponent implements OnInit {
   adoptantes: Adoptante[];
   p: number = 1;
 
-  constructor(private adoptanteService: AdoptanteService) { }
+  constructor(
+    private adoptanteService: AdoptanteService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+    
+    ) { }
 
   ngOnInit(): void {
 

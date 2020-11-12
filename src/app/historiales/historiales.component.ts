@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 import { Historial } from './historial';
 import { HistorialService } from './historial.service';
 
@@ -14,7 +16,11 @@ export class HistorialesComponent implements OnInit {
   historiales: Historial[];
   p: number = 1;
   
-  constructor(public historialService: HistorialService) { }
+  constructor(
+    public historialService: HistorialService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
   this.historialService.getHistoriales().subscribe((data: any) => {
@@ -28,6 +34,22 @@ export class HistorialesComponent implements OnInit {
     })
   }
 
+  auditoriaBorrarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Eliminación de historial`
+  }
+  
+
+  
+  auditoriaBorrar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaBorrarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+  
+
+
   borrarHistorial(id: number, i: number): void {
     Swal.fire({
       title: '¿Desea eliminar el historial?',
@@ -38,8 +60,10 @@ export class HistorialesComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if(result.value){
-        this.historiales.splice(i, 1)
-        this.historialService.borrarHistorial(id).subscribe()
+        this.auditoriaBorrar();
+        this.historialService.borrarHistorial(id).subscribe(() => {
+          this.historiales = this.historiales.filter(historial => historial.id !== id);
+        })
       }
     })
   }
