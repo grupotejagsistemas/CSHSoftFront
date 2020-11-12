@@ -34,22 +34,14 @@ export class FormMascotasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    
-    if(id !== 0){
-      this.mascotaService.getMascota(id).subscribe((resp: any) => {
-        console.log('mascota', id)
-        this.mascotaObj = resp;
-      })
-    }
-
+ 
     this.mascotaService.getEstados().subscribe((resp: any) => {
-        this.estados = resp;
-        this.estados.unshift({
-          descripcion: 'Seleccione estado',
-          id: this.mascotaObj.value.estado.id
-        })
-    })
+      this.estados = resp;
+      this.estados.unshift({
+        descripcion: 'Seleccione estado',
+        id: this.mascotaObj.value.estado.id
+      })
+  })
 }
 
 get nombreNoValido(){
@@ -81,7 +73,7 @@ get estadoNoValido(){
 }
 
 mascotaObj = this.formBuilder.group( {
-  id: null,
+  id: [null],
   nombre : ["",Validators.required],
   fechaNacimiento : ["",Validators.required],
   particularidadesFisicas : ["",Validators.required],
@@ -108,6 +100,8 @@ auditoriaAgregar() {
     return response;
   })
 }
+
+
 submit(): void{
   const id = +this.route.snapshot.paramMap.get('id');
 
@@ -118,7 +112,7 @@ submit(): void{
     })
   
   
-    this.mascotaService.crearMascota(this.mascotaObj)
+    this.mascotaService.crearMascota(this.mascotaObj.value)
     .subscribe((response: any) => {
         this.router.navigate(['/mascotas'])
         swal.fire({

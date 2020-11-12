@@ -53,6 +53,7 @@ export class EditarMascotasComponent implements OnInit {
         })
     })
   }
+
   get nombreNoValido(){
     return this.mascotaObj.get('nombre').invalid && this.mascotaObj.get('nombre').touched
   }
@@ -81,8 +82,7 @@ export class EditarMascotasComponent implements OnInit {
     return this.mascotaObj.get('estado').invalid && this.mascotaObj.get('estado').touched
   }
   
-  mascotaObj = this.formBuilder.group( {
-    id: null,
+  mascotaObj = this.formBuilder.group({
     nombre : ["",Validators.required],
     fechaNacimiento : ["",Validators.required],
     particularidadesFisicas : ["",Validators.required],

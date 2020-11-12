@@ -5,18 +5,18 @@
                 <hr>
             </div>
                 <div class="form-group">
-                    <input type="text" maxlength="50" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="mascotaObj.value.nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                    <input type="text" maxlength="50" class="form-control" placeholder="Nombre" [(ngModel)]="mascota.nombre"  name="nombre"  formControlName="nombre" [class.is-invalid]="nombreNoValido">
                 </div>
             <label for="fechaNacimiento" class="col-form-label col-sm-8">Fecha de Nacimiento</label>
                 <div class="form-group">
-                    <input type="date" class="form-control" placeholder="Fecha de Nacimiento" name="fechaNacimiento" [(ngModel)]="mascotaObj.value.fechaNacimiento" formControlName="fechaNacimiento" [class.is-invalid]="fechaNacimientoNoValido" >
+                    <input type="date" class="form-control" placeholder="Fecha de Nacimiento" [(ngModel)]="mascota.fechaNacimiento" name="fechaNacimiento" formControlName="fechaNacimiento" [class.is-invalid]="fechaNacimientoNoValido" >
                 </div>
                 <div class="form-group">
-                    <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisicas" [(ngModel)]="mascotaObj.value.particularidadesFisicas" formControlName="particularidadesFisicas" [class.is-invalid]="particularidadesNoValido" ></textarea> 
+                    <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Particularidades Físicas" [(ngModel)]="mascota.particularidadesFisicas"  name="particularidadesFisicas" formControlName="particularidadesFisicas" [class.is-invalid]="particularidadesNoValido" ></textarea> 
                 </div>
             <label for="sexo" class="col-form-label col-sm-4">Sexo</label>
                 <div class="form-group">
-                    <select type="text" class="form-control" placeholder="Sexo" name="sexo" [(ngModel)]="mascotaObj.value.sexo" formControlName="sexo" [class.is-invalid]="sexoNoValido">
+                    <select type="text" class="form-control" placeholder="Sexo"  [(ngModel)]="mascota.sexo" name="sexo" formControlName="sexo" [class.is-invalid]="sexoNoValido">
                         <option [value]=null> Seleccione sexo</option>
                         <option>Macho</option>
                         <option>Hembra</option>
@@ -34,9 +34,9 @@
                 </div>
                 <div class="col-sm">
                     <img 
-                        *ngIf="mascotaObj?.value.fotoMascota" 
-                        src="http://localhost:8080/api/mascotas/upload/img/{{mascotaObj.value.fotoMascota}}" 
-                        alt="{{mascotaObj.value.fotoMascota}}" 
+                        *ngIf="mascotae.fotoMascota" 
+                        src="http://localhost:8080/api/mascotas/upload/img/{{mascota.fotoMascota}}" 
+                        alt="{{mascota.fotoMascota}}" 
                         class="img-thumbnail rounded"
                     >
                 </div>
@@ -45,18 +45,18 @@
 
             <label for="fechaRescate" class="col-form-label col-sm-8">Fecha de rescate</label>
                 <div class="form-group">
-                    <input type="date" class="form-control" placeholder="Fecha de rescate" name="fechaRescate" [(ngModel)]="mascotaObj.value.fechaRescate" formControlName="fechaRescate" [class.is-invalid]="fechaRescateNoValido">
+                    <input type="date" class="form-control" placeholder="Fecha de rescate" [(ngModel)]="mascota.fechaRescate"  name="fechaRescate" formControlName="fechaRescate" [class.is-invalid]="fechaRescateNoValido">
                 </div>
                 <div class="form-group">
-                    <textarea type="text" maxlength="50"  style="resize:none" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascotaObj.value.lugarRescate" formControlName="lugarRescate" [class.is-invalid]="lugarRescateNoValido"></textarea> 
+                    <textarea type="text" maxlength="50"  style="resize:none" class="form-control" placeholder="Lugar de rescate" [(ngModel)]="mascota.lugarRescate"  name="lugarRescate"  formControlName="lugarRescate" [class.is-invalid]="lugarRescateNoValido"></textarea> 
 
                 </div>
                 <div class="form-group">
-                    <textarea type="text" maxlength="255"   class="form-control" style="resize:none" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascotaObj.value.descripcionRescate" formControlName="descripcionRescate" [class.is-invalid]="descripcionNoValido"></textarea> 
+                    <textarea type="text" maxlength="255"   class="form-control" style="resize:none" placeholder="Descripción del rescate"  [(ngModel)]="mascota.descripcionRescate" name="descripcionRescate" formControlName="descripcionRescate" [class.is-invalid]="descripcionNoValido"></textarea> 
                 </div>
                 
                     <div class="form-group">
-                        <select type="text" class="form-control " placeholder="Especie" name="especie" [(ngModel)]="mascotaObj.value.especie" formControlName="especie"[class.is-invalid]="especieNoValido">
+                        <select type="text" class="form-control " placeholder="Especie" [(ngModel)]="mascota.especie"  name="especie" formControlName="especie"[class.is-invalid]="especieNoValido">
                             <option [value]=null> Seleccione Especie</option>
                             <option>Canino</option>
                             <option>Felino</option>
@@ -65,7 +65,7 @@
                 
             <label for="estado" class="col-form-label col-sm-2">Estado</label>
                 <div class="form-group">
-                    <select  class="form-control " type=number [(ngModel)]="mascotaObj.value.estado" name="estado" formControlName="estado"[class.is-invalid]="estadoNoValido">
+                    <select  class="form-control " type=number [(ngModel)]="mascota.estado" name="estado" formControlName="estado" [class.is-invalid]="estadoNoValido">
                         <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
                 </select>
                 </div>

@@ -82,7 +82,7 @@ const routes: Routes = [
   {path: 'mascotas/crear', component: FormMascotasComponent ,
  canActivate: [AuthGuard]
 },
-  {path: 'mascotas/editar/:id', component: FormMascotasComponent ,
+  {path: 'mascotas/editar/:id', component: EditarMascotasComponent ,
  canActivate: [AuthGuard]
 },
   {path: 'veterinarias', component: VeterinariasComponent ,
