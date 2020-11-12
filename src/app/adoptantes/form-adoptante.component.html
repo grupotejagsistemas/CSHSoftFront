@@ -1,99 +1,99 @@
-            <form class="border p-3 form" (submit)="submit()" [formGroup]="adoptanteObj">
-                <div class=" text-center">
-                    <h2>Nuevo adoptante</h2> 
-                    <hr>
-                </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Número de formulario" name="numeroFormulario"  formControlName="numeroFormulario" required>
-                    </div>
-                <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
-                    <div class="form-group">
-                        <select type="select" class="form-control" name="mascota" formControlName="idMascota" required>
-                            <option [value]="null">Seleccione una mascota </option>
-                            <option *ngFor="let mascota of mascotas" [value]="mascota.id">
-                                {{mascota.nombre}}
-                            </option>
-                        </select>
-                    </div>
-                <div class="form-gropu row">
-                    <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
-                </div>
-     
-                <div formArrayName="idVeterinaria" *ngFor="let veterinaria of idVeterinaria.controls; let i = index">
-                    <div [formGroupName]="i">
-                        <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
-                            <div class="col-md-8">
-                                <select type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
-                                  <option [value]=null>Seleccione veterinaria</option>
-                                    <option
-                                    *ngFor="let veterinaria of veterinarias"
-                                    [value]="veterinaria.id"
-                                >
-                                {{veterinaria.razonSocial}}
-                            </option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-outline" (click)="eliminarVeterinaria(i)"><i class='fas fa-trash'></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Nombre completo" name="nombreCompleto" formControlName="nombreCompleto" required>
-                      
-                    </div>
-                    <div class="form-group">
-                        <input type="date" class="form-control" placeholder="Fecha nacimiento" name="fechaNacimiento" formControlName="fechaNacimiento" required>
-                      
-                    </div>              
-                    <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Domicilio" name="domicilio" formControlName="domicilio" required>
-                      
-                    </div>
-                    <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Barrio" name="barrio" formControlName="barrio" required>
-                      
-                    </div>
-                    <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Celular"  name="celular" formControlName="celular">
-                      
-                    </div>
-                    <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Email"  name="email" formControlName="email">
-                      
-                    </div>
-                    <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Facebook"  name="facebook" formControlName="facebook">
-                      
-                    </div>
-                    <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Instagram"   name="instagram" formControlName="instagram">
-                      
-                    </div>
-                    <div class="form-group">
-                        <textarea maxlength="100" style="resize:none"  type="text" class="form-control" placeholder="Situación laboral" name="situacionLaboral" formControlName="situacionLaboral" ></textarea>
-                    
-                    </div>
-                    <div class="form-group">
-                        <textarea type="text" maxlength="100"  style="resize:none" class="form-control" placeholder="Observaciones"  name="observaciones" formControlName="observaciones"></textarea>
-                    </div>
-                <label for="estado" class="col-form-label col-sm-2">Estado</label>
-                    <div class="form-group ">
-                        <select  class="form-control " type="text" formControlName="idEstadoAdoptante" name="idEstadoAdoptante">
+<form class="border p-3 form" (submit)="submit()" [formGroup]="adoptanteObj">
+    <div class=" text-center">
+        <h2>Nuevo adoptante</h2> 
+        <hr>
+    </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Número de formulario" name="numeroFormulario"  formControlName="numeroFormulario" required>
+        </div>
+    <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
+        <div class="form-group">
+            <select type="select" class="form-control" name="mascota" formControlName="idMascota" required>
+                <option [value]="null">Seleccione una mascota </option>
+                <option *ngFor="let mascota of mascotas" [value]="mascota.id">
+                    {{mascota.nombre}}
+                </option>
+            </select>
+        </div>
+    <div class="form-gropu row">
+        <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
+    </div>
 
-                        <option [value]=null>Seleccione un estado</option>
-                        <option [value]=1>Apto</option>    
-                        <option [value]=2>No Apto</option>
-                        <option [value]=3>En Proceso</option>
-                        <option [value]=4>Rechazado</option>
-                        <option [value]=5>Finalizado</option>                        
+    <div formArrayName="idVeterinaria" *ngFor="let veterinaria of idVeterinaria.controls; let i = index">
+        <div [formGroupName]="i">
+            <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
+                <div class="col-md-8">
+                    <select type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
+                      <option [value]=null>Seleccione veterinaria</option>
+                        <option
+                        *ngFor="let veterinaria of veterinarias"
+                        [value]="veterinaria.id"
+                    >
+                    {{veterinaria.razonSocial}}
+                </option>
                     </select>
-                    </div>
-                
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <button class="btn btn-outline-success" role="button" type="submit" >Agregar</button>
-                    </div>
                 </div>
-            </form>
+                <div class="col-md-2">
+                    <button class="btn btn-outline" (click)="eliminarVeterinaria(i)"><i class='fas fa-trash'></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <input type="text" maxlength="50" class="form-control" placeholder="Nombre completo" name="nombreCompleto" formControlName="nombreCompleto"[class.is-invalid]="nombreNoValido">
+            <label *ngIf="nombreNoValido" class="text-danger">Por favor, complete el campo</label>
+        </div>
+        <div class="form-group">
+            <input type="date" class="form-control" placeholder="Fecha nacimiento" name="fechaNacimiento" formControlName="fechaNacimiento" [class.is-invalid]="fechaNoValido">
+            <label *ngIf="fechaNoValido" class="text-danger">Por favor, complete el campo</label>
+        </div>              
+        <div class="form-group">
+            <input type="text" maxlength="50" class="form-control" placeholder="Domicilio" name="domicilio" formControlName="domicilio"[class.is-invalid]="domicilioNoValido">
+            <label *ngIf="domicilioNoValido" class="text-danger">Por favor, complete el campo</label>
+        </div>
+        <div class="form-group">
+            <input type="text" maxlength="50" class="form-control" placeholder="Barrio" name="barrio" formControlName="barrio" [class.is-invalid]="barrioNoValido">
+            <label *ngIf="barrioNoValido" class="text-danger">Por favor, complete el campo</label>
+        </div>
+        <div class="form-group">
+            <input type="text" maxlength="50" class="form-control" placeholder="Celular"  name="celular" formControlName="celular">
+          
+        </div>
+        <div class="form-group">
+            <input type="text" maxlength="50" class="form-control" placeholder="Email"  name="email" formControlName="email"[class.is-invalid]="emailNoValido">
+            <label *ngIf="emailNoValido" class="text-danger">Por favor, complete el campo</label>
+        </div>
+        <div class="form-group">
+            <input type="text" maxlength="50" class="form-control" placeholder="Facebook"  name="facebook" formControlName="facebook"[class.is-invalid]="facebookNoValido">
+            <label *ngIf="facebookNoValido" class="text-danger">Por favor, complete el campo</label>
+        </div>
+        <div class="form-group">
+            <input type="text" maxlength="50" class="form-control" placeholder="Instagram"   name="instagram" formControlName="instagram"[class.is-invalid]="instagramNoValido">
+            <label *ngIf="instagramNoValido" class="text-danger">Por favor, complete el campo</label>
+        </div>
+        <div class="form-group">
+            <textarea maxlength="100" style="resize:none"  type="text" class="form-control" placeholder="Situación laboral" name="situacionLaboral" formControlName="situacionLaboral" [class.is-invalid]="sLaboralNoValido"></textarea>
+            <label *ngIf="sLaboralNoValido" class="text-danger">Por favor, complete el campo</label>
+        </div>
+        <div class="form-group">
+            <textarea type="text" maxlength="100"  style="resize:none" class="form-control" placeholder="Observaciones"  name="observaciones" formControlName="observaciones"></textarea>
+        </div>
+    <label for="estado" class="col-form-label col-sm-2">Estado</label>
+        <div class="form-group ">
+            <select  class="form-control " type="text" formControlName="idEstadoAdoptante" name="idEstadoAdoptante">
+
+            <option [value]=null>Seleccione un estado</option>
+            <option [value]=1>Apto</option>    
+            <option [value]=2>No Apto</option>
+            <option [value]=3>En Proceso</option>
+            <option [value]=4>Rechazado</option>
+            <option [value]=5>Finalizado</option>                        
+        </select>
+        </div>
+    
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <button class="btn btn-outline-success" role="button" type="submit" >Agregar</button>
+        </div>
+    </div>
+</form>

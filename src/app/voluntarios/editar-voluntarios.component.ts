@@ -26,9 +26,8 @@ export class EditarVoluntariosComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private auditoriaService: AuditoriaService,
     private authService: AuthService,
-
+    private auditoriaService: AuditoriaService
   ) { }
 
   get idveterinarias(){
@@ -176,4 +175,5 @@ voluntarioObj = this.formBuilder.group({
   }
 
 }
+ 
 
