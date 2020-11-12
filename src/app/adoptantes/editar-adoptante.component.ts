@@ -42,7 +42,7 @@ export class EditarAdoptanteComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id')
 
     this.adoptanteService.getAdoptante(id).subscribe((data: any) => {
 
@@ -151,9 +151,6 @@ idveterinariasArray() {
   }
 
   submit(){
-
-  submit(): void{
-
     const id = +this.route.snapshot.paramMap.get('id');
 
     console.log(this.adoptanteObj);  
