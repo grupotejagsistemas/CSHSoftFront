@@ -1,6 +1,6 @@
         <form class="border p-3 form">
-            <div class=" text-center">
-                <h2 *ngIf="!veterinaria.id else elseTitulo">Nueva Veterinaria</h2> 
+            <div class=" text-center"  >
+                <label *ngIf="!veterinaria.id else elseTitulo">Nueva Veterinaria</label> 
                 <hr>
                 <ng-template #elseTitulo>
                     <h2>Modificar veterinaria</h2> 

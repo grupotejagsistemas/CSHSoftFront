@@ -6,7 +6,7 @@
 
         <form class="border p-3 form">   
             <div class=" text-center">
-                <h2 *ngIf="!mascotaObj.id else elseTitulo">Nueva mascota</h2> 
+                <label *ngIf="!mascotaObj.id else elseTitulo"  >Nueva mascota</label> 
                 <hr>
                 <ng-template #elseTitulo>
                         <h2>Modificar mascota</h2> 

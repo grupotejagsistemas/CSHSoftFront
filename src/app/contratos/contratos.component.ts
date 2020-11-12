@@ -3,6 +3,8 @@ import { Contrato } from './contrato';
 import { ContratoService }from './contrato.service';
 import swal from 'sweetalert2';
 import { timeout } from 'rxjs/operators';
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 
 @Component({
@@ -16,7 +18,11 @@ export class ContratosComponent implements OnInit {
   busquedaMascota: string;
   p: number = 1;
 
-  constructor(private contratoService: ContratoService) {
+  constructor(
+    private contratoService: ContratoService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+    ) {
 
   }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 import { Recordatorio } from './recordatorio';
 import { RecordatorioService } from './recordatorio.service';
 
@@ -12,7 +14,11 @@ export class RecordatoriosComponent implements OnInit {
   recordatorios: Recordatorio[];
   p: number = 1;
 
-  constructor(public recordatorioService: RecordatorioService) { }
+  constructor(
+    public recordatorioService: RecordatorioService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
     this.recordatorioService.getRecordatorios().subscribe((data: any) => {

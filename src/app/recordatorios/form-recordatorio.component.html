@@ -1,6 +1,6 @@
             <form [formGroup]="recordatorioObj" class="border p-3 form">   
             <div class=" text-center">
-                <h2 *ngIf="!recordatorioObj.idRecordatorio else elseTitulo">Nuevo Recordatorio</h2> 
+                <label  *ngIf="!recordatorioObj.value.idRecordatorio else elseTitulo" >Nuevo Recordatorio</label> 
                 <hr>
                     <ng-template #elseTitulo>
                         <h2>Modificar Recordatorio</h2> 
@@ -8,16 +8,16 @@
                      </ng-template>
             </div>
                 <div class="form-group">
-                    <input type="text" maxlength="100" class="form-control" placeholder="Recordatorio" name="recordatorio" [(ngModel)]="recordatorioObj.descripcionRecordatorio" >
+                    <input type="text" maxlength="100" class="form-control" placeholder="Recordatorio" name="descripcionRecordatorio" [(ngModel)]="recordatorioObj.value.descripcionRecordatorio" formControlName="descripcionRecordatorio" [class.is-invalid]="recordatorioNoValido"> 
                 </div>
             <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
             
                     <div class="form-group">
-                        <input type="date" class="form-control" name="fecha" [(ngModel)]="recordatorioObj.fecha" required>
+                        <input type="date" class="form-control" name="fecha" [(ngModel)]="recordatorioObj.value.fecha" formControlName="fecha">
                     </div>
             <div class="form-row">
                 <div class="form-group  col-md-6 ">
-                    <button class="btn btn-outline-success" role="button" (click)='agregar()' *ngIf="!recordatorioObj.idRecordatorio else elseBlock">Agregar</button>
+                    <button class="btn btn-outline-success" role="button" (click)='agregar()'   *ngIf="!recordatorioObj.value.idRecordatorio else elseBlock">Agregar</button>
                     <ng-template #elseBlock>
                         <button class="btn btn-outline-success" role="button" (click)='modificar()'>Modificar</button>
                     </ng-template>

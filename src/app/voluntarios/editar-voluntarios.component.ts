@@ -5,6 +5,8 @@ import { Veterinaria } from './veterinaria';
 import { Voluntario } from './voluntario';
 import { VoluntarioService } from './voluntario.service';
 import swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 @Component({
   selector: 'app-editar-voluntarios',
@@ -23,7 +25,9 @@ export class EditarVoluntariosComponent implements OnInit {
     private voluntarioService: VoluntarioService, 
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private auditoriaService: AuditoriaService
   ) { }
 
   get idveterinarias(){
@@ -111,6 +115,19 @@ voluntarioObj = this.formBuilder.group({
     this.idveterinarias.removeAt(indice)
   }
 
+  auditoriaModificarObj = {
+    usuario: this.authService.usuario.username,
+    accion: 'Modificación de voluntario'
+  }
+  
+  
+  auditoriaModificar(){
+    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+      return response;
+    })
+  }
+
+
   submit(): void{
     
     console.log(this.voluntarioObj);  
@@ -152,9 +169,11 @@ voluntarioObj = this.formBuilder.group({
           timer: 1500
         })
         console.log('MODIFICAR', response);
+        this.auditoriaModificar();
         return response;
       })
   }
 
 }
+ 
 

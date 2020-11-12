@@ -24,4 +24,7 @@ export class AuditoriaService {
     return this.http.get<Auditoria[]>(`${this.urlAPI}/filtronombre?usuario=${usuario}`)
   }
 
+  crearAuditoria(auditoria: any) {
+    return this.http.post(`${this.urlAPI}/auditoria`, auditoria);
+  }
 }

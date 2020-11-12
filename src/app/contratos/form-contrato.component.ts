@@ -5,6 +5,8 @@ import {ActivatedRoute,Router} from '@angular/router';
 import swal from 'sweetalert2'
 import { Mascota } from './mascota';
 import { Adoptante } from './adoptante';
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 @Component({
   selector: 'app-form-contrato',
@@ -23,7 +25,9 @@ export class FormContratoComponent implements OnInit {
   constructor(
     private contratoService: ContratoService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -56,8 +60,23 @@ export class FormContratoComponent implements OnInit {
     nuevoNombre: ""
   }
 
+
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de contrato`
+  }
+  
+
+  
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+  
+
   public agregar(): void {
-    console.log('vol', this.contratoObj)
     this.contratoService.crearContrato(this.contratoObj)
   .subscribe(
     response => {
@@ -68,6 +87,7 @@ export class FormContratoComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
+      this.auditoriaAgregar();
       return response;
     })
 

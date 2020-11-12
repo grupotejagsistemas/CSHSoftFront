@@ -5,6 +5,8 @@ import { Voluntario } from './voluntario';
 import { HistorialService } from './historial.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 
 @Component({
   selector: 'app-form-historial',
@@ -20,7 +22,9 @@ export class FormHistorialComponent implements OnInit {
   constructor(
     private historialService: HistorialService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +62,29 @@ export class FormHistorialComponent implements OnInit {
     fecha: new Date()
   }
 
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de historial`
+  }
+  
+  auditoriaModificarObj = {
+    usuario: this.authService.usuario.username,
+    accion: 'Modificación de historial'
+  }
+  
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+  auditoriaModificar(){
+    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+      return response;
+    })
+  }
+
+
   public agregar(): void {
     this.historialService.crearHistorial(this.historialObj)
     .subscribe(
@@ -69,6 +96,7 @@ export class FormHistorialComponent implements OnInit {
           showConfirmButton: false, 
           timer: 1500
         })
+        this.auditoriaAgregar();
         return response;
       }
     )
@@ -86,6 +114,7 @@ export class FormHistorialComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.auditoriaModificar();
         return response;
       }
     )

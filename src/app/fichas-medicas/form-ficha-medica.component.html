@@ -1,7 +1,7 @@
 
             <form class="border p-3 form">   
-                <div class=" text-center">
-                    <h2>Nueva ficha médica</h2> 
+                <div class=" text-center" >
+                    <label *ngIf="fichaMedicaObj.id else elseTitulo">Nueva ficha médica</label> 
                     <hr>
                         <ng-template #elseTitulo>
                             <h2>Modificar eficha médica</h2> 

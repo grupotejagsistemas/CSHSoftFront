@@ -5,6 +5,8 @@ import { MascotaService } from './mascota.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2'
 import Swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 @Component({
   selector: 'app-form-mascotas',
   templateUrl: './form-mascotas.component.html',
@@ -22,7 +24,9 @@ export class FormMascotasComponent implements OnInit {
   constructor(
     private mascotaService: MascotaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +49,7 @@ export class FormMascotasComponent implements OnInit {
 }
 
 mascotaObj = {
-  id: null,
+  id: 0,
   nombre : "",
   fechaNacimiento : new Date(),
   particularidadesFisicas : "",
@@ -59,8 +63,30 @@ mascotaObj = {
   estado: null
 };
 
+auditoriaAgregarObj = {
+  usuario: this.authService.usuario.username,
+  accion: `Alta de mascotas`
+}
+
+auditoriaModificarObj = {
+  usuario: this.authService.usuario.username,
+  accion: 'Modificación de mascotas'
+}
+
+auditoriaAgregar() {
+  this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+    return response;
+  })
+}
+
+auditoriaModificar(){
+  this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+    return response;
+  })
+}
+
+
   public agregar(): void {
-    console.log(' agregar mascota', this.mascotaObj);
     this.mascotaService.crearMascota(this.mascotaObj)
     .subscribe((response: any) => {
         this.router.navigate(['/mascotas'])
@@ -71,7 +97,8 @@ mascotaObj = {
           timer: 1500
         })
         this.mascota = response;
-        this.subirFoto(response.id.toString())
+        this.subirFoto(response.id.toString());
+        this.auditoriaAgregar();
         return response; 
       })
     }
@@ -79,7 +106,6 @@ mascotaObj = {
   public modificar(): void{
      const id = +this.route.snapshot.paramMap.get('id');
 
-    console.log('modificar mascota', this.mascotaObj);
       this.mascotaService.modificarMascota(this.mascotaObj)
       .subscribe(
         response => {
@@ -93,6 +119,7 @@ mascotaObj = {
           if(id !== 0){
             this.subirFoto(id.toString())
           }
+          this.auditoriaModificar();
           return response;
         }
       ) 

@@ -4,6 +4,8 @@ import { EntrevistaAdoptante } from './entrevista-adoptante';
 import { EntrevistaAdoptanteService } from './entrevista-adoptante.service';
 import swal from 'sweetalert2';
 import { Adoptante } from './adoptante';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -19,7 +21,9 @@ export class FormEntrevistaAdoptanteComponent implements OnInit {
   constructor(
     private entrevistaService: EntrevistaAdoptanteService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -66,6 +70,28 @@ export class FormEntrevistaAdoptanteComponent implements OnInit {
     respuesta22: ""
   }
 
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de entrevista adoptante`
+  }
+  
+  auditoriaModificarObj = {
+    usuario: this.authService.usuario.username,
+    accion: 'Modificación de entrevista adoptante'
+  }
+  
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+  auditoriaModificar(){
+    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+      return response;
+    })
+  }
+
   public agregar(): void {
     this.entrevistaService.crearEntrevista(this.entrevistaObj)
     .subscribe((response: any) => {
@@ -76,6 +102,7 @@ export class FormEntrevistaAdoptanteComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
+      this.auditoriaAgregar();
       return response;
     })
   }
@@ -91,6 +118,7 @@ export class FormEntrevistaAdoptanteComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.auditoriaModificar();
         return response;
       }
     )
