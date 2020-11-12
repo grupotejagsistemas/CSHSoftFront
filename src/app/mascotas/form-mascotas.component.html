@@ -5,8 +5,8 @@
     <div class="card-body mx-auto" style="width: 800px;"> -->
 
         <form class="border p-3 form">   
-            <div class=" text-center"  *ngIf="!mascotaObj.id else elseTitulo">
-                <h2>Nueva mascota</h2> 
+            <div class=" text-center">
+                <label *ngIf="!mascotaObj.id else elseTitulo"  >Nueva mascota</label> 
                 <hr>
                 <ng-template #elseTitulo>
                         <h2>Modificar mascota</h2> 

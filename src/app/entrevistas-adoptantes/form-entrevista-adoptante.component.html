@@ -6,8 +6,8 @@
          <div class="card-body mx-auto" style="width: 800px"> -->
 
             <form class="border p-3 form">   
-                <div class=" text-center" *ngIf="entrevistaObj.id else elseTitulo" >
-                    <h2 >Nueva entrevista</h2> 
+                <div class=" text-center">
+                    <label *ngIf="entrevistaObj.id else elseTitulo">Nueva entrevista</label> 
                     <hr>
                         <ng-template #elseTitulo>
                             <h2>Modificar entrevista</h2> 

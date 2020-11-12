@@ -1,6 +1,6 @@
-            <form [formGroup]="recordatorioObj" class="border p-3 form" (submit)='agregar()'>   
-            <div class=" text-center" *ngIf="!recordatorioObj.value.idRecordatorio else elseTitulo" >
-                <h2 >Nuevo Recordatorio</h2> 
+            <form [formGroup]="recordatorioObj" class="border p-3 form">   
+            <div class=" text-center">
+                <label  *ngIf="!recordatorioObj.value.idRecordatorio else elseTitulo" >Nuevo Recordatorio</label> 
                 <hr>
                     <ng-template #elseTitulo>
                         <h2>Modificar Recordatorio</h2> 
@@ -13,7 +13,7 @@
             <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
             
                     <div class="form-group">
-                        <input type="date" class="form-control" name="fecha" [(ngModel)]="recordatorioObj.value.fecha" required formControlName="fecha">
+                        <input type="date" class="form-control" name="fecha" [(ngModel)]="recordatorioObj.value.fecha" formControlName="fecha">
                     </div>
             <div class="form-row">
                 <div class="form-group  col-md-6 ">

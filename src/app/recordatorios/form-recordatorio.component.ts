@@ -78,11 +78,6 @@ export class FormRecordatorioComponent implements OnInit {
 
   public agregar(): void{
 
-    if (this.recordatorioObj.invalid)
-    return  Object.values(this.recordatorioObj.controls).forEach(control => {
-       control.markAsTouched();
-     })
-
     this.recordatorioService.crearRecordatorio(this.recordatorioObj)
     .subscribe(
       response => {
