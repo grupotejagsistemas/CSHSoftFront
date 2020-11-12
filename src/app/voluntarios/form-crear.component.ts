@@ -5,6 +5,8 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { VoluntarioService } from './voluntario.service';
 import {ActivatedRoute, GuardsCheckStart, Router} from '@angular/router';
 import swal from 'sweetalert2'
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 
 @Component({
@@ -27,7 +29,10 @@ export class FormCrearComponent implements OnInit {
     private voluntarioService: VoluntarioService, 
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,    
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+
     ) { }
 
     get idveterinarias(){
@@ -78,6 +83,19 @@ get localidadNoValido(){
     }
   
 
+    auditoriaAgregarObj = {
+      usuario: this.authService.usuario.username,
+      accion: `Alta de voluntario`
+    }
+    
+    auditoriaAgregar() {
+      this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+        return response;
+      })
+    }
+    
+
+  
   submit(): void{
 
     console.log(this.voluntarioObj);  
@@ -115,6 +133,7 @@ get localidadNoValido(){
           timer: 1500
         })
         console.log('AGREGAR', response);
+        this.auditoriaAgregar();
         return response;
       })
   }

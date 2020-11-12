@@ -7,6 +7,8 @@ import {EstadoAdoptante} from './estado-adoptante';
 import { FormArray,Validators, FormBuilder } from '@angular/forms';
 import { Veterinaria } from './veterinaria';
 import swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 
 @Component({
@@ -27,7 +29,9 @@ export class EditarAdoptanteComponent implements OnInit {
     private adoptanteService: AdoptanteService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   get idVeterinaria(){
@@ -38,7 +42,7 @@ export class EditarAdoptanteComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id')
 
     this.adoptanteService.getAdoptante(id).subscribe((data: any) => {
 
@@ -109,6 +113,7 @@ export class EditarAdoptanteComponent implements OnInit {
 }) 
 
 
+
 idveterinariasArray() {
   this.veterinariasArray = this.adoptante.idVeterinaria.map(vete => {
     return vete.razonSocial
@@ -131,7 +136,21 @@ idveterinariasArray() {
     this.idVeterinaria.removeAt(indice)
   }
 
-  submit(): void{
+  
+  auditoriaModificarObj = {
+    usuario: this.authService.usuario.username,
+    accion: 'Modificación de adoptante'
+  }
+  
+ 
+  
+  auditoriaModificar(){
+    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+      return response;
+    })
+  }
+
+  submit(){
     const id = +this.route.snapshot.paramMap.get('id');
 
     console.log(this.adoptanteObj);  
@@ -148,6 +167,7 @@ idveterinariasArray() {
         showConfirmButton: false,
         timer: 1500
       })
+      this.auditoriaModificar();
       return response;
     
     });

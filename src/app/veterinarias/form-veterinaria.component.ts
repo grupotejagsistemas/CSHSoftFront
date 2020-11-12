@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import swal from 'sweetalert2'
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 
 
 @Component({
@@ -20,6 +22,8 @@ export class FormVeterinariaComponent implements OnInit {
 
   constructor(
     private veterinariaService: VeterinariaService, 
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
@@ -61,15 +65,27 @@ veterinariaObj = this.formBuilder.group({
   observacion: "",
 })
 
-submit(): void{
-  const id = +this.route.snapshot.paramMap.get('id');
+auditoriaAgregarObj = {
+  usuario: this.authService.usuario.username,
+  accion: `Alta de veterinaria`
+}
 
-  console.log(this.veterinariaObj);  
-   if (this.veterinariaObj.invalid)
-   return  Object.values(this.veterinariaObj.controls).forEach(control => {
-      control.markAsTouched();
-   })
-  }
+auditoriaModificarObj = {
+  usuario: this.authService.usuario.username,
+  accion: 'Modificación de veterinaria'
+}
+
+auditoriaAgregar() {
+  this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+    return response;
+  })
+}
+
+auditoriaModificar(){
+  this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+    return response;
+  })
+}
 
 
 public agregar(veterinaria): void {
@@ -82,15 +98,13 @@ public agregar(veterinaria): void {
   this.veterinariaService.crearVeterinaria(veterinaria)
   .subscribe(
     response => {
+      this.router.navigate(['/veterinarias'])
       swal.fire({
         icon: 'success',
         title: 'Creación exitosa',
-      }).then((result) => {
-        if(result.value){
-          this.router.navigate(['/veterinarias'])
-          return response;
-        }
       })
+      this.auditoriaAgregar();
+      return response;
     })
 
 }
@@ -114,7 +128,7 @@ public modificar(veterinaria): void {
         showConfirmButton: true,
         timer: 1500
       })
-      
+      this.auditoriaModificar();
       return response;
     }
   )

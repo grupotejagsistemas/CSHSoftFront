@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuditoriaService } from 'src/app/auditoria/auditoria.service';
 import swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
 import { UsuarioService } from '../usuario.service';
@@ -14,8 +15,7 @@ export class ModifContrasenaComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
-    private route: ActivatedRoute,
-    public authService: AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +26,7 @@ export class ModifContrasenaComponent implements OnInit {
     oldPass: "",
     newPass: ""
   }
+
 
   public modificar(): void {
 

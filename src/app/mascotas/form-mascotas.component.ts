@@ -7,6 +7,9 @@ import swal from 'sweetalert2';
 import Swal from 'sweetalert2';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
+
 @Component({
   selector: 'app-form-mascotas',
   templateUrl: './form-mascotas.component.html',
@@ -25,7 +28,9 @@ export class FormMascotasComponent implements OnInit {
     private mascotaService: MascotaService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -100,8 +105,30 @@ submit(): void{
     })
   }
 
+auditoriaAgregarObj = {
+  usuario: this.authService.usuario.username,
+  accion: `Alta de mascotas`
+}
+
+auditoriaModificarObj = {
+  usuario: this.authService.usuario.username,
+  accion: 'Modificación de mascotas'
+}
+
+auditoriaAgregar() {
+  this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+    return response;
+  })
+}
+
+auditoriaModificar(){
+  this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+    return response;
+  })
+}
+
+
   public agregar(): void {
-    console.log(' agregar mascota', this.mascotaObj);
     this.mascotaService.crearMascota(this.mascotaObj)
     .subscribe((response: any) => {
         this.router.navigate(['/mascotas'])
@@ -112,7 +139,8 @@ submit(): void{
           timer: 1500
         })
         this.mascota = response;
-        this.subirFoto(response.id.toString())
+        this.subirFoto(response.id.toString());
+        this.auditoriaAgregar();
         return response; 
       })
     }
@@ -120,7 +148,6 @@ submit(): void{
   public modificar(): void{
      const id = +this.route.snapshot.paramMap.get('id');
 
-    console.log('modificar mascota', this.mascotaObj);
       this.mascotaService.modificarMascota(this.mascotaObj)
       .subscribe(
         response => {
@@ -134,6 +161,7 @@ submit(): void{
           if(id !== 0){
             this.subirFoto(id.toString())
           }
+          this.auditoriaModificar();
           return response;
         }
       ) 

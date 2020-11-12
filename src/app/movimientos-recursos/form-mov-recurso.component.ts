@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 import { MovimientoRecurso } from './movimiento-recurso';
 import { MovimientoRecursoService } from './movimiento-recurso.service';
 import { TipoMovimiento } from './tipoMovimiento';
@@ -23,7 +25,9 @@ export class FormMovRecursoComponent implements OnInit {
     private movimientoRecursoService: MovimientoRecursoService,
     private router:  Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +77,19 @@ export class FormMovRecursoComponent implements OnInit {
      })
     }
 
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de movimiento de recurso`
+  }
+  
+
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+
   public agregar(): void {
     this.movimientoRecursoService.crearMovRecursos(this.movRecObj)
     .subscribe(
@@ -84,7 +101,7 @@ export class FormMovRecursoComponent implements OnInit {
           showConfirmButton: false, 
           timer: 1500
         })
-
+        this.auditoriaAgregar();
         return response;
       
       }

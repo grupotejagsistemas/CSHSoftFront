@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuditoriaService } from 'src/app/auditoria/auditoria.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../auth.service';
 import { Usuario } from '../usuario';
 import { UsuarioService } from '../usuario.service';
 
@@ -17,8 +19,9 @@ export class BajaUsuarioComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
-    private route: ActivatedRoute
-
+    private route: ActivatedRoute,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +29,20 @@ export class BajaUsuarioComponent implements OnInit {
       this.usuarios = data;
     })
   }
+
+  auditoriaBorrarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de historial`
+  }
+  
+
+  auditoriaBorrar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaBorrarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+ 
 
   borrarUsuario(id: number, usuario: string):  void {
     Swal.fire({
@@ -38,6 +55,7 @@ export class BajaUsuarioComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
+          this.auditoriaBorrar();
           this.usuarioService.eliminarUsuario(id).subscribe(
             () => {
               this.usuarios = this.usuarios.filter(usu => usu.id !== id)

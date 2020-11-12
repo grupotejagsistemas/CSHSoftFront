@@ -4,6 +4,7 @@ import { Usuario } from './usuario';
 import { UsuarioService } from '../usuario.service';
 import swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
+import { AuditoriaService } from 'src/app/auditoria/auditoria.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class ModifTipoUsuarioComponent implements OnInit {
     public usuarioService: UsuarioService,
     public authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+     private auditoriaService: AuditoriaService,
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +39,20 @@ usuarioObj = {
   idRole: null,
 }
 
+
+auditoriaModificarObj = {
+  usuario: this.authService.usuario.username,
+  accion: 'Modificación de tipo de usuario'
+}
+
+
+auditoriaModificar(){
+  this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+    return response;
+  })
+}
+
+
   public modificar(): void {
     this.usuarioService.modificarTipoUsuario(this.usuarioObj)
     .subscribe(
@@ -48,7 +64,7 @@ usuarioObj = {
           showConfirmButton: true,
           timer: 1500
         })
-        
+        this.auditoriaModificar();
         return response;
       }
     )

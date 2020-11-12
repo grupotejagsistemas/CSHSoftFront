@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 import { TipoMovimiento } from '../movimientos-recursos/tipoMovimiento';
+import { AuthService } from '../usuarios/auth.service';
 import { MovimientoMonetario } from './movimiento-monetario';
 import { MovimientoMonetarioService } from './movimiento-monetario.service';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
@@ -24,7 +26,9 @@ export class FormMovMonetarioComponent implements OnInit {
     private movimientoMonetarioService: MovimientoMonetarioService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -64,15 +68,21 @@ export class FormMovMonetarioComponent implements OnInit {
   fecha: [null,Validators.required]
   })
 
-  submit(): void{
-    const id = +this.route.snapshot.paramMap.get('id');
 
-    console.log(this.movMonObj);  
-     if (this.movMonObj.invalid)
-     return  Object.values(this.movMonObj.controls).forEach(control => {
-        control.markAsTouched();
-     })
-    }
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de movimiento monetario`
+  }
+  
+
+  
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+
 
   public agregar(): void {
     this.movimientoMonetarioService.crearMovMonetarios(this.movMonObj)
@@ -85,7 +95,7 @@ export class FormMovMonetarioComponent implements OnInit {
           showConfirmButton: false, 
           timer: 1500
         })
-
+        this.auditoriaAgregar();
         return response;
       
       })

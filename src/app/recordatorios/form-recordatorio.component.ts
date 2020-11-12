@@ -4,6 +4,8 @@ import { Recordatorio } from './recordatorio';
 import { RecordatorioService } from './recordatorio.service';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import swal from 'sweetalert2'
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 
 
 
@@ -21,6 +23,8 @@ export class FormRecordatorioComponent implements OnInit {
     private recordatorioService: RecordatorioService,
     private router: Router, 
     private route: ActivatedRoute,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService,
     private formBuilder: FormBuilder
 
   ) { }
@@ -37,21 +41,43 @@ export class FormRecordatorioComponent implements OnInit {
     }
   }
 
-  recordatorioObj = this.formBuilder.group( {
+
+  get recordatorioNoValido(){
+    return this.recordatorioObj.get('descripcionRecordatorio').invalid && this.recordatorioObj.get('descripcionRecordatorio').touched;
+  } 
+
+  recordatorioObj =  this.formBuilder.group({
     idRecordatorio: [null], 
     descripcionRecordatorio: ["",Validators.required],
-    fecha: [""]
+    fecha: [null]
   })
-  submit(): void{
-    const id = +this.route.snapshot.paramMap.get('id');
 
-    console.log(this.recordatorioObj);  
-     if (this.recordatorioObj.invalid)
-     return  Object.values(this.recordatorioObj.controls).forEach(control => {
-        control.markAsTouched();
-     })
-    }
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de recordatorio`
+  }
+  
+  auditoriaModificarObj = {
+    usuario: this.authService.usuario.username,
+    accion: 'Modificación de recordatorio'
+  }
+  
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+  auditoriaModificar(){
+    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+      return response;
+    })
+  }
+
+
+
   public agregar(): void{
+
     this.recordatorioService.crearRecordatorio(this.recordatorioObj)
     .subscribe(
       response => {
@@ -62,6 +88,7 @@ export class FormRecordatorioComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500 
         })
+        this.auditoriaAgregar();
         return response;
       }
     )
@@ -78,6 +105,7 @@ export class FormRecordatorioComponent implements OnInit {
           showConfirmButton: false, 
           timer: 1500
         })
+        this.auditoriaModificar();
         return response;
       }
     )

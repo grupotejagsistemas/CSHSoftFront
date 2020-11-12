@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuditoriaService } from 'src/app/auditoria/auditoria.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../auth.service';
 import { UsuarioService } from '../usuario.service';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ValidadoresService } from 'src/app/services/validadores.service';
@@ -18,7 +20,9 @@ export class UsuarioCrearComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private validadores: ValidadoresService
+    private validadores: ValidadoresService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +78,19 @@ export class UsuarioCrearComponent implements OnInit {
      })
     }
 
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de usuario`
+  }
+
+  
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+
 
   public agregar(): void{
     
@@ -86,7 +103,7 @@ export class UsuarioCrearComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
-
+      this.auditoriaAgregar();
       return response;
     })
   }

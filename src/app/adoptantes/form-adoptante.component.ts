@@ -7,6 +7,8 @@ import {EstadoAdoptante} from './estado-adoptante';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Veterinaria } from './veterinaria';
 import swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 @Component({
   selector: 'app-form-adoptante',
@@ -25,7 +27,9 @@ export class FormAdoptanteComponent implements OnInit {
     private adoptanteService: AdoptanteService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private auditoriaService: AuditoriaService
     ) { }
 
     ngOnInit(): void {
@@ -100,6 +104,18 @@ export class FormAdoptanteComponent implements OnInit {
     this.idVeterinaria.removeAt(indice)
   }
 
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de adoptante`
+  }
+  
+
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+
   submit(): void{
     
     console.log(this.adoptanteObj);  
@@ -116,8 +132,11 @@ export class FormAdoptanteComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
+      this.auditoriaAgregar();
     return response;
     }
     );
   }
 }
+
+  
