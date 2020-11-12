@@ -4,29 +4,29 @@
                 <hr>
             </div>
             <div class="form-group">
-                <input type="text" maxlength="10" class="form-control" placeholder="Nombre de usuario"  [(ngModel)]="usuarioObj.value.nombreUsuario" name="nombreUsuario"formControlName="nombreUsuario" [class.is-invalid]="nombreUsuarioNoValido" >
+                <input type="text" maxlength="10" class="form-control" placeholder="Nombre de usuario" name="nombreUsuario"formControlName="nombreUsuario" [class.is-invalid]="nombreUsuarioNoValido" >
             </div>
             <div class="form-group">
-                <input type="password" maxlength="100" class="form-control" placeholder="Contraseña"  [(ngModel)]="usuarioObj.value.contrasena" name="contrasena" formControlName="contrasena" [class.is-invalid]="contrasenaNoValido">
+                <input type="password" maxlength="100" class="form-control" placeholder="Contraseña"  name="contrasena" formControlName="contrasena" [class.is-invalid]="contrasenaNoValido">
             </div>
             <div class="form-group">
                 <input type="password" maxlength="100" class="form-control" placeholder="Confirmar contraseña"  name="confirmacion" formControlName="confirmacion" [class.is-invalid]="confirmacionNoValido"  >
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Activo"  [(ngModel)]="usuarioObj.value.activo" name="activo" formControlName="activo" [class.is-invalid]="activoNoValido"  >
+                <input type="text" class="form-control" placeholder="Activo"  name="activo" formControlName="activo" [class.is-invalid]="activoNoValido"  >
             </div>
             <div class="form-group">
-                <input type="text" maxlength="50" class="form-control" placeholder="Nombre"  [(ngModel)]="usuarioObj.value.nombre" name="nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido"  >
+                <input type="text" maxlength="50" class="form-control" placeholder="Nombre"  name="nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido"  >
             </div>
             <div class="form-group">
-                <input type="text" maxlength="50" class="form-control" placeholder="Apellido"  [(ngModel)]="usuarioObj.value.apellido" name="apellido" formControlName="apellido" [class.is-invalid]="apellidoNoValido"  >
+                <input type="text" maxlength="50" class="form-control" placeholder="Apellido" name="apellido" formControlName="apellido" [class.is-invalid]="apellidoNoValido"  >
             </div>
             <div class="form-group">
-                <input type="email" maxlength="50"class="form-control" placeholder="Email"  [(ngModel)]="usuarioObj.value.email" name="email" formControlName="email" [class.is-invalid]="emailNoValido"  >
+                <input type="email" maxlength="50"class="form-control" placeholder="Email" name="email" formControlName="email" [class.is-invalid]="emailNoValido"  >
             </div>
             
                 <div class="form-group">
-                    <select type="text" class="form-control " placeholder="Rol" name="idRole" [(ngModel)]="usuarioObj.value.idRole" formControlName="idRole" [class.is-invalid]="idRoleNoValido">
+                    <select type="text" class="form-control " placeholder="Rol" name="idRole" formControlName="idRole" [class.is-invalid]="idRoleNoValido">
                         <option [value]=null> Seleccione rol</option>
                         <option [value]=1>Administrador</option>
                         <option [value]=2>Super Administrador</option>
@@ -36,7 +36,7 @@
             
         <div class = "form-group row">
             <div class = "col-sm-6">
-                <button class = "btn btn-outline-success" (click)="agregar()" role = "button">Agregar</button>
+                <button class = "btn btn-outline-success" type="submit" role = "button">Agregar</button>
             </div>
         </div>
 </form>

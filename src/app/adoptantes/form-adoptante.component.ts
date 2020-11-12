@@ -116,6 +116,7 @@ export class FormAdoptanteComponent implements OnInit {
     })
   }
 
+  
   submit(): void{
     
     console.log(this.adoptanteObj);  

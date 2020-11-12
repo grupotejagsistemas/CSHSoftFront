@@ -95,6 +95,19 @@ mascotaObj = this.formBuilder.group( {
   estado: [null,Validators.required]
 });
 
+
+
+auditoriaAgregarObj = {
+  usuario: this.authService.usuario.username,
+  accion: `Alta de mascotas`
+}
+
+
+auditoriaAgregar() {
+  this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+    return response;
+  })
+}
 submit(): void{
   const id = +this.route.snapshot.paramMap.get('id');
 
@@ -103,32 +116,8 @@ submit(): void{
    return  Object.values(this.mascotaObj.controls).forEach(control => {
       control.markAsTouched();
     })
-  }
-
-auditoriaAgregarObj = {
-  usuario: this.authService.usuario.username,
-  accion: `Alta de mascotas`
-}
-
-auditoriaModificarObj = {
-  usuario: this.authService.usuario.username,
-  accion: 'Modificación de mascotas'
-}
-
-auditoriaAgregar() {
-  this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
-    return response;
-  })
-}
-
-auditoriaModificar(){
-  this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
-    return response;
-  })
-}
-
-
-  public agregar(): void {
+  
+  
     this.mascotaService.crearMascota(this.mascotaObj)
     .subscribe((response: any) => {
         this.router.navigate(['/mascotas'])
@@ -143,30 +132,8 @@ auditoriaModificar(){
         this.auditoriaAgregar();
         return response; 
       })
+
     }
-
-  public modificar(): void{
-     const id = +this.route.snapshot.paramMap.get('id');
-
-      this.mascotaService.modificarMascota(this.mascotaObj)
-      .subscribe(
-        response => {
-          this.router.navigate(['/mascotas'])
-          swal.fire({
-            icon: 'success',
-            title: 'La mascota ha sido modificada',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          if(id !== 0){
-            this.subirFoto(id.toString())
-          }
-          this.auditoriaModificar();
-          return response;
-        }
-      ) 
-    }
-
     seleccionarFoto(event){
       this.fotoSeleccionada = event.target.files[0];
       console.log(this.fotoSeleccionada);
@@ -189,4 +156,4 @@ auditoriaModificar(){
       }
     }
 
-}
+  }

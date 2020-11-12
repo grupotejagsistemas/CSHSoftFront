@@ -46,6 +46,10 @@ import { AuditoriaComponent } from './auditoria/auditoria.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AuthService } from './usuarios/auth.service';
 import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
+import { EditarFichasMedicasComponent } from './fichas-medicas/editar-fichas-medicas/editar-fichas-medicas.component';
+import { EditarMascotasComponent } from './mascotas/editar-mascotas.component';
+import { EditarEntrevistasAdoptantesComponent } from './entrevistas-adoptantes/editar-entrevistas-adoptantes.component';
+import { EditarVeterinariaComponent } from './veterinarias/editar-veterinaria.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full', 
@@ -207,6 +211,10 @@ const routes: Routes = [
     EditarAdoptanteComponent,
     EditarVoluntariosComponent,
     AuditoriaComponent,
+    EditarFichasMedicasComponent,
+    EditarMascotasComponent,
+    EditarEntrevistasAdoptantesComponent,
+    EditarVeterinariaComponent,
   ],
   imports: [
     BrowserModule,

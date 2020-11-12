@@ -1,39 +1,33 @@
-        <form class="border p-3 form" (submit)="submit()" [formGroup]="veterinariaObj"> 
+        <form class="border p-3 form" (submit)='submit()'[formGroup]="veterinariaObj"> 
             <div class=" text-center">
-                <h2 *ngIf="!veterinaria.id else elseTitulo">Nueva Veterinaria</h2> 
+                <h2 >Nueva Veterinaria</h2> 
                 <hr>
-                <ng-template #elseTitulo>
-                    <h2>Modificar veterinaria</h2> 
-                 </ng-template>
             </div>
 
                     <div class="form-group">
                         <label>Observación</label>
-                        <input type="text" maxlength="50" class="form-control" placeholder="Razón social"name="razonSocial" [(ngModel)]="veterinaria.razonSocial" formControlName="razonSocial"[class.is-invalid]="razonSocialNoValido">
+                        <input type="text" maxlength="50" class="form-control" placeholder="Razón social"name="razonSocial" formControlName="razonSocial"[class.is-invalid]="razonSocialNoValido">
                     </div>
                     <div class="form-group">
                         <label>Observación</label>
-                        <input type="text" maxlength="50" class="form-control" placeholder="Horario de atención" name="horarioAtencion" [(ngModel)]="veterinaria.horarioAtencion"  formControlName="horarioAtencion"[class.is-invalid]="horarioAtencionNoValido" >
+                        <input type="text" maxlength="50" class="form-control" placeholder="Horario de atención" name="horarioAtencion" formControlName="horarioAtencion"[class.is-invalid]="horarioAtencionNoValido" >
                     </div>
                     <div class="form-group">
                         <label>Observación</label>
-                        <input type="text" maxlength="50" class="form-control"  placeholder="Dirección" name="direccion" [(ngModel)]="veterinaria.direccion"  formControlName="direccion"[class.is-invalid]="direccionNoValido">
+                        <input type="text" maxlength="50" class="form-control"  placeholder="Dirección" name="direccion" formControlName="direccion"[class.is-invalid]="direccionNoValido">
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="internacion" [(ngModel)]="checked" >
+                        <input class="form-check-input" type="checkbox" name="internacion" >
                         <label class="form-check-label" for="internacion">Internación</label>
                     </div>
                     <br>
                     <div class="form-group">
                         <label>Observación</label>
-                        <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Observación" name="observacion"  [(ngModel)]="veterinaria.observacion" > </textarea>
+                        <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Observación" name="observacion"  > </textarea>
                     </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <button class="btn btn-outline-success" role="button" (click)='agregar(veterinaria)' *ngIf="!veterinaria.id else elseBlock">Agregar</button>
-                    <ng-template #elseBlock>
-                        <button class="btn btn-outline-success" role="button" (click)='modificar(veterinaria)'>Modificar</button>
-                    </ng-template>
+                    <button class="btn btn-outline-success" role="button" type='submit()'>Agregar</button>
                 </div>
             </div>
         </form>
