@@ -61,36 +61,36 @@ export class EditarAdoptanteComponent implements OnInit {
       this.veterinarias = resp;
     });
   }
-  get nombreNoValido(){
+  get fnombreNoValido(){
     return this.adoptanteObj.get('nombreCompleto').invalid && this.adoptanteObj.get('nombreCompleto').touched
   }
 
   get fechaNoValido(){
     return this.adoptanteObj.get('fecha').invalid && this.adoptanteObj.get('fecha').touched
-  
   }
+
   get domicilioNoValido(){
     return this.adoptanteObj.get('domicilio').invalid && this.adoptanteObj.get('domicilio').touched
   
   }
   get barrioNoValido(){
-    return this.adoptanteObj.get('barrioCompleto').invalid && this.adoptanteObj.get('barrioCompleto').touched
+    return this.adoptanteObj.get('barrio').invalid && this.adoptanteObj.get('barrio').touched
   
   }
   get emailNoValido(){
-    return this.adoptanteObj.get('emailCompleto').invalid && this.adoptanteObj.get('emailCompleto').touched
+    return this.adoptanteObj.get('email').invalid && this.adoptanteObj.get('email').touched
   
   }
   get facebookNoValido(){
-    return this.adoptanteObj.get('facebookCompleto').invalid && this.adoptanteObj.get('facebookCompleto').touched
+    return this.adoptanteObj.get('facebook').invalid && this.adoptanteObj.get('facebook').touched
   
   }
   get instagramNoValido(){
-    return this.adoptanteObj.get('instagramCompleto').invalid && this.adoptanteObj.get('instagramCompleto').touched
+    return this.adoptanteObj.get('instagram').invalid && this.adoptanteObj.get('instagram').touched
   
   }
   get sLaboralNoValido(){
-    return this.adoptanteObj.get('sLaboralCompleto').invalid && this.adoptanteObj.get('sLaboralCompleto').touched
+    return this.adoptanteObj.get('sLaboral').invalid && this.adoptanteObj.get('sLaboral').touched
   
   }
 
@@ -136,7 +136,6 @@ idveterinariasArray() {
     this.idVeterinaria.removeAt(indice)
   }
 
-
   
   auditoriaModificarObj = {
     usuario: this.authService.usuario.username,
@@ -152,6 +151,9 @@ idveterinariasArray() {
   }
 
   submit(){
+
+  submit(): void{
+
     const id = +this.route.snapshot.paramMap.get('id');
 
     console.log(this.adoptanteObj);  
@@ -164,7 +166,7 @@ idveterinariasArray() {
       this.router.navigate(['/adoptantes'])
       swal.fire({
         icon: 'success',
-        title: 'El voluntario ha sido modificado',
+        title: 'El adoptante ha sido modificado',
         showConfirmButton: false,
         timer: 1500
       })

@@ -43,38 +43,7 @@
                     <button class="btn btn-outline" (click)="eliminarVeterinaria(i)"><i class='fas fa-trash'></i></button>
                 </div>
             </div>
-     <!--
-
-         <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
-              <div class="form-group">
-                  <select type="select" class="form-control" [(ngModel)]="adoptante.mascotaInteresada" name="mascota" formControlName="idMascota" required>
-                      <option *ngFor="let mascota of mascotas" [ngValue]="mascota.id">
-                          {{mascota.nombre}}
-                      </option>
-                  </select>
-              </div>
-              <div class="form-gropu row">
-                  <a class="btn btn-outline" (click)="agregarVeterinaria()"> Veterinaria Cercana<i class="fas fa-plus"></i></a>
-              </div>
-              <div [(ngModelChange)]="adoptante.veterinaria_cercana" formArrayName="idVeterinaria" *ngFor="let veterinaria of idVeterinaria.controls; let i = index">
-                  <div [formGroupName]="i">
-                      <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
-                          <div class="col-md-3">
-                              <select type="text" [attr.id]="'veterinaria' + i" class='form-control' formControlName="id">
-                                  <option
-                                  *ngFor="let veterinaria of veterinarias"
-                                  [value]="veterinaria.id"
-                              >
-                              {{veterinaria.razonSocial}}
-                          </option>
-                              </select>
-                          </div>
-                          <div class="col-md-2">
-                              <button class="btn btn-outline" (click)="eliminarVeterinaria(i)"><i class='fas fa-trash'></i></button>
-                          </div>
-                  </div>
-              </div>
-     --> 
+    
             <div class="form-group">
                 <input type="text" maxlength="50" class="form-control" [(ngModel)]="adoptante.nombreCompleto" placeholder="Nombre completo" name="nombreCompleto" formControlName="nombreCompleto"  [class.is-invalid]="nombreNoValido">                     
                 <label *ngIf="nombreNoValido" class="text-danger">Por favor, complete el campo</label>
