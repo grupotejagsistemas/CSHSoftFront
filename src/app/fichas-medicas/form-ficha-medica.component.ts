@@ -4,6 +4,7 @@ import { Mascota } from './mascota';
 import { Veterinaria } from './veterinaria';
 import { FichaMedica } from './ficha-medica';
 import { FichaMedicaService } from './ficha-medica.service';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import swal from 'sweetalert2'
 
 @Component({
@@ -25,7 +26,8 @@ export class FormFichaMedicaComponent implements OnInit {
   constructor(
     private fichasMedicasService: FichaMedicaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) { }
 
     ngOnInit(): void {
@@ -38,19 +40,19 @@ export class FormFichaMedicaComponent implements OnInit {
         this.fichasMedicasService.getFichaMedica(id).subscribe((resp: any) => { 
         this.fichaMedicaObj = resp;
         
-        if(this.fichaMedicaObj.desparasitacion === "SI"){
+        if(this.fichaMedicaObj.value.desparasitacion === "SI"){
           this.checkedDesparasitacion = true;
         } else {
           this.checkedDesparasitacion = false;
         }
 
-        if(this.fichaMedicaObj.vacuna === "SI"){
+        if(this.fichaMedicaObj.value.vacuna === "SI"){
           this.checkedVacuna = true;
         } else {
           this.checkedVacuna = false;
         }
 
-        if(this.fichaMedicaObj.tratamiento === "SI"){
+        if(this.fichaMedicaObj.value.tratamiento === "SI"){
           this.checkedTratamiento = true; 
         }else {
           this.checkedTratamiento = false;
@@ -77,38 +79,58 @@ export class FormFichaMedicaComponent implements OnInit {
 
   }
 
-  fichaMedicaObj = {
+  get fechaNoValido(){
+    return this.fichaMedicaObj.get('fecha').invalid && this.fichaMedicaObj.get('fecha').touched
+  }
+  get idMascotaNoValido(){
+    return this.fichaMedicaObj.get('idMascota').invalid && this.fichaMedicaObj.get('idMascota').touched
+  }
+  get idVeterinariaNoValido(){
+    return this.fichaMedicaObj.get('idVeterinaria').invalid && this.fichaMedicaObj.get('idVeterinaria').touched
+  }
+
+  fichaMedicaObj = this.formBuilder.group({
     id: null, 
-    fecha: new Date(), 
+    fecha: ["",Validators.required],
     desparasitacion: "",
     nombreProducto: "",
     vacuna: "", 
     nombreVacuna: "", 
     diagnostico: "", 
-    idMascota: null,
-    idVeterinaria: null, 
-    tratamiento: "", 
+    idMascota: [null,Validators.required],
+    idVeterinaria: [null,Validators.required],
+    tratamiento: "",
     descripcionTratamiento: ""
-  }
+  })
+
+  submit(): void{
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    console.log(this.fichaMedicaObj);  
+     if (this.fichaMedicaObj.invalid)
+     return  Object.values(this.fichaMedicaObj.controls).forEach(control => {
+        control.markAsTouched();
+     })
+    }
 
   public agregar(): void {
 
     if(this.checkedVacuna === true){
-      this.fichaMedicaObj.vacuna = "SI";
+      this.fichaMedicaObj.value.vacuna = "SI";
     } else {
-      this.fichaMedicaObj.vacuna = "NO";
+      this.fichaMedicaObj.value.vacuna = "NO";
     }
 
     if(this.checkedDesparasitacion === true){
-      this.fichaMedicaObj.desparasitacion = "SI";
+      this.fichaMedicaObj.value.desparasitacion = "SI";
     } else {
-      this.fichaMedicaObj.desparasitacion = "NO";
+      this.fichaMedicaObj.value.desparasitacion = "NO";
     }
 
     if(this.checkedTratamiento === true) {
-      this.fichaMedicaObj.tratamiento = "SI";
+      this.fichaMedicaObj.value.tratamiento = "SI";
     }else {
-      this.fichaMedicaObj.tratamiento = "NO";
+      this.fichaMedicaObj.value.tratamiento = "NO";
     }
   console.log('ficha', this.fichaMedicaObj)
     this.fichasMedicasService.crearFichaMedica(this.fichaMedicaObj)
@@ -129,21 +151,21 @@ export class FormFichaMedicaComponent implements OnInit {
   public modificar(): void {
 
     if(this.checkedVacuna === true){
-      this.fichaMedicaObj.vacuna = "SI";
+      this.fichaMedicaObj.value.vacuna = "SI";
     } else {
-      this.fichaMedicaObj.vacuna = "NO";
+      this.fichaMedicaObj.value.vacuna = "NO";
     }
 
     if(this.checkedDesparasitacion === true){
-      this.fichaMedicaObj.desparasitacion = "SI";
+      this.fichaMedicaObj.value.desparasitacion = "SI";
     } else {
-      this.fichaMedicaObj.desparasitacion = "NO";
+      this.fichaMedicaObj.value.desparasitacion = "NO";
     }
 
     if(this.checkedTratamiento === true) {
-      this.fichaMedicaObj.tratamiento = "SI";
+      this.fichaMedicaObj.value.tratamiento = "SI";
     }else {
-      this.fichaMedicaObj.tratamiento = "NO";
+      this.fichaMedicaObj.value.tratamiento = "NO";
     }
 
     this.fichasMedicasService.modificarFichaMedica(this.fichaMedicaObj)

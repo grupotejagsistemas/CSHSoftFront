@@ -5,6 +5,7 @@ import { Voluntario } from './voluntario';
 import { HistorialService } from './historial.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { FormBuilder, Validators  } from '@angular/forms';
 
 @Component({
   selector: 'app-form-historial',
@@ -20,7 +21,8 @@ export class FormHistorialComponent implements OnInit {
   constructor(
     private historialService: HistorialService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -51,12 +53,38 @@ export class FormHistorialComponent implements OnInit {
     })
   }
 
-  historialObj = {
-    id: null,
-    idVoluntario: null,
-    idMascota: null, 
-    fecha: new Date()
+
+
+  get idVoluntarioNoValido(){
+    return this.historialObj.get('idVoluntario').invalid && this.historialObj.get('idVoluntario').touched
   }
+  get idMascotaNoValido(){
+    return this.historialObj.get('idMascota').invalid && this.historialObj.get('idMascota').touched
+  }
+  get fechaNoValido(){
+    return this.historialObj.get('fecha').invalid && this.historialObj.get('fecha').touched
+  }
+
+
+
+  historialObj = this.formBuilder.group({
+    id: null,
+    idVoluntario: [null,Validators.required],
+    idMascota:[null,Validators.required],
+    fecha:  ["",Validators.required]
+  })
+
+  submit(): void{
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    console.log(this.historialObj);  
+     if (this.historialObj.invalid)
+     return  Object.values(this.historialObj.controls).forEach(control => {
+        control.markAsTouched();
+      })
+    }
+
+
 
   public agregar(): void {
     this.historialService.crearHistorial(this.historialObj)

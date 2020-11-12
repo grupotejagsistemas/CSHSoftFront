@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { TipoMovimiento } from '../movimientos-recursos/tipoMovimiento';
 import { MovimientoMonetario } from './movimiento-monetario';
 import { MovimientoMonetarioService } from './movimiento-monetario.service';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-mov-monetario',
@@ -22,7 +23,8 @@ export class FormMovMonetarioComponent implements OnInit {
   constructor(
     private movimientoMonetarioService: MovimientoMonetarioService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -37,13 +39,40 @@ export class FormMovMonetarioComponent implements OnInit {
     })
   }
 
-  movMonObj = {
-  monto: null,
-  idTipoMovimiento: null, 
-  medio: "",
-  autor: "",
-  fecha: null 
+
+  get montoNoValido(){
+    return this.movMonObj.get('monto').invalid && this.movMonObj.get('monto').touched
   }
+  get idTipoMovimientoNoValido(){
+    return this.movMonObj.get('idTipoMovimiento').invalid && this.movMonObj.get('idTipoMovimiento').touched
+  }
+  get medioNoValido(){
+    return this.movMonObj.get('medio').invalid && this.movMonObj.get('medio').touched
+  }
+  get autorNoValido(){
+    return this.movMonObj.get('autor').invalid && this.movMonObj.get('autor').touched
+  }
+  get fechaNoValido(){
+    return this.movMonObj.get('fecha').invalid && this.movMonObj.get('fecha').touched
+  }
+
+  movMonObj = this.formBuilder.group({
+  monto: [null,Validators.required],
+  idTipoMovimiento: [null,Validators.required],
+  medio: ["",Validators.required],
+  autor: ["",Validators.required],
+  fecha: [null,Validators.required]
+  })
+
+  submit(): void{
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    console.log(this.movMonObj);  
+     if (this.movMonObj.invalid)
+     return  Object.values(this.movMonObj.controls).forEach(control => {
+        control.markAsTouched();
+     })
+    }
 
   public agregar(): void {
     this.movimientoMonetarioService.crearMovMonetarios(this.movMonObj)

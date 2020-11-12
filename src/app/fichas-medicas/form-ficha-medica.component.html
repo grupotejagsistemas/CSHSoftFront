@@ -1,5 +1,4 @@
-
-            <form class="border p-3 form">   
+            <form class="border p-3 form " (submit)="submit()" [formGroup]="fichaMedicaObj">   
                 <div class=" text-center">
                     <h2>Nueva ficha médica</h2> 
                     <hr>
@@ -11,7 +10,7 @@
                 <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
                 <div class="form-group">
                         <div class="form-group">
-                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fichaMedicaObj.fecha" required>
+                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fichaMedicaObj.value.fecha" formControlName="fecha"[class.is-invalid]="fechaNoValido">
                         </div>
                 </div>                
                     <div class="form-check">
@@ -22,7 +21,7 @@
 
                 <div class="form-group">
                         <div class="form-group">
-                            <input type="text"  maxlength="50" [disabled]="checkedDesparasitacion === false" class="form-control " placeholder="Nombre del Producto" name="nombreProducto" [(ngModel)]="fichaMedicaObj.nombreProducto" required >
+                            <input type="text"  maxlength="50" [disabled]="checkedDesparasitacion === false" class="form-control " placeholder="Nombre del Producto" name="nombreProducto" [(ngModel)]="fichaMedicaObj.value.nombreProducto" required >
                         </div>
                 </div>
                 
@@ -34,19 +33,19 @@
                 
                 <div class="form-group">
                         <div class="form-group">
-                            <input type="text" maxlength="50" class="form-control " placeholder="Nombre de Vacuna" name="nombreVacuna" [(ngModel)]="fichaMedicaObj.nombreVacuna"  required>
+                            <input type="text" maxlength="50" class="form-control " placeholder="Nombre de Vacuna" name="nombreVacuna" [(ngModel)]="fichaMedicaObj.value.nombreVacuna"  required>
                         </div>
                 </div>               
                  <div class="form-group">
                         <div class="form-group">
-                            <input type="text" maxlength="255" class="form-control " placeholder="Diagnóstico" name="diagnostico"  [(ngModel)]="fichaMedicaObj.diagnostico" required>
+                            <input type="text" maxlength="255" class="form-control " placeholder="Diagnóstico" name="diagnostico"  [(ngModel)]="fichaMedicaObj.value.diagnostico" required>
                         </div>
                 </div>
             
                 <label for="mascota" class="col-form-label col-sm-2">Mascota </label>
                 <div class="form-group">
                          <div class="form-group">
-                             <select type="number" class="form-control " name="mascota"  [(ngModel)]="fichaMedicaObj.idMascota" required>
+                             <select type="number" class="form-control " name="mascota"  [(ngModel)]="fichaMedicaObj.value.idMascota" formControlName="idMascota"[class.is-invalid]="idMascotaNoValido">
                                  <option *ngFor="let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
                              </select>
                          </div>
@@ -54,7 +53,7 @@
                  <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                  <div class="form-group">
                          <div class="form-group">
-                             <select  class="form-control "  name="veterinaria" [(ngModel)]="fichaMedicaObj.idVeterinaria" required >
+                             <select  class="form-control "  name="veterinaria" [(ngModel)]="fichaMedicaObj.value.idVeterinaria" formControlName="idVeterinaria"[class.is-invalid]="idVeterinariaNoValido" >
                                  <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.id">{{veterinaria.razonSocial}}</option>
                              </select>
                          </div>
@@ -68,13 +67,13 @@
                
                 <div class="form-group">
                         <div class="form-group">
-                            <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" [(ngModel)]="fichaMedicaObj.descripcionTratamiento"required ></textarea> 
+                            <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" [(ngModel)]="fichaMedicaObj.value.descripcionTratamiento"required ></textarea> 
                         </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <button class="btn btn-outline-success" role="button" (click)='agregar()' *ngIf="!fichaMedicaObj.id else elseBlock">Agregar</button>
+                        <button class="btn btn-outline-success" role="button" (click)='agregar()' *ngIf="!fichaMedicaObj.value.id else elseBlock">Agregar</button>
                         <ng-template #elseBlock>
                             <button class="btn btn-outline-success" role="button" (click)='modificar()'>Modificar</button>
                         </ng-template>

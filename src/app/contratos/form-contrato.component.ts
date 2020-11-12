@@ -5,6 +5,7 @@ import {ActivatedRoute,Router} from '@angular/router';
 import swal from 'sweetalert2'
 import { Mascota } from './mascota';
 import { Adoptante } from './adoptante';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-contrato',
@@ -23,7 +24,8 @@ export class FormContratoComponent implements OnInit {
   constructor(
     private contratoService: ContratoService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -49,12 +51,31 @@ export class FormContratoComponent implements OnInit {
         })
       })
   }
-
-  contratoObj = {
-    idMascota: null, 
-    idAdoptante: null, 
-    nuevoNombre: ""
+  get idMascotaNoValido(){
+    return this.contratoObj.get('idMascota').invalid && this.contratoObj.get('idMascota').touched
   }
+  get idAdoptanteNoValido(){
+    return this.contratoObj.get('idAdoptante').invalid && this.contratoObj.get('idAdoptante').touched
+  }
+  get nombreNoValido(){
+    return this.contratoObj.get('nuevoNombre').invalid && this.contratoObj.get('nuevoNombre').touched
+  }
+
+  contratoObj = this.formBuilder.group({
+    idMascota: [null,Validators.required],
+    idAdoptante: [null,Validators.required],
+    nuevoNombre: ["",Validators.required]
+  })
+
+  submit(): void{
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    console.log(this.contratoObj);  
+     if (this.contratoObj.invalid)
+     return  Object.values(this.contratoObj.controls).forEach(control => {
+        control.markAsTouched();
+      })
+    }
 
   public agregar(): void {
     console.log('vol', this.contratoObj)

@@ -1,22 +1,22 @@
-            <form class="border p-3 form">
+            <form class="border p-3 form"  (submit)="submit()" [formGroup]="contratoObj">
                 <div class=" text-center">
                     <h2>Nuevo contrato</h2> 
                     <hr>
                 </div>
                     <label for="adoptante" class="col-form-label col-sm-2">Adoptante</label>
                         <div class="form-group">
-                            <select  class="form-control" type="number" [(ngModel)]="contratoObj.idAdoptante" name="idAdoptante">
+                            <select  class="form-control" type="number" [(ngModel)]="contratoObj.value.idAdoptante" name="idAdoptante" formControlName="idAdoptante" [class.is-invalid]="idAdoptanteNoValido">
                             <option *ngFor=" let adoptante of adoptantes" [value]="adoptante.id">{{adoptante.nombreCompleto}}</option>
                         </select>
                     </div>
                 <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
                     <div class="form-group">
-                        <select class="form-control" type="number" [(ngModel)]="contratoObj.idMascota" name="idMascota">
+                        <select class="form-control" type="number" [(ngModel)]="contratoObj.value.idMascota" name="idMascota"formControlName="idMascota" [class.is-invalid]="idMascotaNoValido">
                         <option *ngFor=" let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
                     </select>
                     </div>
                         <div class="form-group">
-                            <input type="text" maxlength="50" class="form-control" placeholder="Nuevo nombre de la mascota" name="nuevoNombre" [(ngModel)]= "contratoObj.nuevoNombre"required  >
+                            <input type="text" maxlength="50" class="form-control" placeholder="Nuevo nombre de la mascota" name="nuevoNombre" [(ngModel)]= "contratoObj.value.nuevoNombre"formControlName="nuevoNombre" [class.is-invalid]="nombreNoValido"  >
                         </div>
                     <div class="col-sm-6">
                         <button class="btn btn-outline-success" role="button" (click)='agregar()'>Agregar</button>

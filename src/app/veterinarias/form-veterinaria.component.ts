@@ -3,6 +3,8 @@ import { Veterinaria } from './veterinaria';
 import { VeterinariaService } from './veterinaria.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import swal from 'sweetalert2'
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -19,7 +21,8 @@ export class FormVeterinariaComponent implements OnInit {
   constructor(
     private veterinariaService: VeterinariaService, 
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
     ) { }
 
   ngOnInit(): void {
@@ -39,6 +42,34 @@ export class FormVeterinariaComponent implements OnInit {
     })
   }
 }
+
+get razonSocialNoValido(){
+  return this.veterinariaObj.get('razonSocial').invalid && this.veterinariaObj.get('razonSocial').touched
+}
+get horarioAtencionNoValido(){
+  return this.veterinariaObj.get('horarioAtencion').invalid && this.veterinariaObj.get('horarioAtencion').touched
+}
+get direccionNoValido(){
+  return this.veterinariaObj.get('direccion').invalid && this.veterinariaObj.get('direccion').touched
+}
+
+veterinariaObj = this.formBuilder.group({
+  id: null,
+  razonSocial: ["",Validators.required],
+  horarioAtencion: [null,Validators.required],
+  direccion: ["",Validators.required],
+  observacion: "",
+})
+
+submit(): void{
+  const id = +this.route.snapshot.paramMap.get('id');
+
+  console.log(this.veterinariaObj);  
+   if (this.veterinariaObj.invalid)
+   return  Object.values(this.veterinariaObj.controls).forEach(control => {
+      control.markAsTouched();
+   })
+  }
 
 
 public agregar(veterinaria): void {

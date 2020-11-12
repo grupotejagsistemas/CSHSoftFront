@@ -57,7 +57,7 @@ export class EditarAdoptanteComponent implements OnInit {
       this.veterinarias = resp;
     });
   }
-  get fnombreNoValido(){
+  get nombreNoValido(){
     return this.adoptanteObj.get('nombreCompleto').invalid && this.adoptanteObj.get('nombreCompleto').touched
   }
 

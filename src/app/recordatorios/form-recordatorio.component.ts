@@ -20,7 +20,8 @@ export class FormRecordatorioComponent implements OnInit {
   constructor(
     private recordatorioService: RecordatorioService,
     private router: Router, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
 
   ) { }
 
@@ -36,12 +37,20 @@ export class FormRecordatorioComponent implements OnInit {
     }
   }
 
-  recordatorioObj = {
-    idRecordatorio: null, 
+  recordatorioObj = this.formBuilder.group( {
+    idRecordatorio: [null], 
     descripcionRecordatorio: ["",Validators.required],
-    fecha: new Date()
-  }
+    fecha: [""]
+  })
+  submit(): void{
+    const id = +this.route.snapshot.paramMap.get('id');
 
+    console.log(this.recordatorioObj);  
+     if (this.recordatorioObj.invalid)
+     return  Object.values(this.recordatorioObj.controls).forEach(control => {
+        control.markAsTouched();
+     })
+    }
   public agregar(): void{
     this.recordatorioService.crearRecordatorio(this.recordatorioObj)
     .subscribe(

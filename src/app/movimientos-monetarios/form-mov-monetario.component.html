@@ -1,29 +1,29 @@
-           <form class="border p-3 form">
+           <form class="border p-3 form"(submit)="submit()" [formGroup]="movMonObj">
                 <div class=" text-center">
-                    <h2 *ngIf="!movMonObj.idTipoMovimiento else elseTitulo">Nuevo movimiento monetario</h2> 
+                    <h2 *ngIf="!movMonObj.value.idTipoMovimiento else elseTitulo">Nuevo movimiento monetario</h2> 
                     <hr>
                     <ng-template #elseTitulo>
                         <h2>Modificar Movimiento de recursos</h2> 
                      </ng-template>
                 </div>
                     <div class="form-group">
-                        <input type="text" maxlength="20" class="form-control" placeholder="Autor" name="autor" [(ngModel)]= "movMonObj.autor">
+                        <input type="text" maxlength="20" class="form-control" placeholder="Autor" name="autor" [(ngModel)]= "movMonObj.value.autor" formControlName="autor" [class.is-invalid]="autorNoValido">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Monto" name="monto" [(ngModel)]= "movMonObj.monto">
+                        <input type="text" class="form-control" placeholder="Monto" name="monto" [(ngModel)]= "movMonObj.value.monto" formControlName="monto" [class.is-invalid]="montoNoValido">
                     </div>
                     <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Medio" name="medio" [(ngModel)]= "movMonObj.medio"required  >
+                        <input type="text" maxlength="50" class="form-control" placeholder="Medio" name="medio" [(ngModel)]= "movMonObj.value.medio"formControlName="medio" [class.is-invalid]="medioNoValido" >
                     </div>
                     <label for="idTipoMovimiento" class="col-form-label col-sm-6">Tipo Movimiento</label>
                         <div class="form-group ">
-                            <select class="form-control" type = number [(ngModel)] = "movMonObj.idTipoMovimiento" name = "idTipoMovimiento">
+                            <select class="form-control" type = number [(ngModel)] = "movMonObj.value.idTipoMovimiento" name = "idTipoMovimiento"formControlName="idTipoMovimiento" [class.is-invalid]="idTipoMovimientoNoValido">
                             <option *ngFor = " let tipoMovimiento of tiposMovimientos" [value] = "tipoMovimiento.id">{{tipoMovimiento.descripcion}}</option>
                         </select>
                     </div>
                     <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
                             <div class="form-group">
-                                <input type="date" class="form-control" name="fecha" [(ngModel)]="movMonObj.fecha" required>
+                                <input type="date" class="form-control" name="fecha" [(ngModel)]="movMonObj.value.fecha" formControlName="fecha" [class.is-invalid]="fechaNoValido">
                             </div>
                 <div class = "form-group row">
                     <div class = "col-sm-6">
