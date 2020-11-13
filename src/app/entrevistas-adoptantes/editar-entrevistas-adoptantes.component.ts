@@ -43,6 +43,10 @@ export class EditarEntrevistasAdoptantesComponent implements OnInit {
 
 }
 
+get idAdoptanteNoValido(){
+  return this.entrevistaObj.get('idAdoptante').invalid && this.entrevistaObj.get('idAdoptante').touched
+
+}
 
 get respuesta1NoValido(){
   return this.entrevistaObj.get('respuesta1').invalid && this.entrevistaObj.get('respuesta1').touched
@@ -172,19 +176,13 @@ auditoriaModificar(){
   })
 }
 
-submit(): void{
+
+  
+
+public submit(): void {
   const id = +this.route.snapshot.paramMap.get('id');
 
-  console.log(this.entrevistaObj);  
-   if (this.entrevistaObj.invalid)
-   return  Object.values(this.entrevistaObj.controls).forEach(control => {
-      control.markAsTouched();
-    })
-  }
-
-
-public modificar(): void {
-  this.entrevistaService.modificarEntrevista(this.entrevistaObj)
+  this.entrevistaService.modificarEntrevista(this.entrevistaObj.value,id)
   .subscribe(
     response => {
       this.router.navigate(['/entrevistas'])

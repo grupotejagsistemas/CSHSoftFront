@@ -91,7 +91,7 @@ const routes: Routes = [
   {path: 'veterinarias/crear',component: FormVeterinariaComponent , 
  canActivate: [AuthGuard]
 },
-  {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent , 
+  {path: 'veterinarias/editar/:id', component: EditarVeterinariaComponent , 
  canActivate: [AuthGuard]
 },
   {path: 'contratos', component: ContratosComponent ,
@@ -118,7 +118,7 @@ const routes: Routes = [
   {path: 'entrevistas/crear', component: FormEntrevistaAdoptanteComponent ,
  canActivate: [AuthGuard]
 },
-  {path: 'entrevistas/editar/:id', component: FormEntrevistaAdoptanteComponent ,
+  {path: 'entrevistas/editar/:id', component: EditarEntrevistasAdoptantesComponent ,
  canActivate: [AuthGuard]
 },
 {path: 'entrevistas/respuestas/:id', component: RespuestasComponent ,

@@ -6,10 +6,12 @@
             </div>
                 <div class="form-group">
                     <input type="text" maxlength="50" class="form-control" placeholder="Nombre" name="nombre"  formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                    <label *ngIf="nombreNoValido" class="text-danger">Por favor, complete el campo</label>
                 </div>
             <label for="fechaNacimiento" class="col-form-label col-sm-8">Fecha de Nacimiento</label>
                 <div class="form-group">
                     <input type="date" class="form-control" placeholder="Fecha de Nacimiento" name="fechaNacimiento" formControlName="fechaNacimiento" [class.is-invalid]="fechaNacimientoNoValido" >
+                    <label *ngIf="fechaNacimientoNoValido" class="text-danger">Por favor, complete el campo</label>
                 </div>
                 <div class="form-group">
                     <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisicas" formControlName="particularidadesFisicas" [class.is-invalid]="particularidadesNoValido" ></textarea> 
@@ -17,6 +19,7 @@
             <label for="sexo" class="col-form-label col-sm-4">Sexo</label>
                 <div class="form-group">
                     <select type="text" class="form-control" placeholder="Sexo" name="sexo" formControlName="sexo" [class.is-invalid]="sexoNoValido">
+                        <label *ngIf="sexoNoValido" class="text-danger">Por favor, complete el campo</label>
                         <option [value]=null> Seleccione sexo</option>
                         <option>Macho</option>
                         <option>Hembra</option>
@@ -46,13 +49,15 @@
             <label for="fechaRescate" class="col-form-label col-sm-8">Fecha de rescate</label>
                 <div class="form-group">
                     <input type="date" class="form-control" placeholder="Fecha de rescate" name="fechaRescate"  formControlName="fechaRescate" [class.is-invalid]="fechaRescateNoValido">
+                    <label *ngIf="fechaRescateNoValido" class="text-danger">Por favor, complete el campo</label>
                 </div>
                 <div class="form-group">
                     <textarea type="text" maxlength="50"  style="resize:none" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" formControlName="lugarRescate" [class.is-invalid]="lugarRescateNoValido"></textarea> 
-
+                    <label *ngIf="lugarRescateNoValido" class="text-danger">Por favor, complete el campo</label>
                 </div>
                 <div class="form-group">
                     <textarea type="text" maxlength="255"   class="form-control" style="resize:none" placeholder="Descripción del rescate" name="descripcionRescate"  formControlName="descripcionRescate" [class.is-invalid]="descripcionNoValido"></textarea> 
+                    <label *ngIf="descripcionNoValido" class="text-danger">Por favor, complete el campo</label>
                 </div>
                 
                     <div class="form-group">
@@ -61,6 +66,8 @@
                             <option>Canino</option>
                             <option>Felino</option>
                         </select>
+                        <label *ngIf="especieNoValido" class="text-danger">Por favor, elija una opción</label>
+
                     </div>
                 
             <label for="estado" class="col-form-label col-sm-2">Estado</label>
@@ -68,6 +75,7 @@
                     <select  class="form-control " type=number  name="estado" formControlName="estado"[class.is-invalid]="estadoNoValido">
                         <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
                 </select>
+                <label *ngIf="especieNoValido" class="text-danger">Por favor, elija una opción</label>
                 </div>
             <div class="form-group row">
                 <div class="my-4 text-right">

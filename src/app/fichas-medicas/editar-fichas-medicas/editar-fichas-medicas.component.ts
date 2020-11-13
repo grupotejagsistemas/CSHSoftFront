@@ -41,7 +41,7 @@ export class EditarFichasMedicasComponent implements OnInit {
       
       if(id !== 0) {
         this.fichasMedicasService.getFichaMedica(id).subscribe((resp: any) => { 
-        this.editarFichaMedicaObj = resp;
+        this.fichaMedica = resp;
         
         if(this.editarFichaMedicaObj.value.desparasitacion === "SI"){
           this.checkedDesparasitacion = true;
@@ -105,15 +105,6 @@ editarFichaMedicaObj = this.formBuilder.group({
   descripcionTratamiento: ""
 })
 
-submit(): void{
-  const id = +this.route.snapshot.paramMap.get('id');
-
-  console.log(this.editarFichaMedicaObj);  
-   if (this.editarFichaMedicaObj.invalid)
-   return  Object.values(this.editarFichaMedicaObj.controls).forEach(control => {
-      control.markAsTouched();
-   })
-}
 
 auditoriaModificarObj = {
   usuario: this.authService.usuario.username,
@@ -126,7 +117,8 @@ auditoriaModificar(){
     return response;
   })
 }
-public modificar(): void {
+public submit(): void {
+  const id = +this.route.snapshot.paramMap.get('id');
 
   if(this.checkedVacuna === true){
     this.editarFichaMedicaObj.value.vacuna = "SI";
@@ -146,7 +138,7 @@ public modificar(): void {
     this.editarFichaMedicaObj.value.tratamiento = "NO";
   }
 
-  this.fichasMedicasService.modificarFichaMedica(this.editarFichaMedicaObj)
+  this.fichasMedicasService.modificarFichaMedica(this.editarFichaMedicaObj.value,id)
   .subscribe(
     response => {
       this.router.navigate(['/fichas-medicas'])

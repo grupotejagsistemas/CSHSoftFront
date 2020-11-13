@@ -210,21 +210,5 @@ export class FormEntrevistaAdoptanteComponent implements OnInit {
     })
   }
 
-  public modificar(): void {
-    this.entrevistaService.modificarEntrevista(this.entrevistaObj)
-    .subscribe(
-      response => {
-        this.router.navigate(['/entrevistas'])
-        swal.fire({
-          icon: 'success',
-          title: `La entrevista adoptante ha sido modificada`,
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.auditoriaModificar();
-        return response;
-      }
-    )
-  }
 
 }

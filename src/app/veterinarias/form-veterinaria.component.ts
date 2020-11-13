@@ -17,7 +17,6 @@ import { AuthService } from '../usuarios/auth.service';
 export class FormVeterinariaComponent implements OnInit {
 
   veterinaria: Veterinaria = new Veterinaria()
-  titulo: string = 'Nueva Veterinaria'
   checked: boolean;
 
   constructor(
@@ -30,7 +29,7 @@ export class FormVeterinariaComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-  const id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id');
 
   this.veterinaria = Veterinaria.build();
 
@@ -79,23 +78,23 @@ auditoriaAgregar() {
 
 
 
-submit(): void{
-    
+
+public submit(): void {
+  const id = +this.route.snapshot.paramMap.get('id');
+
   console.log(this.veterinariaObj);  
-  if (this.veterinariaObj.invalid)
-  return  Object.values(this.veterinariaObj.controls).forEach(control => {
-     control.markAsTouched();
-   })
-  
-  }
-public agregar(veterinaria): void {
+   if (this.veterinariaObj.invalid)
+   return  Object.values(this.veterinariaObj.controls).forEach(control => {
+      control.markAsTouched();
+    })
+
     if(this.checked === true){
-        veterinaria.internacion = 'SI' 
+        this.veterinariaObj.value.internacion = 'SI' 
     } else {
-        veterinaria.internacion = 'NO'
+        this.veterinariaObj.value.internacion = 'NO'
     }
 
-  this.veterinariaService.crearVeterinaria(veterinaria)
+  this.veterinariaService.crearVeterinaria(this.veterinariaObj.value)
   .subscribe(
     response => {
       this.router.navigate(['/veterinarias'])

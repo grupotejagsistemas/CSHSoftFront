@@ -19,7 +19,7 @@ export class FormMovMonetarioComponent implements OnInit {
 
   titulo: string = "Nuevo Movimiento Monetario"
 
-  movimientoMonetario: MovimientoMonetario = new MovimientoMonetario();
+  movimientoMonetario: MovimientoMonetario;
 
 
   constructor(
@@ -84,8 +84,10 @@ export class FormMovMonetarioComponent implements OnInit {
   
 
 
-  public agregar(): void {
-    this.movimientoMonetarioService.crearMovMonetarios(this.movMonObj)
+  public submit(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    this.movimientoMonetarioService.crearMovMonetarios(this.movMonObj.value)
     .subscribe(
       response => {
         this.router.navigate(['/movimientos-monetarios'])

@@ -16,8 +16,7 @@ import { AuthService } from '../usuarios/auth.service';
 })
 export class EditarVeterinariaComponent implements OnInit {
 
-  veterinaria: Veterinaria = new Veterinaria()
-  titulo: string = 'Nueva Veterinaria'
+  veterinaria: Veterinaria;
   checked: boolean;
 
   constructor(
@@ -47,16 +46,16 @@ export class EditarVeterinariaComponent implements OnInit {
   }
 }
 get razonSocialNoValido(){
-  return this.veterinariaObj.get('razonSocial').invalid && this.veterinariaObj.get('razonSocial').touched
+  return this.editarVeterinariaObj.get('razonSocial').invalid && this.editarVeterinariaObj.get('razonSocial').touched
 }
 get horarioAtencionNoValido(){
-  return this.veterinariaObj.get('horarioAtencion').invalid && this.veterinariaObj.get('horarioAtencion').touched
+  return this.editarVeterinariaObj.get('horarioAtencion').invalid && this.editarVeterinariaObj.get('horarioAtencion').touched
 }
 get direccionNoValido(){
-  return this.veterinariaObj.get('direccion').invalid && this.veterinariaObj.get('direccion').touched
+  return this.editarVeterinariaObj.get('direccion').invalid && this.editarVeterinariaObj.get('direccion').touched
 }
 
-veterinariaObj = this.formBuilder.group({
+editarVeterinariaObj = this.formBuilder.group({
   id: null,
   razonSocial: ["",Validators.required],
   horarioAtencion: [null,Validators.required],
@@ -78,27 +77,20 @@ auditoriaModificar(){
   })
 }
 
-submit(): void{
-    
-  console.log(this.veterinariaObj);  
-  if (this.veterinariaObj.invalid)
-  return  Object.values(this.veterinariaObj.controls).forEach(control => {
-     control.markAsTouched();
-   })
-  }
   
   
+public submit(): void {
+  const id = +this.route.snapshot.paramMap.get('id');
 
-public modificar(veterinaria): void {
   if(this.checked === true){
-    veterinaria.internacion = 'SI' 
+   this.editarVeterinariaObj.value.internacion = 'SI' 
     this.checked = true;
 } else {
-    veterinaria.internacion = 'NO'
+    this.editarVeterinariaObj.value.internacion = 'NO'
     this.checked = false;
 }
 
-  this.veterinariaService.modificarVeterinaria(veterinaria)
+  this.veterinariaService.modificarVeterinaria(this.editarVeterinariaObj.value,id)
   .subscribe(
     response =>{
       this.router.navigate(['/veterinarias'])
