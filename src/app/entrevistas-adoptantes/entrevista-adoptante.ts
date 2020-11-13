@@ -1,6 +1,6 @@
 export class EntrevistaAdoptante {
     id: number;
-    adoptante: string;
+    idAdoptante: string;
     respuesta1: string;
     respuesta2: string;
     respuesta3: string;

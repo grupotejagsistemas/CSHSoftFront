@@ -127,7 +127,7 @@ export class FormFichaMedicaComponent implements OnInit {
     }else {
       this.fichaMedicaObj.value.tratamiento = "NO";
     }
-    this.fichasMedicasService.crearFichaMedica(this.fichaMedicaObj)
+    this.fichasMedicasService.crearFichaMedica(this.fichaMedicaObj.value)
     .subscribe(
       response => {
         this.router.navigate(['/fichas-medicas'])

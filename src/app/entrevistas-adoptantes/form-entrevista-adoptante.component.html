@@ -5,7 +5,7 @@
                 </div>
                 <label for="adoptante" class="col-form-label col-sm-2">Adoptante </label>
                          <div class="form-group">
-                             <select type="number" class="form-control " name="adoptante"  required>
+                             <select type="number" class="form-control " name="idAdoptante"  formControlName="idAdoptante">
                                 <option [value]=null>Seleccione un adoptante</option> 
                                 <option *ngFor="let adoptante of adoptantes" [value]="adoptante.id">{{adoptante.nombreCompleto}}</option>
                              </select>
@@ -147,7 +147,7 @@
                         </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <button class="btn btn-outline-success" role="button" type='submit()'>Agregar</button>
+                        <button class="btn btn-outline-success" role="button" type='submit'>Agregar</button>
                     </div>
                 </div>
             </form>

@@ -163,15 +163,6 @@ export class FormEntrevistaAdoptanteComponent implements OnInit {
     respuesta22: ["",Validators.required]
   })
 
-  submit(): void{
-    const id = +this.route.snapshot.paramMap.get('id');
-
-    console.log(this.entrevistaObj);  
-     if (this.entrevistaObj.invalid)
-     return  Object.values(this.entrevistaObj.controls).forEach(control => {
-        control.markAsTouched();
-      })
-    }
 
   auditoriaAgregarObj = {
     usuario: this.authService.usuario.username,
@@ -195,8 +186,9 @@ export class FormEntrevistaAdoptanteComponent implements OnInit {
     })
   }
 
-  public agregar(): void {
-    this.entrevistaService.crearEntrevista(this.entrevistaObj)
+  public submit(): void {
+    console.log('componententrevista', this.entrevistaObj.value)
+    this.entrevistaService.crearEntrevista(this.entrevistaObj.value)
     .subscribe((response: any) => {
       this.router.navigate(['/entrevistas'])
       swal.fire({

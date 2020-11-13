@@ -73,7 +73,7 @@ const routes: Routes = [
   {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent ,
  canActivate: [AuthGuard]
 },
-  {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent ,
+  {path: 'fichas-medicas/editar/:id', component: EditarFichasMedicasComponent ,
  canActivate: [AuthGuard]
 },
   {path: 'mascotas', component: MascotasComponent ,

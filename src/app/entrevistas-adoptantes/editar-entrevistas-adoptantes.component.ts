@@ -33,7 +33,7 @@ export class EditarEntrevistasAdoptantesComponent implements OnInit {
 
     if(id !== 0){
       this.entrevistaService.getEntrevista(id).subscribe((resp: any) => {
-        this.entrevistaObj = resp;
+        this.entrevista = resp;
       })
   }
   this.entrevistaService.getAdoptantes().subscribe((data: any) => {
