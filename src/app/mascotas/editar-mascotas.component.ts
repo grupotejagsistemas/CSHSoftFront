@@ -47,10 +47,7 @@ export class EditarMascotasComponent implements OnInit {
 
     this.mascotaService.getEstados().subscribe((resp: any) => {
         this.estados = resp;
-        this.estados.unshift({
-          descripcion: 'Seleccione estado',
-          id: this.mascotaObj.value.estado.id
-        })
+
     })
   }
 
@@ -104,6 +101,10 @@ export class EditarMascotasComponent implements OnInit {
      return  Object.values(this.mascotaObj.controls).forEach(control => {
         control.markAsTouched();
       })
+
+      this.mascotaService.getMascota(id).subscribe((resp => {
+        this.mascota = resp;
+      }))
     }
   
   
@@ -118,10 +119,12 @@ export class EditarMascotasComponent implements OnInit {
       return response;
     })
   }
+
+
     public modificar(): void{
        const id = +this.route.snapshot.paramMap.get('id');
   
-        this.mascotaService.modificarMascota(this.mascotaObj)
+        this.mascotaService.modificarMascota(this.mascotaObj.value, id)
         .subscribe(
           response => {
             this.router.navigate(['/mascotas'])

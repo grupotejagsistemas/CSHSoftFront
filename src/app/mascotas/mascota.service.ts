@@ -38,8 +38,8 @@ export class MascotaService {
     return this.http.get<Mascota>(`${this.urlAPI}/mascotas/${id}`);
   }
 
-  modificarMascota(mascota: any){
-    return this.http.put(`${this.urlAPI}/mascotas/${mascota.id}`, mascota);
+  modificarMascota(mascota: any, id: number){
+    return this.http.put(`${this.urlAPI}/mascotas/${id}`, mascota);
   }
 
   borrarMascota(id: number){ 
