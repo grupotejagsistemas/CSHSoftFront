@@ -22,7 +22,6 @@ export class EditarAdoptanteComponent implements OnInit {
   mascotas: Mascota[];
   estados: EstadoAdoptante[];
   veterinarias: Veterinaria[];
-  titulo: string = "Modificar Adoptante";
   veterinariasArray: any [] = [];
 
   constructor(
@@ -60,7 +59,9 @@ export class EditarAdoptanteComponent implements OnInit {
     this.adoptanteService.getVeterinaria().subscribe((resp: any) => {
       this.veterinarias = resp;
     });
+
   }
+  
   get nombreNoValido(){
     return this.adoptanteObj.get('nombreCompleto').invalid && this.adoptanteObj.get('nombreCompleto').touched
   }
