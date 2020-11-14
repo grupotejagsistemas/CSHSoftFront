@@ -19,11 +19,11 @@
             <label for="sexo" class="col-form-label col-sm-4">Sexo</label>
                 <div class="form-group">
                     <select type="text" class="form-control" placeholder="Sexo" name="sexo" formControlName="sexo" [class.is-invalid]="sexoNoValido">
-                        <label *ngIf="sexoNoValido" class="text-danger">Por favor, complete el campo</label>
                         <option [value]=null> Seleccione sexo</option>
                         <option>Macho</option>
                         <option>Hembra</option>
                     </select>
+                    <label *ngIf="sexoNoValido" class="text-danger">Por favor, complete el campo</label>
 
                 </div>
             <div class= "form-group">
@@ -61,7 +61,7 @@
                 </div>
                 
                     <div class="form-group">
-                        <select type="text" class="form-control " placeholder="Especie" name="especie" formControlName="especie"[class.is-invalid]="especieNoValido">
+                        <select type="text" class="form-control " placeholder="Especie" name="especie" formControlName="especie" [class.is-invalid]="especieNoValido">
                             <option [value]=null> Seleccione Especie</option>
                             <option>Canino</option>
                             <option>Felino</option>
