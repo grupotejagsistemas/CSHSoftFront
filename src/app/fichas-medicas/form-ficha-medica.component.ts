@@ -72,15 +72,15 @@ export class FormFichaMedicaComponent implements OnInit {
   fichaMedicaObj = this.formBuilder.group({
     id: [null], 
     fecha: ["",Validators.required],
-    desparasitacion: "",
-    nombreProducto: "",
-    vacuna: "", 
-    nombreVacuna: "", 
-    diagnostico: "", 
+    desparasitacion: [""],
+    nombreProducto: [""],
+    vacuna: [""], 
+    nombreVacuna: [""], 
+    diagnostico: [""], 
     idMascota: [null,Validators.required],
     idVeterinaria: [null,Validators.required],
-    tratamiento: "",
-    descripcionTratamiento: ""
+    tratamiento: [""],
+    descripcionTratamiento: [""]
   })
 
 
@@ -127,6 +127,8 @@ export class FormFichaMedicaComponent implements OnInit {
     }else {
       this.fichaMedicaObj.value.tratamiento = "NO";
     }
+
+    console.log('this.fichaMedica', this.fichaMedicaObj.value)
     this.fichasMedicasService.crearFichaMedica(this.fichaMedicaObj.value)
     .subscribe(
       response => {

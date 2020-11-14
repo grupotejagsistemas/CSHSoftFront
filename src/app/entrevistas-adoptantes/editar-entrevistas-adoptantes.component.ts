@@ -182,6 +182,11 @@ auditoriaModificar(){
 public submit(): void {
   const id = +this.route.snapshot.paramMap.get('id');
 
+  if (this.entrevistaObj.invalid)
+     return  Object.values(this.entrevistaObj.controls).forEach(control => {
+        control.markAsTouched();
+      })
+      
   this.entrevistaService.modificarEntrevista(this.entrevistaObj.value,id)
   .subscribe(
     response => {

@@ -1,6 +1,7 @@
 export class EntrevistaAdoptante {
     id: number;
     idAdoptante: string;
+    adoptante: string;
     respuesta1: string;
     respuesta2: string;
     respuesta3: string;
@@ -27,6 +28,7 @@ export class EntrevistaAdoptante {
     public static build() {
         const entrevista = new EntrevistaAdoptante();
         entrevista.id = null;
+        entrevista.idAdoptante = "";
         entrevista.adoptante = "";
         entrevista.respuesta1 = "";
         entrevista.respuesta2 = "";

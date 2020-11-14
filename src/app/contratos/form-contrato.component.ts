@@ -40,19 +40,13 @@ export class FormContratoComponent implements OnInit {
       this.contratoService.getAdoptantes()
         .subscribe((resp: any) => {
           this.adoptantes = resp;
-          this.adoptantes.unshift({
-            nombreCompleto: 'Seleccione un adoptante',
-            id: null
-          })
+
         })
 
     this.contratoService.getMascotas()
       .subscribe((resp: any) => {
         this.mascotas = resp;
-        this.mascotas.unshift({
-          nombre: 'Seleccione una mascota',
-          id: null
-        })
+
       })
   }
   get idMascotaNoValido(){
@@ -71,16 +65,6 @@ export class FormContratoComponent implements OnInit {
     nuevoNombre: ["",Validators.required]
   })
 
-  submit(): void{
-    const id = +this.route.snapshot.paramMap.get('id');
-
-    console.log(this.contratoObj);  
-     if (this.contratoObj.invalid)
-     return  Object.values(this.contratoObj.controls).forEach(control => {
-        control.markAsTouched();
-      })
-    }
-
 
   auditoriaAgregarObj = {
     usuario: this.authService.usuario.username,
@@ -97,8 +81,13 @@ export class FormContratoComponent implements OnInit {
   
   
 
-  public agregar(): void {
-    this.contratoService.crearContrato(this.contratoObj)
+  public submit(): void {
+
+    if (this.contratoObj.invalid)
+     return  Object.values(this.contratoObj.controls).forEach(control => {
+        control.markAsTouched();
+      })
+    this.contratoService.crearContrato(this.contratoObj.value)
   .subscribe(
     response => {
       this.router.navigate(['/contratos'])
