@@ -67,15 +67,6 @@ export class FormMovRecursoComponent implements OnInit {
     cantidad: ["",Validators.required],
   })
 
-  submit(): void{
-    const id = +this.route.snapshot.paramMap.get('id');
-
-    console.log(this.movRecObj);  
-     if (this.movRecObj.invalid)
-     return  Object.values(this.movRecObj.controls).forEach(control => {
-        control.markAsTouched();
-     })
-    }
 
   auditoriaAgregarObj = {
     usuario: this.authService.usuario.username,
@@ -90,8 +81,14 @@ export class FormMovRecursoComponent implements OnInit {
   }
   
 
-  public agregar(): void {
-    this.movimientoRecursoService.crearMovRecursos(this.movRecObj)
+  public submit(): void {
+    
+    console.log(this.movRecObj);  
+     if (this.movRecObj.invalid)
+     return  Object.values(this.movRecObj.controls).forEach(control => {
+        control.markAsTouched();
+     })
+    this.movimientoRecursoService.crearMovRecursos(this.movRecObj.value)
     .subscribe(
       response => {
         this.router.navigate(['/movimientos-recursos'])
