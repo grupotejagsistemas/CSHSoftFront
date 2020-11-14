@@ -50,6 +50,7 @@ import { EditarFichasMedicasComponent } from './fichas-medicas/editar-fichas-med
 import { EditarMascotasComponent } from './mascotas/editar-mascotas.component';
 import { EditarEntrevistasAdoptantesComponent } from './entrevistas-adoptantes/editar-entrevistas-adoptantes.component';
 import { EditarVeterinariaComponent } from './veterinarias/editar-veterinaria.component';
+import { EditarHistorialComponent } from './historiales/editar-historial.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full', 
@@ -152,7 +153,7 @@ const routes: Routes = [
  canActivate: [AuthGuard]
 
 },
-  {path: 'historial/editar/:id', component:FormHistorialComponent ,
+  {path: 'historial/editar/:id', component: EditarHistorialComponent ,
  canActivate: [AuthGuard]
 },
   {path: 'login', component: LoginComponent 
@@ -215,6 +216,7 @@ const routes: Routes = [
     EditarMascotasComponent,
     EditarEntrevistasAdoptantesComponent,
     EditarVeterinariaComponent,
+    EditarHistorialComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Mascota } from './mascota';
-import { Historial } from './historial';
-import { Voluntario } from './voluntario';
-import { HistorialService } from './historial.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { FormBuilder, Validators  } from '@angular/forms';
 import { AuditoriaService } from '../auditoria/auditoria.service';
 import { AuthService } from '../usuarios/auth.service';
+import { Historial } from './historial';
+import { HistorialService } from './historial.service';
+import { Mascota } from './mascota';
+import { Voluntario } from './voluntario';
 
 @Component({
-  selector: 'app-form-historial',
-  templateUrl: './form-historial.component.html',
-  styleUrls: ['./form-historial.component.css']
+  selector: 'app-editar-historial',
+  templateUrl: './editar-historial.component.html',
+  styleUrls: ['./editar-historial.component.css']
 })
-export class FormHistorialComponent implements OnInit {
-  
+export class EditarHistorialComponent implements OnInit {
+
   historial: Historial;
   mascotas: Mascota[];
   voluntarios: Voluntario[];
-
+  
   constructor(
     private historialService: HistorialService,
     private router: Router,
@@ -30,9 +30,15 @@ export class FormHistorialComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
 
     this.historial = Historial.build();
     
+    if(id !== 0){
+      this.historialService.getHistorial(id).subscribe((resp: any) => {
+        this.historial = resp;
+      })
+    }
 
     this.historialService.getMascotas().subscribe((resp: any) => {
       this.mascotas = resp;
@@ -50,6 +56,7 @@ export class FormHistorialComponent implements OnInit {
       })
     })
   }
+
 
 
 
@@ -72,48 +79,39 @@ export class FormHistorialComponent implements OnInit {
     fecha:  ["",Validators.required]
   })
 
-
-
-
-
-  auditoriaAgregarObj = {
+  auditoriaModificarObj = {
     usuario: this.authService.usuario.username,
-    accion: `Alta de historial`
+    accion: 'Modificación de historial'
   }
-  
- 
-  
-  auditoriaAgregar() {
-    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+
+  auditoriaModificar(){
+    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
       return response;
     })
   }
-  
-
-
 
   public submit(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
 
+    
     if (this.historialObj.invalid)
     return  Object.values(this.historialObj.controls).forEach(control => {
        control.markAsTouched();
      })
-    this.historialService.crearHistorial(this.historialObj.value)
+    console.log('modif', this.historialObj)
+    this.historialService.modificarHistorial(this.historialObj.value, id)
     .subscribe(
       response => {
         this.router.navigate(['/historial'])
         Swal.fire({
           icon: 'success',
-          title: 'Creación exitosa',
-          showConfirmButton: false, 
+          title: 'El historial ha sido modificado',
+          showConfirmButton: false,
           timer: 1500
         })
-        this.auditoriaAgregar();
+        this.auditoriaModificar();
         return response;
       }
     )
   }
-
-  
-
 }

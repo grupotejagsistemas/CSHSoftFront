@@ -45,8 +45,8 @@ export class HistorialService {
     return this.http.post(`${this.urlAPI}/historial`, historial);
   }
 
-  modificarHistorial(historial: any){
-    return this.http.put(`${this.urlAPI}/historial/${historial.id}`, historial);
+  modificarHistorial(historial: any, id: number){
+    return this.http.put(`${this.urlAPI}/historial/${id}`, historial);
   }
 
   borrarHistorial(id: number) {
