@@ -56,7 +56,7 @@ export class UsuarioCrearComponent implements OnInit {
   }
 
   usuarioObj = this.formBuilder.group({
-    id: null,
+    id: [null],
     nombreUsuario: ["",Validators.required],
     contrasena: ["",Validators.required],
     confirmacion: ["",Validators.required],
@@ -68,15 +68,9 @@ export class UsuarioCrearComponent implements OnInit {
   },{
     validators: this.validadores.contrasenasIguales('contrasena','confirmacion')
   })
-  submit(): void{
-    const id = +this.route.snapshot.paramMap.get('id');
 
-    console.log(this.usuarioObj);  
-     if (this.usuarioObj.invalid)
-     return  Object.values(this.usuarioObj.controls).forEach(control => {
-        control.markAsTouched();
-     })
-    }
+
+
 
   auditoriaAgregarObj = {
     usuario: this.authService.usuario.username,
@@ -92,8 +86,13 @@ export class UsuarioCrearComponent implements OnInit {
   
 
 
-  public agregar(): void{
-    
+  public submit(): void{
+
+    console.log(this.usuarioObj);  
+     if (this.usuarioObj.invalid)
+     return  Object.values(this.usuarioObj.controls).forEach(control => {
+        control.markAsTouched();
+     })
     this.usuarioService.crearUsuario(this.usuarioObj.value)
     .subscribe((response: any) => {
       this.router.navigate(['/'])

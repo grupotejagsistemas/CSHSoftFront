@@ -15,11 +15,11 @@
 
             <tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: p }">
             
-                    <td>{{usuario.nombreUsuario}}</td>
+                    <td>{{usuario.username}}</td>
                     <td>{{usuario.tipoUsuario}}</td>
                     <td>
 
-                        <button class="btn btn-outline" type="button" (click)="borrarUsuario(usuario.id, usuario.nombreUsuario)" name="eliminar"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-outline" type="button" (click)="borrarUsuario(usuario.id, usuario.username)" name="eliminar"><i class="fas fa-trash"></i></button>
                     </td>
             </tr>
         </tbody>
