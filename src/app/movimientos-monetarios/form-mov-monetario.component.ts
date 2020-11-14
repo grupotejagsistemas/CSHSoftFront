@@ -85,8 +85,13 @@ export class FormMovMonetarioComponent implements OnInit {
 
 
   public submit(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
 
+    
+    console.log(this.movMonObj);  
+     if (this.movMonObj.invalid)
+     return  Object.values(this.movMonObj.controls).forEach(control => {
+        control.markAsTouched();
+     })
     this.movimientoMonetarioService.crearMovMonetarios(this.movMonObj.value)
     .subscribe(
       response => {

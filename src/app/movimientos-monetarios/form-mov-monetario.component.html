@@ -5,23 +5,33 @@
                 
                 </div>
                     <div class="form-group">
-                        <input type="text" maxlength="20" class="form-control" placeholder="Autor" name="autor" [(ngModel)]= "movMonObj.value.autor" formControlName="autor" [class.is-invalid]="autorNoValido">
+                        <input type="text" maxlength="20" class="form-control" placeholder="Autor" name="autor" formControlName="autor" [class.is-invalid]="autorNoValido">
+                        <label *ngIf="autorNoValido" class="text-danger">Por favor, complete el campo</label>
+
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Monto" name="monto" [(ngModel)]= "movMonObj.value.monto" formControlName="monto" [class.is-invalid]="montoNoValido">
+                        <input type="text" class="form-control" placeholder="Monto" name="monto" formControlName="monto" [class.is-invalid]="montoNoValido">
+                        <label *ngIf="montoNoValido" class="text-danger">Por favor, complete el campo</label>
+
                     </div>
                     <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Medio" name="medio" [(ngModel)]= "movMonObj.value.medio"formControlName="medio" [class.is-invalid]="medioNoValido" >
+                        <input type="text" maxlength="50" class="form-control" placeholder="Medio" name="medio" formControlName="medio" [class.is-invalid]="medioNoValido" >
+                        <label *ngIf="medioNoValido" class="text-danger">Por favor, complete el campo</label>
+
                     </div>
                     <label for="idTipoMovimiento" class="col-form-label col-sm-6">Tipo Movimiento</label>
                         <div class="form-group ">
-                            <select class="form-control" type = number [(ngModel)] = "movMonObj.value.idTipoMovimiento" name = "idTipoMovimiento"formControlName="idTipoMovimiento" [class.is-invalid]="idTipoMovimientoNoValido">
+                            <select class="form-control" type = number name = "idTipoMovimiento"formControlName="idTipoMovimiento" [class.is-invalid]="idTipoMovimientoNoValido">
                             <option *ngFor = " let tipoMovimiento of tiposMovimientos" [value] = "tipoMovimiento.id">{{tipoMovimiento.descripcion}}</option>
                         </select>
+                        <label *ngIf="idTipoMovimientoNoValido" class="text-danger">Por favor, complete el campo</label>
+
                     </div>
                     <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
                             <div class="form-group">
-                                <input type="date" class="form-control" name="fecha" [(ngModel)]="movMonObj.value.fecha" formControlName="fecha" [class.is-invalid]="fechaNoValido">
+                                <input type="date" class="form-control" name="fecha" formControlName="fecha" [class.is-invalid]="fechaNoValido">
+                                <label *ngIf="fechaNoValido" class="text-danger">Por favor, complete el campo</label>
+ 
                             </div>
                 <div class = "form-group row">
                     <div class = "col-sm-6">
