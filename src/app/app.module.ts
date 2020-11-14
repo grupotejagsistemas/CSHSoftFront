@@ -51,6 +51,7 @@ import { EditarMascotasComponent } from './mascotas/editar-mascotas.component';
 import { EditarEntrevistasAdoptantesComponent } from './entrevistas-adoptantes/editar-entrevistas-adoptantes.component';
 import { EditarVeterinariaComponent } from './veterinarias/editar-veterinaria.component';
 import { EditarHistorialComponent } from './historiales/editar-historial.component';
+import { EditarRecordatorioComponent } from './recordatorios/editar-recordatorio.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full', 
@@ -143,7 +144,7 @@ const routes: Routes = [
   {path: 'recordatorios/crear', component: FormRecordatorioComponent ,
  canActivate: [AuthGuard]
 },
-  {path: 'recordatorios/editar/:id', component: FormRecordatorioComponent ,
+  {path: 'recordatorios/editar/:id', component: EditarRecordatorioComponent ,
  canActivate: [AuthGuard]
 },
   {path: 'historial', component: HistorialesComponent ,
@@ -217,6 +218,7 @@ const routes: Routes = [
     EditarEntrevistasAdoptantesComponent,
     EditarVeterinariaComponent,
     EditarHistorialComponent,
+    EditarRecordatorioComponent,
   ],
   imports: [
     BrowserModule,

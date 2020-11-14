@@ -1,26 +1,20 @@
-            <form [formGroup]="recordatorioObj" class="border p-3 form" >   
+            <form [formGroup]="recordatorioObj" class="border p-3 form" (submit)="submit()" >   
             <div class=" text-center">
-                <h2 *ngIf="!recordatorioObj.value.idRecordatorio else elseTitulo">Nuevo Recordatorio</h2> 
+                <h2>Nuevo Recordatorio</h2> 
                 <hr>
-                    <ng-template #elseTitulo>
-                        <h2>Modificar Recordatorio</h2> 
-                        
-                     </ng-template>
             </div>
                 <div class="form-group">
-                    <input type="text" maxlength="100" class="form-control" placeholder="Recordatorio" name="descripcionRecordatorio" [(ngModel)]="recordatorioObj.value.descripcionRecordatorio" formControlName="descripcionRecordatorio" [class.is-invalid]="recordatorioNoValido"> 
-                </div>
+                    <input type="text" maxlength="100" class="form-control" placeholder="Recordatorio" name="descripcionRecordatorio" formControlName="descripcionRecordatorio" [class.is-invalid]="recordatorioNoValido"> 
+                    <label *ngIf="recordatorioNoValido" class="text-danger">Por favor, complete el campo</label>
+
+                 </div>
             <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
-            
                     <div class="form-group">
-                        <input type="date" class="form-control" name="fecha" [(ngModel)]="recordatorioObj.value.fecha" formControlName="fecha">
+                        <input type="date" class="form-control" name="fecha" formControlName="fecha">
                     </div>
             <div class="form-row">
                 <div class="form-group  col-md-6 ">
-                    <button class="btn btn-outline-success" role="button" (click)='agregar()'   *ngIf="!recordatorioObj.value.idRecordatorio else elseBlock">Agregar</button>
-                    <ng-template #elseBlock>
-                        <button class="btn btn-outline-success" role="button" (click)='modificar()'>Modificar</button>
-                    </ng-template>
+                    <button class="btn btn-outline-success" role="button" type="submit">Agregar</button>
                 </div>
             </div>
         </form>
