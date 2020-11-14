@@ -33,17 +33,7 @@ export class FormVeterinariaComponent implements OnInit {
 
   this.veterinaria = Veterinaria.build();
 
-  if(id !== 0 ){
-    this.veterinariaService.getVeterinaria(id).subscribe((resp: any) => {
-      this.veterinaria = resp;
-      console.log(this.veterinaria)
-      if(this.veterinaria.internacion === "SI"){
-        this.checked = true;
-      } else {
-        this.checked = false;
-      }
-    })
-  }
+
 }
 
 get razonSocialNoValido(){
@@ -57,11 +47,12 @@ get direccionNoValido(){
 }
 
 veterinariaObj = this.formBuilder.group({
-  id: null,
+  id: [null],
   razonSocial: ["",Validators.required],
   horarioAtencion: [null,Validators.required],
   direccion: ["",Validators.required],
-  observacion: "",
+  internacion: [false],
+  observacion: [""]
 })
 
 auditoriaAgregarObj = {
@@ -89,9 +80,9 @@ public submit(): void {
     })
 
     if(this.checked === true){
-        this.veterinariaObj.value.internacion = 'SI' 
+        this.veterinariaObj.value.internacion = "SI";
     } else {
-        this.veterinariaObj.value.internacion = 'NO'
+        this.veterinariaObj.value.internacion = "NO";
     }
 
   this.veterinariaService.crearVeterinaria(this.veterinariaObj.value)

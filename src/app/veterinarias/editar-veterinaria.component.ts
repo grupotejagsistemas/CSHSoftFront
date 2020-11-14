@@ -60,7 +60,8 @@ editarVeterinariaObj = this.formBuilder.group({
   razonSocial: ["",Validators.required],
   horarioAtencion: [null,Validators.required],
   direccion: ["",Validators.required],
-  observacion: "",
+  internacion: [false],
+  observacion: [""]
 })
 
 
