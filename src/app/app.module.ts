@@ -223,7 +223,6 @@ const routes: Routes = [
     EditarVeterinariaComponent,
     EditarHistorialComponent,
     EditarRecordatorioComponent,
-    AngularFireDatabaseModule
   ],
   imports: [
     BrowserModule,
@@ -233,7 +232,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
