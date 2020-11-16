@@ -10,7 +10,7 @@
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Monto" name="monto" formControlName="monto" [class.is-invalid]="montoNoValido">
+                        <input type="number" class="form-control" placeholder="Monto" name="monto" formControlName="monto" [class.is-invalid]="montoNoValido">
                         <label *ngIf="montoNoValido" class="text-danger">Por favor, complete el campo</label>
 
                     </div>

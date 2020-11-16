@@ -22,5 +22,20 @@ export class ValidadoresService {
           }
         }
       }
-    }
+
+      contrasenasIgualesMod(newPass: string, confirmaContraseña: string){
+
+        return (formGroup: FormGroup) =>{
+          const newPassControl = formGroup.controls[newPass];
+          const confirmaContraseñaControl = formGroup.controls[confirmaContraseña];
+    
+          if(newPassControl.value === confirmaContraseñaControl.value){
+            confirmaContraseñaControl.setErrors(null);
+          }  else{
+                confirmaContraseñaControl.setErrors({noEsIgual:true})
+              }
+            }
+          }
+        }
+    
 
