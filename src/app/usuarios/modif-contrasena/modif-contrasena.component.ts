@@ -44,15 +44,14 @@ export class ModifContrasenaComponent implements OnInit {
     newPass: ["",Validators.required],
     confirmaContraseña: ["",Validators.required]
   },{
-    validators: this.validadores.contrasenasIguales('newPass','confirmaContraseña')
+    validators: this.validadores.contrasenasIguales('newPass', 'confirmaContraseña')
   })
 
 
 
-  public modificar(): void {
+  public submit(): void {
 
-    console.log('ts', this.usuarioObj);
-    this.usuarioService.modificarContrasena(this.usuarioObj)
+    this.usuarioService.modificarContrasena(this.usuarioObj.value)
     .subscribe((response: any) => {
       this.router.navigate(['/'])
       swal.fire({
