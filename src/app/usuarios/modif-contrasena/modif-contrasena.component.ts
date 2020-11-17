@@ -51,6 +51,11 @@ export class ModifContrasenaComponent implements OnInit {
 
   public submit(): void {
 
+    if (this.usuarioObj.invalid)
+return  Object.values(this.usuarioObj.controls).forEach(control => {
+   control.markAsTouched();
+ })
+
     this.usuarioService.modificarContrasena(this.usuarioObj.value)
     .subscribe((response: any) => {
       this.router.navigate(['/'])

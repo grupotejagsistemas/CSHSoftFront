@@ -43,18 +43,18 @@
                 <div class="form-group">
                          <div class="form-group">
                              <select type="number" class="form-control " name="mascota"  [(ngModel)]="fichaMedica.idMascota" formControlName="idMascota" [class.is-invalid]="idMascotaNoValido" formControlName="idMascota">
-                                <label *ngIf="idMascotaNoValido" class="text-danger">Por favor, complete el campo</label>
                                  <option *ngFor="let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
-                             </select>
+                                </select>
+                                <label *ngIf="idMascotaNoValido" class="text-danger">Por favor, complete el campo</label>
                          </div>
                  </div>
                  <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                  <div class="form-group">
                          <div class="form-group">
                              <select  class="form-control "  name="veterinaria" [(ngModel)]="fichaMedica.idVeterinaria" formControlName="idVeterinaria" [class.is-invalid]="idVeterinariaNoValido" >
-                                <label *ngIf="idVeterinariaNoValido" class="text-danger">Por favor, complete el campo</label>
                                  <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.id">{{veterinaria.razonSocial}}</option>
-                             </select>
+                                </select>
+                                <label *ngIf="idVeterinariaNoValido" class="text-danger">Por favor, complete el campo</label>
                          </div>
                  </div>
                 
@@ -72,7 +72,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <button class="btn btn-primary" role="button" type="submit" >Modificar</button>
+                        <button class="btn btn-outline-success" role="button" type="submit" >Modificar</button>
                     </div>
                 </div>
         </form>

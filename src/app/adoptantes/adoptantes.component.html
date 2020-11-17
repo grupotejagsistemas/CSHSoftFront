@@ -52,6 +52,7 @@
                 <th>Observaciones</th>
                 <th>Estado adoptante</th>
                 <th>Mascota</th>
+                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -72,9 +73,6 @@
 
                 <td>
                     <button type="button" name="button" [routerLink]="['/adoptantes/editar/', adoptante.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
-                </td>
-                <td>
-                    <button type="button" name="eliminar" (click)='borrarAdoptante(adoptante.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
             <pagination-controls (pageChange)="p = $event"></pagination-controls>

@@ -91,7 +91,12 @@ public submit(): void {
     this.checked = false;
 }
 
-  this.veterinariaService.modificarVeterinaria(this.editarVeterinariaObj.value,id)
+if (this.editarVeterinariaObj.invalid)
+return  Object.values(this.editarVeterinariaObj.controls).forEach(control => {
+   control.markAsTouched();
+ })
+ 
+  this.veterinariaService.modificarVeterinaria(this.editarVeterinariaObj.value, id)
   .subscribe(
     response =>{
       this.router.navigate(['/veterinarias'])
