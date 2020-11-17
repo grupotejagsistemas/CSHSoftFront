@@ -39,19 +39,13 @@
         </thead>
         <tbody>
             <tr *ngFor="let mascota of mascotas|  paginate: { itemsPerPage: 10 , currentPage: p } ">
+
                 <td>
-                    <div class="imagebox">
-                        <img [src]="mascota.fotoMascota" class="img-fluid">
-                        <span class="imagebox">{{mascota.nombre}}</span>
-                    </div>
-                </td>
-                <!-- <td>
                     <img *ngIf="mascota?.fotoMascota else elseImagen" [src]="mascota.fotoMascota" class="img-fluid">
                     <ng-template #elseImagen>
-                        <img src="/assets/img/patitas.jpeg" alt="sin foto" class="img-thumbnail rounded" style="width: 40%">
+                        <img src="/assets/img/patitas.jpeg" class="img-thumbnail rounded" style="width: 40%">
                     </ng-template>
-
-                </td> -->
+                </td>
                 <td>{{mascota.nombre}}</td>
                 <td>{{mascota.fechaNacimiento}}</td>
                 <td>{{mascota.particularidadesFisicas}}</td>
@@ -71,3 +65,25 @@
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </table>
 </div>
+<table *ngIf="imageList">
+    <tr *ngFor="let i of rowIndexArray">
+        <td>
+            <div class="imagebox">
+                <img [src]="imageList[3*i].fotoMascota" class="img-fluid">
+                <span class="imagebox-desc">{{imageList[3*i].anombre}}</span>
+            </div>
+        </td>
+        <td *ngIf="imageList[(3*i)+1]">
+            <div class="imagebox">
+                <img [src]="imageList[(3*i) + 1].fotoMascota" class="img-fluid">
+                <span class="imagebox-desc">{{imageList[3*i+1].anombre}}</span>
+            </div>
+        </td>
+        <td *ngIf="imageList[(3*i)+2]">
+            <div class="imagebox">
+                <img [src]="imageList[(3*i)+2].fotoMascota" class="img-fluid">
+                <span class="imagebox-desc">{{imageList[3*i+2].anombre}}</span>
+            </div>
+        </td>
+    </tr>
+</table>

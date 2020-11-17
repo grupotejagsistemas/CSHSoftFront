@@ -35,12 +35,12 @@ export class MascotasComponent implements OnInit {
     this.mascotaService.getMascotas().subscribe((data: any) => {
       this.mascotas = data;
     })
-    // this.service.imageDetailList.snapshotChanges().subscribe(
-    //   list => {
-    //     this.imageList = list.map(item => { return item.payload.val(); });
-    //     this.rowIndexArray = Array.from(Array(Math.ceil(this.imageList.length / 3)).keys());
-    // }
-    // );
+    this.service.imageDetailList.snapshotChanges().subscribe(
+      list => {
+        this.imageList = list.map(item => { return item.payload.val(); });
+        this.rowIndexArray = Array.from(Array(Math.ceil(this.imageList.length / 3)).keys());
+      }
+    );
   }
 
   filtroNombre(nombre: string): void {
