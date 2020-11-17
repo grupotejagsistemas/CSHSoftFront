@@ -1,22 +1,22 @@
 <h5>Mascotas</h5>
 <div class="input-group">
     <div class="input bg-white">
-        <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)] ="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
+        <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
     </div>
 </div>
 
-    <div class="form-check form-check-inline">
-        <input type="checkbox" class="form-check-input" placeholder="macho" name="macho" [(ngModel)]="checkedM" (change)="filtroMacho()">
-        <label for="macho" class= "form-check-label"> Macho</label>
-    </div>
+<div class="form-check form-check-inline">
+    <input type="checkbox" class="form-check-input" placeholder="macho" name="macho" [(ngModel)]="checkedM" (change)="filtroMacho()">
+    <label for="macho" class="form-check-label"> Macho</label>
+</div>
 
-    
-    <div class="form-check form-check-inline">
-        <input type="checkbox" class="form-check-input"  placeholder="hembra" name="hembra" [(ngModel)]="checkedH" (change)="filtroHembra()">
-        <label for="hembra" class="form-check-label"> Hembra</label>
-    </div>
-<div class="my-4 text-right" >
-    <button class="btn btn-outline-success" type="button" [routerLink] = "['/mascotas/crear']">Nueva mascota</button>
+
+<div class="form-check form-check-inline">
+    <input type="checkbox" class="form-check-input" placeholder="hembra" name="hembra" [(ngModel)]="checkedH" (change)="filtroHembra()">
+    <label for="hembra" class="form-check-label"> Hembra</label>
+</div>
+<div class="my-4 text-right">
+    <button class="btn btn-outline-success" type="button" [routerLink]="['/mascotas/crear']">Nueva mascota</button>
 </div>
 <div *ngIf="mascotas?.length==0" class="alert alert-info">
     No se encontraron datos registrados
@@ -40,22 +40,18 @@
         <tbody>
             <tr *ngFor="let mascota of mascotas|  paginate: { itemsPerPage: 10 , currentPage: p } ">
                 <td>
-                    <img 
-                        *ngIf="mascota?.fotoMascota else elseImagen" 
-                        src="http://localhost:8080/api/mascotas/upload/img/{{mascota.fotoMascota}}" 
-                        alt="{{mascota.fotoMascota}}" 
-                        class="img-fluid"
-                    >
-                    <ng-template #elseImagen>
-                        <img 
-                        src="http://localhost:8080/api/mascotas/upload/img/patitas.png" 
-                        alt="sin foto" 
-                        class="img-thumbnail rounded"
-                        style="width: 40%"
-                    >                    
-                </ng-template>
-
+                    <div class="imagebox">
+                        <img [src]="mascota.fotoMascota" class="img-fluid">
+                        <span class="imagebox">{{mascota.nombre}}</span>
+                    </div>
                 </td>
+                <!-- <td>
+                    <img *ngIf="mascota?.fotoMascota else elseImagen" [src]="mascota.fotoMascota" class="img-fluid">
+                    <ng-template #elseImagen>
+                        <img src="/assets/img/patitas.jpeg" alt="sin foto" class="img-thumbnail rounded" style="width: 40%">
+                    </ng-template>
+
+                </td> -->
                 <td>{{mascota.nombre}}</td>
                 <td>{{mascota.fechaNacimiento}}</td>
                 <td>{{mascota.particularidadesFisicas}}</td>
@@ -73,5 +69,5 @@
             </tr>
         </tbody>
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </table>  
+    </table>
 </div>

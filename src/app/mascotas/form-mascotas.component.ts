@@ -11,6 +11,7 @@ import { finalize } from 'rxjs/operators';
 import { AuditoriaService } from '../auditoria/auditoria.service';
 import { AuthService } from '../usuarios/auth.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { ImagenService } from '../shared/imagen.service';
 
 @Component({
   selector: 'app-form-mascotas',
@@ -23,6 +24,7 @@ export class FormMascotasComponent implements OnInit {
   imgSrc : string = '/assets/img/Subir-Imagen.png';
   selectedImage: any = null;
   mascota: Mascota;
+  pathFoto: string;
 
   estados: EstadoMascota[];
   private fotoSeleccionada: File;
@@ -35,11 +37,13 @@ export class FormMascotasComponent implements OnInit {
     private formBuilder: FormBuilder,
     private auditoriaService: AuditoriaService,
     private authService: AuthService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private service: ImagenService
   ) { }
 
   ngOnInit(): void {
     
+    // this.service.getImageDetailList();
     this.mascotaService.getEstados().subscribe((resp: any) => {
       this.estados = resp;
       this.estados.unshift({
@@ -125,42 +129,41 @@ auditoriaAgregar() {
 }
 
 onSubmit(formValue: any){
-  if(this.mascotaObj.valid){
-    console.log("fromValue.especi líne 129 ", formValue.especie);
-    var filePath = `${formValue.especie}/${this.selectedImage.name}_${new Date().getTime()}`;
+    var filePath = `${formValue.especie}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRef = this.storage.ref(filePath);
     this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
       finalize(()=>{
         fileRef.getDownloadURL().subscribe((url)=>{
           formValue.fotoMascota=url;
+          this.service.insertImageDetails(formValue);
           this.imgSrc = '/assets/img/Subir-Imagen.png';
           this.selectedImage = null;
         })
       })
     ).subscribe();
-  }
 }
 
 submit(): void{
   const id = +this.route.snapshot.paramMap.get('id');
 
-  console.log(this.mascotaObj);  
+  console.log(this.mascotaObj);
    if (this.mascotaObj.invalid)
    return  Object.values(this.mascotaObj.controls).forEach(control => {
       control.markAsTouched();
     })
   
-  
+    
     this.mascotaService.crearMascota(this.mascotaObj.value)
     .subscribe((response: any) => {
-        this.router.navigate(['/mascotas'])
-        swal.fire({
-          icon: 'success',
-          title: 'Creación exitosa',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.mascota = response;
+      this.router.navigate(['/mascotas'])
+      swal.fire({
+        icon: 'success',
+        title: 'Creación exitosa',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      this.mascota = response;
+      console.log("this.mascota-.id: línea170 ", this.mascota.id);
         this.onSubmit(this.mascotaObj.value);
         this.auditoriaAgregar();
         return response; 

@@ -4,6 +4,7 @@ import { AuditoriaService } from '../auditoria/auditoria.service';
 import { AuthService } from '../usuarios/auth.service';
 import { Mascota } from './mascota';
 import { MascotaService } from './mascota.service';
+import { ImagenService } from '../shared/imagen.service';
 
 @Component({
   selector: 'app-mascotas',
@@ -11,6 +12,9 @@ import { MascotaService } from './mascota.service';
   styleUrls: ['./mascotas.component.css']
 })
 export class MascotasComponent implements OnInit {
+
+  imageList : any[];
+  rowIndexArray: any[];
 
   busquedaNombre: string;
   mascotas: Mascota[];
@@ -21,14 +25,22 @@ export class MascotasComponent implements OnInit {
   constructor(
     public mascotaService: MascotaService,
     private auditoriaService: AuditoriaService,
-    private authService: AuthService
+    private authService: AuthService,
+    private service: ImagenService
     
     ) { }
 
   ngOnInit(): void {
+    this.service.getImageDetailList();
     this.mascotaService.getMascotas().subscribe((data: any) => {
       this.mascotas = data;
     })
+    // this.service.imageDetailList.snapshotChanges().subscribe(
+    //   list => {
+    //     this.imageList = list.map(item => { return item.payload.val(); });
+    //     this.rowIndexArray = Array.from(Array(Math.ceil(this.imageList.length / 3)).keys());
+    // }
+    // );
   }
 
   filtroNombre(nombre: string): void {
