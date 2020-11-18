@@ -7,6 +7,9 @@ import { AuthService } from '../usuarios/auth.service';
 import { EstadoMascota } from './estadoMascota';
 import { Mascota } from './mascota';
 import { MascotaService } from './mascota.service';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { ImagenService } from '../shared/imagen.service';
 
 @Component({
   selector: 'app-editar-mascotas',
@@ -15,6 +18,8 @@ import { MascotaService } from './mascota.service';
 })
 export class EditarMascotasComponent implements OnInit {
 
+  imgSrc : string = '/assets/img/Subir-Imagen.png';
+  selectedImage: any = null;
   mascota: Mascota;
 
   estados: EstadoMascota[];
@@ -27,7 +32,9 @@ export class EditarMascotasComponent implements OnInit {
     private route: ActivatedRoute,
     private auditoriaService: AuditoriaService,
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private storage: AngularFireStorage,
+    private service: ImagenService
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +52,24 @@ export class EditarMascotasComponent implements OnInit {
   })
 }
 
+  showPrewiew(event:any){
+    if(event.target.files && event.target.files[0]){
+
+      const reader = new FileReader();
+      reader.onload = (e:any) => this.imgSrc = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+
+    }
+    else{
+      this.imgSrc = '/assets/img/patitas.jpeg';
+      this.selectedImage = null;
+    }
+  }
+
+  get getFotoMascota(){
+    return this.mascotaObj.get('fotoMascota')
+  }
   get nombreNoValido(){
     return this.mascotaObj.get('nombre').invalid && this.mascotaObj.get('nombre').touched
   }
@@ -99,6 +124,22 @@ export class EditarMascotasComponent implements OnInit {
     })
   }
 
+  onSubmit(formValue: any){
+    var filePath = `${formValue.especie}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+    const fileRef = this.storage.ref(filePath);
+    this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+      finalize(()=>{
+        fileRef.getDownloadURL().subscribe((url)=>{
+          formValue.fotoMascota=url;
+          // this.deleteItem(formValue)
+          this.service.insertImageDetails(formValue);
+          this.imgSrc = '/assets/img/Subir-Imagen.png';
+          this.selectedImage = null;
+        })
+      })
+    ).subscribe();
+}
+
   public submit(): void{
     const id = +this.route.snapshot.paramMap.get('id');
     console.log('ID', id);
@@ -116,20 +157,24 @@ export class EditarMascotasComponent implements OnInit {
         //  if(id !== 0){
         //    this.subirFoto(id.toString())
         //  }
+        this.onSubmit(this.mascotaObj.value);
          this.auditoriaModificar();
          return response;
        }
      ) 
    }
-
-   seleccionarFoto(event){
-    this.fotoSeleccionada = event.target.files[0];
-    console.log(this.fotoSeleccionada);
-    if(this.fotoSeleccionada.type.indexOf('image') < 0){
-      Swal.fire('Error', 'El archivo debe ser del tipo imagen', 'error');
-      this.fotoSeleccionada = null;
-    } 
-  }
+  
+  // deleteItem(item: any){
+  //   this.service.deleteImageDetails(item);
+  // }
+  //  seleccionarFoto(event){
+  //   this.fotoSeleccionada = event.target.files[0];
+  //   console.log(this.fotoSeleccionada);
+  //   if(this.fotoSeleccionada.type.indexOf('image') < 0){
+  //     Swal.fire('Error', 'El archivo debe ser del tipo imagen', 'error');
+  //     this.fotoSeleccionada = null;
+  //   } 
+  // }
 
   // subirFoto(id: string){
 

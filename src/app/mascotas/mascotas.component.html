@@ -62,7 +62,7 @@
     <tr *ngFor="let i of rowIndexArray">
         <td>
             <div class="card">
-                <img [src]="imageList[3*i].fotoMascota" class="card-img-top">
+                <img [src]="imageList[3*i].fotoMascota" class="card-img-top" width="350px" height="250px">
                 <div class="card-body">
                     <h5 class="card-title">{{imageList[3*i].anombre}}</h5>
                 </div>
@@ -70,7 +70,7 @@
         </td>
         <td *ngIf="imageList[(3*i)+1]">
             <div class="card">
-                <img [src]="imageList[(3*i) + 1].fotoMascota" class="card-img-top">
+                <img [src]="imageList[(3*i) + 1].fotoMascota" class="card-img-top" width="350px" height="250px">
                 <div class="card-body">
                     <h5 class="card-title">{{imageList[3*i+1].anombre}}</h5>
                 </div>
@@ -78,7 +78,7 @@
         </td>
         <td *ngIf="imageList[(3*i)+2]">
             <div class="card">
-                <img [src]="imageList[(3*i)+2].fotoMascota" class="card-img-top">
+                <img [src]="imageList[(3*i)+2].fotoMascota" class="card-img-top" width="350px" height="250px">
                 <div class="card-body">
                     <h5 class="card-title">{{imageList[3*i+2].anombre}}</h5>
                 </div>

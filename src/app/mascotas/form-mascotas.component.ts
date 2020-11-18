@@ -24,7 +24,6 @@ export class FormMascotasComponent implements OnInit {
   imgSrc : string = '/assets/img/Subir-Imagen.png';
   selectedImage: any = null;
   mascota: Mascota;
-  pathFoto: string;
 
   estados: EstadoMascota[];
   private fotoSeleccionada: File;
@@ -163,7 +162,6 @@ submit(): void{
         timer: 1500
       })
       this.mascota = response;
-      console.log("this.mascota-.id: línea170 ", this.mascota.id);
         this.onSubmit(this.mascotaObj.value);
         this.auditoriaAgregar();
         return response; 

@@ -14,13 +14,17 @@ export class ImagenService {
     this.imageDetailList = this.firebase.list('imageDetails');
   }
 
+
   insertImageDetails(objeto:any){
-    console.log("objeto service: ", objeto);
     this.imageDetailList.push({
       especie: objeto.especie,
       anombre: objeto.nombre,
       fotoMascota: objeto.fotoMascota
     });
   }
+
+  // deleteImageDetails(key: string): Promise<void>{
+  //   return this.imageDetailList.remove(key);
+  // }
 
 }
