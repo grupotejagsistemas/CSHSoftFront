@@ -16,7 +16,7 @@
             <tr>
                 <th>Id</th>
                 <th>Adoptante</th>
-                <th>Estado</th>
+              
                 <th colspan="2">Acciones</th>
 
             </tr>
@@ -25,7 +25,6 @@
             <tr *ngFor="let entrevista of entrevistas  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
                 <td>{{entrevista.id}}</td>
                 <td>{{entrevista.adoptante}}</td>
-                <td>{{entrevista.estado}}</td>
                 <td>
                     <button type="button" name="button" [routerLink]="['/entrevistas/editar', entrevista.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
                 </td>
