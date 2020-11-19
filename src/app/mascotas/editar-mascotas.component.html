@@ -4,10 +4,12 @@
     </div>
     <div class="form-group">
         <input type="text" maxlength="50" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="mascota.nombre" [class.is-invalid]="nombreNoValido" formControlName="nombre">
+        <label *ngIf="nombreNoValido" class="text-danger">Por favor, complete el campo</label>
     </div>
     <label for="fechaNacimiento" class="col-form-label col-sm-8">Fecha de Nacimiento</label>
     <div class="form-group">
         <input type="date" class="form-control" placeholder="Fecha de Nacimiento" name="fechaNacimiento" [(ngModel)]="mascota.fechaNacimiento" [class.is-invalid]="fechaNacimientoNoValido" formControlName="fechaNacimiento">
+        <label *ngIf="fechaNacimientoNoValido" class="text-danger">Por favor, complete el campo</label>
     </div>
     <div class="form-group">
         <textarea type="text" maxlength="255" style="resize:none" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisicas" [(ngModel)]="mascota.particularidadesFisicas" [class.is-invalid]="particularidadesNoValido" formControlName="particularidadesFisicas"></textarea>
@@ -18,8 +20,8 @@
                 <option [value]=null> Seleccione sexo</option>
                 <option>Macho</option>
                 <option>Hembra</option>
-            </select>
-
+        </select>
+        <label *ngIf="sexoNoValido" class="text-danger">Por favor, complete el campo</label>
     </div>
     <div class="text-center">
         <img [src]="imgSrc" width="350px" height="250px" (click)=fileUploader.click()>
@@ -39,13 +41,15 @@
     <label for="fechaRescate" class="col-form-label col-sm-8">Fecha de rescate</label>
     <div class="form-group">
         <input type="date" class="form-control" placeholder="Fecha de rescate" name="fechaRescate" [(ngModel)]="mascota.fechaRescate" [class.is-invalid]="fechaRescateNoValido" formControlName="fechaRescate">
+        <label *ngIf="fechaRescateNoValido" class="text-danger">Por favor, complete el campo</label>
     </div>
     <div class="form-group">
         <textarea type="text" maxlength="50" style="resize:none" class="form-control" placeholder="Lugar de rescate" name="lugarRescate" [(ngModel)]="mascota.lugarRescate" [class.is-invalid]="lugarRescateNoValido" formControlName="lugarRescate"></textarea>
-
+        <label *ngIf="lugarRescateNoValido" class="text-danger">Por favor, complete el campo</label>
     </div>
     <div class="form-group">
         <textarea type="text" maxlength="255" class="form-control" style="resize:none" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascota.descripcionRescate" [class.is-invalid]="descripcionNoValido" formControlName="descripcionRescate"></textarea>
+        <label *ngIf="descripcionNoValido" class="text-danger">Por favor, complete el campo</label>
     </div>
 
     <div class="form-group">
@@ -53,7 +57,9 @@
                     <option [value]=null> Seleccione Especie</option>
                     <option>Canino</option>
                     <option>Felino</option>
-                </select>
+            </select>
+            <label *ngIf="especieNoValido" class="text-danger">Por favor, elija una opción</label>
+
     </div>
 
     <label for="estado" class="col-form-label col-sm-2">Estado</label>
@@ -61,6 +67,7 @@
         <select class="form-control " type=number [(ngModel)]="mascota.estado" name="estado" [class.is-invalid]="estadoNoValido" formControlName="estado">
                 <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>
         </select>
+        <label *ngIf="especieNoValido" class="text-danger">Por favor, elija una opción</label>
     </div>
     <div class="form-row">
         <div class="my-4 text-right">
