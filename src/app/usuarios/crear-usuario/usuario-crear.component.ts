@@ -6,6 +6,8 @@ import { AuthService } from '../auth.service';
 import { UsuarioService } from '../usuario.service';
 import { FormArray, FormBuilder, MinLengthValidator, PatternValidator, Validators } from '@angular/forms';
 import { ValidadoresService } from 'src/app/services/validadores.service';
+import { environment } from 'src/environments/environment';
+import { catchError, ignoreElements } from 'rxjs/operators';
 
 @Component({
   selector: 'app-usuario-crear',
@@ -13,6 +15,8 @@ import { ValidadoresService } from 'src/app/services/validadores.service';
   styleUrls: ['./usuario-crear.component.css']
 })
 export class UsuarioCrearComponent implements OnInit {
+
+  errores: string[];
 
 
   constructor(
@@ -88,6 +92,7 @@ export class UsuarioCrearComponent implements OnInit {
 
   public submit(): void{
 
+
     console.log(this.usuarioObj);  
      if (this.usuarioObj.invalid)
      return  Object.values(this.usuarioObj.controls).forEach(control => {
@@ -104,6 +109,16 @@ export class UsuarioCrearComponent implements OnInit {
       })
       this.auditoriaAgregar();
       return response;
-    })
+    },
+    err => {
+      this.errores = err.error.errors as string[];
+      console.error('Código del error desde el backend: ' + err.status);
+      if(err.status === 500 ){
+        Swal.fire({
+          icon: 'warning',
+          text:'El nombre de usuario ya existe'
+        })
+      }
+    })  
   }
 }
