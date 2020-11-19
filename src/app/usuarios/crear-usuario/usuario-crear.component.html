@@ -37,10 +37,10 @@
                 <label *ngIf="emailNoValido" class="text-danger">El email no es válido</label>
 
             </div>
-            
+            <label for="idRole" class="col-form-label">Seleccione un rol</label>
+
                 <div class="form-group">
                     <select type="text" class="form-control" placeholder="Rol" name="idRole" formControlName="idRole" [class.is-invalid]="idRoleNoValido">
-                        <option [value]=null> Seleccione rol</option>
                         <option [value]=1>Administrador</option>
                         <option [value]=2>Super Administrador</option>
                     </select>

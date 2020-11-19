@@ -2,14 +2,14 @@
             <div class=" text-center" >
                 <h2>Nuevo Historial</h2> 
             </div>
-            <label for="voluntario" class="col-form-label col-sm-2">Voluntario</label>
+            <label for="voluntario" class="col-form-label">Seleccione un voluntario</label>
                 <div class="form-group">
                     <select class="form-control" type=number  name="idVoluntario" formControlName="idVoluntario" [class.is-invalid]="idVoluntarioNoValido">
                     <option *ngFor=" let voluntario of voluntarios" [value]="voluntario.id">{{voluntario.nombreCompleto}}</option>
                 </select>
                 <label *ngIf="idVoluntarioNoValido" class="text-danger">Por favor, complete el campo</label>
             </div>
-        <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
+        <label for="mascota" class="col-form-label">Seleccione una mascota</label>
             <div class="form-group">
                 <select class="form-control" type=number  name="idMascota" formControlName="idMascota" [class.is-invalid]="idMascotaNoValido">
                 <option *ngFor=" let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>

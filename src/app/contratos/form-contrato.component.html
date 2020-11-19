@@ -3,19 +3,17 @@
                     <h2>Nuevo contrato</h2> 
                     <hr>
                 </div>
-                    <label for="adoptante" class="col-form-label col-sm-2">Adoptante</label>
+                    <label for="adoptante" class="col-form-label">Seleccione un adoptante</label>
                         <div class="form-group">
                             <select  class="form-control" type="number" [(ngModel)]="contrato.idAdoptante" name="idAdoptante" formControlName="idAdoptante" [class.is-invalid]="idAdoptanteNoValido">
-                                <option [value]="null">Seleccione un adoptante</option>
                                 <option *ngFor=" let adoptante of adoptantes" [value]="adoptante.id">{{adoptante.nombreCompleto}}</option>
                         </select>
                         <label *ngIf="idAdoptanteNoValido" class="text-danger">Por favor, complete el campo</label>
 
                     </div>
-                <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
+                <label for="mascota" class="col-form-label">Seleccione una mascota</label>
                     <div class="form-group">
                         <select class="form-control" type="number" [(ngModel)]="contrato.idMascota" name="idMascota"formControlName="idMascota" [class.is-invalid]="idMascotaNoValido">
-                            <option [value]="null">Seleccione una mascota</option>
                             <option *ngFor=" let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
                     </select>
                     <label *ngIf="idMascotaNoValido" class="text-danger">Por favor, complete el campo</label>

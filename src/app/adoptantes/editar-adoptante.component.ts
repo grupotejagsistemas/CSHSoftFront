@@ -103,7 +103,7 @@ export class EditarAdoptanteComponent implements OnInit {
     domicilio: ["",Validators.required],
     barrio: ["",Validators.required],
     celular: [""],
-    email: ["",Validators.required],
+    email: ["",[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
     facebook: ["",Validators.required],
     instagram: ["",Validators.required],
     situacionLaboral: ["",Validators.required],

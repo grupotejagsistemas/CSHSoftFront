@@ -42,7 +42,6 @@ export class EditarMascotasComponent implements OnInit {
     
     if(id !== 0){
       this.mascotaService.getMascota(id).subscribe((resp: any) => {
-        console.log('mascota', id)
         this.mascota = resp;
       })
     }
@@ -142,8 +141,12 @@ export class EditarMascotasComponent implements OnInit {
 
   public submit(): void{
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log('ID', id);
-    console.log('mascota', this.mascotaObj);
+    
+    if (this.mascotaObj.invalid)
+    return  Object.values(this.mascotaObj.controls).forEach(control => {
+       control.markAsTouched();
+     })
+   
      this.mascotaService.modificarMascota(this.mascotaObj.value, id)
      .subscribe(
        response => {

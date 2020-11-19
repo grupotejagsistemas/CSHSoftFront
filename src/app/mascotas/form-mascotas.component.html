@@ -15,10 +15,9 @@
     <div class="form-group">
         <textarea type="text" maxlength="255" style="resize:none" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisicas" formControlName="particularidadesFisicas" [class.is-invalid]="particularidadesNoValido"></textarea>
     </div>
-    <label for="sexo" class="col-form-label col-sm-4">Sexo</label>
+    <label for="sexo" class="col-form-label">Seleccione el sexo</label>
     <div class="form-group">
         <select type="text" class="form-control" placeholder="Sexo" name="sexo" formControlName="sexo" [class.is-invalid]="sexoNoValido">
-                        <option [value]=null> Seleccione sexo</option>
                         <option>Macho</option>
                         <option>Hembra</option>
                     </select>
@@ -54,9 +53,9 @@
         <label *ngIf="descripcionNoValido" class="text-danger">Por favor, complete el campo</label>
     </div>
 
+    <label for="estado" class="col-form-label">Seleccione una especie</label>
     <div class="form-group">
         <select type="text" class="form-control " placeholder="Especie" name="especie" formControlName="especie" [class.is-invalid]="especieNoValido">
-                            <option [value]=null> Seleccione Especie</option>
                             <option>Canino</option>
                             <option>Felino</option>
                         </select>
@@ -64,7 +63,7 @@
 
     </div>
 
-    <label for="estado" class="col-form-label col-sm-2">Estado</label>
+    <label for="estado" class="col-form-label">Seleccione un estado</label>
     <div class="form-group">
         <select class="form-control " type=number name="estado" formControlName="estado" [class.is-invalid]="estadoNoValido">
                         <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>

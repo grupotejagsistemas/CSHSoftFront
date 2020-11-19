@@ -5,19 +5,16 @@
     </div>
 
             <div class="form-group">
-                <label>Razón social</label>
                 <input type="text" maxlength="50" class="form-control" placeholder="Razón social"name="razonSocial" [(ngModel)]="veterinaria.razonSocial" [class.is-invalid]="razonSocialNoValido" formControlName="razonSocial">
                 <label *ngIf="razonSocialNoValido" class="text-danger">Por favor, complete el campo</label>
 
             </div>
             <div class="form-group">
-                <label>Horario de atención</label>
                 <input type="text" maxlength="50" class="form-control" placeholder="Horario de atención" name="horarioAtencion" [(ngModel)]="veterinaria.horarioAtencion" [class.is-invalid]="horarioAtencionNoValido"  formControlName="horarioAtencion" >
                 <label *ngIf="horarioAtencionNoValido" class="text-danger">Por favor, complete el campo</label>
 
             </div>
             <div class="form-group">
-                <label>direccion</label>
                 <input type="text" maxlength="50" class="form-control"  placeholder="Dirección" name="direccion" [(ngModel)]="veterinaria.direccion"  [class.is-invalid]="direccionNoValido" formControlName="direccion">
                 <label *ngIf="direccionNoValido" class="text-danger">Por favor, complete el campo</label>
 
@@ -28,7 +25,6 @@
             </div>
             <br>
             <div class="form-group">
-                <label>Observación</label>
                 <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Observación" name="observacion"  [(ngModel)]="veterinaria.observacion" formControlName="observacion"> </textarea>
             </div>
     <div class="form-row">
