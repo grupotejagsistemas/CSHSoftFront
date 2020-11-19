@@ -41,8 +41,8 @@ export class ModifContrasenaComponent implements OnInit {
   usuarioObj = this.formBuilder.group({
     username: this.authService.usuario.username,
     oldPass: ["",Validators.required],
-    newPass: ["",Validators.required],
-    confirmaContraseña: ["",Validators.required]
+    newPass: ["",[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]+$')]],
+    confirmaContraseña: ["",[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]+$')]]
   },{
     validators: this.validadores.contrasenasIguales('newPass', 'confirmaContraseña')
   })
