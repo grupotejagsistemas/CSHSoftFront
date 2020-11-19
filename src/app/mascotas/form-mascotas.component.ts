@@ -6,9 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2';
 import Swal from 'sweetalert2';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
 
 import { AuditoriaService } from '../auditoria/auditoria.service';
 import { AuthService } from '../usuarios/auth.service';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { ImagenService } from '../shared/imagen.service';
 
 @Component({
   selector: 'app-form-mascotas',
@@ -18,6 +21,8 @@ import { AuthService } from '../usuarios/auth.service';
 export class FormMascotasComponent implements OnInit {
 
 
+  imgSrc : string = '/assets/img/Subir-Imagen.png';
+  selectedImage: any = null;
   mascota: Mascota;
 
   estados: EstadoMascota[];
@@ -30,11 +35,14 @@ export class FormMascotasComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private auditoriaService: AuditoriaService,
-    private authService: AuthService
+    private authService: AuthService,
+    private storage: AngularFireStorage,
+    private service: ImagenService
   ) { }
 
   ngOnInit(): void {
- 
+    
+    // this.service.getImageDetailList();
     this.mascotaService.getEstados().subscribe((resp: any) => {
       this.estados = resp;
       this.estados.unshift({
@@ -44,6 +52,24 @@ export class FormMascotasComponent implements OnInit {
   })
 }
 
+showPrewiew(event:any){
+  if(event.target.files && event.target.files[0]){
+
+    const reader = new FileReader();
+    reader.onload = (e:any) => this.imgSrc = e.target.result;
+    reader.readAsDataURL(event.target.files[0]);
+    this.selectedImage = event.target.files[0];
+
+  }
+  else{
+    this.imgSrc = '/assets/img/patitas.jpeg';
+    this.selectedImage = null;
+  }
+}
+
+get getFotoMascota(){
+  return this.mascotaObj.get('fotoMascota')
+}
 get nombreNoValido(){
   return this.mascotaObj.get('nombre').invalid && this.mascotaObj.get('nombre').touched
 }
@@ -78,7 +104,7 @@ mascotaObj = this.formBuilder.group( {
   fechaNacimiento : ["",Validators.required],
   particularidadesFisicas : ["",Validators.required],
   sexo: [null,Validators.required],
-  fotoMascota: "",
+  fotoMascota: [""],
   fechaRescate: ["",Validators.required],
   lugarRescate: ["",Validators.required],
   descripcionRescate: ["",Validators.required],
@@ -101,53 +127,67 @@ auditoriaAgregar() {
   })
 }
 
+onSubmit(formValue: any){
+    var filePath = `${formValue.especie}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+    const fileRef = this.storage.ref(filePath);
+    this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+      finalize(()=>{
+        fileRef.getDownloadURL().subscribe((url)=>{
+          formValue.fotoMascota=url;
+          this.service.insertImageDetails(formValue);
+          this.imgSrc = '/assets/img/Subir-Imagen.png';
+          this.selectedImage = null;
+        })
+      })
+    ).subscribe();
+}
 
 submit(): void{
   const id = +this.route.snapshot.paramMap.get('id');
 
-  console.log(this.mascotaObj);  
+  console.log(this.mascotaObj);
    if (this.mascotaObj.invalid)
    return  Object.values(this.mascotaObj.controls).forEach(control => {
       control.markAsTouched();
     })
   
-  
+    
     this.mascotaService.crearMascota(this.mascotaObj.value)
     .subscribe((response: any) => {
-        this.router.navigate(['/mascotas'])
-        swal.fire({
-          icon: 'success',
-          title: 'Creación exitosa',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.mascota = response;
-        this.subirFoto(response.id.toString());
+      this.router.navigate(['/mascotas'])
+      swal.fire({
+        icon: 'success',
+        title: 'Creación exitosa',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      this.mascota = response;
+        this.onSubmit(this.mascotaObj.value);
         this.auditoriaAgregar();
         return response; 
       })
 
     }
-    seleccionarFoto(event){
-      this.fotoSeleccionada = event.target.files[0];
-      console.log(this.fotoSeleccionada);
-      if(this.fotoSeleccionada.type.indexOf('image') < 0){
-        Swal.fire('Error', 'El archivo debe ser del tipo imagen', 'error');
-        this.fotoSeleccionada = null;
-      } 
-    }
+    // seleccionarFoto(event){
+    //   this.fotoSeleccionada = event.target.files[0];
+    //   console.log(this.fotoSeleccionada);
+    //   if(this.fotoSeleccionada.type.indexOf('image') < 0){
+    //     Swal.fire('Error', 'El archivo debe ser del tipo imagen', 'error');
+    //     this.fotoSeleccionada = null;
+    //   } 
+    // }
   
-    subirFoto(id: string){
+    // subirFoto(id: string){
 
-      if(!this.fotoSeleccionada){
-        Swal.fire('warning', 'La mascota fue creada sin imagen', 'warning') ;
-      }else {
-        console.log('id', id);
-        this.mascotaService.subirFoto(this.fotoSeleccionada, id)
-        .subscribe(mascota => {
-          this.mascota = mascota;
-        })
-      }
-    }
+    //   if(!this.fotoSeleccionada){
+    //     Swal.fire('warning', 'La mascota fue creada sin imagen', 'warning') ;
+    //   }else {
+    //     console.log('id', id);
+    //     this.mascotaService.subirFoto(this.fotoSeleccionada, id)
+    //     .subscribe(mascota => {
+    //       this.mascota = mascota;
+    //     })
+    //   }
+    // }
 
   }

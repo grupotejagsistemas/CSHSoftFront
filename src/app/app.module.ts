@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AppComponent } from './app.component';
 import {HeaderComponent} from './header/header.component'
@@ -52,6 +55,7 @@ import { EditarEntrevistasAdoptantesComponent } from './entrevistas-adoptantes/e
 import { EditarVeterinariaComponent } from './veterinarias/editar-veterinaria.component';
 import { EditarHistorialComponent } from './historiales/editar-historial.component';
 import { EditarRecordatorioComponent } from './recordatorios/editar-recordatorio.component';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full', 
@@ -227,6 +231,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
