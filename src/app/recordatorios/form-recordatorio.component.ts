@@ -57,10 +57,7 @@ export class FormRecordatorioComponent implements OnInit {
     accion: `Alta de recordatorio`
   }
   
-  auditoriaModificarObj = {
-    usuario: this.authService.usuario.username,
-    accion: 'Modificación de recordatorio'
-  }
+
   
   auditoriaAgregar() {
     this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
@@ -68,17 +65,14 @@ export class FormRecordatorioComponent implements OnInit {
     })
   }
   
-  auditoriaModificar(){
-    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
-      return response;
-    })
-  }
+  public submit(): void{
 
+    if (this.recordatorioObj.invalid)
+     return  Object.values(this.recordatorioObj.controls).forEach(control => {
+        control.markAsTouched();
+     })
 
-
-  public agregar(): void{
-
-    this.recordatorioService.crearRecordatorio(this.recordatorioObj)
+    this.recordatorioService.crearRecordatorio(this.recordatorioObj.value)
     .subscribe(
       response => {
         this.router.navigate(['/recordatorios'])
@@ -94,20 +88,5 @@ export class FormRecordatorioComponent implements OnInit {
     )
   }
 
-  public modificar(): void {
-    this.recordatorioService.modificarRecordatorio(this.recordatorioObj)
-    .subscribe(
-      response => {
-        this.router.navigate(['/recordatorios'])
-        swal.fire({
-          icon: 'success',
-          title: 'El recordatorio ha sido modificado',
-          showConfirmButton: false, 
-          timer: 1500
-        })
-        this.auditoriaModificar();
-        return response;
-      }
-    )
-  }
+ 
 }

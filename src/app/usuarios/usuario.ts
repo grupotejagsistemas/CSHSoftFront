@@ -6,5 +6,7 @@ export class Usuario {
     apellido: string;
     email: string; 
     roles: string [] = [];
+    newPass: string;
+    oldPass: string;
 
 }

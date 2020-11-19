@@ -1,4 +1,4 @@
-            <form class="border p-3 form">
+            <form class="border p-3 form" (submit)="submit()" [formGroup]="usuarioObj">
                 <div class=" text-center">
                     <h2>Modificar contraseña</h2> 
                     <hr>
@@ -7,17 +7,22 @@
                         <input type="text" class="form-control" placeholder="Usuario" [(ngModel)]="usuarioObj.username" name="username">
                     </div>-->
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Contraseña actual" [(ngModel)]="usuarioObj.oldPass" name="oldPass">
+                        <input type="password" class="form-control" placeholder="Contraseña actual"  name="oldPass" formControlName="oldPass">
+                        <label *ngIf="oldPassNoValido" class="text-danger">Por favor, complete el campo</label>
+
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nueva contraseña" [(ngModel)]="usuarioObj.newPass" name="newPass">
+                        <input type="password" class="form-control" placeholder="Nueva contraseña"  name="newPass" formControlName="newPass" [class.is-invalid]="newPassNoValido">
+                        <label *ngIf="newPassNoValido" class="text-danger"> • La contraseña deber ser alfanumérica</label>
+                        <label *ngIf="newPassNoValido" class="text-danger"> • La contraseña deber tener al menos 8 caracteres</label>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Confirmar contraseña"  name="confirmaContraseña">
+                        <input type="password" class="form-control" placeholder="Confirmar contraseña"  name="confirmaContraseña" formControlName="confirmaContraseña" [class.is-invalid]="confirmaNoValido">
+                        <label *ngIf="confirmaNoValido" class="text-danger">Las contraseñas no coinciden</label>
                     </div>
                 <div class = "form-group row">
                     <div class = "col-sm-6">
-                        <button class = "btn btn-outline-success" (click)="modificar()" role = "button" >Confirmar</button>
+                        <button class = "btn btn-outline-success" type="submit" role ="button" >Confirmar</button>
                     </div>
                 </div>
             </form>

@@ -5,6 +5,7 @@ import { Voluntario } from './voluntario';
 import { HistorialService } from './historial.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { FormBuilder, Validators  } from '@angular/forms';
 import { AuditoriaService } from '../auditoria/auditoria.service';
 import { AuthService } from '../usuarios/auth.service';
 
@@ -23,54 +24,58 @@ export class FormHistorialComponent implements OnInit {
     private historialService: HistorialService,
     private router: Router,
     private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
     private auditoriaService: AuditoriaService,
     private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
 
     this.historial = Historial.build();
     
-    if(id !== 0){
-      this.historialService.getHistorial(id).subscribe((resp: any) => {
-        this.historialObj = resp;
-      })
-    }
 
     this.historialService.getMascotas().subscribe((resp: any) => {
       this.mascotas = resp;
-      this.mascotas.unshift({
-        nombre: 'Seleccione una mascota',
-        id: null
-      })
+
     })
 
     this.historialService.getVoluntarios().subscribe((resp: any) => {
       this.voluntarios = resp;
-      this.voluntarios.unshift({
-        nombrecompleto: 'Seleccione un voluntario',
-        id: null
-      })
+
     })
   }
 
-  historialObj = {
-    id: null,
-    idVoluntario: null,
-    idMascota: null, 
-    fecha: new Date()
+
+
+  get idVoluntarioNoValido(){
+    return this.historialObj.get('idVoluntario').invalid && this.historialObj.get('idVoluntario').touched
   }
+  get idMascotaNoValido(){
+    return this.historialObj.get('idMascota').invalid && this.historialObj.get('idMascota').touched
+  }
+  get fechaNoValido(){
+    return this.historialObj.get('fecha').invalid && this.historialObj.get('fecha').touched
+  }
+
+
+
+  historialObj = this.formBuilder.group({
+    id: [null],
+    idVoluntario: [null,Validators.required],
+    idMascota:[null,Validators.required],
+    fecha:  ["",Validators.required]
+  })
+
+
+
+
 
   auditoriaAgregarObj = {
     usuario: this.authService.usuario.username,
     accion: `Alta de historial`
   }
   
-  auditoriaModificarObj = {
-    usuario: this.authService.usuario.username,
-    accion: 'Modificación de historial'
-  }
+ 
   
   auditoriaAgregar() {
     this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
@@ -78,15 +83,16 @@ export class FormHistorialComponent implements OnInit {
     })
   }
   
-  auditoriaModificar(){
-    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
-      return response;
-    })
-  }
 
 
-  public agregar(): void {
-    this.historialService.crearHistorial(this.historialObj)
+
+  public submit(): void {
+
+    if (this.historialObj.invalid)
+    return  Object.values(this.historialObj.controls).forEach(control => {
+       control.markAsTouched();
+     })
+    this.historialService.crearHistorial(this.historialObj.value)
     .subscribe(
       response => {
         this.router.navigate(['/historial'])
@@ -102,22 +108,6 @@ export class FormHistorialComponent implements OnInit {
     )
   }
 
-  public modificar(): void {
-    console.log('modif', this.historialObj)
-    this.historialService.modificarHistorial(this.historialObj)
-    .subscribe(
-      response => {
-        this.router.navigate(['/historial'])
-        Swal.fire({
-          icon: 'success',
-          title: 'El historial ha sido modificado',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.auditoriaModificar();
-        return response;
-      }
-    )
-  }
+  
 
 }

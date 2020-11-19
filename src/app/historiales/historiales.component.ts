@@ -52,7 +52,7 @@ export class HistorialesComponent implements OnInit {
 
   borrarHistorial(id: number, i: number): void {
     Swal.fire({
-      title: '¿Desea eliminar el historial?',
+      text: '¿Desea eliminar el historial?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

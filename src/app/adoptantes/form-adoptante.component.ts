@@ -17,7 +17,7 @@ import { AuditoriaService } from '../auditoria/auditoria.service';
 })
 export class FormAdoptanteComponent implements OnInit {
 
-  adoptante: Adoptante = new Adoptante();
+  adoptante: Adoptante;
   mascotas: Mascota[];
   estados: EstadoAdoptante[];
   veterinarias: Veterinaria[];
@@ -116,6 +116,7 @@ export class FormAdoptanteComponent implements OnInit {
     })
   }
 
+  
   submit(): void{
     
     console.log(this.adoptanteObj);  

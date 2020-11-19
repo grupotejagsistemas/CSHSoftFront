@@ -32,6 +32,8 @@
                     <th>Dirección</th>
                     <th>Internación Cercana</th>
                     <th>Observación</th>
+                    <th colspan="2">Acciones</th>
+
 
                 </tr>
             </thead>
@@ -44,7 +46,7 @@
                     <td>{{veterinaria.internacion}}</td>
                     <td>{{veterinaria.observacion}}</td>
                     <td>
-                        <button type="button" name="button" [routerLink]="['/veterinarias/editar', veterinaria.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
+                        <button type="button" name="button" [routerLink]="['/veterinarias/editar/', veterinaria.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
                     </td>
                     <td>
                         <button type="button" name="eliminar" (click)='borrarVeterinaria(veterinaria.id, veterinaria.razonSocial)' class="btn btn-outline"><i class="fas fa-trash"></i></button>

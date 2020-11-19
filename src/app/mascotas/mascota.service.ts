@@ -38,8 +38,8 @@ export class MascotaService {
     return this.http.get<Mascota>(`${this.urlAPI}/mascotas/${id}`);
   }
 
-  modificarMascota(mascota: any){
-    return this.http.put(`${this.urlAPI}/mascotas/${mascota.id}`, mascota);
+  modificarMascota(mascota: any, id: number){
+    return this.http.put(`${this.urlAPI}/mascotas/${id}`, mascota);
   }
 
   borrarMascota(id: number){ 
@@ -54,15 +54,15 @@ export class MascotaService {
     return this.http.get(`${this.urlAPI}/mascotas/filtrarSexo?sexo=${sexo}`);
   }
 
-  subirFoto(file: File, id): Observable<Mascota>{
+  // subirFoto(file: File, id): Observable<Mascota>{
 
-    let formData = new FormData();
+  //   let formData = new FormData();
     
-    formData.append("file", file);
-    formData.append('id', id);
+  //   formData.append("file", file);
+  //   formData.append('id', id);
 
-    return this.http.post(`${this.urlAPI}/mascotas/upload`, formData).pipe(
-      map((resp: any) => resp.mascota as Mascota)
-      )
-  }
+  //   return this.http.post(`${this.urlAPI}/mascotas/upload`, formData).pipe(
+  //     map((resp: any) => resp.mascota as Mascota)
+  //     )
+  // }
 }

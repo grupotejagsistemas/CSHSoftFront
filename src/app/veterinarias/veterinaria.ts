@@ -5,6 +5,7 @@ export class Veterinaria {
     direccion: string;
     internacion: string;
     observacion: string;
+    estado: string;
 
 constructor () {
 
@@ -18,6 +19,7 @@ public static build(){
     veterinaria.direccion = "";
     veterinaria.internacion = "";
     veterinaria.observacion = "";
+    veterinaria.estado ="";
 
     return veterinaria;
 }

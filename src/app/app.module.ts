@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AppComponent } from './app.component';
 import {HeaderComponent} from './header/header.component'
@@ -46,6 +49,13 @@ import { AuditoriaComponent } from './auditoria/auditoria.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AuthService } from './usuarios/auth.service';
 import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
+import { EditarFichasMedicasComponent } from './fichas-medicas/editar-fichas-medicas/editar-fichas-medicas.component';
+import { EditarMascotasComponent } from './mascotas/editar-mascotas.component';
+import { EditarEntrevistasAdoptantesComponent } from './entrevistas-adoptantes/editar-entrevistas-adoptantes.component';
+import { EditarVeterinariaComponent } from './veterinarias/editar-veterinaria.component';
+import { EditarHistorialComponent } from './historiales/editar-historial.component';
+import { EditarRecordatorioComponent } from './recordatorios/editar-recordatorio.component';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full', 
@@ -69,7 +79,7 @@ const routes: Routes = [
   {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent ,
  canActivate: [AuthGuard]
 },
-  {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent ,
+  {path: 'fichas-medicas/editar/:id', component: EditarFichasMedicasComponent ,
  canActivate: [AuthGuard]
 },
   {path: 'mascotas', component: MascotasComponent ,
@@ -78,7 +88,7 @@ const routes: Routes = [
   {path: 'mascotas/crear', component: FormMascotasComponent ,
  canActivate: [AuthGuard]
 },
-  {path: 'mascotas/editar/:id', component: FormMascotasComponent ,
+  {path: 'mascotas/editar/:id', component: EditarMascotasComponent ,
  canActivate: [AuthGuard]
 },
   {path: 'veterinarias', component: VeterinariasComponent ,
@@ -87,7 +97,7 @@ const routes: Routes = [
   {path: 'veterinarias/crear',component: FormVeterinariaComponent , 
  canActivate: [AuthGuard]
 },
-  {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent , 
+  {path: 'veterinarias/editar/:id', component: EditarVeterinariaComponent , 
  canActivate: [AuthGuard]
 },
   {path: 'contratos', component: ContratosComponent ,
@@ -114,7 +124,7 @@ const routes: Routes = [
   {path: 'entrevistas/crear', component: FormEntrevistaAdoptanteComponent ,
  canActivate: [AuthGuard]
 },
-  {path: 'entrevistas/editar/:id', component: FormEntrevistaAdoptanteComponent ,
+  {path: 'entrevistas/editar/:id', component: EditarEntrevistasAdoptantesComponent ,
  canActivate: [AuthGuard]
 },
 {path: 'entrevistas/respuestas/:id', component: RespuestasComponent ,
@@ -138,7 +148,7 @@ const routes: Routes = [
   {path: 'recordatorios/crear', component: FormRecordatorioComponent ,
  canActivate: [AuthGuard]
 },
-  {path: 'recordatorios/editar/:id', component: FormRecordatorioComponent ,
+  {path: 'recordatorios/editar/:id', component: EditarRecordatorioComponent ,
  canActivate: [AuthGuard]
 },
   {path: 'historial', component: HistorialesComponent ,
@@ -148,7 +158,7 @@ const routes: Routes = [
  canActivate: [AuthGuard]
 
 },
-  {path: 'historial/editar/:id', component:FormHistorialComponent ,
+  {path: 'historial/editar/:id', component: EditarHistorialComponent ,
  canActivate: [AuthGuard]
 },
   {path: 'login', component: LoginComponent 
@@ -207,6 +217,12 @@ const routes: Routes = [
     EditarAdoptanteComponent,
     EditarVoluntariosComponent,
     AuditoriaComponent,
+    EditarFichasMedicasComponent,
+    EditarMascotasComponent,
+    EditarEntrevistasAdoptantesComponent,
+    EditarVeterinariaComponent,
+    EditarHistorialComponent,
+    EditarRecordatorioComponent,
   ],
   imports: [
     BrowserModule,
@@ -215,6 +231,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -104,7 +104,6 @@ export class VoluntariosComponent implements OnInit {
 
       console.log(voluntario)
       swal.fire({
-        title: '',
         text: `¿Desea eliminar al voluntario ${voluntario} ?`,
         icon: 'warning',
         showCancelButton: true,

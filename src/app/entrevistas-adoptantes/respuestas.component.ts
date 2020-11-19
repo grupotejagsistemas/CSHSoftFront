@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EntrevistaAdoptante } from './entrevista-adoptante';
 import { EntrevistaAdoptanteService } from './entrevista-adoptante.service';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-respuestas',
@@ -10,11 +11,12 @@ import { EntrevistaAdoptanteService } from './entrevista-adoptante.service';
 })
 export class RespuestasComponent implements OnInit {
 
-  entrevistas: EntrevistaAdoptante[];
+  entrevista: EntrevistaAdoptante;
 
   constructor(
     public entrevistaService: EntrevistaAdoptanteService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
     ) { }
 
 
@@ -23,14 +25,16 @@ export class RespuestasComponent implements OnInit {
 
     if(id !== 0){
       this.entrevistaService.getEntrevista(id).subscribe((resp: any) => {
-        this.entrevistaObj  = resp;
+        this.entrevista  = resp;
       })
     }
   }
 
+ 
+
   entrevistaObj = {
     id: null,
-    adoptante: "",
+    idAdoptante: "",
     respuesta1: "",
     respuesta2: "",
     respuesta3: "",
@@ -54,5 +58,7 @@ export class RespuestasComponent implements OnInit {
     respuesta21: "",
     respuesta22: ""
   }
+
+
 
 }

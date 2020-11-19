@@ -25,7 +25,7 @@ export class VeterinariaService {
     return this.http.get<Veterinaria[]>(`${this.urlAPI}/veterinaria/filtrar?razonSocial=${razonSocial}`);
   }
 
-  crearVeterinaria(veterinaria: Veterinaria) {
+  crearVeterinaria(veterinaria: any) {
     return this.http.post(`${this.urlAPI}/veterinaria`, veterinaria);
   }
 
@@ -33,8 +33,8 @@ export class VeterinariaService {
     return this.http.get<Veterinaria>(`${this.urlAPI}/veterinaria/${id}`);
   }
 
-  modificarVeterinaria(veterinaria: Veterinaria) {
-    return this.http.put(`${this.urlAPI}/veterinaria/${veterinaria.id}`, veterinaria);
+  modificarVeterinaria(veterinaria: any, id: number) {
+    return this.http.put(`${this.urlAPI}/veterinaria/${id}`, veterinaria);
   }
 
   borrarVeterinaria(id: number) {

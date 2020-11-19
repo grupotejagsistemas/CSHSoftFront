@@ -6,6 +6,7 @@ import { TipoMovimiento } from '../movimientos-recursos/tipoMovimiento';
 import { AuthService } from '../usuarios/auth.service';
 import { MovimientoMonetario } from './movimiento-monetario';
 import { MovimientoMonetarioService } from './movimiento-monetario.service';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-mov-monetario',
@@ -18,13 +19,14 @@ export class FormMovMonetarioComponent implements OnInit {
 
   titulo: string = "Nuevo Movimiento Monetario"
 
-  movimientoMonetario: MovimientoMonetario = new MovimientoMonetario();
+  movimientoMonetario: MovimientoMonetario;
 
 
   constructor(
     private movimientoMonetarioService: MovimientoMonetarioService,
     private router: Router,
     private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
     private auditoriaService: AuditoriaService,
     private authService: AuthService
   ) { }
@@ -41,13 +43,31 @@ export class FormMovMonetarioComponent implements OnInit {
     })
   }
 
-  movMonObj = {
-  monto: null,
-  idTipoMovimiento: null, 
-  medio: "",
-  autor: "",
-  fecha: null 
+
+  get montoNoValido(){
+    return this.movMonObj.get('monto').invalid && this.movMonObj.get('monto').touched
   }
+  get idTipoMovimientoNoValido(){
+    return this.movMonObj.get('idTipoMovimiento').invalid && this.movMonObj.get('idTipoMovimiento').touched
+  }
+  get medioNoValido(){
+    return this.movMonObj.get('medio').invalid && this.movMonObj.get('medio').touched
+  }
+  get autorNoValido(){
+    return this.movMonObj.get('autor').invalid && this.movMonObj.get('autor').touched
+  }
+  get fechaNoValido(){
+    return this.movMonObj.get('fecha').invalid && this.movMonObj.get('fecha').touched
+  }
+
+  movMonObj = this.formBuilder.group({
+  monto: [null,Validators.required],
+  idTipoMovimiento: [null,Validators.required],
+  medio: ["",Validators.required],
+  autor: ["",Validators.required],
+  fecha: [null,Validators.required]
+  })
+
 
   auditoriaAgregarObj = {
     usuario: this.authService.usuario.username,
@@ -64,8 +84,15 @@ export class FormMovMonetarioComponent implements OnInit {
   
 
 
-  public agregar(): void {
-    this.movimientoMonetarioService.crearMovMonetarios(this.movMonObj)
+  public submit(): void {
+
+    
+    console.log(this.movMonObj);  
+     if (this.movMonObj.invalid)
+     return  Object.values(this.movMonObj.controls).forEach(control => {
+        control.markAsTouched();
+     })
+    this.movimientoMonetarioService.crearMovMonetarios(this.movMonObj.value)
     .subscribe(
       response => {
         this.router.navigate(['/movimientos-monetarios'])

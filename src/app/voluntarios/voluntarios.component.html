@@ -38,6 +38,8 @@
                     <th>Tránsito</th>
                     <th>Traslado</th>
                     <th>Presencial</th>
+                    <th colspan="2">Acciones</th>
+
                     
                 </tr>
             </thead>
@@ -54,7 +56,7 @@
                         <button class="btn btn-outline" type="button" name="button" [routerLink]="['/voluntarios/editar/', voluntario.id]"><i class='fas fa-pen'></i></button>
                     </td>
                     <td>
-                        <button class="btn btn-outline" type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id, voluntario.nombrecompleto)' ><i class='fas fa-trash'></i></button>
+                        <button class="btn btn-outline" type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id, voluntario.nombreCompleto)' ><i class='fas fa-trash'></i></button>
                     </td>
                 </tr>
             </tbody>

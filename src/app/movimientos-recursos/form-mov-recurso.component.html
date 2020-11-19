@@ -1,31 +1,42 @@
-         <form class="border p-3 form">
+         <form class="border p-3 form"(submit)="submit()" [formGroup]="movRecObj">
                 <div class=" text-center">
-                    <h2 >Nuevo movimiento de recursos</h2> 
+                    <h2>Nuevo movimiento de recursos</h2> 
                     <hr>
 
                 </div>
                     <div class="form-group">
-                        <input type="text" maxlength="50" class="form-control" placeholder="Autor" name="donante" [(ngModel)]= "movRecObj.donante">
+                        <input type="text" maxlength="50" class="form-control" placeholder="Autor" name="donante" formControlName="donante" [class.is-invalid]="donanteNoValido">
+                        <label *ngIf="donanteNoValido" class="text-danger">Por favor, complete el campo</label>
+
                     </div>
+
                     <div class="form-group">
-                        <textarea type="text" maxlength="60"  style="resize:none"  class="form-control" placeholder="Descripción" name="descripcion" [(ngModel)]= "movRecObj.descripcion"> </textarea>
+                        <textarea type="text" maxlength="60"  style="resize:none"  class="form-control" placeholder="Descripción" name="descripcion" formControlName="descripcion" [class.is-invalid]="descripcionNoValido"> </textarea>
+                        <label *ngIf="descripcionNoValido" class="text-danger">Por favor, complete el campo</label>
+
                     </div>
                     <div class="form-group ">
-                        <input type="text" maxlength="60" class="form-control" placeholder="Cantidad" name="cantidad" [(ngModel)]= "movRecObj.cantidad"required  >
+                        <input type="text" maxlength="60" class="form-control" placeholder="Cantidad" name="cantidad" formControlName="cantidad" [class.is-invalid]="cantidadNoValido" >
+                        <label *ngIf="cantidadNoValido" class="text-danger">Por favor, complete el campo</label>
+
                     </div>
                     <label for="idTipoMovimiento" class="col-form-label col-md-8">Tipo Movimiento</label>
                         <div class="form-group">
-                            <select class="form-control" type = number [(ngModel)] = "movRecObj.idTipoMovimiento" name = "idTipoMovimiento">
+                            <select class="form-control" type = number name = "idTipoMovimiento" formControlName="idTipoMovimiento" [class.is-invalid]="idTipoMovimientoNoValido">
                             <option *ngFor = "let tipoMovimiento of tiposMovimientos" [value] = "tipoMovimiento.id">{{tipoMovimiento.descripcion}}</option>
                         </select>
+                        <label *ngIf="idTipoMovimientoNoValido" class="text-danger">Por favor, complete el campo</label>
+
                         </div>
                     <label for="fecha" class="col-form-label col-md-8">Fecha </label>
                             <div class="form-group">
-                                <input type="date" class="form-control " name="fecha" [(ngModel)]="movRecObj.fecha" required>
+                                <input type="date" class="form-control " name="fecha"  formControlName="fecha" [class.is-invalid]="fechaNoValido">
+                                <label *ngIf="fechaNoValido" class="text-danger">Por favor, complete el campo</label>
+
                             </div>
                 <div class = "form-group row">
                     <div class = "col-sm-6">
-                        <button class = "btn btn-outline-success" role = "button" (click) = 'agregar()'>Agregar</button>
+                        <button class = "btn btn-outline-success" role = "button" type = 'submit'>Agregar</button>
                     </div>
                 </div>
         </form>

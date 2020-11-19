@@ -1,83 +1,83 @@
 
-            <form class="border p-3 form">   
+            <form class="border p-3 form" (submit)="submit()" [formGroup]="fichaMedicaObj">   
                 <div class=" text-center" >
-                    <label *ngIf="fichaMedicaObj.id else elseTitulo">Nueva ficha médica</label> 
+                    <h2>Nueva ficha médica</h2> 
                     <hr>
-                        <ng-template #elseTitulo>
-                            <h2>Modificar eficha médica</h2> 
-                            <hr>
-                         </ng-template>
                 </div>
                 <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
                 <div class="form-group">
                         <div class="form-group">
-                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fichaMedicaObj.fecha" required>
+                            <input type="date" class="form-control" name="fecha" formControlName="fecha" [class.is-invalid]="fechaNoValido">
+                            <label *ngIf="fechaNoValido" class="text-danger">Por favor, complete el campo</label>
+
                         </div>
                 </div>                
                     <div class="form-check">
-                        <input class="form-check-input visible" type="checkbox" placeholder="desparasitacion" name="desparasitacion" [(ngModel)]="checkedDesparasitacion">
+                        <input class="form-check-input visible" type="checkbox" placeholder="desparasitacion" name="desparasitacion" [(ngModel)]="checkedDesparasitacion" formControlName="desparasitacion" >
                         <label class="form-check-label" for="desparasitacion"> Desparasitacion</label>
                     </div>
                     
 
                 <div class="form-group">
                         <div class="form-group">
-                            <input type="text"  maxlength="50" [disabled]="checkedDesparasitacion === false" class="form-control " placeholder="Nombre del Producto" name="nombreProducto" [(ngModel)]="fichaMedicaObj.nombreProducto" required >
+                            <input type="text"  maxlength="50" [disabled]="checkedDesparasitacion === false" class="form-control " placeholder="Nombre del Producto" name="nombreProducto" formControlName="nombreProducto" >
                         </div>
                 </div>
                 
                    
                         <div class="form-check">
-                            <input class="form-check-input visible"  type="checkbox" placeholder="Vacuna"  name="vacuna" [(ngModel)]="checkedVacuna" required >
+                            <input class="form-check-input visible"  type="checkbox" placeholder="Vacuna" [(ngModel)]="checkedVacuna"  name="vacuna" formControlName="vacuna">
                             <label  class="form-check-label" for="vacuna"> Vacuna</label>
                         </div>
                 
                 <div class="form-group">
                         <div class="form-group">
-                            <input type="text" maxlength="50" class="form-control " placeholder="Nombre de Vacuna" name="nombreVacuna" [(ngModel)]="fichaMedicaObj.nombreVacuna"  required>
+                            <input type="text" maxlength="50" class="form-control " placeholder="Nombre de Vacuna" name="nombreVacuna" formControlName="nombreVacuna">
                         </div>
                 </div>               
                  <div class="form-group">
                         <div class="form-group">
-                            <input type="text" maxlength="255" class="form-control " placeholder="Diagnóstico" name="diagnostico"  [(ngModel)]="fichaMedicaObj.diagnostico" required>
+                            <input type="text" maxlength="255" class="form-control " placeholder="Diagnóstico" name="diagnostico" formControlName="diagnostico">
                         </div>
                 </div>
             
                 <label for="mascota" class="col-form-label col-sm-2">Mascota </label>
                 <div class="form-group">
                          <div class="form-group">
-                             <select type="number" class="form-control " name="mascota"  [(ngModel)]="fichaMedicaObj.idMascota" required>
+                             <select type="number" class="form-control " name="mascota" formControlName="idMascota" formControlName="idMascota" [class.is-invalid]="idMascotaNoValido">
                                  <option *ngFor="let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
+
                              </select>
+                             <label *ngIf="idMascotaNoValido" class="text-danger">Por favor, complete el campo</label>
+
                          </div>
                  </div>
                  <label for="veterinaria" class="col-form-label col-sm-2">Veterinaria</label>
                  <div class="form-group">
                          <div class="form-group">
-                             <select  class="form-control "  name="veterinaria" [(ngModel)]="fichaMedicaObj.idVeterinaria" required >
+                             <select  class="form-control "  name="veterinaria" formControlName="idVeterinaria" [class.is-invalid]="idVeterinariaNoValido" >
                                  <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.id">{{veterinaria.razonSocial}}</option>
                              </select>
+                             <label *ngIf="idVeterinariaNoValido" class="text-danger">Por favor, complete el campo</label>
+
                          </div>
                  </div>
                 
                     
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox"  name="tratamiento" [(ngModel)]="checkedTratamiento" required>
+                            <input class="form-check-input" type="checkbox"  name="tratamiento" [(ngModel)]="checkedTratamiento" formControlName="tratamiento">
                             <label for="tratamiento" class="form-check-label">Tratamiento</label>
                         </div>
                
                 <div class="form-group">
                         <div class="form-group">
-                            <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" [(ngModel)]="fichaMedicaObj.descripcionTratamiento"required ></textarea> 
+                            <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" formControlName="descripcionTratamiento" ></textarea> 
                         </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <button class="btn btn-outline-success" role="button" (click)='agregar()' *ngIf="!fichaMedicaObj.id else elseBlock">Agregar</button>
-                        <ng-template #elseBlock>
-                            <button class="btn btn-outline-success" role="button" (click)='modificar()'>Modificar</button>
-                        </ng-template>
+                        <button class="btn btn-outline-success" role="button" type="submit">Agregar</button>
                     </div>
                 </div>
         </form>

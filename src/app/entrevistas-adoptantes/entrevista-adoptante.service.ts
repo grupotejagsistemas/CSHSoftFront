@@ -28,8 +28,8 @@ export class EntrevistaAdoptanteService {
     return this.http.post(`${this.urlAPI}/entrevistaadoptantes`, entrevista);
   }
 
-  modificarEntrevista(entrevista: any) {
-    return this.http.put(`${this.urlAPI}/entrevistaadoptantes/${entrevista.id}`, entrevista);
+  modificarEntrevista(entrevista: any, id: number) {
+    return this.http.put(`${this.urlAPI}/entrevistaadoptantes/${id}`, entrevista);
   }
 
   getAdoptantes(): Observable<Adoptante>{
