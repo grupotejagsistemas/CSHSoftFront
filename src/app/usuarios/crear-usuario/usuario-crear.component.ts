@@ -4,7 +4,7 @@ import { AuditoriaService } from 'src/app/auditoria/auditoria.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
 import { UsuarioService } from '../usuario.service';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, MinLengthValidator, PatternValidator, Validators } from '@angular/forms';
 import { ValidadoresService } from 'src/app/services/validadores.service';
 
 @Component({
@@ -58,12 +58,12 @@ export class UsuarioCrearComponent implements OnInit {
   usuarioObj = this.formBuilder.group({
     id: [null],
     nombreUsuario: ["",Validators.required],
-    contrasena: ["",Validators.required],
-    confirmacion: ["",Validators.required],
+    contrasena: ["",[Validators.required, Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]+$')]],
+    confirmacion: ["",Validators.required,Validators.minLength(8)],
     activo: [null,Validators.required],
     nombre: ["",Validators.required],
     apellido: ["",Validators.required],
-    email: ["",Validators.required],
+    email: ["",[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
     idRole:[null,Validators.required]
   },{
     validators: this.validadores.contrasenasIguales('contrasena','confirmacion')

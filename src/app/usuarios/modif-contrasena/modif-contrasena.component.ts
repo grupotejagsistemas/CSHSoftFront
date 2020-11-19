@@ -4,6 +4,8 @@ import { AuditoriaService } from 'src/app/auditoria/auditoria.service';
 import swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
 import { UsuarioService } from '../usuario.service';
+import { FormArray, FormBuilder, MinLengthValidator, Validators } from '@angular/forms';
+import { ValidadoresService } from 'src/app/services/validadores.service';
 
 @Component({
   selector: 'app-modif-contrasena',
@@ -15,23 +17,46 @@ export class ModifContrasenaComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private validadores: ValidadoresService
   ) { }
 
   ngOnInit(): void {
   }
 
-  usuarioObj = {
-    username: this.authService.usuario.username,
-    oldPass: "",
-    newPass: ""
+  get oldPassNoValido(){
+    return this.usuarioObj.get('oldPass').invalid && this.usuarioObj.get('oldPass').touched
   }
 
+  get newPassNoValido(){
+    return this.usuarioObj.get('newPass').invalid && this.usuarioObj.get('newPass').touched
+  }
+  get confirmaNoValido(){
+    const newPass = this.usuarioObj.get('newPass').value;
+    const confirmaContraseña = this.usuarioObj.get('confirmaContraseña').value;
 
-  public modificar(): void {
+    return (newPass === confirmaContraseña) ? false : true;
+  }
+  usuarioObj = this.formBuilder.group({
+    username: this.authService.usuario.username,
+    oldPass: ["",Validators.required],
+    newPass: ["",[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]+$')]],
+    confirmaContraseña: ["",[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]+$')]]
+  },{
+    validators: this.validadores.contrasenasIguales('newPass', 'confirmaContraseña')
+  })
 
-    console.log('ts', this.usuarioObj);
-    this.usuarioService.modificarContrasena(this.usuarioObj)
+
+
+  public submit(): void {
+
+    if (this.usuarioObj.invalid)
+return  Object.values(this.usuarioObj.controls).forEach(control => {
+   control.markAsTouched();
+ })
+
+    this.usuarioService.modificarContrasena(this.usuarioObj.value)
     .subscribe((response: any) => {
       this.router.navigate(['/'])
       swal.fire({

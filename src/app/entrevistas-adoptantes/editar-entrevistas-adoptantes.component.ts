@@ -132,14 +132,11 @@ get respuesta21NoValido(){
   return this.entrevistaObj.get('respuesta21').invalid && this.entrevistaObj.get('respuesta21').touched
 
 }
-get respuesta22NoValido(){
-  return this.entrevistaObj.get('respuesta22').invalid && this.entrevistaObj.get('respuesta22').touched
 
-}
 
 
 entrevistaObj = this.formBuilder.group({
-  id: null,
+  id: [null],
   idAdoptante: ["",Validators.required],
   respuesta1: ["",Validators.required],
   respuesta2: ["",Validators.required],
@@ -162,7 +159,6 @@ entrevistaObj = this.formBuilder.group({
   respuesta19: ["",Validators.required],
   respuesta20: ["",Validators.required],
   respuesta21: ["",Validators.required],
-  respuesta22: ["",Validators.required]
 })
 
 auditoriaModificarObj = {
@@ -187,7 +183,7 @@ public submit(): void {
         control.markAsTouched();
       })
       
-  this.entrevistaService.modificarEntrevista(this.entrevistaObj.value,id)
+  this.entrevistaService.modificarEntrevista(this.entrevistaObj.value, id)
   .subscribe(
     response => {
       this.router.navigate(['/entrevistas'])

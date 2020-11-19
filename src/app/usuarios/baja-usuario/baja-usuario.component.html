@@ -8,6 +8,8 @@
             <tr>
                 <th>Usuario </th>
                 <th>Tipo de Usuario</th>
+                <th>Acción</th>
+
             </tr>
         </thead>
         <tbody>
@@ -16,7 +18,7 @@
             <tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: p }">
             
                     <td>{{usuario.username}}</td>
-                    <td>{{usuario.tipoUsuario}}</td>
+                    <td>{{usuario.idRole}}</td>
                     <td>
 
                         <button class="btn btn-outline" type="button" (click)="borrarUsuario(usuario.id, usuario.username)" name="eliminar"><i class="fas fa-trash"></i></button>

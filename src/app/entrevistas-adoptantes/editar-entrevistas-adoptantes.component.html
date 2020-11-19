@@ -1,6 +1,6 @@
 <form class="border p-3 form" (submit)="submit()" [formGroup]="entrevistaObj">   
     <div class=" text-center">
-        <label>Modificar entrevista</label> 
+        <h2>Modificar entrevista</h2> 
         <hr>
     </div>
     <label for="adoptante" class="col-form-label col-sm-2">Adoptante </label>
@@ -56,7 +56,7 @@
         Si no tiene. ¿Tuvo? ¿Qué paso con ellos?
     </label>
             <div class="form-group">
-                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta7" [(ngModel)]="entrevista.respuesta7" formControlName="respuesta7"[class.is-invalid]="respuesta7NoValido" ></textarea>
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta7" [(ngModel)]="entrevista.respuesta7" formControlName="respuesta7" [class.is-invalid]="respuesta7NoValido" ></textarea>
             </div>
 
             <label for="respuesta8" class="col-form-label"> 
@@ -147,7 +147,7 @@
             </div>
     <div class="form-row">
         <div class="form-group col-md-4">
-            <button class="btn btn-outline-success" role="button" type='submit()'>modificar</button>
+            <button class="btn btn-outline-success" role="button" type='submit'>Modificar</button>
         </div>
     </div>
 </form>

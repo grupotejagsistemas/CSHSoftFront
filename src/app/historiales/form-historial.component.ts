@@ -36,18 +36,12 @@ export class FormHistorialComponent implements OnInit {
 
     this.historialService.getMascotas().subscribe((resp: any) => {
       this.mascotas = resp;
-      this.mascotas.unshift({
-        nombre: 'Seleccione una mascota',
-        id: null
-      })
+
     })
 
     this.historialService.getVoluntarios().subscribe((resp: any) => {
       this.voluntarios = resp;
-      this.voluntarios.unshift({
-        nombrecompleto: 'Seleccione un voluntario',
-        id: null
-      })
+
     })
   }
 

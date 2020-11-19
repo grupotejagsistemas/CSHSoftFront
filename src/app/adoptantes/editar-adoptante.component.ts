@@ -67,7 +67,7 @@ export class EditarAdoptanteComponent implements OnInit {
   }
 
   get fechaNoValido(){
-    return this.adoptanteObj.get('fecha').invalid && this.adoptanteObj.get('fecha').touched
+    return this.adoptanteObj.get('fechaNacimiento').invalid && this.adoptanteObj.get('fechaNacimiento').touched
   }
 
   get domicilioNoValido(){
@@ -91,7 +91,7 @@ export class EditarAdoptanteComponent implements OnInit {
   
   }
   get sLaboralNoValido(){
-    return this.adoptanteObj.get('sLaboral').invalid && this.adoptanteObj.get('sLaboral').touched
+    return this.adoptanteObj.get('situacionLaboral').invalid && this.adoptanteObj.get('situacionLaboral').touched
   
   }
 

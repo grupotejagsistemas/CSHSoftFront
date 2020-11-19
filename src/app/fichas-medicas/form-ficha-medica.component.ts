@@ -43,18 +43,12 @@ export class FormFichaMedicaComponent implements OnInit {
     
     this.fichasMedicasService.getMascotas().subscribe((resp: any) => {
       this.mascotas = resp; 
-      this.mascotas.unshift({
-        nombre: 'Seleccione una mascota',
-        id: null
-      })
+ 
     });
 
     this.fichasMedicasService.getVeterinarias().subscribe((resp: any) => {
       this.veterinarias = resp;
-      this.veterinarias.unshift({
-        razonSocial: 'Seleccione una veterinaria',
-        id: null
-      })
+
     })
 
   }
