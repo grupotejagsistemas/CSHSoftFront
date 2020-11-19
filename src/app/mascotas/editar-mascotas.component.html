@@ -14,10 +14,9 @@
     <div class="form-group">
         <textarea type="text" maxlength="255" style="resize:none" class="form-control" placeholder="Particularidades Físicas" name="particularidadesFisicas" [(ngModel)]="mascota.particularidadesFisicas" [class.is-invalid]="particularidadesNoValido" formControlName="particularidadesFisicas"></textarea>
     </div>
-    <label for="sexo" class="col-form-label col-sm-4">Sexo</label>
+    <label for="sexo" class="col-form-label">Seleccione el sexo</label>
     <div class="form-group">
         <select type="text" class="form-control" placeholder="Sexo" name="sexo" [(ngModel)]="mascota.sexo" [class.is-invalid]="sexoNoValido" formControlName="sexo">
-                <option [value]=null> Seleccione sexo</option>
                 <option>Macho</option>
                 <option>Hembra</option>
         </select>
@@ -51,10 +50,10 @@
         <textarea type="text" maxlength="255" class="form-control" style="resize:none" placeholder="Descripción del rescate" name="descripcionRescate" [(ngModel)]="mascota.descripcionRescate" [class.is-invalid]="descripcionNoValido" formControlName="descripcionRescate"></textarea>
         <label *ngIf="descripcionNoValido" class="text-danger">Por favor, complete el campo</label>
     </div>
+    <label for="estado" class="col-form-label">Seleccione una especie</label>
 
     <div class="form-group">
         <select type="text" class="form-control " placeholder="Especie" name="especie" [(ngModel)]="mascota.especie" [class.is-invalid]="especieNoValido" formControlName="especie">
-                    <option [value]=null> Seleccione Especie</option>
                     <option>Canino</option>
                     <option>Felino</option>
             </select>
@@ -62,7 +61,7 @@
 
     </div>
 
-    <label for="estado" class="col-form-label col-sm-2">Estado</label>
+    <label for="estado" class="col-form-label">Seleccione un estado</label>
     <div class="form-group">
         <select class="form-control " type=number [(ngModel)]="mascota.estado" name="estado" [class.is-invalid]="estadoNoValido" formControlName="estado">
                 <option *ngFor=" let estado of estados" [value]="estado.id">{{estado.descripcion}}</option>

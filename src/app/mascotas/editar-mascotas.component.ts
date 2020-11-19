@@ -42,7 +42,6 @@ export class EditarMascotasComponent implements OnInit {
     
     if(id !== 0){
       this.mascotaService.getMascota(id).subscribe((resp: any) => {
-        console.log('mascota', id)
         this.mascota = resp;
       })
     }

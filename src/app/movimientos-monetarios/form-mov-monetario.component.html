@@ -19,7 +19,7 @@
                         <label *ngIf="medioNoValido" class="text-danger">Por favor, complete el campo</label>
 
                     </div>
-                    <label for="idTipoMovimiento" class="col-form-label col-sm-6">Tipo Movimiento</label>
+                    <label for="idTipoMovimiento" class="col-form-label">Seleccione un tipo movimiento</label>
                         <div class="form-group ">
                             <select class="form-control" type = number name = "idTipoMovimiento"formControlName="idTipoMovimiento" [class.is-invalid]="idTipoMovimientoNoValido">
                             <option *ngFor = " let tipoMovimiento of tiposMovimientos" [value] = "tipoMovimiento.id">{{tipoMovimiento.descripcion}}</option>

@@ -3,10 +3,9 @@
         <h2>Modificar entrevista</h2> 
         <hr>
     </div>
-    <label for="adoptante" class="col-form-label col-sm-2">Adoptante </label>
+    <label for="adoptante" class="col-form-label">Seleccione un adoptante </label>
              <div class="form-group">
                  <select type="number" class="form-control " name="adoptante"  [(ngModel)]="entrevista.idAdoptante" formControlName="idAdoptante">
-                    <option [value]=null>Seleccione un adoptante</option> 
                     <option *ngFor="let adoptante of adoptantes" [value]="adoptante.id">{{adoptante.nombreCompleto}}</option>
                  </select>
              </div>
