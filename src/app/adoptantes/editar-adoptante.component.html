@@ -6,7 +6,7 @@
         <div class="form-group">
             <input type="number" class="form-control" [(ngModel)]="adoptante.numeroFormulario" placeholder="Número de formulario" name="numeroFormulario"  formControlName="numeroFormulario" required>
         </div>
-    <label for="mascota" class="col-form-label col-sm-2">Mascota</label>
+    <label for="mascota" class="col-form-label">Seleccione una mascota</label>
         <div class="form-group">
             <select type="select" class="form-control" name="mascota" [(ngModel)]="adoptante.idMascota" formControlName="idMascota">
                 <option *ngFor="let mascota of mascotas" [value]="mascota.id">
@@ -65,7 +65,7 @@
         </div>
         <div class="form-group">
             <input type="text" maxlength="50" class="form-control" [(ngModel)]="adoptante.email" placeholder="Email"  name="email" formControlName="email"[class.is-invalid]="emailNoValido">
-            <label *ngIf="emailNoValido" class="text-danger">Por favor, complete el campo</label>
+            <label *ngIf="emailNoValido" class="text-danger">El email no es válido</label>
         </div>
         <div class="form-group">
             <input type="text" maxlength="50" class="form-control" [(ngModel)]="adoptante.facebook" placeholder="Facebook"  name="facebook" formControlName="facebook"[class.is-invalid]="facebookNoValido">
@@ -82,11 +82,9 @@
         <div class="form-group">
             <textarea type="text" maxlength="100"  style="resize:none" class="form-control" [(ngModel)]="adoptante.observaciones" placeholder="Observaciones"  name="observaciones" formControlName="observaciones"></textarea>
         </div>
-    <label for="estado" class="col-form-label col-sm-2">Estado</label>
+    <label for="estado" class="col-form-label">Seleccione un estado</label>
         <div class="form-group ">
             <select  class="form-control " type="text" [(ngModel)]="adoptante.idEstadoAdoptante" formControlName="idEstadoAdoptante" name="idEstadoAdoptante">
-
-            <option [value]=null>Seleccione un estado</option>
             <option [value]=1>Apto</option>    
             <option [value]=2>No Apto</option>
             <option [value]=3>En Proceso</option>

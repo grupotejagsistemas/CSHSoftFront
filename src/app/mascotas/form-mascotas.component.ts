@@ -45,10 +45,7 @@ export class FormMascotasComponent implements OnInit {
     // this.service.getImageDetailList();
     this.mascotaService.getEstados().subscribe((resp: any) => {
       this.estados = resp;
-      this.estados.unshift({
-        descripcion: 'Seleccione estado',
-        id: this.mascotaObj.value.estado.id
-      })
+
   })
 }
 
