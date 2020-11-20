@@ -55,14 +55,11 @@ export class FormContratoComponent implements OnInit {
   get idAdoptanteNoValido(){
     return this.contratoObj.get('idAdoptante').invalid && this.contratoObj.get('idAdoptante').touched
   }
-  get nombreNoValido(){
-    return this.contratoObj.get('nuevoNombre').invalid && this.contratoObj.get('nuevoNombre').touched
-  }
 
   contratoObj = this.formBuilder.group({
     idMascota: [null,Validators.required],
     idAdoptante: [null,Validators.required],
-    nuevoNombre: ["",Validators.required]
+    nuevoNombre: [""]
   })
 
 

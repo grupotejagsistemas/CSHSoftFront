@@ -94,7 +94,7 @@ export class MascotasComponent implements OnInit {
   borrarMascota(id: number, mascota: string): void {
     Swal.fire({
       title: '',
-      text: `¿Desea eliminar al voluntario ${mascota} ?`,
+      text: `¿Desea eliminar a la mascota ${mascota} ?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

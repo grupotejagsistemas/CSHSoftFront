@@ -51,7 +51,6 @@ export class FormAdoptanteComponent implements OnInit {
     get nombreNoValido(){
       return this.adoptanteObj.get('nombreCompleto').invalid && this.adoptanteObj.get('nombreCompleto').touched
     }
-
     get fechaNoValido(){
       return this.adoptanteObj.get('fechaNacimiento').invalid && this.adoptanteObj.get('fechaNacimiento').touched
     }

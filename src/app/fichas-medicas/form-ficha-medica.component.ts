@@ -52,6 +52,9 @@ export class FormFichaMedicaComponent implements OnInit {
     })
 
   }
+  get diagnosticoNoValido(){
+    return this.fichaMedicaObj.get('diagnostico').invalid && this.fichaMedicaObj.get('diagnostico').touched
+  }
 
   get fechaNoValido(){
     return this.fichaMedicaObj.get('fecha').invalid && this.fichaMedicaObj.get('fecha').touched
@@ -70,7 +73,7 @@ export class FormFichaMedicaComponent implements OnInit {
     nombreProducto: [""],
     vacuna: [""], 
     nombreVacuna: [""], 
-    diagnostico: [""], 
+    diagnostico: ["",Validators.required],
     idMascota: [null,Validators.required],
     idVeterinaria: [null,Validators.required],
     tratamiento: [""],
