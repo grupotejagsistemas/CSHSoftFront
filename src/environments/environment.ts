@@ -6,14 +6,14 @@ export const environment = {
 
   urlCSH: 'http://localhost:8080/api',
   firebaseConfig : {
-    apiKey: "AIzaSyBFmRm-YsC_4F3YFeBSiLfvMARWGm6qLs8",
-    authDomain: "colitassinhogar-975d3.firebaseapp.com",
-    databaseURL: "https://colitassinhogar-975d3.firebaseio.com",
-    projectId: "colitassinhogar-975d3",
-    storageBucket: "colitassinhogar-975d3.appspot.com",
-    messagingSenderId: "643511799756",
-    appId: "1:643511799756:web:4d0b3b6dd8ae10ea655769",
-    measurementId: "G-J7Y4NVZY9Q"
+    apiKey: "AIzaSyC1oIDcWKtknPCvMrQGfSK2RhjtJ7xDYlQ",
+    authDomain: "colitassinhogar-9d770.firebaseapp.com",
+    databaseURL: "https://colitassinhogar-9d770.firebaseio.com",
+    projectId: "colitassinhogar-9d770",
+    storageBucket: "colitassinhogar-9d770.appspot.com",
+    messagingSenderId: "445059501921",
+    appId: "1:445059501921:web:5f7983050fa97fe7983f20",
+    measurementId: "G-WRKPZW0XVR"
   },
   production: false
 };
