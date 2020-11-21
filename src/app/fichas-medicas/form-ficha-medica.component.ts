@@ -101,7 +101,6 @@ export class FormFichaMedicaComponent implements OnInit {
 
     const id = +this.route.snapshot.paramMap.get('id');
 
-    console.log(this.fichaMedicaObj);  
      if (this.fichaMedicaObj.invalid)
      return  Object.values(this.fichaMedicaObj.controls).forEach(control => {
         control.markAsTouched();
@@ -125,7 +124,6 @@ export class FormFichaMedicaComponent implements OnInit {
       this.fichaMedicaObj.value.tratamiento = "NO";
     }
 
-    console.log('this.fichaMedica', this.fichaMedicaObj.value)
     this.fichasMedicasService.crearFichaMedica(this.fichaMedicaObj.value)
     .subscribe(
       response => {

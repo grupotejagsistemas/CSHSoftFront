@@ -79,7 +79,6 @@ export class FormMovRecursoComponent implements OnInit {
 
   public submit(): void {
     
-    console.log(this.movRecObj);  
      if (this.movRecObj.invalid)
      return  Object.values(this.movRecObj.controls).forEach(control => {
         control.markAsTouched();

@@ -53,7 +53,6 @@ export class AuthService {
     params.set('username', usuario.username);
     params.set('password', usuario.password);
 
-    console.log('HOLA', params.toString());
 
     
       return this.http.post<any>(urlEndpoint, params.toString(),{headers: httpHeaders})

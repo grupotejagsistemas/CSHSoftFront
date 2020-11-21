@@ -91,7 +91,6 @@ export class EditarHistorialComponent implements OnInit {
     return  Object.values(this.historialObj.controls).forEach(control => {
        control.markAsTouched();
      })
-    console.log('modif', this.historialObj)
     this.historialService.modificarHistorial(this.historialObj.value, id)
     .subscribe(
       response => {

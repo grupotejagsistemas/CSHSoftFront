@@ -33,17 +33,14 @@ export class VoluntarioService {
   }
 
   crearVoluntario(voluntario: any): Observable<any> {
-    console.log('AGREGASERVICE', voluntario)
     return this.http.post<any>(`${this.urlAPI}/voluntario`, voluntario);
   } 
 
   getVoluntario(id: number): Observable<Voluntario>{
-    console.log('idservice', id)
     return this.http.get<Voluntario>(`${this.urlAPI}/voluntario/${id}`);
   }
 
   modificarVoluntario(voluntarioObj: any, id: number) :Observable<any>{
-    console.log('id', id);
     return this.http.put<any>(`${this.urlAPI}/voluntario/${id}`, voluntarioObj);
    }
 

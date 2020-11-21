@@ -157,9 +157,7 @@ export class EditarMascotasComponent implements OnInit {
            showConfirmButton: false,
            timer: 1500
          })
-        //  if(id !== 0){
-        //    this.subirFoto(id.toString())
-        //  }
+      
         this.onSubmit(this.mascotaObj.value);
          this.auditoriaModificar();
          return response;
@@ -167,28 +165,4 @@ export class EditarMascotasComponent implements OnInit {
      ) 
    }
   
-  // deleteItem(item: any){
-  //   this.service.deleteImageDetails(item);
-  // }
-  //  seleccionarFoto(event){
-  //   this.fotoSeleccionada = event.target.files[0];
-  //   console.log(this.fotoSeleccionada);
-  //   if(this.fotoSeleccionada.type.indexOf('image') < 0){
-  //     Swal.fire('Error', 'El archivo debe ser del tipo imagen', 'error');
-  //     this.fotoSeleccionada = null;
-  //   } 
-  // }
-
-  // subirFoto(id: string){
-
-  //   if(!this.fotoSeleccionada){
-  //     Swal.fire('warning', 'La mascota fue creada sin imagen', 'warning') ;
-  //   }else {
-  //     console.log('id', id);
-  //     this.mascotaService.subirFoto(this.fotoSeleccionada, id)
-  //     .subscribe(mascota => {
-  //       this.mascota = mascota;
-  //     })
-  //   }
-  // }
 }

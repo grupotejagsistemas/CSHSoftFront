@@ -83,7 +83,6 @@ export class FormMovMonetarioComponent implements OnInit {
   public submit(): void {
 
     
-    console.log(this.movMonObj);  
      if (this.movMonObj.invalid)
      return  Object.values(this.movMonObj.controls).forEach(control => {
         control.markAsTouched();

@@ -36,7 +36,6 @@ export class EditarVeterinariaComponent implements OnInit {
   if(id !== 0 ){
     this.veterinariaService.getVeterinaria(id).subscribe((resp: any) => {
       this.veterinaria = resp;
-      console.log(this.veterinaria)
       if(this.veterinaria.internacion === "SI"){
         this.checked = true;
       } else {

@@ -189,7 +189,7 @@ public submit(): void {
       this.router.navigate(['/entrevistas'])
       swal.fire({
         icon: 'success',
-        title: `La entrevista adoptante ha sido modificada`,
+        title: `La entrevista adoptante ${this.entrevista.adoptante} ha sido modificada`,
         showConfirmButton: false,
         timer: 1500
       })

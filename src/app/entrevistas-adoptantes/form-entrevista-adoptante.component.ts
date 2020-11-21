@@ -187,7 +187,6 @@ export class FormEntrevistaAdoptanteComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log('componententrevista', this.entrevistaObj.value)
     this.entrevistaService.crearEntrevista(this.entrevistaObj.value)
     .subscribe((response: any) => {
       this.router.navigate(['/entrevistas'])

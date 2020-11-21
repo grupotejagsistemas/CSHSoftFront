@@ -59,7 +59,6 @@ export class EditarVoluntariosComponent implements OnInit {
         } else {
           this.checkedTraslado = false;
         }
-        console.log('data', data);
       }) 
     this.voluntarioService.getVeterinarias().subscribe((resp: any) => {
       this.veterinarias = resp;
@@ -99,7 +98,6 @@ voluntarioObj = this.formBuilder.group({
       return vete.razonSocial;
     })
 
-    console.log('ARRAY', this.veterinariasArray)
     return this.veterinariasArray;
   }
   
@@ -130,7 +128,6 @@ voluntarioObj = this.formBuilder.group({
 
   submit(): void{
     
-    console.log(this.voluntarioObj);  
      if (this.voluntarioObj.invalid)
      return  Object.values(this.voluntarioObj.controls).forEach(control => {
         control.markAsTouched();
@@ -156,7 +153,6 @@ voluntarioObj = this.formBuilder.group({
       this.voluntarioObj.value.traslado = "NO";
     }
 
-    console.log('IDDDID', id);
 
     this.voluntarioService.modificarVoluntario(this.voluntarioObj.value, id)
     .subscribe(
@@ -168,7 +164,6 @@ voluntarioObj = this.formBuilder.group({
           showConfirmButton: false,
           timer: 1500
         })
-        console.log('MODIFICAR', response);
         this.auditoriaModificar();
         return response;
       })

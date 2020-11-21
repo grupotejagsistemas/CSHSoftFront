@@ -48,7 +48,6 @@ export class EditarAdoptanteComponent implements OnInit {
       this.adoptante = data;
       this.idveterinariasArray();
 
-      console.log('data', data);
     })
 
 
@@ -120,8 +119,6 @@ idveterinariasArray() {
     return vete.razonSocial
   })
 
-  console.log('holahola', this.adoptante.idVeterinaria)
-  console.log('ARRAY', this.veterinariasArray)
   return this.veterinariasArray;
 }
 
@@ -154,7 +151,6 @@ idveterinariasArray() {
   submit(){
     const id = +this.route.snapshot.paramMap.get('id');
 
-    console.log(this.adoptanteObj);  
      if (this.adoptanteObj.invalid)
      return  Object.values(this.adoptanteObj.controls).forEach(control => {
         control.markAsTouched();

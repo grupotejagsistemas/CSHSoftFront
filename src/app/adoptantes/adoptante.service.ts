@@ -38,17 +38,14 @@ export class AdoptanteService {
   }
 
   crearAdoptante(adoptante: any): Observable<any>{
-    console.log('SERVICEAGREGAR', adoptante);
     return this.http.post<any>(`${this.urlAPI}/adoptante`, adoptante);
   }
 
   modificarAdoptante(adoptante: any, id: number ): Observable<Adoptante>{
-    console.log('SERVICEMODIFICAR', adoptante)
     return this.http.put<Adoptante>(`${this.urlAPI}/adoptante/${id}`, adoptante)
   }
 
   getAdoptante(id: number): Observable<Adoptante>{
-    console.log('service', id);
     return this.http.get<Adoptante>(`${this.urlAPI}/adoptante/${id}`);
   }
 

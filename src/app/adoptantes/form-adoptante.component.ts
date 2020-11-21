@@ -118,7 +118,6 @@ export class FormAdoptanteComponent implements OnInit {
   
   submit(): void{
     
-    console.log(this.adoptanteObj);  
     if (this.adoptanteObj.invalid)
     return  Object.values(this.adoptanteObj.controls).forEach(control => {
        control.markAsTouched();
