@@ -1,0 +1,21 @@
+<form [formGroup]="recordatorioObj" (submit)="submit()"class="border p-3 form" >   
+    <div class=" text-center">
+        <h2>Modificar Recordatorio</h2> 
+        <hr/>
+    </div>
+        <div class="form-group">
+            <input type="text" maxlength="100" class="form-control" placeholder="Recordatorio" name="descripcionRecordatorio" [(ngModel)]="recordatorio.descripcionRecordatorio" formControlName="descripcionRecordatorio" [class.is-invalid]="recordatorioNoValido"> 
+            <label *ngIf="recordatorioNoValido" class="text-danger">Por favor, complete el campo</label>
+
+        </div>
+    <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
+    
+            <div class="form-group">
+                <input type="date" class="form-control" name="fecha" [(ngModel)]="recordatorio.fecha" formControlName="fecha">
+            </div>
+    <div class="form-row">
+        <div class="form-group  col-md-6 ">
+                <button class="btn btn-outline-success" role="button" type="submit">Modificar</button>
+        </div>
+    </div>
+</form>

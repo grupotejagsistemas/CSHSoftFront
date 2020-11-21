@@ -1,0 +1,193 @@
+<form class="border p-3 form" (submit)="submit()" [formGroup]="entrevistaObj">   
+    <div class=" text-center">
+        <h2>Modificar entrevista</h2> 
+        <hr>
+    </div>
+    <label for="adoptante" class="col-form-label">Seleccione un adoptante </label>
+             <div class="form-group">
+                 <select type="number" class="form-control " name="adoptante"  [(ngModel)]="entrevista.idAdoptante" formControlName="idAdoptante">
+                    <option *ngFor="let adoptante of adoptantes" [value]="adoptante.id">{{adoptante.nombreCompleto}}</option>
+                 </select>
+             </div>
+
+     <label for="respuesta1" class="col-form-label"> 
+         ¿Hace cuánto nació el deseo por adoptar? ¿Por qué consideras que este es el momento indicado para adoptar?
+     </label>
+            <div class="form-group">
+                <textarea type="text"  maxlength="255"  style="resize:none" class="form-control " name="respuesta1" [(ngModel)]="entrevista.respuesta1" formControlName="respuesta1" [class.is-invalid]="respuesta1NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta1NoValido" class="text-danger">Por favor, complete el campo</label>
+
+            <label for="respuesta2" class="col-form-label"> 
+        ¿Cuántas personas viven en el hogar y que parentesco?
+    </label>
+            <div class="form-group">
+                <textarea type="text"  maxlength="255"  style="resize:none"  class="form-control "  name="respuesta2" [(ngModel)]="entrevista.respuesta2" formControlName="respuesta2" [class.is-invalid]="respuesta2NoValido" ></textarea>
+            </div>
+            <label *ngIf="respuesta2NoValido" class="text-danger">Por favor, complete el campo</label>
+
+
+            <label for="respuesta3" class="col-form-label"> 
+        ¿Hay niños? ¿De qué edad?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   class="form-control "  name="respuesta3" [(ngModel)]="entrevista.respuesta3" formControlName="respuesta3" [class.is-invalid]="respuesta3NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta3NoValido" class="text-danger">Por favor, complete el campo</label>
+
+
+            <label for="respuesta4" class="col-form-label"> 
+        ¿Están todos los miembros de la casa de acuerdo con la adopción? ¿Hay alguna persona alérgica?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta4" [(ngModel)]="entrevista.respuesta4" formControlName="respuesta4" [class.is-invalid]="respuesta4NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta4NoValido" class="text-danger">Por favor, complete el campo</label>
+
+
+            <label for="respuesta5" class="col-form-label"> 
+        ¿Hay otros animales en la casa? ¿Hay alguno de raza?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta5" [(ngModel)]="entrevista.respuesta5" formControlName="respuesta5"[class.is-invalid]="respuesta5NoValido" ></textarea>
+            </div>
+            <label *ngIf="respuesta5NoValido" class="text-danger">Por favor, complete el campo</label>
+
+            <label for="respuesta6" class="col-form-label"> 
+        Si hay, ¿están vacunados y castrados? Edades de los mismos. ¿Tienen chapita identificador?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta6" [(ngModel)]="entrevista.respuesta6" formControlName="respuesta6" [class.is-invalid]="respuesta6NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta6NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta7" class="col-form-label"> 
+        Si no tiene. ¿Tuvo? ¿Qué paso con ellos?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta7" [(ngModel)]="entrevista.respuesta7" formControlName="respuesta7" [class.is-invalid]="respuesta7NoValido" ></textarea>
+            </div>
+            <label *ngIf="respuesta7NoValido" class="text-danger">Por favor, complete el campo</label>
+
+
+            <label for="respuesta8" class="col-form-label"> 
+        ¿Han pensado que harán con el animal si se van de vacaciones o que hacen con los suyos cuando se van de vacaciones?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta8" [(ngModel)]="entrevista.respuesta8" formControlName="respuesta8" [class.is-invalid]="respuesta8NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta8NoValido" class="text-danger">Por favor, complete el campo</label>
+
+
+            <label for="respuesta9" class="col-form-label"> 
+        ¿Cuál sería el ámbito donde viviría el animal adoptado?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta9" [(ngModel)]="entrevista.respuesta9" formControlName="respuesta9" [class.is-invalid]="respuesta9NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta9NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta10" class="col-form-label"> 
+        ¿Son propietarios o inquilinos (alquila)? Si es inquilino, ¿aceptan animales?
+    </label>
+    
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta10" [(ngModel)]="entrevista.respuesta10" formControlName="respuesta10" [class.is-invalid]="respuesta10NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta10NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta11" class="col-form-label"> 
+        En caso de mudanza, ¿Qué harían con el animal?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta11" [(ngModel)]="entrevista.respuesta11" formControlName="respuesta11"[class.is-invalid]="respuesta11NoValido" ></textarea>
+            </div>
+            <label *ngIf="respuesta11NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta12" class="col-form-label"> 
+        ¿Hay espacios libres en la casa? ¿Están cercados? (Patio, balcón, terraza)
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta12" [(ngModel)]="entrevista.respuesta12" formControlName="respuesta12" [class.is-invalid]="respuesta12NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta12NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta13" class="col-form-label"> 
+        ¿Es para compañía, guardia, tratamiento, etc?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta13" [(ngModel)]="entrevista.respuesta13" formControlName="respuesta13"[class.is-invalid]="respuesta13NoValido" ></textarea>
+            </div>
+            <label *ngIf="respuesta13NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta14" class="col-form-label"> 
+        ¿Cuántas horas estiman que estará solo?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta14" [(ngModel)]="entrevista.respuesta14" formControlName="respuesta14" [class.is-invalid]="respuesta14NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta14NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta15" class="col-form-label"> 
+        ¿Lo van sacar a pasear? ¿Con que frecuencia?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta15" [(ngModel)]="entrevista.respuesta15" formControlName="respuesta15" [class.is-invalid]="respuesta15NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta15NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta16" class="col-form-label"> 
+        El perro necesita un periodo de 15 a 30 días de adaptación ¿Están al tanto?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta16" [(ngModel)]="entrevista.respuesta16" formControlName="respuesta16" [class.is-invalid]="respuesta16NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta16NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta17" class="col-form-label"> 
+        Acepta el requisito excluyente: castración entre 7 y 9 meses y chapita con dirección y número de teléfono. Trabajo de seguimiento (fotos, videos, certificados veterinarios.)
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta17" [(ngModel)]="entrevista.respuesta17" formControlName="respuesta17" [class.is-invalid]="respuesta17NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta17NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta18" class="col-form-label"> 
+        ¿Cuál sería su postura ante una inadaptación?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta18" [(ngModel)]="entrevista.respuesta18" formControlName="respuesta18" [class.is-invalid]="respuesta18NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta18NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta19" class="col-form-label"> 
+        ¿Por qué decidieron adoptar un cachorro bebe?           
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta19" [(ngModel)]="entrevista.respuesta19" formControlName="respuesta19" [class.is-invalid]="respuesta19NoValido"></textarea>
+            </div>
+            <label *ngIf="respuesta19NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta20" class="col-form-label"> 
+        ¿Qué cuidados cree que necesita un cachorro bebe?
+    </label>
+            <div class="form-group">
+                <textarea type="text"   maxlength="255"  style="resize:none" class="form-control "  name="respuesta20" [(ngModel)]="entrevista.respuesta20" formControlName="respuesta20"[class.is-invalid]="respuesta20NoValido" ></textarea>
+            </div>
+            <label *ngIf="respuesta20NoValido" class="text-danger">Por favor, complete el campo</label>
+
+    <label for="respuesta21" class="col-form-label"> 
+        ¿Qué ocurriría si crece más de lo esperado?
+    </label>
+            <div class="form-group">
+                <textarea type="text"  maxlength="255"  style="resize:none" class="form-control "  name="respuesta21" [(ngModel)]="entrevista.respuesta21" formControlName="respuesta21" [class.is-invalid]="respuesta21NoValido"></textarea>
+            </div>          
+              <label *ngIf="respuesta21NoValido" class="text-danger">Por favor, complete el campo</label>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <button class="btn btn-outline-success" role="button" type='submit'>Modificar</button>
+        </div>
+    </div>
+</form>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Veterinaria } from './veterinaria';
 import { Voluntario } from './voluntario';
 import { VoluntarioService } from './voluntario.service';
 import swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 @Component({
   selector: 'app-editar-voluntarios',
@@ -23,7 +25,9 @@ export class EditarVoluntariosComponent implements OnInit {
     private voluntarioService: VoluntarioService, 
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private auditoriaService: AuditoriaService
   ) { }
 
   get idveterinarias(){
@@ -55,9 +59,7 @@ export class EditarVoluntariosComponent implements OnInit {
         } else {
           this.checkedTraslado = false;
         }
-        console.log('data', data);
-      })
-      
+      }) 
     this.voluntarioService.getVeterinarias().subscribe((resp: any) => {
       this.veterinarias = resp;
       this.veterinarias.unshift({
@@ -66,26 +68,36 @@ export class EditarVoluntariosComponent implements OnInit {
       })
   })
 }
+get nombreNoValido(){
+  return this.voluntarioObj.get('nombreCompleto').invalid && this.voluntarioObj.get('nombreCompleto').touched
 
+}
+get direccionNoValido(){
+  return this.voluntarioObj.get('direccion').invalid && this.voluntarioObj.get('direccion').touched
 
- 
-  voluntarioObj = this.formBuilder.group({
-    nombreCompleto: [""], 
-    telefono: [null],
-    direccion: [""],
-    idveterinarias: this.formBuilder.array([]),
-    localidad: [""],
-    transito: "",
-    traslado: "",
-    presencial: ""
-  }) 
+}
+get localidadNoValido(){
+  return this.voluntarioObj.get('localidad').invalid && this.voluntarioObj.get('localidad').touched
+
+}
+  
+voluntarioObj = this.formBuilder.group({
+  id: [null],
+  nombreCompleto: ["",Validators.required], 
+  telefono: [null],
+  direccion: ["",Validators.required],
+  idveterinarias: this.formBuilder.array([]),
+  localidad: ["",Validators.required],
+  transito: "",
+  traslado: "",
+  presencial: ""
+}) 
 
   idveterinariasArray() {
     this.veterinariasArray = this.voluntario.idveterinarias.map(vete => {
       return vete.razonSocial;
     })
 
-    console.log('ARRAY', this.veterinariasArray)
     return this.veterinariasArray;
   }
   
@@ -101,7 +113,26 @@ export class EditarVoluntariosComponent implements OnInit {
     this.idveterinarias.removeAt(indice)
   }
 
+  auditoriaModificarObj = {
+    usuario: this.authService.usuario.username,
+    accion: 'Modificación de voluntario'
+  }
+  
+  
+  auditoriaModificar(){
+    this.auditoriaService.crearAuditoria(this.auditoriaModificarObj).subscribe(response => {
+      return response;
+    })
+  }
+
+
   submit(): void{
+    
+     if (this.voluntarioObj.invalid)
+     return  Object.values(this.voluntarioObj.controls).forEach(control => {
+        control.markAsTouched();
+      })
+
     const id = +this.route.snapshot.paramMap.get('id');
 
     if(this.checkedPresencial === true){
@@ -122,7 +153,6 @@ export class EditarVoluntariosComponent implements OnInit {
       this.voluntarioObj.value.traslado = "NO";
     }
 
-    console.log('IDDDID', id);
 
     this.voluntarioService.modificarVoluntario(this.voluntarioObj.value, id)
     .subscribe(
@@ -134,10 +164,11 @@ export class EditarVoluntariosComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-        console.log('MODIFICAR', response);
+        this.auditoriaModificar();
         return response;
       })
   }
 
 }
+ 
 

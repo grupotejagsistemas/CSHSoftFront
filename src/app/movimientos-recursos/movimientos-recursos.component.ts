@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 import { MovimientoRecurso } from './movimiento-recurso';
 import { MovimientoRecursoService } from './movimiento-recurso.service';
 
@@ -13,7 +15,11 @@ export class MovimientosRecursosComponent implements OnInit {
   p: number = 1;
 
 
-  constructor(private movimientoRecursoService: MovimientoRecursoService) { }
+  constructor(
+    private movimientoRecursoService: MovimientoRecursoService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
 

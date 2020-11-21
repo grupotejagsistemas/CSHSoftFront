@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AppComponent } from './app.component';
 import {HeaderComponent} from './header/header.component'
@@ -46,110 +49,117 @@ import { AuditoriaComponent } from './auditoria/auditoria.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AuthService } from './usuarios/auth.service';
 import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
+import { EditarFichasMedicasComponent } from './fichas-medicas/editar-fichas-medicas/editar-fichas-medicas.component';
+import { EditarMascotasComponent } from './mascotas/editar-mascotas.component';
+import { EditarEntrevistasAdoptantesComponent } from './entrevistas-adoptantes/editar-entrevistas-adoptantes.component';
+import { EditarVeterinariaComponent } from './veterinarias/editar-veterinaria.component';
+import { EditarHistorialComponent } from './historiales/editar-historial.component';
+import { EditarRecordatorioComponent } from './recordatorios/editar-recordatorio.component';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full', 
-  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'}
+  canActivate: [AuthGuard],
 },
   {path: 'auditoria', component: AuditoriaComponent,
-    canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
+  canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}
 },
   {path: 'voluntarios', component: VoluntariosComponent,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'voluntarios/crear', component: FormCrearComponent,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'voluntarios/editar/:id', component: EditarVoluntariosComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'fichas-medicas', component: FichasMedicasComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'fichas-medicas/crear', component: FormFichaMedicaComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
-  {path: 'fichas-medicas/editar/:id', component: FormFichaMedicaComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+  {path: 'fichas-medicas/editar/:id', component: EditarFichasMedicasComponent ,
+ canActivate: [AuthGuard]
 },
   {path: 'mascotas', component: MascotasComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'mascotas/crear', component: FormMascotasComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
-  {path: 'mascotas/editar/:id', component: FormMascotasComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+  {path: 'mascotas/editar/:id', component: EditarMascotasComponent ,
+ canActivate: [AuthGuard]
 },
   {path: 'veterinarias', component: VeterinariasComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'veterinarias/crear',component: FormVeterinariaComponent , 
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
-  {path: 'veterinarias/editar/:id', component: FormVeterinariaComponent , 
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+  {path: 'veterinarias/editar/:id', component: EditarVeterinariaComponent , 
+ canActivate: [AuthGuard]
 },
   {path: 'contratos', component: ContratosComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'contratos/crear', component: FormContratoComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'contratos/editar/:id', component: FormContratoComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'adoptantes', component: AdoptantesComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'adoptantes/crear', component: FormAdoptanteComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'adoptantes/editar/:id', component: EditarAdoptanteComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
 {path: 'entrevistas', component: EntrevistasAdoptantesComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'entrevistas/crear', component: FormEntrevistaAdoptanteComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
-  {path: 'entrevistas/editar/:id', component: FormEntrevistaAdoptanteComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+  {path: 'entrevistas/editar/:id', component: EditarEntrevistasAdoptantesComponent ,
+ canActivate: [AuthGuard]
 },
 {path: 'entrevistas/respuestas/:id', component: RespuestasComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'movimientos-recursos', component: MovimientosRecursosComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'movimientos-recursos/crear', component: FormMovRecursoComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'movimientos-monetarios', component: MovimientosMonetariosComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'movimientos-monetarios/crear', component: FormMovMonetarioComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'recordatorios', component: RecordatoriosComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'recordatorios/crear', component: FormRecordatorioComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
-  {path: 'recordatorios/editar/:id', component: FormRecordatorioComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+  {path: 'recordatorios/editar/:id', component: EditarRecordatorioComponent ,
+ canActivate: [AuthGuard]
 },
   {path: 'historial', component: HistorialesComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 },
   {path: 'historial/crear', component: FormHistorialComponent ,
- canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} 
+ canActivate: [AuthGuard]
 
 },
-  {path: 'historial/editar/:id', component:FormHistorialComponent ,
- canActivate: [AuthGuard, RoleGuard], data:{role: 'ROLE_USER'}
+  {path: 'historial/editar/:id', component: EditarHistorialComponent ,
+ canActivate: [AuthGuard]
 },
   {path: 'login', component: LoginComponent 
 },
@@ -157,7 +167,7 @@ const routes: Routes = [
  canActivate: [AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}
 },
   {path: 'cambiar-contrasena', component: ModifContrasenaComponent, 
-   canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'}
+   canActivate: [AuthGuard]
 },
   {path: 'eliminar-usuario', component: BajaUsuarioComponent, 
  canActivate: [AuthGuard, RoleGuard], data:{role: 'ROLE_ADMIN'}
@@ -207,6 +217,12 @@ const routes: Routes = [
     EditarAdoptanteComponent,
     EditarVoluntariosComponent,
     AuditoriaComponent,
+    EditarFichasMedicasComponent,
+    EditarMascotasComponent,
+    EditarEntrevistasAdoptantesComponent,
+    EditarVeterinariaComponent,
+    EditarHistorialComponent,
+    EditarRecordatorioComponent,
   ],
   imports: [
     BrowserModule,
@@ -215,6 +231,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: true }),
     NgxPaginationModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

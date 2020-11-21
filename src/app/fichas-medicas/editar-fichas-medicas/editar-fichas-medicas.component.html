@@ -1,0 +1,79 @@
+            <form class="border p-3 form" (submit)="submit()" [formGroup]="editarFichaMedicaObj">   
+                <div class=" text-center" >
+                    <h2>Modificar ficha médica</h2> 
+                    <hr>
+                </div>
+                <label for="fecha" class="col-form-label col-sm-2">Fecha </label>
+                <div class="form-group">
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="fecha" [(ngModel)]="fichaMedica.fecha" formControlName="fecha" [class.is-invalid]="fechaNoValido">
+                            <label *ngIf="fechaNoValido" class="text-danger">Por favor, complete el campo</label>
+                        </div>
+                </div>                
+                    <div class="form-check">
+                        <input class="form-check-input visible" [checked]="checkedDesparasitacion" type="checkbox" placeholder="desparasitacion" name="desparasitacion" [(ngModel)]="checkedDesparasitacion" formControlName="desparasitacion">
+                        <label class="form-check-label" for="desparasitacion"> Desparasitacion</label>
+                    </div>
+                    
+
+                <div class="form-group">
+                        <div class="form-group">
+                            <input type="text"  maxlength="50" [disabled]="checkedDesparasitacion === false" class="form-control " placeholder="Nombre del Producto" name="nombreProducto" [(ngModel)]="fichaMedica.nombreProducto" formControlName="nombreProducto" >
+                        </div>
+                </div>
+                
+                   
+                        <div class="form-check">
+                            <input class="form-check-input visible"  type="checkbox" [checked]="checkedVacuna" placeholder="Vacuna"  name="vacuna" [(ngModel)]="checkedVacuna" formControlName="vacuna" >
+                            <label  class="form-check-label" for="vacuna"> Vacuna</label>
+                        </div>
+                
+                <div class="form-group">
+                        <div class="form-group">
+                            <input type="text" maxlength="50" class="form-control" placeholder="Nombre de Vacuna" name="nombreVacuna" [(ngModel)]="fichaMedica.nombreVacuna"  formControlName="nombreVacuna">
+                        </div>
+                </div>               
+                 <div class="form-group">
+                        <div class="form-group">
+                            <input type="text" maxlength="255" class="form-control " placeholder="Diagnóstico" name="diagnostico"  [(ngModel)]="fichaMedica.diagnostico" formControlName="diagnostico"[class.is-invalid]="diagnosticoNoValido">>
+                            <label *ngIf="diagnosticoNoValido" class="text-danger">Por favor, complete el campo</label>
+                        </div>
+                </div>
+            
+                <label for="mascota" class="col-form-label">Seleccione una mascota </label>
+                <div class="form-group">
+                         <div class="form-group">
+                             <select type="number" class="form-control " name="mascota"  [(ngModel)]="fichaMedica.idMascota" formControlName="idMascota" [class.is-invalid]="idMascotaNoValido" formControlName="idMascota">
+                                 <option *ngFor="let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
+                                </select>
+                                <label *ngIf="idMascotaNoValido" class="text-danger">Por favor, complete el campo</label>
+                         </div>
+                 </div>
+                 <label for="veterinaria" class="col-form-label">Seleccione una veterinaria</label>
+                 <div class="form-group">
+                         <div class="form-group">
+                             <select  class="form-control "  name="veterinaria" [(ngModel)]="fichaMedica.idVeterinaria" formControlName="idVeterinaria" [class.is-invalid]="idVeterinariaNoValido" >
+                                 <option *ngFor="let veterinaria of veterinarias" [value]="veterinaria.id">{{veterinaria.razonSocial}}</option>
+                                </select>
+                                <label *ngIf="idVeterinariaNoValido" class="text-danger">Por favor, complete el campo</label>
+                         </div>
+                 </div>
+                
+                    
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"  [checked]="checkedTratamiento" name="tratamiento" [(ngModel)]="checkedTratamiento" formControlName="tratamiento">
+                            <label for="tratamiento" class="form-check-label">Tratamiento</label>
+                        </div>
+               
+                <div class="form-group">
+                        <div class="form-group">
+                            <textarea type="text" maxlength="255"  style="resize:none" class="form-control" placeholder="Descripción del Tratamiento" name="descripcionTratamiento" [(ngModel)]="fichaMedica.descripcionTratamiento" formControlName="descripcionTratamiento" ></textarea> 
+                        </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-outline-success" role="button" type="submit" >Modificar</button>
+                    </div>
+                </div>
+        </form>

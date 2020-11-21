@@ -1,0 +1,33 @@
+<form class="border p-3 form" (submit)="submit()" [formGroup]="historialObj">   
+    <div class=" text-center" >
+        <h2>Modificar Historial</h2> 
+    </div>
+    <label for="voluntario" class="col-form-label">Seleccione un voluntario</label>
+        <div class="form-group">
+            <select class="form-control" type=number [(ngModel)]="historial.idVoluntario" name="idVoluntario" formControlName="idVoluntario" [class.is-invalid]="idVoluntarioNoValido">
+            <option *ngFor=" let voluntario of voluntarios" [value]="voluntario.id">{{voluntario.nombreCompleto}}</option>
+        </select>
+        <label *ngIf="idVoluntarioNoValido" class="text-danger">Por favor, complete el campo</label>
+
+    </div>
+<label for="mascota" class="col-form-label">Seleccione una mascota</label>
+    <div class="form-group">
+        <select class="form-control" type=number [(ngModel)]="historial.idMascota" name="idMascota" formControlName="idMascota" [class.is-invalid]="idMascotaNoValido">
+        <option *ngFor=" let mascota of mascotas" [value]="mascota.id">{{mascota.nombre}}</option>
+        <label *ngIf="idMascotaNoValido" class="text-danger">Por favor, complete el campo</label>
+    </select>
+
+    </div>
+    <label for="fecha" class="col-form-label col-sm-4">Fecha</label>
+        <div class="form-group">
+            <input class="form-control" type="date" placeholder="Fecha" name="fecha" [(ngModel)]="historial.fecha" formControlName="fecha" [class.is-invalid]="fechaNoValido">
+            <label *ngIf="fechaNoValido" class="text-danger">Por favor, complete el campo</label>
+        </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+                <button class="btn btn-outline-success" role="button" type="submit">
+                    Modificar
+                </button>
+            </div>
+    </div>
+</form>

@@ -23,7 +23,6 @@ export class UsuarioService {
   }
 
   crearUsuario(usuario: any) {
-    console.log('agrega service: ', usuario);
     return this.http.post(`${this.urlAPI}/admin/usuario`, usuario);
   }
 
@@ -32,7 +31,6 @@ export class UsuarioService {
   }
 
   modificarContrasena(contrasena: any){
-    console.log('service', contrasena)
     return this.http.put(`${this.urlAPI}/admin/usuario`, contrasena);
   }
 

@@ -2,26 +2,30 @@
 <div *ngIf="usuarios?.length == 0"class="alert alert-info">
     No se encontraron datos registrados
 </div>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Usuario </th>
-            <th>Tipo de Usuario</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
+<div style="overflow-x:auto;">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Usuario </th>
+                <th>Tipo de Usuario</th>
+                <th>Acción</th>
 
-        <tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: p }">
-           
-                <td>{{usuario.nombreUsuario}}</td>
-                <td>{{usuario.tipoUsuario}}</td>
-                <td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
 
-                    <button class="btn btn-outline" type="button" (click)="borrarUsuario(usuario.id, usuario.nombreUsuario)" name="eliminar"><i class="fas fa-trash"></i></button>
-                </td>
-        </tr>
-    </tbody>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: p }">
+            
+                    <td>{{usuario.username}}</td>
+                    <td>{{usuario.idRole}}</td>
+                    <td>
 
-</table>  
+                        <button class="btn btn-outline" type="button" (click)="borrarUsuario(usuario.id, usuario.username)" name="eliminar"><i class="fas fa-trash"></i></button>
+                    </td>
+            </tr>
+        </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+    </table>  
+</div>

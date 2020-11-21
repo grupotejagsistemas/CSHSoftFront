@@ -1,0 +1,6 @@
+div.card:hover {
+    background-color: gold;
+    height: 320px;
+    border-radius: 3.5px;
+    border-color: lightgray;
+}

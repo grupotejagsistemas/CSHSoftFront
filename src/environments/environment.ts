@@ -5,6 +5,16 @@
 export const environment = {
 
   urlCSH: 'http://localhost:8080/api',
+  firebaseConfig : {
+    apiKey: "AIzaSyBFmRm-YsC_4F3YFeBSiLfvMARWGm6qLs8",
+    authDomain: "colitassinhogar-975d3.firebaseapp.com",
+    databaseURL: "https://colitassinhogar-975d3.firebaseio.com",
+    projectId: "colitassinhogar-975d3",
+    storageBucket: "colitassinhogar-975d3.appspot.com",
+    messagingSenderId: "643511799756",
+    appId: "1:643511799756:web:4d0b3b6dd8ae10ea655769",
+    measurementId: "G-J7Y4NVZY9Q"
+  },
   production: false
 };
 

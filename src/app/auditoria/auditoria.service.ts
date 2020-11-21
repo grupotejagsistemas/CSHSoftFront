@@ -21,7 +21,10 @@ export class AuditoriaService {
   }
 
   getAuditoriaUsuario(usuario: any): Observable<Auditoria[]>{
-    return this.http.get<Auditoria[]>(`${this.urlAPI}/filtronombre?usuario=${usuario}`)
+    return this.http.get<Auditoria[]>(`${this.urlAPI}/auditoria/filtronombre?usuario=${usuario}`)
   }
 
+  crearAuditoria(auditoria: any) {
+    return this.http.post(`${this.urlAPI}/auditoria`, auditoria);
+  }
 }

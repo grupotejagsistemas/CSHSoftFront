@@ -20,4 +20,33 @@ export class Adoptante {
     idEstadoAdoptante: number;
     idVeterinaria: any [] = [];
     estado_adoptante: EstadoAdoptante;
+
+
+constructor (){
+
+    }
+
+
+public static build(){
+    const adoptante= new Adoptante();
+    adoptante.id = null;
+    adoptante.numeroFormulario= null; 
+    adoptante.nombreCompleto= ""; 
+    adoptante.fechaNacimiento= null;
+    adoptante.domicilio= "";
+    adoptante.barrio= "";
+    adoptante.celular= "";
+    adoptante.email= ""; 
+    adoptante.facebook= ""; 
+    adoptante.instagram= ""; 
+    adoptante.situacionLaboral= ""; 
+    adoptante.observaciones= ""; 
+    adoptante.mascotaInteresada= null; 
+    adoptante.idMascota= null;
+    adoptante.idEstadoAdoptante= null;
+    adoptante.idVeterinaria=  [] = [];
+    adoptante.estado_adoptante= {id: 0, descripcion: ''};
+
+    return adoptante;
+    }
 }

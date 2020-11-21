@@ -24,7 +24,6 @@ export class HistorialService {
   }
 
   getHistorial(id: number): Observable<Historial> {
-    console.log('por id', id);
 
     return this.http.get<Historial>(`${this.urlAPI}/historial/${id}`);
   }
@@ -45,8 +44,8 @@ export class HistorialService {
     return this.http.post(`${this.urlAPI}/historial`, historial);
   }
 
-  modificarHistorial(historial: any){
-    return this.http.put(`${this.urlAPI}/historial/${historial.id}`, historial);
+  modificarHistorial(historial: any, id: number){
+    return this.http.put(`${this.urlAPI}/historial/${id}`, historial);
   }
 
   borrarHistorial(id: number) {

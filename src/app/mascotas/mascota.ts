@@ -11,6 +11,7 @@ export class Mascota {
     lugarRescate: string;
     descripcionRescate: string;
     especie: string;
+    estado: string;
     estadoMascota: EstadoMascota;
 
     constructor(){ }
@@ -27,6 +28,7 @@ export class Mascota {
         mascota.lugarRescate= "";
         mascota.descripcionRescate= "";
         mascota.especie= "";
+        mascota.estado="";
         mascota.estadoMascota = {id: 0, descripcion: ''};
         
         return mascota;

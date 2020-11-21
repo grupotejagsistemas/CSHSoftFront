@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Voluntario } from './voluntario';
 import { VoluntarioService }from './voluntario.service';
 import swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 
 @Component({
@@ -17,7 +19,11 @@ export class VoluntariosComponent implements OnInit {
   checkedPresencial: boolean;
   p: number = 1;
 
-  constructor(public voluntarioService: VoluntarioService) {
+  constructor(
+    public voluntarioService: VoluntarioService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+    ) {
 
   }
 
@@ -80,11 +86,23 @@ export class VoluntariosComponent implements OnInit {
     }
   }
 
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de voluntario`
+  }
+  
+  
+  auditoriaBorrar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+  
+
   borrarVoluntario(id: number, voluntario: string): void {
 
-      console.log(voluntario)
       swal.fire({
-        title: '',
         text: `¿Desea eliminar al voluntario ${voluntario} ?`,
         icon: 'warning',
         showCancelButton: true,
@@ -93,6 +111,7 @@ export class VoluntariosComponent implements OnInit {
         confirmButtonText: 'Confirmar'
       }).then((result) => {
         if (result.value) {
+          this.auditoriaBorrar();
             this.voluntarioService.borrarVoluntario(id).subscribe(
               () => {
                 this.voluntarios = this.voluntarios.filter(vol => vol.id !== id);

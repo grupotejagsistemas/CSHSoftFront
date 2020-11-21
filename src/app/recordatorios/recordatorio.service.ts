@@ -28,8 +28,8 @@ export class RecordatorioService {
     return this.http.post(`${this.urlAPI}/recordatorio`, recordatorio);
   }
 
-  modificarRecordatorio(recordatorio: any){
-    return this.http.put(`${this.urlAPI}/recordatorio/${recordatorio.idRecordatorio}`, recordatorio);
+  modificarRecordatorio(recordatorio: any, id: number){
+    return this.http.put(`${this.urlAPI}/recordatorio/${id}`, recordatorio);
   }
 
 }

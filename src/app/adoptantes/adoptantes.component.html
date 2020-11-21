@@ -4,86 +4,78 @@
         <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)] ="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
     </div>
 </div>
-<div class="form-row">
-    <label for="apto" class="col-form-label col-sm-2">Apto</label>
-    <div class="form-group col-md-4">
-        <input type="checkbox" placeholder="apto" name="apto" [(ngModel)]="checkedApto" (change)="filtroApto()">
+    <div class="col-md-4"></div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" placeholder="apto" name="apto" [(ngModel)]="checkedApto" (change)="filtroApto()">
+        <label class="form-check-label" for="apto" >Apto</label>
     </div>
-</div>
-<div class="form-row">
-    <label for="noApto" class="col-form-label col-sm-2"> No Apto</label>
-    <div class="form-group col-md-4">
-        <input type="checkbox" placeholder="noApto" name="noApto" [(ngModel)]="checkedNoApto" (change)="filtroNoApto()">
+    
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" placeholder="noApto" name="noApto" [(ngModel)]="checkedNoApto" (change)="filtroNoApto()">
+        <label class="form-check-label" for="noApto" > No Apto</label>
     </div>
-</div>
-<div class="form-row">
-    <label for="enProceso" class="col-form-label col-sm-2"> En Proceso</label>
-    <div class="form-group col-md-4">
-        <input type="checkbox" placeholder="enProceso" name="enProceso" [(ngModel)]="checkedEnProceso" (change)="filtroEnProceso()">
+    
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" placeholder="enProceso" name="enProceso" [(ngModel)]="checkedEnProceso" (change)="filtroEnProceso()">
+        <label class="form-check-label" for="enProceso" > En Proceso</label>
     </div>
-</div>
-<div class="form-row">
-    <label for="rechazado" class="col-form-label col-sm-2"> Rechazado </label>
-    <div class="form-group col-md-4">
-        <input type="checkbox" placeholder="rechazado" name="rechazado" [(ngModel)]="checkedRechazado" (change)="filtroRechazado()">
+   
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" placeholder="rechazado" name="rechazado" [(ngModel)]="checkedRechazado" (change)="filtroRechazado()">
+        <label class="form-check-label" for="rechazado" > Rechazado </label>
     </div>
-</div>
-<div class="form-row">
-    <label for="finalizado" class="col-form-label col-sm-2"> Finalizado </label>
-    <div class="form-group col-md-4">
-        <input type="checkbox" placeholder="finalizado" name="finalizado" [(ngModel)]="checkedFinalizado" (change)="filtroFinalizado()">
+    
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" placeholder="finalizado" name="finalizado" [(ngModel)]="checkedFinalizado" (change)="filtroFinalizado()">
+        <label class="form-check-label" for="finalizado" > Finalizado </label>
     </div>
-</div>
 <div class="my-4 text-right" >
     <button class="btn btn-outline-success" type="button" [routerLink] = "['/adoptantes/crear']">Nuevo Adoptante</button>
 </div>
 <div *ngIf="adoptantes?.length==0" class="alert alert-info">
     No se encontraron datos registrados
 </div>
-
+<div style="overflow-x:auto;">
     <table id="table-responsive"class="table table-striped" *ngIf="adoptantes?.length>0">
+        <thead class="thead-dark">
+            <tr>
+                <th>Numero formulario</th>
+                <th>Nombre</th>
+                <th>Fecha Nacimiento</th>
+                <th>Domicilio</th>
+                <th>Barrio</th>
+                <th>Celular</th>
+                <th>Email</th>
+                <th>Facebook</th>
+                <th>Instagram</th>
+                <th>Situación laboral</th>
+                <th>Observaciones</th>
+                <th>Estado adoptante</th>
+                <th>Mascota</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let adoptante of adoptantes  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
+                <td>{{adoptante.numeroFormulario}}</td>
+                <td>{{adoptante.nombreCompleto}}</td>
+                <td>{{adoptante.fechaNacimiento}}</td>
+                <td>{{adoptante.domicilio}}</td>
+                <td>{{adoptante.barrio}}</td>
+                <td>{{adoptante.celular}}</td>
+                <td>{{adoptante.email}}</td>
+                <td>{{adoptante.facebook}}</td>
+                <td>{{adoptante.instagram}}</td>
+                <td>{{adoptante.situacionLaboral}}</td>
+                <td>{{adoptante.observaciones}}</td>
+                <td>{{adoptante.estado_adoptante}}</td>
+                <td>{{adoptante.mascotaInteresada}}</td>
 
-
-    <thead>
-        <tr>
-            <th>Numero formulario</th>
-            <th>Nombre</th>
-            <th>Fecha Nacimiento</th>
-            <th>Domicilio</th>
-            <th>Barrio</th>
-            <th>Celular</th>
-            <th>Email</th>
-            <th>Facebook</th>
-            <th>Instagram</th>
-            <th>Situación laboral</th>
-            <th>Observaciones</th>
-            <th>Estado adoptante</th>
-            <th>Mascota</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let adoptante of adoptantes  |  paginate: { itemsPerPage: 10 , currentPage: p } ">
-            <td>{{adoptante.numeroFormulario}}</td>
-            <td>{{adoptante.nombreCompleto}}</td>
-            <td>{{adoptante.fechaNacimiento}}</td>
-            <td>{{adoptante.domicilio}}</td>
-            <td>{{adoptante.barrio}}</td>
-            <td>{{adoptante.celular}}</td>
-            <td>{{adoptante.email}}</td>
-            <td>{{adoptante.facebook}}</td>
-            <td>{{adoptante.instagram}}</td>
-            <td>{{adoptante.situacionLaboral}}</td>
-            <td>{{adoptante.observaciones}}</td>
-            <td>{{adoptante.estado_adoptante}}</td>
-            <td>{{adoptante.mascotaInteresada}}</td>
-
-            <td>
-                <button type="button" name="button" [routerLink]="['/adoptantes/editar/', adoptante.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
-            </td>
-            <td>
-                <button type="button" name="eliminar" (click)='borrarAdoptante(adoptante.id)' class="btn btn-outline"><i class="fas fa-trash"></i></button>
-            </td>
-        </tr>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </tbody>
-</table>  
+                <td>
+                    <button type="button" name="button" [routerLink]="['/adoptantes/editar/', adoptante.id]" class="btn btn-outline"><i class="fas fa-pen"></i></button>
+                </td>
+            </tr>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </tbody>
+    </table>  
+</div>

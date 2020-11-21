@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
+import { AuthService } from '../usuarios/auth.service';
 import { FichaMedica } from './ficha-medica';
 import { FichaMedicaService } from './ficha-medica.service';
 
@@ -14,14 +16,32 @@ export class FichasMedicasComponent implements OnInit {
   fichasMedicas: FichaMedica[] = [];
   p: number = 1;
 
-  constructor(public fichaMedicaService: FichaMedicaService) { }
+  constructor(
+    public fichaMedicaService: FichaMedicaService,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
     this.fichaMedicaService.getFichasMedicas().subscribe((data: any) => {
       this.fichasMedicas = data; 
-      console.log("fichas", data)
     })
   }
+
+  auditoriaBorrarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Eliminación de ficha médica`
+  }
+  
+
+  
+  auditoriaBorrar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaBorrarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+
 
   borrarFichasMedicas(id: number): void {
     Swal.fire({
@@ -34,9 +54,11 @@ export class FichasMedicasComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
+          this.auditoriaBorrar();
           this.fichaMedicaService.borrarFichasMedicas(id).subscribe(
             () => {
               this.fichasMedicas = this.fichasMedicas.filter(fic => fic.id !== id);
+
             }
           )
       }

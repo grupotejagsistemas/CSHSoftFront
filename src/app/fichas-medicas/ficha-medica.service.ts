@@ -40,8 +40,8 @@ export class FichaMedicaService {
       return this.http.post(`${this.urlAPI}/fichasMedicas`, fichaMedica)
     }
 
-    modificarFichaMedica(fichaMedica: any){
-      return this.http.put(`${this.urlAPI}/fichasMedicas/${fichaMedica.id}`, fichaMedica)
+    modificarFichaMedica(fichaMedica: any, id: number){
+      return this.http.put(`${this.urlAPI}/fichasMedicas/${id}`, fichaMedica)
     }
 
     borrarFichasMedicas(id: number) {

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Voluntario } from './voluntario';
 import { Veterinaria} from './veterinaria';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { VoluntarioService } from './voluntario.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, GuardsCheckStart, Router} from '@angular/router';
 import swal from 'sweetalert2'
+import { AuthService } from '../usuarios/auth.service';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 
 
 @Component({
@@ -13,6 +15,8 @@ import swal from 'sweetalert2'
   styleUrls:['./form-crear.component.css']
 })
 export class FormCrearComponent implements OnInit {
+
+  
 
   checkedTransito: boolean;
   checkedPresencial: boolean; 
@@ -25,7 +29,10 @@ export class FormCrearComponent implements OnInit {
     private voluntarioService: VoluntarioService, 
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,    
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
+
     ) { }
 
     get idveterinarias(){
@@ -39,13 +46,26 @@ export class FormCrearComponent implements OnInit {
       })
   }
 
+get nombreNoValido(){
+  return this.voluntarioObj.get('nombreCompleto').invalid && this.voluntarioObj.get('nombreCompleto').touched
+
+}
+get direccionNoValido(){
+  return this.voluntarioObj.get('direccion').invalid && this.voluntarioObj.get('direccion').touched
+
+}
+get localidadNoValido(){
+  return this.voluntarioObj.get('localidad').invalid && this.voluntarioObj.get('localidad').touched
+
+}
+
   voluntarioObj = this.formBuilder.group({
       id: [null],
-      nombreCompleto: [""], 
+      nombreCompleto: ["",Validators.required], 
       telefono: [null],
-      direccion: [""],
+      direccion: ["",Validators.required],
       idveterinarias: this.formBuilder.array([]),
-      localidad: [""],
+      localidad: ["",Validators.required],
       transito: [false],
       traslado: [false],
       presencial: [false]
@@ -63,7 +83,25 @@ export class FormCrearComponent implements OnInit {
     }
   
 
+    auditoriaAgregarObj = {
+      usuario: this.authService.usuario.username,
+      accion: `Alta de voluntario`
+    }
+    
+    auditoriaAgregar() {
+      this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+        return response;
+      })
+    }
+    
+
+  
   submit(): void{
+
+     if (this.voluntarioObj.invalid)
+     return  Object.values(this.voluntarioObj.controls).forEach(control => {
+        control.markAsTouched();
+      })
     
     if(this.checkedPresencial === true){
       this.voluntarioObj.value.presencial = "SI";
@@ -83,7 +121,6 @@ export class FormCrearComponent implements OnInit {
       this.voluntarioObj.value.traslado = "NO";
     }
 
-
     this.voluntarioService.crearVoluntario(this.voluntarioObj.value)
     .subscribe(
       response => {
@@ -94,7 +131,7 @@ export class FormCrearComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-        console.log('AGREGAR', response);
+        this.auditoriaAgregar();
         return response;
       })
   }

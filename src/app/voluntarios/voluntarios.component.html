@@ -4,32 +4,32 @@
                     <input type="text" name="busquedaNombre" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="busquedaNombre" (change)="filtroNombre(busquedaNombre)">
                 </div>
             </div>
-            <div class="form-row">
-                <label for="transito" class="col-form-label col-sm-2"> Transito</label>
-                <div class="form-group col-md-4">
-                    <input type="checkbox" placeholder="transito" name="transito" [(ngModel)]="checkedTransito" (change)="filtroTransito()">
+           
+              <div class="col-md-4"></div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" placeholder="transito" name="transito" [(ngModel)]="checkedTransito" (change)="filtroTransito()">
+                    <label class="form-check-label" for="transito" > Transito</label>
                 </div>
-            </div>
-            <div class="form-row">
-                <label for="traslado" class="col-form-label col-sm-2"> Traslado</label>
-                <div class="form-group col-md-4">
-                    <input type="checkbox" placeholder="traslado" name="traslado" [(ngModel)]="checkedTraslado" (change)="filtroTraslado()">
+                
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"type="checkbox" placeholder="traslado" name="traslado" [(ngModel)]="checkedTraslado" (change)="filtroTraslado()">
+                    <label class="form-check-label" for="traslado">Traslado</label>
                 </div>
-            </div>
-            <div class="form-row">
-                <label for="presencial" class="col-form-label col-sm-2"> Presencial</label>
-                <div class="form-group col-md-4">
-                    <input type="checkbox" placeholder="presencial" name="presencial" [(ngModel)]="checkedPresencial" (change)="filtroPresencial()">
+            
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" placeholder="presencial" name="presencial" [(ngModel)]="checkedPresencial" (change)="filtroPresencial()">
+                    <label class="form-check-label" for="presencial" > Presencial</label>
                 </div>
-            </div>
-            <div class="my-4 text-right" >
+
+                <div class="my-4 text-right" >
                 <button class="btn btn-outline-success" type="button" [routerLink] = "['/voluntarios/crear']">Nuevo Voluntario</button>
             </div>
         <div *ngIf="voluntarios?.length==0" class="alert alert-info">
             No se encontraron datos registrados
         </div>
+     <div style="overflow-x:auto;">
         <table class="table table-striped" *ngIf="voluntarios?.length>0">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>Nombre</th>
                     <th>Télefono</th>
@@ -38,6 +38,8 @@
                     <th>Tránsito</th>
                     <th>Traslado</th>
                     <th>Presencial</th>
+                    <th colspan="2">Acciones</th>
+
                     
                 </tr>
             </thead>
@@ -54,11 +56,11 @@
                         <button class="btn btn-outline" type="button" name="button" [routerLink]="['/voluntarios/editar/', voluntario.id]"><i class='fas fa-pen'></i></button>
                     </td>
                     <td>
-                        <button class="btn btn-outline" type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id, voluntario.nombrecompleto)' ><i class='fas fa-trash'></i></button>
+                        <button class="btn btn-outline" type="button" name="eliminar" (click)='borrarVoluntario(voluntario.id, voluntario.nombreCompleto)' ><i class='fas fa-trash'></i></button>
                     </td>
                 </tr>
             </tbody>
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </table>  
-
+    </div>
 

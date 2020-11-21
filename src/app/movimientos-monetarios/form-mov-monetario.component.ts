@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuditoriaService } from '../auditoria/auditoria.service';
 import { TipoMovimiento } from '../movimientos-recursos/tipoMovimiento';
+import { AuthService } from '../usuarios/auth.service';
 import { MovimientoMonetario } from './movimiento-monetario';
 import { MovimientoMonetarioService } from './movimiento-monetario.service';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-mov-monetario',
@@ -16,13 +19,16 @@ export class FormMovMonetarioComponent implements OnInit {
 
   titulo: string = "Nuevo Movimiento Monetario"
 
-  movimientoMonetario: MovimientoMonetario = new MovimientoMonetario();
+  movimientoMonetario: MovimientoMonetario;
 
 
   constructor(
     private movimientoMonetarioService: MovimientoMonetarioService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private auditoriaService: AuditoriaService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -30,23 +36,58 @@ export class FormMovMonetarioComponent implements OnInit {
     this.movimientoMonetarioService.getTipoMovimiento()
     .subscribe((resp: any) => {
       this.tiposMovimientos = resp;
-      this.tiposMovimientos.unshift({
-        descripcion: 'Seleccione un tipo de movimiento',
-        id: null
-      })
     })
   }
 
-  movMonObj = {
-  monto: null,
-  idTipoMovimiento: null, 
-  medio: "",
-  autor: "",
-  fecha: null 
+
+  get montoNoValido(){
+    return this.movMonObj.get('monto').invalid && this.movMonObj.get('monto').touched
+  }
+  get idTipoMovimientoNoValido(){
+    return this.movMonObj.get('idTipoMovimiento').invalid && this.movMonObj.get('idTipoMovimiento').touched
+  }
+  get medioNoValido(){
+    return this.movMonObj.get('medio').invalid && this.movMonObj.get('medio').touched
+  }
+  get autorNoValido(){
+    return this.movMonObj.get('autor').invalid && this.movMonObj.get('autor').touched
+  }
+  get fechaNoValido(){
+    return this.movMonObj.get('fecha').invalid && this.movMonObj.get('fecha').touched
   }
 
-  public agregar(): void {
-    this.movimientoMonetarioService.crearMovMonetarios(this.movMonObj)
+  movMonObj = this.formBuilder.group({
+  monto: [null,Validators.required],
+  idTipoMovimiento: [null,Validators.required],
+  medio: ["",Validators.required],
+  autor: ["",Validators.required],
+  fecha: [null,Validators.required]
+  })
+
+
+  auditoriaAgregarObj = {
+    usuario: this.authService.usuario.username,
+    accion: `Alta de movimiento monetario`
+  }
+  
+
+  
+  auditoriaAgregar() {
+    this.auditoriaService.crearAuditoria(this.auditoriaAgregarObj).subscribe(response => {
+      return response;
+    })
+  }
+  
+
+
+  public submit(): void {
+
+    
+     if (this.movMonObj.invalid)
+     return  Object.values(this.movMonObj.controls).forEach(control => {
+        control.markAsTouched();
+     })
+    this.movimientoMonetarioService.crearMovMonetarios(this.movMonObj.value)
     .subscribe(
       response => {
         this.router.navigate(['/movimientos-monetarios'])
@@ -56,7 +97,7 @@ export class FormMovMonetarioComponent implements OnInit {
           showConfirmButton: false, 
           timer: 1500
         })
-
+        this.auditoriaAgregar();
         return response;
       
       })
