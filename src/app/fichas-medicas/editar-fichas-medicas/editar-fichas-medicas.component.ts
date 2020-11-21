@@ -84,6 +84,9 @@ get idMascotaNoValido(){
 get idVeterinariaNoValido(){
   return this.editarFichaMedicaObj.get('idVeterinaria').invalid && this.editarFichaMedicaObj.get('idVeterinaria').touched
 }
+get diagnosticoNoValido(){
+  return this.editarFichaMedicaObj.get('idVeterinaria').invalid && this.editarFichaMedicaObj.get('idVeterinaria').touched
+}
 
 editarFichaMedicaObj = this.formBuilder.group({
   id: null, 
@@ -92,7 +95,7 @@ editarFichaMedicaObj = this.formBuilder.group({
   nombreProducto: "",
   vacuna: "", 
   nombreVacuna: "", 
-  diagnostico: "", 
+  diagnostico: ["",Validators.required], 
   idMascota: [null,Validators.required],
   idVeterinaria: [null,Validators.required],
   tratamiento: "",

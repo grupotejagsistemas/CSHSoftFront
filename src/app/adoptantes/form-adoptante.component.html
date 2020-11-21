@@ -4,11 +4,13 @@
         <hr>
     </div>
         <div class="form-group">
-            <input type="number" class="form-control" placeholder="Número de formulario" name="numeroFormulario"  formControlName="numeroFormulario" required>
+            <input type="number" class="form-control" placeholder="Número de formulario" name="numeroFormulario"  formControlName="numeroFormulario">
+            
         </div>
+
     <label for="mascota" class="col-form-label">Seleccione una mascota</label>
         <div class="form-group">
-            <select type="select" class="form-control" name="mascota" formControlName="idMascota" required>
+            <select type="select" class="form-control" name="mascota" formControlName="idMascota">
                 <option *ngFor="let mascota of mascotas" [value]="mascota.id">
                     {{mascota.nombre}}
                 </option>
@@ -56,7 +58,7 @@
         </div>
         <div class="form-group">
             <input type="text" maxlength="50" class="form-control" placeholder="Celular"  name="celular" formControlName="celular">
-          
+            
         </div>
         <div class="form-group">
             <input type="text" maxlength="50" class="form-control" placeholder="Email"  name="email" formControlName="email"[class.is-invalid]="emailNoValido">

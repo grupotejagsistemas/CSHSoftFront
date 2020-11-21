@@ -35,7 +35,8 @@
                 </div>               
                  <div class="form-group">
                         <div class="form-group">
-                            <input type="text" maxlength="255" class="form-control " placeholder="Diagnóstico" name="diagnostico"  [(ngModel)]="fichaMedica.diagnostico" formControlName="diagnostico">
+                            <input type="text" maxlength="255" class="form-control " placeholder="Diagnóstico" name="diagnostico"  [(ngModel)]="fichaMedica.diagnostico" formControlName="diagnostico"[class.is-invalid]="diagnosticoNoValido">>
+                            <label *ngIf="diagnosticoNoValido" class="text-danger">Por favor, complete el campo</label>
                         </div>
                 </div>
             
