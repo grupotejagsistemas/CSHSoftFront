@@ -164,7 +164,7 @@ idveterinariasArray() {
       this.router.navigate(['/adoptantes'])
       swal.fire({
         icon: 'success',
-        title: 'El adoptante ha sido modificado',
+        title: `El adoptante ${this.adoptanteObj.value.nombreCompleto} ha sido modificado`,
         showConfirmButton: false,
         timer: 1500
       })

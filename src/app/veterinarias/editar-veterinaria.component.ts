@@ -102,9 +102,7 @@ return  Object.values(this.editarVeterinariaObj.controls).forEach(control => {
       this.router.navigate(['/veterinarias'])
       swal.fire({
         icon: 'success',
-        title: 'La veterinaria ha sido modificada',
-        showConfirmButton: true,
-        timer: 1500
+        title: 'La veterinaria ha sido modificada'
       })
       this.auditoriaModificar();
       return response;

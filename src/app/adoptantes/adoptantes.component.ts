@@ -77,7 +77,7 @@ export class AdoptantesComponent implements OnInit {
   
   filtroEnProceso(): void{
     if(this.checkedEnProceso === true){
-      this.adoptanteService.filtrarEnProceso("enProceso").subscribe((data: any) => {
+      this.adoptanteService.filtrarEnProceso("En Proceso").subscribe((data: any) => {
         this.adoptantes = data;
         this.checkedApto = false;
         this.checkedNoApto = false; 
@@ -93,7 +93,7 @@ export class AdoptantesComponent implements OnInit {
 
   filtroRechazado(): void{
     if(this.checkedRechazado === true) {
-      this.adoptanteService.filtrarRechazado('rechazado').subscribe((data: any) => {
+      this.adoptanteService.filtrarRechazado('Rechazado').subscribe((data: any) => {
         this.adoptantes = data;
         this.checkedApto = false;
         this.checkedNoApto = false; 
@@ -110,7 +110,7 @@ export class AdoptantesComponent implements OnInit {
   
   filtroFinalizado(): void {
     if(this.checkedFinalizado === true){
-      this.adoptanteService.filtrarFinalizado("finalizado").subscribe((data: any) => {
+      this.adoptanteService.filtrarFinalizado("Finalizado").subscribe((data: any) => {
         this.adoptantes = data; 
         this.checkedApto = false;
         this.checkedNoApto = false; 

@@ -91,19 +91,18 @@ export class UsuarioCrearComponent implements OnInit {
 
 
   public submit(): void{
-
-
     console.log(this.usuarioObj);  
      if (this.usuarioObj.invalid)
      return  Object.values(this.usuarioObj.controls).forEach(control => {
         control.markAsTouched();
      })
+
     this.usuarioService.crearUsuario(this.usuarioObj.value)
     .subscribe((response: any) => {
       this.router.navigate(['/'])
       Swal.fire({
         icon:'success',
-        title: "Creación exitosa",
+        title: `Creación de usuario ${this.usuarioObj.value.nombreUsuario} exitoso`,
         showConfirmButton: false,
         timer: 1500
       })

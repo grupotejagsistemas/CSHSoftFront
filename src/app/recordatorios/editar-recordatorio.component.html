@@ -1,8 +1,7 @@
 <form [formGroup]="recordatorioObj" (submit)="submit()"class="border p-3 form" >   
     <div class=" text-center">
-        
         <h2>Modificar Recordatorio</h2> 
-
+        <hr/>
     </div>
         <div class="form-group">
             <input type="text" maxlength="100" class="form-control" placeholder="Recordatorio" name="descripcionRecordatorio" [(ngModel)]="recordatorio.descripcionRecordatorio" formControlName="descripcionRecordatorio" [class.is-invalid]="recordatorioNoValido"> 
