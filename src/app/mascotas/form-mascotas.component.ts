@@ -142,7 +142,6 @@ onSubmit(formValue: any){
 submit(): void{
   const id = +this.route.snapshot.paramMap.get('id');
 
-  console.log(this.mascotaObj);
    if (this.mascotaObj.invalid)
    return  Object.values(this.mascotaObj.controls).forEach(control => {
       control.markAsTouched();
@@ -165,26 +164,6 @@ submit(): void{
       })
 
     }
-    // seleccionarFoto(event){
-    //   this.fotoSeleccionada = event.target.files[0];
-    //   console.log(this.fotoSeleccionada);
-    //   if(this.fotoSeleccionada.type.indexOf('image') < 0){
-    //     Swal.fire('Error', 'El archivo debe ser del tipo imagen', 'error');
-    //     this.fotoSeleccionada = null;
-    //   } 
-    // }
-  
-    // subirFoto(id: string){
-
-    //   if(!this.fotoSeleccionada){
-    //     Swal.fire('warning', 'La mascota fue creada sin imagen', 'warning') ;
-    //   }else {
-    //     console.log('id', id);
-    //     this.mascotaService.subirFoto(this.fotoSeleccionada, id)
-    //     .subscribe(mascota => {
-    //       this.mascota = mascota;
-    //     })
-    //   }
-    // }
+    
 
   }

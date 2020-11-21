@@ -32,7 +32,6 @@ export class AdoptantesComponent implements OnInit {
 
     this.adoptanteService.getAdoptantes().subscribe((data: any) => {
       this.adoptantes = data;
-      console.log('array de adoptantes: ' + this.adoptantes)
     })
   }
   

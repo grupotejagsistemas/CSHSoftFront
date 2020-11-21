@@ -73,7 +73,6 @@ auditoriaAgregar() {
 public submit(): void {
   const id = +this.route.snapshot.paramMap.get('id');
 
-  console.log(this.veterinariaObj);  
    if (this.veterinariaObj.invalid)
    return  Object.values(this.veterinariaObj.controls).forEach(control => {
       control.markAsTouched();

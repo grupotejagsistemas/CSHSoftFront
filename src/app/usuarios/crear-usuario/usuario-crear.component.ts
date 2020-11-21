@@ -91,7 +91,6 @@ export class UsuarioCrearComponent implements OnInit {
 
 
   public submit(): void{
-    console.log(this.usuarioObj);  
      if (this.usuarioObj.invalid)
      return  Object.values(this.usuarioObj.controls).forEach(control => {
         control.markAsTouched();

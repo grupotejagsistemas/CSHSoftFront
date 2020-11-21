@@ -44,11 +44,9 @@ export class MascotasComponent implements OnInit {
   }
 
   filtroNombre(nombre: string): void {
-    console.log('nombre', nombre)
 
     this.mascotaService.getMascotasNombre(nombre).subscribe((data: any ) => {
       this.mascotas = data;
-      console.log('mascotas', data)
      })
   }
 

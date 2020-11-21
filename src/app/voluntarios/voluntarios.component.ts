@@ -102,7 +102,6 @@ export class VoluntariosComponent implements OnInit {
 
   borrarVoluntario(id: number, voluntario: string): void {
 
-      console.log(voluntario)
       swal.fire({
         text: `¿Desea eliminar al voluntario ${voluntario} ?`,
         icon: 'warning',

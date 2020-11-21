@@ -46,8 +46,7 @@
         </div>
     </div>
         <div class="form-group">
-            <input type="text" maxlength="50" class="form-control" placeholder="localidad " [(ngModel)]="voluntario.localidad" name="localidad" formControlName="localidad" [class.is-invalid]="localidadNoValido">
-            <label *ngIf="localidadNoValido" class="text-danger">Por favor, complete el campo</label>
+            <input type="text" maxlength="50" class="form-control" placeholder="localidad " [(ngModel)]="voluntario.localidad" name="localidad" formControlName="localidad">
         </div>
         
         <div class="form-check">

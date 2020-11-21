@@ -24,7 +24,6 @@ export class HistorialService {
   }
 
   getHistorial(id: number): Observable<Historial> {
-    console.log('por id', id);
 
     return this.http.get<Historial>(`${this.urlAPI}/historial/${id}`);
   }

@@ -98,7 +98,6 @@ get localidadNoValido(){
   
   submit(): void{
 
-    console.log(this.voluntarioObj);  
      if (this.voluntarioObj.invalid)
      return  Object.values(this.voluntarioObj.controls).forEach(control => {
         control.markAsTouched();
@@ -132,7 +131,6 @@ get localidadNoValido(){
           showConfirmButton: false,
           timer: 1500
         })
-        console.log('AGREGAR', response);
         this.auditoriaAgregar();
         return response;
       })

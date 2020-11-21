@@ -82,7 +82,6 @@ export class VeterinariasComponent implements OnInit {
   
   
   borrarVeterinaria(id: number, veterinaria: string): void {
-    console.log('vet', id)
       swal.fire({
         text: `¿Desea eliminar la veterinaria ${veterinaria}?`,
         icon: 'warning',
